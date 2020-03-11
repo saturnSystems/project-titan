@@ -1,0 +1,1 @@
+// DetailTests.js stub
