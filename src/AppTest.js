@@ -1,3 +1,5 @@
+// was App.test.js changed to AppTest.js nsb
+
 import React from 'react';
 import { render } from '@testing-library/react';
 import App from './App';
