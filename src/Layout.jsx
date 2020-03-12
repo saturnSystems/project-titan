@@ -8,49 +8,53 @@ function Layout (props){
 
 <Container-fluid className="layout">
 
-  <Row className="layout">
-      <Col className="layout" sm={2}>Logo</Col>
-      <Col className="layout" sm={{span:2, offset:8}}>Search</Col>
-  </Row>
-
-  <Row className="layout">
-      <Col className="layout">Sitewide Announcement</Col>
-  </Row>
+  <Col className="layout">
+    <Row className="layout">
+        <Col className="layout" sm={2}>Logo</Col>
+        <Col className="layout" sm={{span:2, offset:8}}>Search</Col>
+    </Row>
+    <Row className="layout">
+        <Col className="layout">Sitewide Announcement</Col>
+    </Row>
+  </Col>
 
   <Container-fluid className="layout container">
-    <Row className="layout">
-      <Col className="layout" sm={8}>IMAGE CAROUSEL</Col>
-      <Col className="layout">
-        <Row className="layout">***** Read all reviews</Row>
-        <Row className="layout">CATEGORY</Row>
-        <Row className="layout">Expanded Product Name</Row>
-        <Row className="layout">$369</Row>
-        <Row className="layout">STYLE > SELECTED STYLE</Row>
-        <Row className="layout">
-          <Col className="layout">
-            <Row className="layout">STYLE PREVIEW BUTTONS</Row>
-            <Row className="layout">STYLE PREVIEW BUTTONS</Row>
-          </Col>
-        </Row>
-        <Row className="layout">SELECT SIZE | 1</Row>
-        <Row className="layout">ADD TO BAG | *</Row>
-      </Col>
-    </Row>
-    <br></br>
-    <Row className="layout">
-      <Col className="layout" sm={{span:7,offset:1}}>
-        <Row className="layout">Product Slogan, Pithy Description Or Catchphrase.</Row>
-        <Row className="layout">Description details.</Row>
-      </Col>
-      <Col className="layout" sm={3}>
-        <Row className="layout">Quick Details</Row>
-        <Row className="layout">Quick Details</Row>
-        <Row className="layout">Quick Details</Row>
-        <Row className="layout">Quick Details</Row>
-      </Col>
-    </Row>
+    <Col className="layout container">
+      <Row className="layout">
+        <Col className="layout" sm={8}>IMAGE CAROUSEL</Col>
+        <Col className="layout">
+          <Row className="layout">***** Read all reviews</Row>
+          <Row className="layout">CATEGORY</Row>
+          <Row className="layout">Expanded Product Name</Row>
+          <Row className="layout">$369</Row>
+          <Row className="layout">STYLE > SELECTED STYLE</Row>
+          <Row className="layout">
+            <Col className="layout">
+              <Row className="layout">STYLE PREVIEW BUTTONS</Row>
+              <Row className="layout">STYLE PREVIEW BUTTONS</Row>
+            </Col>
+          </Row>
+          <Row className="layout">SELECT SIZE | 1</Row>
+          <Row className="layout">ADD TO BAG | *</Row>
+        </Col>
+      </Row>
+      <br></br>
+      <Row className="layout">
+        <Col className="layout" sm={{span:7,offset:1}}>
+          <Row className="layout">Product Slogan, Pithy Description Or Catchphrase.</Row>
+          <Row className="layout">Description details.</Row>
+        </Col>
+        <Col className="layout" sm={3}>
+          <Row className="layout">Quick Details</Row>
+          <Row className="layout">Quick Details</Row>
+          <Row className="layout">Quick Details</Row>
+          <Row className="layout">Quick Details</Row>
+        </Col>
+      </Row>
+    </Col>
   </Container-fluid>
   <br></br>
+
   <Container-fluid className="layout container">
     <Col sm={{span:10,offset:1}} className="layout container">
       <Row className="layout">Related Products</Row>
@@ -119,6 +123,7 @@ function Layout (props){
     </Col>
   </Container-fluid>
   <br></br>
+
   <Container-fluid className="layout container">
     <Col sm={{span:10,offset:1}} className="layout container">
       <Row className="layout">{"QUESTIONS & ANSWERS"}</Row>
@@ -191,7 +196,8 @@ function Layout (props){
     </Col>
   </Container-fluid>
   <br></br>
-  <Container-fluid className="layout">
+  
+  <Container-fluid className="layout container">
     <Col sm={{span:10,offset:1}} className="layout container">
       <Row className="layout">
         {"Ratings & Reviews"}
