@@ -37,8 +37,11 @@
   }
 }
 
-.col {
+.layout {
   background-color:#61dafb;
   border:1px solid;
   border-color: black;
+}
+.container{
+  border-color:red;
 }
