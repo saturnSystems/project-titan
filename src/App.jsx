@@ -12,6 +12,7 @@ class App extends React.Component {
 
     this.state = {
       products: [],
+      currentProduct: [],
       images: [],
       reviews: []
     };
