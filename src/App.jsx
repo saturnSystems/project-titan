@@ -15,7 +15,9 @@ class App extends React.Component {
       products: [],
       currentProduct: [],
       images: [],
-      reviews: []
+      reviews: [],
+      questions: [],
+      answers: []
     };
   }
 
