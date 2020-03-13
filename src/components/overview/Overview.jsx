@@ -17,7 +17,7 @@ constructor(props){
           <Row className="layout">
             <Col className="layout" sm={8}>IMAGE CAROUSEL</Col>
             <Col className="layout">
-              <Row className="layout"><StarRatings rating={this.props.reviewRating} starDimension="1em" starSpacing={"0"}/>  Read all reviews</Row>
+              <Row className="layout"><StarRatings rating={this.props.reviewRating} starDimension="1em" starSpacing={"0"}/>  Read all {this.props.numReviews} reviews</Row>
               <Row className="layout">CATEGORY</Row>
               <Row className="layout">Expanded Product Name</Row>
               <Row className="layout">$369</Row>
