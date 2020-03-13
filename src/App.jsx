@@ -27,9 +27,14 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-    helper.getReviewMetadata('1', result=>{
+    helper.getOneProduct('1', result=>{
       this.setState({
-        currentReviewRating: helper.calculateReviewRating(result)
+        currentProduct: result
+      })
+      helper.getReviewMetadata(result.id, result=>{
+        this.setState({
+          currentReviewRating: helper.calculateReviewRating(result)
+        })
       })
     })
   }
