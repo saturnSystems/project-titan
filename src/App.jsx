@@ -1,12 +1,26 @@
-import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-import Layout from './Layout.jsx'
+import React from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
+import Layout from "./Layout";
+const helper = require("./helper/helper.js");
 
-function App() { 
-  return (
-    <Layout/>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      products: [],
+      currentProduct: [],
+      images: [],
+      reviews: [],
+      questions: [],
+      answers: []
+    };
+  }
+
+  render() {
+    return <Layout />;
+  }
 }
 
 export default App;
