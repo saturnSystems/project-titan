@@ -17,10 +17,8 @@ export default class ReviewTiles extends React.Component {
     return (
       //////////// TODO ///////////////////////
       /**
-     
-     * "2020-02-07T00:00:00.000Z"
      * Review Summary - Reviews submitted will have a one sentence summary. This single sentence will be 
-                        capped at 60 characters.  On the review tile, this summary will appear in bold font above the full review.
+                        capped at 60 characters.
      * Review Body - The review body will be a free-form multimedia input where the user can submit text and images regarding their experience with the product. 
                      The text submitted as part of the review will be between 50 and 1000 characters long.  
                      Users should be able to submit up to 5 images along with a single review.
@@ -42,16 +40,24 @@ export default class ReviewTiles extends React.Component {
                 <Col className="layout" sm={3}>
                   <Row className="layout">{this.props.review.rating} stars</Row>
                 </Col>
-                <Col className="layout" sm={{ offset: 6 }}>
+                <Col className="layout" sm={{ offset: 3 }}>
                   <Row className="layout">
                     {this.props.review.reviewer_name}, {this.props.date}
                   </Row>
                 </Col>
               </Row>
               <Row className="layout">
-                <Col className="layout" sm={9}>
-                  <Row className="layout">{this.props.review.summary}</Row>
-                  <Row className="layout">...title continuation</Row>
+                <Col className="layout">
+                  <Row className="layout">
+                    <strong>{this.props.review.summary.slice(0, 60)}</strong>
+                  </Row>
+                  {/* <Row className="layout"> */}
+                  {this.props.review.summary.length > 60 ? (
+                    <Row className="layout">
+                      {"... " + this.props.review.summary.slice(60)}
+                    </Row>
+                  ) : null}
+                  {/* </Row> */}
                   <Row className="layout">{this.props.review.body}</Row>
                   <Row className="layout">
                     # of Review Recommended is {this.props.review.recommend}
