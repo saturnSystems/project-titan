@@ -17,6 +17,7 @@ class App extends React.Component {
 
     this.state = {
       products: [],
+      productID: 1,
       currentProduct: [],
       currentReviewRating: 0,
       images: [],
@@ -27,14 +28,19 @@ class App extends React.Component {
   }
 
   componentDidMount(){
-    helper.getOneProduct('1', result=>{
+    helper.getOneProduct(this.state.productID, result=>{
       this.setState({
         currentProduct: result
       })
-      helper.getReviewMetadata(result.id, result=>{
-        this.setState({
-          currentReviewRating: helper.calculateReviewRating(result)
-        })
+    })
+    helper.getReviewMetadata(this.state.productID, result=>{
+      this.setState({
+        currentReviewRating: helper.calculateReviewRating(result)
+      })
+    })
+    helper.getListReviews(this.state.productID,result=>{
+      this.setState({
+        reviews: result.results
       })
     })
   }
@@ -52,7 +58,7 @@ class App extends React.Component {
               <Col className="layout">Sitewide Announcement</Col>
           </Row>
         </Col>
-        <Overview reviewRating={this.state.currentReviewRating}/>
+        <Overview reviewRating={this.state.currentReviewRating} numReviews={this.state.reviews.length}/>
         <br></br>
 
         <RIAC/>
