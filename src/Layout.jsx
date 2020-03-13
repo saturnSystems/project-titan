@@ -1,315 +1,196 @@
-import React from 'react';
-import 'react-bootstrap/Container'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Overview from './components/overview/Overview'
+import React from "react";
+import "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Overview from "./components/overview/Overview";
+import Reviews from "./components/reviews/Reviews";
 
-function Layout (props){
-  return(
+function Layout(props) {
+  return (
+    <Container-fluid className="layout">
+      <Col className="layout">
+        <Row className="layout">
+          <Col className="layout" sm={2}>
+            Logo
+          </Col>
+          <Col className="layout" sm={{ span: 2, offset: 8 }}>
+            Search
+          </Col>
+        </Row>
+        <Row className="layout">
+          <Col className="layout">Sitewide Announcement</Col>
+        </Row>
+      </Col>
 
-<Container-fluid className="layout">
-
-  <Col className="layout">
-    <Row className="layout">
-        <Col className="layout" sm={2}>Logo</Col>
-        <Col className="layout" sm={{span:2, offset:8}}>Search</Col>
-    </Row>
-    <Row className="layout">
-        <Col className="layout">Sitewide Announcement</Col>
-    </Row>
-  </Col>
-
-  <Overview/>
-  <br></br>
-
-  <Container-fluid className="layout container">
-    <Col sm={{span:10,offset:1}} className="layout container">
-      <Row className="layout">Related Products</Row>
-      <Row className="layout">
-        <Col className="layout">
-          <Row className="layout">IMAGE</Row>
-          <Row className="layout">CATEGORY</Row>
-          <Row className="layout">Expanded Product Name with Extra Text</Row>
-          <Row className="layout">$123</Row>
-          <Row className="layout">*****</Row>
-        </Col>
-        <Col className="layout">
-          <Row className="layout">IMAGE</Row>
-          <Row className="layout">CATEGORY</Row>
-          <Row className="layout">Expanded Product Name with Extra Text</Row>
-          <Row className="layout">$123</Row>
-          <Row className="layout">*****</Row>
-        </Col>
-        <Col className="layout">
-          <Row className="layout">IMAGE</Row>
-          <Row className="layout">CATEGORY</Row>
-          <Row className="layout">Expanded Product Name with Extra Text</Row>
-          <Row className="layout">$123</Row>
-          <Row className="layout">*****</Row>
-        </Col>
-        <Col className="layout">
-          <Row className="layout">IMAGE</Row>
-          <Row className="layout">CATEGORY</Row>
-          <Row className="layout">Expanded Product Name with Extra Text</Row>
-          <Row className="layout">$123</Row>
-          <Row className="layout">*****</Row>
-        </Col>
-      </Row>
+      <Overview />
       <br></br>
-      <Row className="layout">Your Outfit</Row>
-      <Row className="layout">
-        <Col className="layout">
-          <Row className="layout">IMAGE</Row>
-          <Row className="layout">CATEGORY</Row>
-          <Row className="layout">Expanded Product Name with Extra Text</Row>
-          <Row className="layout">$123</Row>
-          <Row className="layout">*****</Row>
-        </Col>
-        <Col className="layout">
-          <Row className="layout">IMAGE</Row>
-          <Row className="layout">CATEGORY</Row>
-          <Row className="layout">Expanded Product Name with Extra Text</Row>
-          <Row className="layout">$123</Row>
-          <Row className="layout">*****</Row>
-        </Col>
-        <Col className="layout">
-          <Row className="layout">IMAGE</Row>
-          <Row className="layout">CATEGORY</Row>
-          <Row className="layout">Expanded Product Name with Extra Text</Row>
-          <Row className="layout">$123</Row>
-          <Row className="layout">*****</Row>
-        </Col>
-        <Col className="layout">
-          <Row className="layout">IMAGE</Row>
-          <Row className="layout">CATEGORY</Row>
-          <Row className="layout">Expanded Product Name with Extra Text</Row>
-          <Row className="layout">$123</Row>
-          <Row className="layout">*****</Row>
-        </Col>
-      </Row>
-    </Col>
-  </Container-fluid>
-  <br></br>
 
-  <Container-fluid className="layout container">
-    <Col sm={{span:10,offset:1}} className="layout container">
-      <Row className="layout">{"QUESTIONS & ANSWERS"}</Row>
-      <Row className="layout">Search Bar</Row>
-      <Row className="layout">
-        <Col className="layout">
-          <Row className="layout">Q:
-            <Col className="layout" sm={9}>
-              <Row className="layout">Who What When</Row>
+      <Container-fluid className="layout container">
+        <Col sm={{ span: 10, offset: 1 }} className="layout container">
+          <Row className="layout">Related Products</Row>
+          <Row className="layout">
+            <Col className="layout">
+              <Row className="layout">IMAGE</Row>
+              <Row className="layout">CATEGORY</Row>
+              <Row className="layout">
+                Expanded Product Name with Extra Text
+              </Row>
+              <Row className="layout">$123</Row>
+              <Row className="layout">*****</Row>
             </Col>
             <Col className="layout">
-              <Row className="layout">Helpful? | Add answer</Row>
-            </Col>
-          </Row>
-          <Row className="layout">A:
-            <Col className="layout" sm={9}>
+              <Row className="layout">IMAGE</Row>
+              <Row className="layout">CATEGORY</Row>
               <Row className="layout">
-                <Col className="layout">
-                  <Row className="layout">Answer Text</Row>
-                  <Row className="layout">Date | Helpful | Report</Row>
-                </Col>
+                Expanded Product Name with Extra Text
               </Row>
-              <Row className="layout">
-                <Col className="layout">
-                  <Row className="layout">Answer to reply?</Row>
-                  <Row className="layout">IMAGES</Row>
-                  <Row className="layout">Date | Helpful | Report</Row>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-          <Row>
-            <Col>Load more answers</Col>
-          </Row>
-        </Col>
-      </Row>
-      <Row className="layout">
-        <Col className="layout">
-          <Row className="layout">Q:
-            <Col className="layout" sm={9}>
-              <Row className="layout">Who What When</Row>
+              <Row className="layout">$123</Row>
+              <Row className="layout">*****</Row>
             </Col>
             <Col className="layout">
-              <Row className="layout">Helpful? | Add answer</Row>
-            </Col>
-          </Row>
-          <Row className="layout">A:
-            <Col className="layout" sm={9}>
+              <Row className="layout">IMAGE</Row>
+              <Row className="layout">CATEGORY</Row>
               <Row className="layout">
-                <Col className="layout">
-                  <Row className="layout">Answer Text</Row>
-                  <Row className="layout">Date | Helpful | Report</Row>
-                </Col>
+                Expanded Product Name with Extra Text
               </Row>
+              <Row className="layout">$123</Row>
+              <Row className="layout">*****</Row>
+            </Col>
+            <Col className="layout">
+              <Row className="layout">IMAGE</Row>
+              <Row className="layout">CATEGORY</Row>
               <Row className="layout">
-                <Col className="layout">
-                  <Row className="layout">Answer to reply?</Row>
-                  <Row className="layout">IMAGES</Row>
-                  <Row className="layout">Date | Helpful | Report</Row>
-                </Col>
+                Expanded Product Name with Extra Text
               </Row>
-            </Col>
-          </Row>
-          <Row>
-            <Col>Load more answers</Col>
-          </Row>
-        </Col>
-      </Row>
-      <Row className="layout">MORE ANSWERED QUESTIONS | ADD A QUESTION +</Row>
-    </Col>
-  </Container-fluid>
-  <br></br>
-  
-  <Container-fluid className="layout container">
-    <Col sm={{span:10,offset:1}} className="layout container">
-      <Row className="layout">
-        {"Ratings & Reviews"}
-      </Row>
-      <Row className="layout">
-        <Col sm={4} className="layout">
-          <Row className="layout">3.5*****</Row>
-          <br></br>
-          <Row className="layout">100% of reviews recommend</Row>
-          <Row classname="layout">
-            <Col>
-              <Row>5 Stars ||||||||</Row>
-              <Row>4 Stars ||||||</Row>
-              <Row>3 Stars |||||||||||</Row>
-              <Row>2 Stars ||||||</Row>
-              <Row>1 Stars ||||</Row>
+              <Row className="layout">$123</Row>
+              <Row className="layout">*****</Row>
             </Col>
           </Row>
           <br></br>
+          <Row className="layout">Your Outfit</Row>
           <Row className="layout">
-            <Col>
-              <Row>
-                Size
+            <Col className="layout">
+              <Row className="layout">IMAGE</Row>
+              <Row className="layout">CATEGORY</Row>
+              <Row className="layout">
+                Expanded Product Name with Extra Text
               </Row>
-              <Row>
-                ||||||||||||||||||
-              </Row>
-              <Row>
-                Too small | Perfect | Too Large
-              </Row>
+              <Row className="layout">$123</Row>
+              <Row className="layout">*****</Row>
             </Col>
-          </Row>
-          <br></br>
-          <Row className="layout">
-            <Col>
-              <Row>
-                Comfort
+            <Col className="layout">
+              <Row className="layout">IMAGE</Row>
+              <Row className="layout">CATEGORY</Row>
+              <Row className="layout">
+                Expanded Product Name with Extra Text
               </Row>
-              <Row>
-                ||||||||||||||||||
+              <Row className="layout">$123</Row>
+              <Row className="layout">*****</Row>
+            </Col>
+            <Col className="layout">
+              <Row className="layout">IMAGE</Row>
+              <Row className="layout">CATEGORY</Row>
+              <Row className="layout">
+                Expanded Product Name with Extra Text
               </Row>
-              <Row>
-                Poor | Perfect
+              <Row className="layout">$123</Row>
+              <Row className="layout">*****</Row>
+            </Col>
+            <Col className="layout">
+              <Row className="layout">IMAGE</Row>
+              <Row className="layout">CATEGORY</Row>
+              <Row className="layout">
+                Expanded Product Name with Extra Text
               </Row>
+              <Row className="layout">$123</Row>
+              <Row className="layout">*****</Row>
             </Col>
           </Row>
         </Col>
-        <Col className="layout">
-          <Row className="layout">248 reviews, sorted by relevance</Row>
-          <br></br>
+      </Container-fluid>
+      <br></br>
+
+      <Container-fluid className="layout container">
+        <Col sm={{ span: 10, offset: 1 }} className="layout container">
+          <Row className="layout">{"QUESTIONS & ANSWERS"}</Row>
+          <Row className="layout">Search Bar</Row>
           <Row className="layout">
             <Col className="layout">
               <Row className="layout">
-                <Col className="layout" sm={3}>
-                  <Row className="layout">*****</Row>
+                Q:
+                <Col className="layout" sm={9}>
+                  <Row className="layout">Who What When</Row>
                 </Col>
-                <Col className="layout" sm={{offset:6}}>
-                  <Row className="layout">User1234, Date</Row>
+                <Col className="layout">
+                  <Row className="layout">Helpful? | Add answer</Row>
                 </Col>
               </Row>
               <Row className="layout">
+                A:
                 <Col className="layout" sm={9}>
                   <Row className="layout">
-                    Review Title
+                    <Col className="layout">
+                      <Row className="layout">Answer Text</Row>
+                      <Row className="layout">Date | Helpful | Report</Row>
+                    </Col>
                   </Row>
                   <Row className="layout">
-                    ...title continuation
-                  </Row>
-                  <Row className="layout">
-                    Review content
-                  </Row>
-                  <Row className="layout">
-                    Review Recommended
+                    <Col className="layout">
+                      <Row className="layout">Answer to reply?</Row>
+                      <Row className="layout">IMAGES</Row>
+                      <Row className="layout">Date | Helpful | Report</Row>
+                    </Col>
                   </Row>
                 </Col>
               </Row>
-              <Row className="layout">
-                <Col className="layout">
-                  <Row className="layout">
-                    Response:
-                  </Row>
-                  <Row className="layout">
-                    Response content
-                  </Row>
-                </Col>
-              </Row>
-              <Row className="layout">
-                Helpful? | Report
+              <Row>
+                <Col>Load more answers</Col>
               </Row>
             </Col>
           </Row>
-          <br></br>
           <Row className="layout">
             <Col className="layout">
               <Row className="layout">
-                <Col className="layout" sm={3}>
-                  <Row className="layout">*****</Row>
+                Q:
+                <Col className="layout" sm={9}>
+                  <Row className="layout">Who What When</Row>
                 </Col>
-                <Col className="layout" sm={{offset:6}}>
-                  <Row className="layout">User1234, Date</Row>
+                <Col className="layout">
+                  <Row className="layout">Helpful? | Add answer</Row>
                 </Col>
               </Row>
               <Row className="layout">
+                A:
                 <Col className="layout" sm={9}>
                   <Row className="layout">
-                    Review Title
+                    <Col className="layout">
+                      <Row className="layout">Answer Text</Row>
+                      <Row className="layout">Date | Helpful | Report</Row>
+                    </Col>
                   </Row>
                   <Row className="layout">
-                    ...title continuation
-                  </Row>
-                  <Row className="layout">
-                    Review content
-                  </Row>
-                  <Row className="layout">
-                    Review Recommended
+                    <Col className="layout">
+                      <Row className="layout">Answer to reply?</Row>
+                      <Row className="layout">IMAGES</Row>
+                      <Row className="layout">Date | Helpful | Report</Row>
+                    </Col>
                   </Row>
                 </Col>
               </Row>
-              <Row className="layout">
-                <Col className="layout">
-                  <Row className="layout">
-                    Response:
-                  </Row>
-                  <Row className="layout">
-                    Response content
-                  </Row>
-                </Col>
-              </Row>
-              <Row className="layout">
-                Helpful? | Report
+              <Row>
+                <Col>Load more answers</Col>
               </Row>
             </Col>
           </Row>
-          <br></br>
           <Row className="layout">
-            MORE REVIEWS | ADD A REVIEW +
+            MORE ANSWERED QUESTIONS | ADD A QUESTION +
           </Row>
-
         </Col>
-      </Row>
-    </Col>
-  </Container-fluid>
+      </Container-fluid>
+      <br></br>
 
-</Container-fluid>
-    
-    )
-  }
-  export default Layout
+      <Reviews />
+    </Container-fluid>
+  );
+}
+export default Layout;
