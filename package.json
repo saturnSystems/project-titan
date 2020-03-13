@@ -47,26 +47,6 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
-    "jest": "^25.1.0",
     "puppeteer": "^2.1.1"
-  },
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": "index.js",
-  "directories": {
-    "test": "tests"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/saturnSystems/project-titan.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/saturnSystems/project-titan/issues"
-  },
-  "jest": {
-    "collectCoverage": true,
-    "coverageReporters": ["html"]
-  },
-  "homepage": "https://github.com/saturnSystems/project-titan#readme"
+  }
 }
