@@ -1,5 +1,5 @@
 import React from 'react'
-function Rp(props){
+function Qa(props){
   return <div/>
 }
-export default Rp
+export default Qa
