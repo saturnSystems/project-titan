@@ -2,7 +2,7 @@ import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Overview from './components/overview/Overview';
-import Rp from './components/rp/Rp';
+import RIAC from './components/rIAC/RIAC';
 import Qa from './components/q-a/Q-a';
 import Reviews from './components/reviews/Reviews';
 import Row from 'react-bootstrap/Row'
@@ -50,7 +50,7 @@ class App extends React.Component {
         <Overview reviewRating={this.state.currentReviewRating}/>
         <br></br>
 
-        <Rp/>
+        <RIAC/>
         <br></br>
 
         <Qa/>
