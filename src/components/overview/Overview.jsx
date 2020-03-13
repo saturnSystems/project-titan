@@ -42,5 +42,5 @@ function Overview (props){
       </Row>
     </Col>
   </Container-fluid>
-  )}
-  export default Overview
+)}
+export default Overview;

@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Overview from './components/overview/Overview';
 import Rp from './components/rp/Rp';
-import Qa from './components/qa/Qa';
+import Qa from './components/q-a/Q-a';
 import Reviews from './components/reviews/Reviews';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
