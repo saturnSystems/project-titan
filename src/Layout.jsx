@@ -120,7 +120,7 @@ function Layout (props){
           <Row className="layout">*****</Row>
         </Col>
       </Row>
-    </Col>
+    </Col>class
   </Container-fluid>
   <br></br>
 
@@ -207,7 +207,7 @@ function Layout (props){
           <Row className="layout">3.5*****</Row>
           <br></br>
           <Row className="layout">100% of reviews recommend</Row>
-          <Row classname="layout">
+          <Row className="layout">
             <Col>
               <Row>5 Stars ||||||||</Row>
               <Row>4 Stars ||||||</Row>

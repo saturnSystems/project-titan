@@ -242,6 +242,26 @@ putHelpfulReview = (review_id, callback) => {
     .catch(err => callback(err));
 };
 
+calculateReviewRating=(product_id, callback)=>{
+  getReviewMetadata(product_id, result=>{
+    let calculated = ((result.ratings["1"] + result.ratings["2"]*2 +result.ratings["3"]*3 + result.ratings["4"]*4 + result.ratings["5"]*5)/
+    (result.ratings["1"] + result.ratings["2"] +result.ratings["3"] + result.ratings["4"] + result.ratings["5"]))
+    callback(Math.trunc(calculated*100)/100)
+  })
+}
+
+calculateStarRating=(product_id,callback)=>{
+  calculateReviewRating(product_id, result=>{
+    let stars={whole:0,half:0,quarter:0,threeQuarter:0}
+    stars.whole=result-(result%1)
+    result%1>=0.5 && result%1<0.75 ? stars.half=1 : result%1>=0.25 && result%1<0.5 ? stars.quarter=1 : result%1 >= 0.75 ? stars.threeQuarter = 1 : null;
+    callback(stars)
+  })
+}
+
+calculateReviewRating("1", result=>console.log(result))
+calculateStarRating("1", result =>console.log(result))
+
 module.exports = {
   getAllProducts,
   getOneProduct,
@@ -259,5 +279,6 @@ module.exports = {
   getReviewMetadata,
   postReview,
   putHelpfulReview,
-  putHelpfulReview
+  putHelpfulReview,
+  calculateReviewRating
 };
