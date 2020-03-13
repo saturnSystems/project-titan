@@ -3,6 +3,7 @@ import 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import StarRatings from 'react-star-ratings'
+import Reviews from '../reviews/Reviews';
 
 class Overview extends React.Component{
 constructor(props){
@@ -17,7 +18,14 @@ constructor(props){
           <Row className="layout">
             <Col className="layout" sm={8}>IMAGE CAROUSEL</Col>
             <Col className="layout">
-              <Row className="layout"><StarRatings rating={this.props.reviewRating} starDimension="1em" starSpacing={"0"}/>  Read all {this.props.numReviews} reviews</Row>
+              <Row className="layout">
+                <StarRatings 
+                  rating={this.props.reviewRating} 
+                  starDimension={"1em"} 
+                  starSpacing={"0"}
+                />
+                <a>Read all {this.props.numReviews} reviews</a>
+              </Row>
               <Row className="layout">CATEGORY</Row>
               <Row className="layout">Expanded Product Name</Row>
               <Row className="layout">$369</Row>
