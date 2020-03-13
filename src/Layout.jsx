@@ -261,7 +261,7 @@ function Layout (props){
               </Row>
             </Col>
           </Row>
-
+          <br></br>
           <Row className="layout">
             MORE REVIEWS | ADD A REVIEW +
           </Row>
