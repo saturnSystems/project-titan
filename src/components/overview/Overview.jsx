@@ -8,7 +8,16 @@ import Button from "react-bootstrap/Button";
 class Overview extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+    };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      this.setState({
+        currentStyle:this.props.styles[0]
+      });
+    }
   }
 
   conditionalReviews() {
@@ -30,13 +39,17 @@ class Overview extends React.Component {
     }
   }
 
+  setStyle(style){
+    this.setState({currentStyle:style})
+  }
+
   conditionalStyles() {
     let storage = [];
     for (let i = 0; i < this.props.styles.length / 4; i++) {
       storage.push(
         <Row className="layout">
           {this.props.styles.slice(4 * i, 4 * i + 4).map((each, i) => (
-            <Button key={i}>{each.name}</Button>
+            <Button key={i} onClick={()=>this.setStyle(each)}>{each.name}</Button>
           ))}
         </Row>
       );
@@ -64,7 +77,7 @@ class Overview extends React.Component {
               <Row className="layout">{this.props.product.category}</Row>
               <Row className="layout">{this.props.product.name}</Row>
               <Row className="layout">${this.props.product.default_price}</Row>
-              <Row className="layout">STYLE > SELECTED STYLE</Row>
+              <Row className="layout">STYLE > {this.state.currentStyle&&this.state.currentStyle.name}</Row>
               <Row className="layout">
                 <Col className="layout">
                   {this.props.styles &&
