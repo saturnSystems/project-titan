@@ -4,12 +4,16 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import StarRatings from 'react-star-ratings'
 import Button from 'react-bootstrap/Button'
+import ProductCard from './comp/ProductCard/ProductCard'
 
 class RIAC extends React.Component{
   constructor(props){
     super(props)
-    this.state={}
+    this.state={
+      productCards: [],
+      currentRelatedProductCard: null
     }
+  }
    
   render() {
     return (
@@ -17,6 +21,7 @@ class RIAC extends React.Component{
       <Container-fluid className="layout container">
       <Col sm={{ span: 10, offset: 1 }} className="layout container">
         <Row className="layout">Related Products</Row>
+        <ProductCard />
         <Row className="layout">
           <Col className="layout">
             <Row className="layout">IMAGE</Row>
