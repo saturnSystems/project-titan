@@ -4,6 +4,9 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import StarRatings from "react-star-ratings";
 import Button from "react-bootstrap/Button";
+import {FacebookShareButton, TwitterShareButton, PinterestShareButton} from "react-share"
+import {FacebookIcon,PinterestIcon,TwitterIcon} from "react-share";
+
 
 class Overview extends React.Component {
   constructor(props) {
@@ -109,7 +112,10 @@ class Overview extends React.Component {
               </Row>
               <Row className="layout">SELECT SIZE | 1</Row>
               <Row className="layout">ADD TO BAG | *</Row>
-            </Col>
+              <FacebookShareButton url={window.location.href}><FacebookIcon size="1.5em"/></FacebookShareButton>
+              <PinterestShareButton url={window.location.href}><PinterestIcon size="1.5em"/></PinterestShareButton>
+              <TwitterShareButton url={window.location.href}><TwitterIcon size="1.5em"/></TwitterShareButton>
+              </Col>
           </Row>
           <br></br>
           <Row className="layout">
