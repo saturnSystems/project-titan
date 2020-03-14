@@ -9,9 +9,9 @@ const getAllProducts = callback => {
   fetch(`http://3.134.102.30/products/list`) // CHANGE: default is 5. example: /?count=50 to get 50...
     .then(response => response.json())
     .then(data => callback(data))
-    .catch(err => callback(err))
+    .catch(err => callback(err));
   // returns array of objects with id, name, description, ...
-}
+};
 
 // example how to use:
 // getAllProducts(result => console.log(result));
@@ -20,25 +20,25 @@ const getOneProduct = (productId, callback) => {
   fetch(`http://3.134.102.30/products/${productId}`)
     .then(response => response.json())
     .then(data => callback(data))
-    .catch(err => callback(err))
+    .catch(err => callback(err));
   // returns object with id, name, description, ...
-}
+};
 
 const getOneProductStyle = (productId, callback) => {
   fetch(`http://3.134.102.30/products/${productId}/styles`)
     .then(response => response.json())
     .then(data => callback(data))
-    .catch(err => callback(err))
+    .catch(err => callback(err));
   // returns object with style_id, name, prices, photos,...
-}
+};
 
 const getRelatedProducts = (productId, callback) => {
   fetch(`http://3.134.102.30/products/${productId}/related`)
     .then(response => response.json())
     .then(data => callback(data)) // CHANGE: to do what you want with it
-    .catch(err => callback(err))
+    .catch(err => callback(err));
   // This returns an array of related product id's
-}
+};
 
 // ////////////Questions And Answers///////////////////
 
@@ -47,17 +47,17 @@ const getListQuestions = (productId, callback) => {
   fetch(`http://3.134.102.30/qa/${productId}`) // CHANGE: default is 5. example: /?count=50 to get 50...
     .then(response => response.json())
     .then(data => callback(data)) // CHANGE: to do what you want with it
-    .catch(err => callback(err))
+    .catch(err => callback(err));
   // returns object of productId, results: {questionId, question_body...}
-}
+};
 
 const getAnswersList = (questionId, callback) => {
   fetch(`http://3.134.102.30/qa/${questionId}/answers`) // CHANGE: default is 5. example: /?count=50 to get 50...
     .then(response => response.json())
     .then(data => callback(data)) // CHANGE: to do what you want with it
-    .catch(err => callback(err))
+    .catch(err => callback(err));
   // returns an object with a results array that has more info
-}
+};
 
 // Adds a question for the given product
 const postAQuestion = (productId, body, name, email, callback) => {
@@ -80,8 +80,8 @@ const postAQuestion = (productId, body, name, email, callback) => {
   })
     .then(response => response.json())
     .then(data => callback(data))
-    .catch(err => callback(err))
-}
+    .catch(err => callback(err));
+};
 
 // Add an Answer
 const postAnAnswer = (questionId, body, name, email, photos, callback) => {
@@ -107,8 +107,8 @@ const postAnAnswer = (questionId, body, name, email, photos, callback) => {
   })
     .then(response => response.json())
     .then(data => callback(data))
-    .catch(err => callback(err))
-}
+    .catch(err => callback(err));
+};
 
 // Updates a question to show it was found helpful
 const putHelpfulQuestion = (questionId, callback) => {
@@ -119,8 +119,8 @@ const putHelpfulQuestion = (questionId, callback) => {
     }
   })
     .then(data => callback(data))
-    .catch(err => callback(err))
-}
+    .catch(err => callback(err));
+};
 
 const putReportQuestion = (questionId, callback) => {
   fetch(`http://3.134.102.30/qa/question/${questionId}/report`, {
@@ -130,8 +130,8 @@ const putReportQuestion = (questionId, callback) => {
     }
   })
     .then(data => callback(data))
-    .catch(err => callback(err))
-}
+    .catch(err => callback(err));
+};
 
 const putHelpfulAnswer = (answerId, callback) => {
   fetch(`http://3.134.102.30/qa/answer/${answerId}/helpful`, {
@@ -141,8 +141,8 @@ const putHelpfulAnswer = (answerId, callback) => {
     }
   })
     .then(data => callback(data))
-    .catch(err => callback(err))
-}
+    .catch(err => callback(err));
+};
 
 const putReportAnswer = (answerId, callback) => {
   fetch(`http://3.134.102.30/qa/answer/${answerId}/report`, {
@@ -152,8 +152,8 @@ const putReportAnswer = (answerId, callback) => {
     }
   })
     .then(data => callback(data))
-    .catch(err => callback(err))
-}
+    .catch(err => callback(err));
+};
 
 // ///////// REVIEWS ////////////////////////////////
 
@@ -162,8 +162,8 @@ const getListReviews = (productId, callback) => {
   fetch(`http://3.134.102.30/reviews/${productId}/list/?count=99999999`) // You can sort by /?sort="helpful" or "newest" or ...
     .then(response => response.json())
     .then(data => callback(data))
-    .catch(err => callback(err))
-}
+    .catch(err => callback(err));
+};
 // example:
 // getListReviews(3, data => console.log(data));
 
@@ -172,9 +172,9 @@ const getReviewMetadata = (productId, callback) => {
   fetch(`http://3.134.102.30/reviews/${productId}/meta`) // You can sort by /?sort="helpful" or "newest" or ...
     .then(response => response.json())
     .then(data => callback(data))
-    .catch(err => callback(err))
+    .catch(err => callback(err));
   // this returns an object with results which has RATINGS, recommend, and summary...
-}
+};
 
 const postReview = (productId, review, callback) => {
   /**
@@ -214,9 +214,9 @@ const postReview = (productId, review, callback) => {
   })
     .then(response => response.json())
     .then(data => callback(data))
-    .catch(err => callback(err))
+    .catch(err => callback(err));
   // this returns an object with results which has RATINGS, recommend, and summary...
-}
+};
 
 // Updates a review to show it was found helpful
 const putHelpfulReview = (reviewId, callback) => {
@@ -227,8 +227,8 @@ const putHelpfulReview = (reviewId, callback) => {
     }
   })
     .then(data => callback(data))
-    .catch(err => callback(err))
-}
+    .catch(err => callback(err));
+};
 
 // Updates a review to show it was reported. Note, this action does not delete the review, but the review will not be returned in the above GET request
 // putHelpfulReview = (reviewId, callback) => {
@@ -253,9 +253,9 @@ const calculateReviewRating = productMetaData => {
       productMetaData.ratings["2"] +
       productMetaData.ratings["3"] +
       productMetaData.ratings["4"] +
-      productMetaData.ratings["5"])
-  return Math.trunc(calculated * 100) / 100
-}
+      productMetaData.ratings["5"]);
+  return Math.trunc(calculated * 100) / 100;
+};
 
 // const calculateStarRating = productMetaData => {
 //   const average = calculateReviewRating(productMetaData)
@@ -291,4 +291,4 @@ module.exports = {
   // putHelpfulReview,
   calculateReviewRating
   // calculateStarRating
-}
+};
