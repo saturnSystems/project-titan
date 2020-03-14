@@ -10,6 +10,23 @@ constructor(props){
   this.state={}
   }
 
+  conditionalReviews(){
+    if(this.props.numReviews){
+      return(
+        <div>
+          <StarRatings 
+            rating={this.props.reviewRating} 
+            starDimension={"1em"} 
+            starSpacing={"0"}
+          />
+          <a href="" onClick={(e)=>{this.props.scroll(), e.preventDefault()}} style={{textDecoration:"underline"}}>Read all {this.props.numReviews} reviews</a>
+        </div>
+      )
+    }else{
+      return <br/>
+    }
+  }
+
   render(){
     return(
       <Container-fluid className="layout container">
@@ -17,7 +34,9 @@ constructor(props){
           <Row className="layout">
             <Col className="layout" sm={8}>IMAGE CAROUSEL</Col>
             <Col className="layout">
-              <Row className="layout"><StarRatings rating={this.props.reviewRating} starDimension="1em" starSpacing={"0"}/>  Read all {this.props.numReviews} reviews</Row>
+              <Row className="layout">
+                {this.conditionalReviews()}
+              </Row>
               <Row className="layout">CATEGORY</Row>
               <Row className="layout">Expanded Product Name</Row>
               <Row className="layout">$369</Row>
