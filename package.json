@@ -11,13 +11,17 @@
     "react-bootstrap": "^1.0.0-beta.17",
     "react-dom": "^16.13.0",
     "react-scripts": "3.4.0",
-    "react-star-ratings": "^2.3.0"
+    "react-share": "^4.1.0",
+    "react-star-ratings": "^2.3.0",
+    "typescript": "^3.8.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint .",
+    "lfix": "eslint . --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -36,6 +40,11 @@
   },
   "devDependencies": {
     "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.2"
+    "enzyme-adapter-react-16": "^1.15.2",
+    "eslint-config-airbnb": "^18.1.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^1.19.1"
   }
 }

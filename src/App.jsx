@@ -37,14 +37,24 @@ class App extends React.Component {
     });
     helper.getReviewMetadata(this.state.productID, result => {
       this.setState({
-        currentReviewRating: helper.calculateReviewRating(result)
+        currentReviewRating: helper.calculateReviewRating(result.ratings)
       });
     });
     helper.getListReviews(this.state.productID, result => {
       this.setState({
         reviews: result.results
-      });
-    });
+      })
+    })
+    helper.getListQuestions(this.state.productID, result => { // Q&A - Questions
+      this.setState({
+        questions: result.results
+      })
+    })
+    helper.getOneProductStyle(this.state.productID,result=>{
+      this.setState({
+        styles: result.results
+      })
+    })
   }
 
   scrollToMyRef = () => window.scrollTo(0, this.myRef.current.offsetTop);
@@ -77,7 +87,7 @@ class App extends React.Component {
         <RIAC />
         <br></br>
 
-        <Qa />
+        <Qa questions={this.state.questions}/>
         <br></br>
 
         <div ref={this.myRef}>

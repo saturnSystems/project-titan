@@ -4,11 +4,29 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import StarRatings from "react-star-ratings";
 import Button from "react-bootstrap/Button";
+import {FacebookShareButton, TwitterShareButton, PinterestShareButton} from "react-share"
+import {FacebookIcon,PinterestIcon,TwitterIcon} from "react-share";
+
 
 class Overview extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+    };
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
+      var defaultStyle=[]
+      for(let i=0; i<this.props.styles.length; i++){
+        if(this.props.styles[i]["default?"]){
+          defaultStyle=this.props.styles[i]
+        }
+      }
+      this.setState({
+        currentStyle:defaultStyle
+      });
+    }
   }
 
   conditionalReviews() {
@@ -30,18 +48,37 @@ class Overview extends React.Component {
     }
   }
 
+  setStyle(style){
+    this.setState({currentStyle:style})
+  }
+
   conditionalStyles() {
     let storage = [];
     for (let i = 0; i < this.props.styles.length / 4; i++) {
       storage.push(
         <Row className="layout">
           {this.props.styles.slice(4 * i, 4 * i + 4).map((each, i) => (
-            <Button key={i}>{each.name}</Button>
+            <Button key={i} onClick={()=>this.setStyle(each)}>{each.name}</Button>
           ))}
         </Row>
       );
     }
     return storage;
+  }
+
+  conditionalSalePrice(){
+    if(this.state.currentStyle&&(this.state.currentStyle.sale_price>0)){
+      return (
+        <div>
+          <Row className="layout">${this.state.currentStyle&&this.state.currentStyle.sale_price}</Row>
+          <Row className="layout">$<del style={{color:"red"}}>{this.state.currentStyle&&this.state.currentStyle.original_price}</del></Row>
+        </div>
+      )
+    }else{
+      return (
+        <Row className="layout">${this.state.currentStyle&&this.state.currentStyle.original_price}</Row>
+      )
+    }
   }
 
   render() {
@@ -58,13 +95,13 @@ class Overview extends React.Component {
                   rating={this.props.reviewRating}
                   starDimension="1em"
                   starSpacing={"0"}
-                />{" "}
-                Read all reviews
+                />
+                <Button variant="link" onClick={this.props.scroll}>Read all {this.props.numReviews} reviews</Button>
               </Row>
               <Row className="layout">{this.props.product.category}</Row>
               <Row className="layout">{this.props.product.name}</Row>
-              <Row className="layout">${this.props.product.default_price}</Row>
-              <Row className="layout">STYLE > SELECTED STYLE</Row>
+              {this.conditionalSalePrice()}
+              <Row className="layout">STYLE > {this.state.currentStyle&&this.state.currentStyle.name}</Row>
               <Row className="layout">
                 <Col className="layout">
                   {this.props.styles &&
@@ -75,7 +112,10 @@ class Overview extends React.Component {
               </Row>
               <Row className="layout">SELECT SIZE | 1</Row>
               <Row className="layout">ADD TO BAG | *</Row>
-            </Col>
+              <FacebookShareButton url={window.location.href}><FacebookIcon size="1.5em"/></FacebookShareButton>
+              <PinterestShareButton url={window.location.href}><PinterestIcon size="1.5em"/></PinterestShareButton>
+              <TwitterShareButton url={window.location.href}><TwitterIcon size="1.5em"/></TwitterShareButton>
+              </Col>
           </Row>
           <br></br>
           <Row className="layout">
