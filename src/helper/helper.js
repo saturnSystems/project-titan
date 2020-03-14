@@ -230,18 +230,19 @@ const putHelpfulReview = (reviewId, callback) => {
     .catch(err => callback(err));
 };
 
-const calculateReviewRating = productMetaData => {
-  let calculated =
-    (productMetaData.ratings["1"] +
-      productMetaData.ratings["2"] * 2 +
-      productMetaData.ratings["3"] * 3 +
-      productMetaData.ratings["4"] * 4 +
-      productMetaData.ratings["5"] * 5) /
-    (productMetaData.ratings["1"] +
-      productMetaData.ratings["2"] +
-      productMetaData.ratings["3"] +
-      productMetaData.ratings["4"] +
-      productMetaData.ratings["5"]);
+const calculateReviewRating = ratings => {
+  const calculated =
+    ((ratings["1"] || 0) +
+      (ratings["2"] || 0) * 2 +
+      (ratings["3"] || 0) * 3 +
+      (ratings["4"] || 0) * 4 +
+      (ratings["5"] || 0) * 5) /
+      ((ratings["1"] || 0) +
+        (ratings["2"] || 0) +
+        (ratings["3"] || 0) +
+        (ratings["4"] || 0) +
+        (ratings["5"] || 0)) || null;
+
   return Math.trunc(calculated * 100) / 100;
 };
 
