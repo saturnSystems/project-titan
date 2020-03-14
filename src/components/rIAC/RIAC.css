@@ -8,3 +8,9 @@
   float: left;
   border: none;
 }
+
+.caption {
+  font-size: 1em;
+  font-weight: 800;
+}
+
