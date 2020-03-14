@@ -55,11 +55,15 @@ class Overview extends React.Component {
 
   conditionalStyles() {
     let storage = [];
-    for (let i = 0; i < this.props.styles.length / 4; i++) {
+    let styles = this.props.styles
+    while(styles.length%4){
+      styles.push({})
+    }
+    for (let i = 0; i < styles.length / 4; i++) {
       storage.push(
         <Row className="layout">
-          {this.props.styles.slice(4 * i, 4 * i + 4).map((each, i) => (
-            <Image key={i} onClick={()=>this.setStyle(each)} src={`${each.photos[0].thumbnail_url}.jpg/171x180`} roundedCircle fluid></Image>
+          {styles.slice(4 * i, 4 * i + 4).map((each, i) => (
+            <Col key={i}>{each.photos&&<Image onClick={()=>this.setStyle(each)} src={`${each.photos[0].thumbnail_url}&h=300`} roundedCircle fluid></Image>}</Col>
           ))}
         </Row>
       );
