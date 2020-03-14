@@ -43,8 +43,13 @@ class App extends React.Component {
     helper.getListReviews(this.state.productID, result => {
       this.setState({
         reviews: result.results
-      });
-    });
+      })
+    })
+    helper.getOneProductStyle(this.state.productID,result=>{
+      this.setState({
+        styles: result.results
+      })
+    })
   }
 
   scrollToMyRef = () => window.scrollTo(0, this.myRef.current.offsetTop);
