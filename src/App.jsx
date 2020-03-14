@@ -45,6 +45,11 @@ class App extends React.Component {
         reviews: result.results
       })
     })
+    helper.getListQuestions(this.state.productID, result => { // Q&A - Questions
+      this.setState({
+        questions: result.results
+      })
+    })
     helper.getOneProductStyle(this.state.productID,result=>{
       this.setState({
         styles: result.results
@@ -82,7 +87,7 @@ class App extends React.Component {
         <RIAC />
         <br></br>
 
-        <Qa />
+        <Qa questions={this.state.questions}/>
         <br></br>
 
         <div ref={this.myRef}>
