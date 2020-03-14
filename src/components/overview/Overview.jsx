@@ -3,6 +3,7 @@ import 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import StarRatings from 'react-star-ratings'
+import Button from 'react-bootstrap/Button'
 
 class Overview extends React.Component{
 constructor(props){
@@ -19,13 +20,9 @@ constructor(props){
             starDimension={"1em"} 
             starSpacing={"0"}
           />
-          <a 
-            href="" 
-            onClick={(e)=>{this.props.scroll(), e.preventDefault()}} 
-            style={{textDecoration:"underline"}}
-          >
+          <Button variant="link" onClick={this.props.scroll}>
               Read all {this.props.numReviews} reviews
-          </a>
+          </Button>
         </div>
       )
     }else{
@@ -38,7 +35,7 @@ constructor(props){
     for(let i=0; i<this.props.styles.length/4; i++){
       storage.push(
       <Row className="layout">
-        {this.props.styles.slice(4*i, (4*i)+4).map((each,i)=><button key={i}>{each.name}</button>)}
+        {this.props.styles.slice(4*i, (4*i)+4).map((each,i)=><Button key={i}>{each.name}</Button>)}
       </Row>
       )
     }
