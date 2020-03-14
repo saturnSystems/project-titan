@@ -10,20 +10,25 @@ class Reviews extends React.Component {
     super(props);
 
     this.state = {
-      currentReview: [],
       reviews: [],
       answers: [],
       questions: [],
       date: []
     };
   }
-
   ////////// CURRENT USER STORY I AM WORKING ON //////////////////////
   /**
-   * Reviews: As a user, I want to be able to see reviews
-   * created by other users so that I can decide
-   * if I want the product or not.
-   */
+   *Rating Helpfulness* - Any user on the site will have the ability to provide feedback 
+    on whether reviews are helpful.  At the bottom of the review tile the text “Was this review helpful?” 
+    will precede two links “Yes (#)” and “No (#)”.   Following “Yes” and “No” will be the count of users
+    that had selected that button.  Clicking either link should cast a vote for that selection.
+
+    A user on the site does not need to be logged in to provide feedback on helpfulness.  
+
+    A user can provide feedback on any review.  However, they can only make one submission for each review.
+    If the user selects either “Yes” or “No” for a review, they should not be able to select another option 
+    again for that review.
+  **/
   ////////////////////////////////////////////////////////////////////
 
   //////////// TODO //////////////////////////////////////////////////
@@ -35,12 +40,12 @@ class Reviews extends React.Component {
    * As long as there are still unloaded reviews, the button will remain below the list.  Once all of the reviews for the product have been loaded, the button should no longer appear.
    */
 
-  componentDidMount() {
-    // sort this in helper by adding another parameter and alert team
-    helper.getListReviews(50, results =>
-      this.setState({ currentReview: results.results })
-    );
-  }
+  // componentDidMount() {
+  //   // sort this in helper by adding another parameter and alert team
+  //   helper.getListReviews(50, results =>
+  //     this.setState({ currentReview: results.results })
+  //   );
+  // }
   render() {
     // console.log(this.state.currentReview);
     return (
@@ -80,10 +85,10 @@ class Reviews extends React.Component {
             </Col>
             <Col className="layout">
               <Row className="layout">
-                {this.state.currentReview.length}, sorted by relevance
+                {this.props.reviews.length}, sorted by relevance
               </Row>
               <br></br>
-              {this.state.currentReview.map(review => {
+              {this.props.reviews.map(review => {
                 let date = new Date(review.date).toLocaleDateString("en-US", {
                   day: "numeric",
                   month: "short",
@@ -94,38 +99,12 @@ class Reviews extends React.Component {
                     review={review}
                     date={`${date}`}
                     key={review.review_id}
+                    helper={helper}
                   />
                 );
               })}
 
               <br></br>
-              {/* <Row className="layout">
-                <Col className="layout">
-                  <Row className="layout">
-                    <Col className="layout" sm={3}>
-                      <Row className="layout">*****</Row>
-                    </Col>
-                    <Col className="layout" sm={{ offset: 6 }}>
-                      <Row className="layout">User1234, Date</Row>
-                    </Col>
-                  </Row>
-                  <Row className="layout">
-                    <Col className="layout" sm={9}>
-                      <Row className="layout">Review Title</Row>
-                      <Row className="layout">...title continuation</Row>
-                      <Row className="layout">Review content</Row>
-                      <Row className="layout">Review Recommended</Row>
-                    </Col>
-                  </Row>
-                  <Row className="layout">
-                    <Col className="layout">
-                      <Row className="layout">Response:</Row>
-                      <Row className="layout">Response content</Row>
-                    </Col>
-                  </Row>
-                  <Row className="layout">Helpful? | Report</Row>
-                </Col>
-              </Row> */}
               <br></br>
               <Row className="layout">MORE REVIEWS | ADD A REVIEW +</Row>
             </Col>
