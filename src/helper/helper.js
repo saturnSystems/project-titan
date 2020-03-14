@@ -230,20 +230,8 @@ const putHelpfulReview = (reviewId, callback) => {
     .catch(err => callback(err));
 };
 
-// Updates a review to show it was reported. Note, this action does not delete the review, but the review will not be returned in the above GET request
-// putHelpfulReview = (reviewId, callback) => {
-//   fetch(`http://3.134.102.30/reviews/report/${reviewId}`, {
-//     method: "PUT",
-//     headers: {
-//       "Content-Type": "application/json"
-//     }
-//   })
-//     .then(data => callback(data))
-//     .catch(err => callback(err));
-// };
-
 const calculateReviewRating = productMetaData => {
-  const calculated =
+  let calculated =
     (productMetaData.ratings["1"] +
       productMetaData.ratings["2"] * 2 +
       productMetaData.ratings["3"] * 3 +
@@ -258,8 +246,8 @@ const calculateReviewRating = productMetaData => {
 };
 
 // const calculateStarRating = productMetaData => {
-//   const average = calculateReviewRating(productMetaData)
-//   const stars = { whole: 0, half: 0, quarter: 0, threeQuarter: 0 }
+//   let average = calculateReviewRating(productMetaData);
+//   let stars = { whole: 0, half: 0, quarter: 0, threeQuarter: 0 };
 //   stars.whole =
 //     average - (average % 1)(average % 1 >= 0.5 && average % 1 < 0.75)
 //       ? (stars.half = 1)
@@ -267,9 +255,9 @@ const calculateReviewRating = productMetaData => {
 //       ? (stars.quarter = 1)
 //       : average % 1 >= 0.75
 //       ? (stars.threeQuarter = 1)
-//       : null
-//   return stars
-// }
+//       : null;
+//   return stars;
+// };
 
 module.exports = {
   getAllProducts,
