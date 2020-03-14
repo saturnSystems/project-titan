@@ -13,9 +13,10 @@ class Qa extends React.Component {
     }
 
   render() {
+    console.log(this.props)
     return (
       <div>
-      <RenderList />
+      <RenderList questions={this.props.questions}/>
       <Container-fluid className="layout container">
         <Col sm={{ span: 10, offset: 1 }} className="layout container">
         <Row className="layout">{"QUESTIONS & ANSWERS"}</Row>

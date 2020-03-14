@@ -45,6 +45,11 @@ class App extends React.Component {
         reviews: result.results
       })
     })
+    helper.getListQuestions(this.state.productID, result => { // Q&A - Questions
+      this.setState({
+        questions: result.results
+      })
+    })
   }
 
   scrollToMyRef = () => window.scrollTo(0, this.myRef.current.offsetTop)
@@ -73,7 +78,7 @@ class App extends React.Component {
         <RIAC/>
         <br></br>
 
-        <Qa/>
+        <Qa questions={this.state.questions}/>
         <br></br>
 
         <div ref={this.myRef}><Reviews/></div>
