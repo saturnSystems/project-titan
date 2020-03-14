@@ -231,17 +231,18 @@ const putHelpfulReview = (reviewId, callback) => {
 };
 
 const calculateReviewRating = ratings => {
-    var calculated=(((ratings["1"]||0) +
-      (ratings["2"]||0) * 2 +
-      (ratings["3"]||0) * 3 +
-      (ratings["4"]||0) * 4 +
-      (ratings["5"]||0) * 5) /
-      ((ratings["1"]||0) +
-      (ratings["2"]||0) +
-      (ratings["3"]||0) +
-      (ratings["4"]||0) +
-      (ratings["5"]||0)))||null;
-      
+  const calculated =
+    ((ratings["1"] || 0) +
+      (ratings["2"] || 0) * 2 +
+      (ratings["3"] || 0) * 3 +
+      (ratings["4"] || 0) * 4 +
+      (ratings["5"] || 0) * 5) /
+      ((ratings["1"] || 0) +
+        (ratings["2"] || 0) +
+        (ratings["3"] || 0) +
+        (ratings["4"] || 0) +
+        (ratings["5"] || 0)) || null;
+
   return Math.trunc(calculated * 100) / 100;
 };
 
