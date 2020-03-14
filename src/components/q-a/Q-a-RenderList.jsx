@@ -6,14 +6,14 @@ import Col from 'react-bootstrap/Col';
 
 
 class RenderList extends React.Component {
-    constructor(props) {
-        super(props)
-    }
+    // constructor(props) {
+    //     super(props)
+    // }
 
      // question.question_body
     render() {
-        const items = this.props.questions.map(question =>
-        <Row className="layout">
+        const items = this.props.questions.map((question, i) =>
+        <Row className="layout" key={i}>
         <Col className="layout">
         <Row className="layout">Q:
         <Col className="layout" sm={9}>
