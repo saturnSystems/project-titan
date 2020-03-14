@@ -10,7 +10,6 @@ class Reviews extends React.Component {
     super(props);
 
     this.state = {
-      currentReview: [],
       reviews: [],
       answers: [],
       questions: [],
@@ -41,14 +40,15 @@ class Reviews extends React.Component {
    * As long as there are still unloaded reviews, the button will remain below the list.  Once all of the reviews for the product have been loaded, the button should no longer appear.
    */
 
-  componentDidMount() {
-    // sort this in helper by adding another parameter and alert team
-    helper.getListReviews(50, results =>
-      this.setState({ currentReview: results.results })
-    );
-  }
+  // componentDidMount() {
+  //   // sort this in helper by adding another parameter and alert team
+  //   helper.getListReviews(50, results =>
+  //     this.setState({ currentReview: results.results })
+  //   );
+  // }
   render() {
-    console.log(this.state.currentReview);
+    console.log(this.props.reviews);
+    // console.log(this.props.product);
     return (
       <Container-fluid className="layout container">
         <Col sm={{ span: 10, offset: 1 }} className="layout container">
@@ -86,10 +86,10 @@ class Reviews extends React.Component {
             </Col>
             <Col className="layout">
               <Row className="layout">
-                {this.state.currentReview.length}, sorted by relevance
+                {this.props.reviews.length}, sorted by relevance
               </Row>
               <br></br>
-              {this.state.currentReview.map(review => {
+              {this.props.reviews.map(review => {
                 let date = new Date(review.date).toLocaleDateString("en-US", {
                   day: "numeric",
                   month: "short",
@@ -100,6 +100,7 @@ class Reviews extends React.Component {
                     review={review}
                     date={`${date}`}
                     key={review.review_id}
+                    helper={helper}
                   />
                 );
               })}

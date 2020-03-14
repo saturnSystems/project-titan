@@ -10,30 +10,41 @@ export default class ReviewTiles extends React.Component {
     super(props);
 
     this.state = {
-      date: [],
-      reviews: []
+      reviews: [],
+      helpfulness: 0,
+      clicked: false
     };
   }
 
+  //////////// TODO ///////////////////////
+  /**
+ * Review Body - The review body will be a free-form multimedia input where the user can submit text and images regarding their experience with the product. 
+                 The text submitted as part of the review will be between 50 and 1000 characters long.  
+                 Users should be able to submit up to 5 images along with a single review.
+                 By default, the first 250 characters of the review should display.  If the review is longer than 250 characters, below the body the a link reading “Show more” will appear.  Upon clicking this link, the review tile should expand and the rest of the review should display.
+                 Any images that were submitted as part of the review should appear as *thumbnails* below the review text. Upon clicking a thumbnail, the image should open in a modal window, displaying at full resolution.  The only functionality available within this modal should be the ability to close the window. 
+ 
+ * Reviewer name - The username for the reviewer will appear.  Only the username will appear. No email addresses or other personal information will display.  However, if the user’s email is associated to a sale in the system then next to the username the text “Verified Purchaser” will appear.
+ * Rating Helpfulness - There is no data for "No" so only doing "Yes". Will add as future implementation
+
+ */
+  componentDidMount = () => {
+    this.setState({ helpfulness: this.props.review.helpfulness });
+  };
+
+  handleHelpfulness = () => {
+    // e.preventDefault();
+
+    this.setState({ helpfulness: ++this.state.helpfulness });
+    this.setState({ clicked: true });
+    this.props.helper.putHelpfulReview(this.props.review.review_id, () => true);
+  };
+
   render() {
-    if (this.props.review.body.length < 54) {
+    if (this.props.review.body.length < 50) {
       return null;
     }
     return (
-      //////////// TODO ///////////////////////
-      /**
-     * Review Body - The review body will be a free-form multimedia input where the user can submit text and images regarding their experience with the product. 
-                     The text submitted as part of the review will be between 50 and 1000 characters long.  
-                     Users should be able to submit up to 5 images along with a single review.
-                     By default, the first 250 characters of the review should display.  If the review is longer than 250 characters, below the body the a link reading “Show more” will appear.  Upon clicking this link, the review tile should expand and the rest of the review should display.
-                     Any images that were submitted as part of the review should appear as *thumbnails* below the review text. Upon clicking a thumbnail, the image should open in a modal window, displaying at full resolution.  The only functionality available within this modal should be the ability to close the window. 
-     
-     * Reviewer name - The username for the reviewer will appear.  Only the username will appear. No email addresses or other personal information will display.  However, if the user’s email is associated to a sale in the system then next to the username the text “Verified Purchaser” will appear.
-     * Rating Helpfulness - Any user on the site will have the ability to provide feedback on whether reviews are helpful.  At the bottom of the review tile the text “Was this review helpful?” will precede two links “Yes (#)” and “No (#)”.   Following “Yes” and “No” will be the count of users that had selected that button.  Clicking either link should cast a vote for that selection.   
-                            A user on the site does not need to be logged in to provide feedback on helpfulness.  
-                            A user can provide feedback on any review.  However, they can only make one submission for each review. If the user selects either “Yes” or “No” for a review, they should not be able to select another option again for that review.
-
-     */
       <dl>
         <React.Fragment key={this.props.review.review_id}>
           <Row className="layout">
@@ -64,7 +75,6 @@ export default class ReviewTiles extends React.Component {
                       {"... " + this.props.review.summary.slice(60)}
                     </Row>
                   ) : null}
-                  {/* {this.props.review.body.length >= 50 && */}
                   {this.props.review.body.length <= 1000 ? (
                     <Row className="layout">{this.props.review.body}</Row>
                   ) : null}
@@ -91,7 +101,20 @@ export default class ReviewTiles extends React.Component {
                 </Col>
               </Row>
               <Row className="layout">
-                Helpful? Yes({this.props.review.helpfulness})| Report
+                Helpful?{" "}
+                {this.state.clicked === false ? (
+                  <p
+                    name="helpfulness"
+                    className="buffer"
+                    onClick={() => this.handleHelpfulness()}
+                    type="disabled"
+                  >
+                    Yes
+                  </p>
+                ) : (
+                  <p className="buffer">Yes</p>
+                )}
+                ({this.state.helpfulness}) | Report
               </Row>
             </Col>
           </Row>
