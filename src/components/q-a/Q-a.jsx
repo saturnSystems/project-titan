@@ -2,6 +2,7 @@
 import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import RenderList from '/Users/austin/Documents/HackReactor/project-titan/src/components/q-a/Q-a-RenderList.jsx'
 
 class Qa extends React.Component {
     constructor(props) {
@@ -14,6 +15,7 @@ class Qa extends React.Component {
   render() {
     return (
       <div>
+      <RenderList />
       <Container-fluid className="layout container">
         <Col sm={{ span: 10, offset: 1 }} className="layout container">
         <Row className="layout">{"QUESTIONS & ANSWERS"}</Row>
