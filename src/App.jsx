@@ -25,6 +25,8 @@ class App extends React.Component {
       questions: [],
       answers: []
     };
+    this.myRef = React.createRef()
+    this.scrollToMyRef = this.scrollToMyRef.bind(this)
   }
 
   componentDidMount(){
@@ -45,6 +47,8 @@ class App extends React.Component {
     })
   }
 
+  scrollToMyRef = () => window.scrollTo(0, this.myRef.current.offsetTop)
+
   render() {
     return (
       <Container-fluid className="layout">
@@ -61,6 +65,7 @@ class App extends React.Component {
         <Overview 
           reviewRating={this.state.currentReviewRating} 
           numReviews={this.state.reviews.length}
+          scroll={this.scrollToMyRef}
         />
         <br></br>
 
@@ -70,7 +75,7 @@ class App extends React.Component {
         <Qa/>
         <br></br>
 
-        <Reviews/>
+        <div ref={this.myRef}><Reviews/></div>
 
       </Container-fluid>  
     )}

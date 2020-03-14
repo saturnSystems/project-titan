@@ -24,7 +24,7 @@ constructor(props){
                   starDimension={"1em"} 
                   starSpacing={"0"}
                 />
-                <a>Read all {this.props.numReviews} reviews</a>
+                <a href="" onClick={(e)=>{this.props.scroll(), e.preventDefault()}}>Read all {this.props.numReviews} reviews</a>
               </Row>
               <Row className="layout">CATEGORY</Row>
               <Row className="layout">Expanded Product Name</Row>
