@@ -82,7 +82,7 @@ class Overview extends React.Component {
               </Row>
               <Row className="layout">{this.props.product.category}</Row>
               <Row className="layout">{this.props.product.name}</Row>
-              <Row className="layout">${this.props.product.default_price}</Row>
+              <Row className="layout">${this.state.currentStyle&&this.state.currentStyle.original_price}</Row>
               <Row className="layout">STYLE > {this.state.currentStyle&&this.state.currentStyle.name}</Row>
               <Row className="layout">
                 <Col className="layout">
