@@ -2,7 +2,7 @@
 import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import RenderList from '/Users/austin/Documents/HackReactor/project-titan/src/components/q-a/Q-a-RenderList.jsx'
+import RenderList from './Q-a-RenderList.jsx'
 
 class Qa extends React.Component {
     constructor(props) {

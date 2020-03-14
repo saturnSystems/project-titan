@@ -231,7 +231,7 @@ const putHelpfulReview = (reviewId, callback) => {
 };
 
 const calculateReviewRating = productMetaData => {
-  let calculated =
+  const calculated =
     (productMetaData.ratings["1"] +
       productMetaData.ratings["2"] * 2 +
       productMetaData.ratings["3"] * 3 +
