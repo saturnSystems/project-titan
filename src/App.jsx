@@ -84,14 +84,19 @@ class App extends React.Component {
         />
         <br></br>
 
-        <RIAC />
+        <RIAC 
+          currentProduct={this.state.currentProduct}
+          />
         <br></br>
 
         <Qa questions={this.state.questions}/>
         <br></br>
 
         <div ref={this.myRef}>
-          <Reviews />
+          <Reviews
+            reviews={this.state.reviews}
+            product={this.state.currentProduct}
+          />
         </div>
       </Container-fluid>
     );

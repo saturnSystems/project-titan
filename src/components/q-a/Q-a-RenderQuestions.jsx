@@ -2,15 +2,22 @@
 import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import RenderQuestions from '../q-a/Q-a-RenderQuestions.jsx';
+// getListQuestions
 
 
-class RenderList extends React.Component {
+class RenderQuestions extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            question_id: props.question_id
+            question_id: props.question_id,
+            answers: []
         }
+    }
+
+    RenderAnswers() {
+        return (
+            <div></div>
+        )
     }
     // a method to set state to the question id?
     // create a method to pull in answers 
@@ -54,13 +61,11 @@ class RenderList extends React.Component {
         </Row>
         )
         return (
-            <div>
           <div> { items } </div>
-          <RenderQuestions questions={this.props.questions}/>
-          </div>
         )
     }
 }
 
 
-export default RenderList;
+
+export default RenderQuestions;
