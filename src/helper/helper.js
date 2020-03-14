@@ -78,7 +78,7 @@ const postAQuestion = (product_id, body, name, email, callback) => {
       email: email
     })
   })
-    .then((response = response.json()))
+    .then((response => response.json()))
     .then(data => callback(data))
     .catch(err => callback(err));
 };
@@ -105,7 +105,7 @@ const postAnAnswer = (question_id, body, name, email, photos, callback) => {
       photos: photos
     })
   })
-    .then((response = response.json()))
+    .then((response => response.json()))
     .then(data => callback(data))
     .catch(err => callback(err));
 };
@@ -230,6 +230,7 @@ const putHelpfulReview = (review_id, callback) => {
     .catch(err => callback(err));
 };
 
+<<<<<<< HEAD
 calculateReviewRating = productMetaData => {
   let calculated =
     (productMetaData.ratings["1"] +
@@ -258,6 +259,33 @@ calculateStarRating = productMetaData => {
     : null;
   return stars;
 };
+=======
+// Updates a review to show it was reported. Note, this action does not delete the review, but the review will not be returned in the above GET request
+// putHelpfulReview = (review_id, callback) => {
+//   fetch(`http://3.134.102.30/reviews/report/${review_id}`, {
+//     method: "PUT",
+//     headers: {
+//       "Content-Type": "application/json"
+//     }
+//   })
+//     .then(data => callback(data))
+//     .catch(err => callback(err));
+// };
+
+const calculateReviewRating=(productMetaData)=>{
+    let calculated = ((productMetaData.ratings["1"] + productMetaData.ratings["2"]*2 +productMetaData.ratings["3"]*3 + productMetaData.ratings["4"]*4 + productMetaData.ratings["5"]*5)/
+    (productMetaData.ratings["1"] + productMetaData.ratings["2"] +productMetaData.ratings["3"] + productMetaData.ratings["4"] + productMetaData.ratings["5"]))
+    return (Math.trunc(calculated*100)/100)
+}
+
+const calculateStarRating=(productMetaData)=>{
+  let average = calculateReviewRating(productMetaData)
+    let stars={whole:0,half:0,quarter:0,threeQuarter:0}
+    stars.whole=average-(average%1)
+    (average%1>=0.5 && average%1<0.75) ? stars.half=1 : (average%1>=0.25 && average%1<0.5) ? stars.quarter=1 : (average%1 >= 0.75) ? stars.threeQuarter = 1 : null;
+    return stars;
+}
+>>>>>>> af1b1f9662fbaa97b8ba2d501086b54de8884606
 
 module.exports = {
   getAllProducts,
@@ -276,7 +304,7 @@ module.exports = {
   getReviewMetadata,
   postReview,
   putHelpfulReview,
-  putHelpfulReview,
+  // putHelpfulReview,
   calculateReviewRating,
   calculateStarRating
 };

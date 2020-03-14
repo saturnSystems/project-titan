@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Overview from "./components/overview/Overview";
@@ -19,6 +19,7 @@ class App extends React.Component {
       productID: 1,
       currentProduct: [],
       currentReviewRating: 0,
+      styles: [],
       images: [],
       reviews: [],
       questions: [],
@@ -42,8 +43,18 @@ class App extends React.Component {
     helper.getListReviews(this.state.productID, result => {
       this.setState({
         reviews: result.results
+<<<<<<< HEAD
       });
     });
+=======
+      })
+    })
+    helper.getOneProductStyle(this.state.productID,result=>{
+      this.setState({
+        styles: result.results
+      })
+    })
+>>>>>>> af1b1f9662fbaa97b8ba2d501086b54de8884606
   }
 
   scrollToMyRef = () => window.scrollTo(0, this.myRef.current.offsetTop);
@@ -68,6 +79,8 @@ class App extends React.Component {
           reviewRating={this.state.currentReviewRating}
           numReviews={this.state.reviews.length}
           scroll={this.scrollToMyRef}
+          product={this.state.currentProduct}
+          styles={this.state.styles}
         />
         <br></br>
 
