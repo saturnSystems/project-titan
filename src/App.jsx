@@ -47,7 +47,7 @@ class App extends React.Component {
     })
   }
 
-  scrollToMyRef = () => window.scrollTo(0, this.myRef.current.offsetTop)
+  scrollToMyRef = () => {window.scrollTo(0, this.myRef.current.offsetTop)}
 
   render() {
     return (

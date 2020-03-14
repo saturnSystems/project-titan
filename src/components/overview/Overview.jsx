@@ -15,7 +15,7 @@ constructor(props){
       return(
         <div>
           <StarRatings 
-            rating={this.props.reviewRating} 
+            rating={this.props.reviewRating}
             starDimension={"1em"} 
             starSpacing={"0"}
           />
@@ -64,7 +64,7 @@ constructor(props){
               <Row className="layout">{this.props.product.description}</Row>
             </Col>
             <Col className="layout" sm={3}>
-              {this.props.product.features && this.props.product.features.map(each=><Row className="layout">&#10003; {each.feature}: {each.value}</Row>)}
+              {this.props.product.features && this.props.product.features.map((each,i)=><Row key={i} className="layout">&#10003; {each.feature}: {each.value}</Row>)}
             </Col>
           </Row>
         </Col>
