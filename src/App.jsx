@@ -20,6 +20,7 @@ class App extends React.Component {
       productID: 1,
       currentProduct: [],
       currentReviewRating: 0,
+      styles: [],
       images: [],
       reviews: [],
       questions: [],
@@ -45,6 +46,11 @@ class App extends React.Component {
         reviews: result.results
       })
     })
+    helper.getOneProductStyle(this.state.productID,result=>{
+      this.setState({
+        styles: result.results
+      })
+    })
   }
 
   scrollToMyRef = () => window.scrollTo(0, this.myRef.current.offsetTop)
@@ -67,6 +73,7 @@ class App extends React.Component {
           numReviews={this.state.reviews.length}
           scroll={this.scrollToMyRef}
           product={this.state.currentProduct}
+          styles={this.state.styles}
         />
         <br></br>
 
