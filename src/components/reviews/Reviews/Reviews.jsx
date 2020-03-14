@@ -42,7 +42,7 @@ class Reviews extends React.Component {
     );
   }
   render() {
-    console.log(this.state.currentReview);
+    // console.log(this.state.currentReview);
     return (
       <Container-fluid className="layout container">
         <Col sm={{ span: 10, offset: 1 }} className="layout container">

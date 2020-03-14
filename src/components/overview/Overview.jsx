@@ -14,8 +14,14 @@ class Overview extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
+      var defaultStyle=[]
+      for(let i=0; i<this.props.styles.length; i++){
+        if(this.props.styles[i]["default?"]){
+          defaultStyle=this.props.styles[i]
+        }
+      }
       this.setState({
-        currentStyle:this.props.styles[0]
+        currentStyle:defaultStyle
       });
     }
   }
