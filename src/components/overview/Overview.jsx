@@ -63,6 +63,21 @@ class Overview extends React.Component {
     return storage;
   }
 
+  conditionalSalePrice(){
+    if(this.state.currentStyle&&(this.state.currentStyle.sale_price>0)){
+      return (
+        <div>
+          <Row className="layout">${this.state.currentStyle&&this.state.currentStyle.sale_price}</Row>
+          <Row className="layout">$<del style={{color:"red"}}>{this.state.currentStyle&&this.state.currentStyle.original_price}</del></Row>
+        </div>
+      )
+    }else{
+      return (
+        <Row className="layout">${this.state.currentStyle&&this.state.currentStyle.original_price}</Row>
+      )
+    }
+  }
+
   render() {
     return (
       <Container-fluid className="layout container">
@@ -82,7 +97,7 @@ class Overview extends React.Component {
               </Row>
               <Row className="layout">{this.props.product.category}</Row>
               <Row className="layout">{this.props.product.name}</Row>
-              <Row className="layout">${this.state.currentStyle&&this.state.currentStyle.original_price}</Row>
+              {this.conditionalSalePrice()}
               <Row className="layout">STYLE > {this.state.currentStyle&&this.state.currentStyle.name}</Row>
               <Row className="layout">
                 <Col className="layout">
