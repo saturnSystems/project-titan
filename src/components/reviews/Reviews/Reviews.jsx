@@ -2,8 +2,8 @@ import React from "react";
 import "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import ReviewTiles from "./ReviewTiles";
-const helper = require("../../helper/helper.js");
+import ReviewTiles from "../ReviewsTiles/ReviewTiles";
+const helper = require("../../../helper/helper.js");
 
 class Reviews extends React.Component {
   constructor(props) {
@@ -13,7 +13,8 @@ class Reviews extends React.Component {
       currentReview: [],
       reviews: [],
       answers: [],
-      questions: []
+      questions: [],
+      date: []
     };
   }
 
@@ -25,13 +26,23 @@ class Reviews extends React.Component {
    */
   ////////////////////////////////////////////////////////////////////
 
+  //////////// TODO //////////////////////////////////////////////////
+  /**
+   * The list should display 2 tiles at a time. If there are more than 2 reviews that have been written for the given product, a button for “More Reviews” will appear below the list. 
+   * If there are 2 or fewer reviews for the given product, then the button will not appear.
+
+   * Clicking this button will cause up to 2 additional reviews to appear.   The list should expand, and the review tiles should show in order below the previously loaded questions.
+   * As long as there are still unloaded reviews, the button will remain below the list.  Once all of the reviews for the product have been loaded, the button should no longer appear.
+   */
+
   componentDidMount() {
-    // Change to only bring in 2 at first for testing purposes
-    helper.getListReviews(3, results =>
+    // sort this in helper by adding another parameter and alert team
+    helper.getListReviews(50, results =>
       this.setState({ currentReview: results.results })
     );
   }
   render() {
+    console.log(this.state.currentReview);
     return (
       <Container-fluid className="layout container">
         <Col sm={{ span: 10, offset: 1 }} className="layout container">
@@ -72,8 +83,20 @@ class Reviews extends React.Component {
                 {this.state.currentReview.length}, sorted by relevance
               </Row>
               <br></br>
-
-              <ReviewTiles reviews={this.state.currentReview} />
+              {this.state.currentReview.map(review => {
+                let date = new Date(review.date).toLocaleDateString("en-US", {
+                  day: "numeric",
+                  month: "short",
+                  year: "numeric"
+                });
+                return (
+                  <ReviewTiles
+                    review={review}
+                    date={`${date}`}
+                    key={review.review_id}
+                  />
+                );
+              })}
 
               <br></br>
               {/* <Row className="layout">
