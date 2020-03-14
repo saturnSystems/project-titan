@@ -1,4 +1,4 @@
-import React, { useRef } from "react"; // defined but never used
+import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Overview from './components/overview/Overview';
