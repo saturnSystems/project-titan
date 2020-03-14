@@ -1,90 +1,90 @@
 /**
    * Use of Parameters:
   http://example.com/page?parameter=value&also=another
-  **/
+  * */
 
-/////////////////// PRODUCTS ////////////////////////////////
+// ///////////////// PRODUCTS ////////////////////////////////
 
 const getAllProducts = callback => {
   fetch(`http://3.134.102.30/products/list`) // CHANGE: default is 5. example: /?count=50 to get 50...
     .then(response => response.json())
     .then(data => callback(data))
-    .catch(err => callback(err));
+    .catch(err => callback(err))
   // returns array of objects with id, name, description, ...
-};
+}
 
 // example how to use:
 // getAllProducts(result => console.log(result));
 
-const getOneProduct = (product_id, callback) => {
-  fetch(`http://3.134.102.30/products/${product_id}`)
+const getOneProduct = (productId, callback) => {
+  fetch(`http://3.134.102.30/products/${productId}`)
     .then(response => response.json())
     .then(data => callback(data))
-    .catch(err => callback(err));
+    .catch(err => callback(err))
   // returns object with id, name, description, ...
-};
+}
 
-const getOneProductStyle = (product_id, callback) => {
-  fetch(`http://3.134.102.30/products/${product_id}/styles`)
+const getOneProductStyle = (productId, callback) => {
+  fetch(`http://3.134.102.30/products/${productId}/styles`)
     .then(response => response.json())
     .then(data => callback(data))
-    .catch(err => callback(err));
+    .catch(err => callback(err))
   // returns object with style_id, name, prices, photos,...
-};
+}
 
-const getRelatedProducts = (product_id, callback) => {
-  fetch(`http://3.134.102.30/products/${product_id}/related`)
+const getRelatedProducts = (productId, callback) => {
+  fetch(`http://3.134.102.30/products/${productId}/related`)
     .then(response => response.json())
     .then(data => callback(data)) // CHANGE: to do what you want with it
-    .catch(err => callback(err));
+    .catch(err => callback(err))
   // This returns an array of related product id's
-};
+}
 
-//////////////Questions And Answers///////////////////
+// ////////////Questions And Answers///////////////////
 
 // Retrieves a list of questions for a particular product. This list does not include any reported questions
-const getListQuestions = (product_id, callback) => {
-  fetch(`http://3.134.102.30/qa/${product_id}`) // CHANGE: default is 5. example: /?count=50 to get 50...
+const getListQuestions = (productId, callback) => {
+  fetch(`http://3.134.102.30/qa/${productId}`) // CHANGE: default is 5. example: /?count=50 to get 50...
     .then(response => response.json())
     .then(data => callback(data)) // CHANGE: to do what you want with it
-    .catch(err => callback(err));
-  //returns object of product_id, results: {question_id, question_body...}
-};
+    .catch(err => callback(err))
+  // returns object of productId, results: {questionId, question_body...}
+}
 
-const getAnswersList = (question_id, callback) => {
-  fetch(`http://3.134.102.30/qa/${question_id}/answers`) // CHANGE: default is 5. example: /?count=50 to get 50...
+const getAnswersList = (questionId, callback) => {
+  fetch(`http://3.134.102.30/qa/${questionId}/answers`) // CHANGE: default is 5. example: /?count=50 to get 50...
     .then(response => response.json())
     .then(data => callback(data)) // CHANGE: to do what you want with it
-    .catch(err => callback(err));
+    .catch(err => callback(err))
   // returns an object with a results array that has more info
-};
+}
 
 // Adds a question for the given product
-const postAQuestion = (product_id, body, name, email, callback) => {
+const postAQuestion = (productId, body, name, email, callback) => {
   // Parameter |	Type |	Description
   // ------------------------------------------------
   // body	     |  text |	Text of question being asked
   // name	     |  text |	Username for question asker
   // email	 |  text |	Email address for question asker
 
-  fetch(`http://3.134.102.30/qa/${product_id}`, {
+  fetch(`http://3.134.102.30/qa/${productId}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      body: body,
-      name: name,
-      email: email
+      body,
+      name,
+      email
     })
   })
-    .then((response => response.json()))
+    .then(response => response.json())
     .then(data => callback(data))
-    .catch(err => callback(err));
-};
+    .catch(err => callback(err))
+}
 
 // Add an Answer
-const postAnAnswer = (question_id, body, name, email, photos, callback) => {
+const postAnAnswer = (questionId, body, name, email, photos, callback) => {
   // Parameter |	Type  |	Description
   // ------------------------------------------------
   // body	     |  text  |	Text of question being asked
@@ -92,91 +92,91 @@ const postAnAnswer = (question_id, body, name, email, photos, callback) => {
   // email	 |  text  |	Email address for question asker
   // phone     | [text] | an array of urls corresponding to images to display
 
-  fetch(`http://3.134.102.30/qa/${question_id}/answers`, {
+  fetch(`http://3.134.102.30/qa/${questionId}/answers`, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      body: body,
-      name: name,
-      email: email,
-      photos: photos
+      body,
+      name,
+      email,
+      photos
     })
   })
-    .then((response => response.json()))
-    .then(data => callback(data))
-    .catch(err => callback(err));
-};
-
-// Updates a question to show it was found helpful
-const putHelpfulQuestion = (question_id, callback) => {
-  fetch(`http://3.134.102.30/qa/question/${question_id}/helpful`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json"
-    }
-  })
-    .then(data => callback(data))
-    .catch(err => callback(err));
-};
-
-const putReportQuestion = (question_id, callback) => {
-  fetch(`http://3.134.102.30/qa/question/${question_id}/report`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json"
-    }
-  })
-    .then(data => callback(data))
-    .catch(err => callback(err));
-};
-
-const putHelpfulAnswer = (answer_id, callback) => {
-  fetch(`http://3.134.102.30/qa/answer/${answer_id}/helpful`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json:"
-    }
-  })
-    .then(data => callback(data))
-    .catch(err => callback(err));
-};
-
-const putReportAnswer = (answer_id, callback) => {
-  fetch(`http://3.134.102.30/qa/answer/${answer_id}/report`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json:"
-    }
-  })
-    .then(data => callback(data))
-    .catch(err => callback(err));
-};
-
-/////////// REVIEWS ////////////////////////////////
-
-// Returns a list of reviews for a particular product. This list does not include any reported reviews
-const getListReviews = (product_id, callback) => {
-  fetch(`http://3.134.102.30/reviews/${product_id}/list/?count=99999999`) // You can sort by /?sort="helpful" or "newest" or ...
     .then(response => response.json())
     .then(data => callback(data))
-    .catch(err => callback(err));
-};
+    .catch(err => callback(err))
+}
+
+// Updates a question to show it was found helpful
+const putHelpfulQuestion = (questionId, callback) => {
+  fetch(`http://3.134.102.30/qa/question/${questionId}/helpful`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+    .then(data => callback(data))
+    .catch(err => callback(err))
+}
+
+const putReportQuestion = (questionId, callback) => {
+  fetch(`http://3.134.102.30/qa/question/${questionId}/report`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+    .then(data => callback(data))
+    .catch(err => callback(err))
+}
+
+const putHelpfulAnswer = (answerId, callback) => {
+  fetch(`http://3.134.102.30/qa/answer/${answerId}/helpful`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json:"
+    }
+  })
+    .then(data => callback(data))
+    .catch(err => callback(err))
+}
+
+const putReportAnswer = (answerId, callback) => {
+  fetch(`http://3.134.102.30/qa/answer/${answerId}/report`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json:"
+    }
+  })
+    .then(data => callback(data))
+    .catch(err => callback(err))
+}
+
+// ///////// REVIEWS ////////////////////////////////
+
+// Returns a list of reviews for a particular product. This list does not include any reported reviews
+const getListReviews = (productId, callback) => {
+  fetch(`http://3.134.102.30/reviews/${productId}/list/?count=99999999`) // You can sort by /?sort="helpful" or "newest" or ...
+    .then(response => response.json())
+    .then(data => callback(data))
+    .catch(err => callback(err))
+}
 // example:
 // getListReviews(3, data => console.log(data));
 
 // Returns review metadata for a given product
-const getReviewMetadata = (product_id, callback) => {
-  fetch(`http://3.134.102.30/reviews/${product_id}/meta`) // You can sort by /?sort="helpful" or "newest" or ...
+const getReviewMetadata = (productId, callback) => {
+  fetch(`http://3.134.102.30/reviews/${productId}/meta`) // You can sort by /?sort="helpful" or "newest" or ...
     .then(response => response.json())
     .then(data => callback(data))
-    .catch(err => callback(err));
+    .catch(err => callback(err))
   // this returns an object with results which has RATINGS, recommend, and summary...
-};
+}
 
-const postReview = (product_id, review, callback) => {
+const postReview = (productId, review, callback) => {
   /**
      * Parameter |	Type     |	Description
      * ------------------------------------------------------------
@@ -190,7 +190,7 @@ const postReview = (product_id, review, callback) => {
        characteristics |   object	 | Object of keys representing characteristic_id and values representing the review value for that characteristic. { "14": 5, "15": 5 //...}
      */
 
-  //***EITHER send it over in one object called review OR in individual parts***//
+  //* **EITHER send it over in one object called review OR in individual parts***//
 
   //   let review = {
   //     rating: rating,
@@ -204,7 +204,7 @@ const postReview = (product_id, review, callback) => {
   //   };
 
   // Add a review
-  fetch(`http://3.134.102.30/reviews/${product_id}/`, {
+  fetch(`http://3.134.102.30/reviews/${productId}/`, {
     // You can sort by /?sort="helpful" or "newest" or ...
     method: "POST",
     headers: {
@@ -214,25 +214,25 @@ const postReview = (product_id, review, callback) => {
   })
     .then(response => response.json())
     .then(data => callback(data))
-    .catch(err => callback(err));
+    .catch(err => callback(err))
   // this returns an object with results which has RATINGS, recommend, and summary...
-};
+}
 
 // Updates a review to show it was found helpful
-const putHelpfulReview = (review_id, callback) => {
-  fetch(`http://3.134.102.30/reviews/helpful/${review_id}`, {
+const putHelpfulReview = (reviewId, callback) => {
+  fetch(`http://3.134.102.30/reviews/helpful/${reviewId}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json"
     }
   })
     .then(data => callback(data))
-    .catch(err => callback(err));
-};
+    .catch(err => callback(err))
+}
 
 // Updates a review to show it was reported. Note, this action does not delete the review, but the review will not be returned in the above GET request
-// putHelpfulReview = (review_id, callback) => {
-//   fetch(`http://3.134.102.30/reviews/report/${review_id}`, {
+// putHelpfulReview = (reviewId, callback) => {
+//   fetch(`http://3.134.102.30/reviews/report/${reviewId}`, {
 //     method: "PUT",
 //     headers: {
 //       "Content-Type": "application/json"
@@ -242,19 +242,34 @@ const putHelpfulReview = (review_id, callback) => {
 //     .catch(err => callback(err));
 // };
 
-const calculateReviewRating=(productMetaData)=>{
-    let calculated = ((productMetaData.ratings["1"] + productMetaData.ratings["2"]*2 +productMetaData.ratings["3"]*3 + productMetaData.ratings["4"]*4 + productMetaData.ratings["5"]*5)/
-    (productMetaData.ratings["1"] + productMetaData.ratings["2"] +productMetaData.ratings["3"] + productMetaData.ratings["4"] + productMetaData.ratings["5"]))
-    return (Math.trunc(calculated*100)/100)
+const calculateReviewRating = productMetaData => {
+  const calculated =
+    (productMetaData.ratings["1"] +
+      productMetaData.ratings["2"] * 2 +
+      productMetaData.ratings["3"] * 3 +
+      productMetaData.ratings["4"] * 4 +
+      productMetaData.ratings["5"] * 5) /
+    (productMetaData.ratings["1"] +
+      productMetaData.ratings["2"] +
+      productMetaData.ratings["3"] +
+      productMetaData.ratings["4"] +
+      productMetaData.ratings["5"])
+  return Math.trunc(calculated * 100) / 100
 }
 
-const calculateStarRating=(productMetaData)=>{
-  let average = calculateReviewRating(productMetaData)
-    let stars={whole:0,half:0,quarter:0,threeQuarter:0}
-    stars.whole=average-(average%1)
-    (average%1>=0.5 && average%1<0.75) ? stars.half=1 : (average%1>=0.25 && average%1<0.5) ? stars.quarter=1 : (average%1 >= 0.75) ? stars.threeQuarter = 1 : null;
-    return stars;
-}
+// const calculateStarRating = productMetaData => {
+//   const average = calculateReviewRating(productMetaData)
+//   const stars = { whole: 0, half: 0, quarter: 0, threeQuarter: 0 }
+//   stars.whole =
+//     average - (average % 1)(average % 1 >= 0.5 && average % 1 < 0.75)
+//       ? (stars.half = 1)
+//       : average % 1 >= 0.25 && average % 1 < 0.5
+//       ? (stars.quarter = 1)
+//       : average % 1 >= 0.75
+//       ? (stars.threeQuarter = 1)
+//       : null
+//   return stars
+// }
 
 module.exports = {
   getAllProducts,
@@ -274,6 +289,6 @@ module.exports = {
   postReview,
   putHelpfulReview,
   // putHelpfulReview,
-  calculateReviewRating,
-  calculateStarRating
-};
+  calculateReviewRating
+  // calculateStarRating
+}
