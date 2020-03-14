@@ -43,6 +43,7 @@ class RIAC extends React.Component{
             </Col>
             <Col className="layout col-3">
               <Row className="layout">IMAGE</Row>
+<<<<<<< HEAD
               <Row className="layout">Pants</Row>
               <Row className="layout caption">
                 Morning Joggers - Black <br/>. <br/>.
@@ -58,6 +59,23 @@ class RIAC extends React.Component{
               </Row>
               <Row className="layout">$65</Row>
               <Row className="layout">*</Row>
+=======
+              <Row className="layout">CATEGORY</Row>
+              <Row className="layout">
+                Expanded Product Name with Extra Text
+              </Row>
+              <Row className="layout">$123</Row>
+              <Row className="layout">*****</Row>
+            </Col>
+            <Col className="layout col-3">
+              <Row className="layout">IMAGE</Row>
+              <Row className="layout">CATEGORY</Row>
+              <Row className="layout">
+                Expanded Product Name with Extra Text
+              </Row>
+              <Row className="layout">$123</Row>
+              <Row className="layout">*****</Row>
+>>>>>>> d9d7a80891660b26466bb605ce07ced79e97c55c
             </Col>
           </Row>
           <br></br>
