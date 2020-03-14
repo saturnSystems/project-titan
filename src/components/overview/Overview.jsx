@@ -77,8 +77,8 @@ class Overview extends React.Component {
                   rating={this.props.reviewRating}
                   starDimension="1em"
                   starSpacing={"0"}
-                />{" "}
-                Read all reviews
+                />
+                <Button variant="link" onClick={this.props.scroll}>Read all {this.props.numReviews} reviews</Button>
               </Row>
               <Row className="layout">{this.props.product.category}</Row>
               <Row className="layout">{this.props.product.name}</Row>
