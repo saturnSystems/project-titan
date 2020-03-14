@@ -14,8 +14,14 @@ class Overview extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
+      var defaultStyle=[]
+      for(let i=0; i<this.props.styles.length; i++){
+        if(this.props.styles[i]["default?"]){
+          defaultStyle=this.props.styles[i]
+        }
+      }
       this.setState({
-        currentStyle:this.props.styles[0]
+        currentStyle:defaultStyle
       });
     }
   }
@@ -76,7 +82,7 @@ class Overview extends React.Component {
               </Row>
               <Row className="layout">{this.props.product.category}</Row>
               <Row className="layout">{this.props.product.name}</Row>
-              <Row className="layout">${this.props.product.default_price}</Row>
+              <Row className="layout">${this.state.currentStyle&&this.state.currentStyle.original_price}</Row>
               <Row className="layout">STYLE > {this.state.currentStyle&&this.state.currentStyle.name}</Row>
               <Row className="layout">
                 <Col className="layout">
