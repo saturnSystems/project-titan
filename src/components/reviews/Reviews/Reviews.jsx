@@ -18,36 +18,13 @@ class Reviews extends React.Component {
   }
   ////////// CURRENT USER STORY I AM WORKING ON //////////////////////
   /**
-   *Rating Helpfulness* - Any user on the site will have the ability to provide feedback 
-    on whether reviews are helpful.  At the bottom of the review tile the text “Was this review helpful?” 
-    will precede two links “Yes (#)” and “No (#)”.   Following “Yes” and “No” will be the count of users
-    that had selected that button.  Clicking either link should cast a vote for that selection.
-
-    A user on the site does not need to be logged in to provide feedback on helpfulness.  
-
-    A user can provide feedback on any review.  However, they can only make one submission for each review.
-    If the user selects either “Yes” or “No” for a review, they should not be able to select another option 
-    again for that review.
+  Any images that were submitted as part of the review should appear as thumbnails below the review text.
+  Upon clicking a thumbnail, the image should open in a modal window, displaying at full resolution. 
+  The only functionality available within this modal should be the ability to close the window
   **/
   ////////////////////////////////////////////////////////////////////
 
-  //////////// TODO //////////////////////////////////////////////////
-  /**
-   * The list should display 2 tiles at a time. If there are more than 2 reviews that have been written for the given product, a button for “More Reviews” will appear below the list. 
-   * If there are 2 or fewer reviews for the given product, then the button will not appear.
-
-   * Clicking this button will cause up to 2 additional reviews to appear.   The list should expand, and the review tiles should show in order below the previously loaded questions.
-   * As long as there are still unloaded reviews, the button will remain below the list.  Once all of the reviews for the product have been loaded, the button should no longer appear.
-   */
-
-  // componentDidMount() {
-  //   // sort this in helper by adding another parameter and alert team
-  //   helper.getListReviews(50, results =>
-  //     this.setState({ currentReview: results.results })
-  //   );
-  // }
   render() {
-    // console.log(this.state.currentReview);
     return (
       <Container-fluid className="layout container">
         <Col sm={{ span: 10, offset: 1 }} className="layout container">
