@@ -1,0 +1,10 @@
+.layout {
+  /* background-color:#61dafb; */
+  border: 1px solid;
+  border-color: black;
+}
+
+.floaty {
+  float: right;
+  border: none;
+}

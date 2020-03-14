@@ -2,6 +2,7 @@ import React from "react";
 import "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import "./ReviewsTiles.css";
 
 export default class ReviewTiles extends React.Component {
   constructor(props) {
@@ -40,7 +41,7 @@ export default class ReviewTiles extends React.Component {
                   <Row className="layout">{this.props.review.rating} stars</Row>
                 </Col>
                 <Col className="layout" sm={{ offset: 3 }}>
-                  <Row className="layout">
+                  <Row className="layout floaty">
                     {this.props.review.reviewer_name}, {this.props.date}
                   </Row>
                 </Col>

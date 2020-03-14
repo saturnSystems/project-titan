@@ -2,8 +2,8 @@ import React from "react";
 import "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import ReviewTiles from "./ReviewTiles";
-const helper = require("../../helper/helper.js");
+import ReviewTiles from "../ReviewsTiles/ReviewTiles";
+const helper = require("../../../helper/helper.js");
 
 class Reviews extends React.Component {
   constructor(props) {
@@ -36,6 +36,7 @@ class Reviews extends React.Component {
    */
 
   componentDidMount() {
+    // sort this in helper by adding another parameter and alert team
     helper.getListReviews(3, results =>
       this.setState({ currentReview: results.results })
     );
