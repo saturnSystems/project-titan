@@ -28,7 +28,11 @@ class RenderList extends React.Component {
         <Row className="layout">
         <Col className="layout">
         <Row className="layout">Answer Text</Row>
-        <Row className="layout">{question.question_date} | Helpful? {'Yes (' + question.question_helpfulness + ')'} | Report</Row>
+        <Row className="layout">{new Date(question.question_date).toLocaleDateString("en-US", 
+        {weekday: "long", 
+        year: "numeric", 
+        month: "short",  
+        day: "numeric"})} | Helpful? {' Yes (' + question.question_helpfulness + ')'} | Report</Row>
         </Col>
         </Row>
         <Row className="layout">
