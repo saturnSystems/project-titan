@@ -66,6 +66,7 @@ class App extends React.Component {
           reviewRating={this.state.currentReviewRating} 
           numReviews={this.state.reviews.length}
           scroll={this.scrollToMyRef}
+          product={this.state.currentProduct}
         />
         <br></br>
 
