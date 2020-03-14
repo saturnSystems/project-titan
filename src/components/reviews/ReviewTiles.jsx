@@ -14,6 +14,7 @@ export default class ReviewTiles extends React.Component {
   }
 
   render() {
+    console.log(this.props.review);
     return (
       //////////// TODO ///////////////////////
       /**
@@ -21,7 +22,7 @@ export default class ReviewTiles extends React.Component {
                      The text submitted as part of the review will be between 50 and 1000 characters long.  
                      Users should be able to submit up to 5 images along with a single review.
                      By default, the first 250 characters of the review should display.  If the review is longer than 250 characters, below the body the a link reading “Show more” will appear.  Upon clicking this link, the review tile should expand and the rest of the review should display.
-                     Any images that were submitted as part of the review should appear as thumbnails below the review text. Upon clicking a thumbnail, the image should open in a modal window, displaying at full resolution.  The only functionality available within this modal should be the ability to close the window. 
+                     Any images that were submitted as part of the review should appear as *thumbnails* below the review text. Upon clicking a thumbnail, the image should open in a modal window, displaying at full resolution.  The only functionality available within this modal should be the ability to close the window. 
      * Recommend - If the reviewer recommends buying the product, the text “I recommend this product” and a checkmark icon will display below the review.  If the reviewer does not recommend the product, nothing will display here.
      * Reviewer name - The username for the reviewer will appear.  Only the username will appear. No email addresses or other personal information will display.  However, if the user’s email is associated to a sale in the system then next to the username the text “Verified Purchaser” will appear.
      * Response to Review - Our internal sales team has the ability to respond to any reviews written.  If the review has a corresponding response, this should appear below the reviewer name.  The response should be preceded by the text “Response from seller”, and should be visually distinguished from the rest of the review.
@@ -54,9 +55,14 @@ export default class ReviewTiles extends React.Component {
                       {"... " + this.props.review.summary.slice(60)}
                     </Row>
                   ) : null}
-                  <Row className="layout">{this.props.review.body}</Row>
+                  {/* {this.props.review.body.length >= 50 && */}
+                  {this.props.review.body.length <= 1000 ? (
+                    <Row className="layout">{this.props.review.body}</Row>
+                  ) : null}
                   <Row className="layout">
-                    # of Review Recommended is {this.props.review.recommend}
+                    {this.props.review.recommend === 1 ? (
+                      <p>&#10004; I recommend this product</p>
+                    ) : null}
                   </Row>
                 </Col>
               </Row>
