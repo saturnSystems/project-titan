@@ -6,6 +6,7 @@ import StarRatings from "react-star-ratings";
 import Button from "react-bootstrap/Button";
 import {FacebookShareButton, TwitterShareButton, PinterestShareButton} from "react-share"
 import {FacebookIcon,PinterestIcon,TwitterIcon} from "react-share";
+import Image from "react-bootstrap/Image"
 
 
 class Overview extends React.Component {
@@ -58,7 +59,7 @@ class Overview extends React.Component {
       storage.push(
         <Row className="layout">
           {this.props.styles.slice(4 * i, 4 * i + 4).map((each, i) => (
-            <Button key={i} onClick={()=>this.setStyle(each)}>{each.name}</Button>
+            <Image key={i} onClick={()=>this.setStyle(each)} src={`${each.photos[0].thumbnail_url}.jpg/171x180`} roundedCircle fluid></Image>
           ))}
         </Row>
       );
@@ -71,7 +72,7 @@ class Overview extends React.Component {
       return (
         <div>
           <Row className="layout">${this.state.currentStyle&&this.state.currentStyle.sale_price}</Row>
-          <Row className="layout">$<del style={{color:"red"}}>{this.state.currentStyle&&this.state.currentStyle.original_price}</del></Row>
+          <Row className="layout"><del style={{color:"red"}}>${this.state.currentStyle&&this.state.currentStyle.original_price}</del></Row>
         </div>
       )
     }else{
