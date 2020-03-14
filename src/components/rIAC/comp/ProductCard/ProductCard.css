@@ -1,5 +1,30 @@
 .product-card-layout {
   /* background-color:#61dafb; */
+  float: left;
   border:1px solid;
   border-color: gray;
 }
+
+.align-left {
+  float: left;
+  border: none;
+}
+
+.category {
+  font-size: 1em;
+}
+
+.caption {
+  font-size: 1em;
+  font-weight: 800;
+}
+
+.price {
+  font-size: 0.6em;
+}
+
+.stars {
+  /* float: left;
+  border: none; */
+}
+

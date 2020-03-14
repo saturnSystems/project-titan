@@ -12,16 +12,16 @@ class ProductCard extends React.Component {
   // ProductCard body
   render() {
     return (
-      <Container-fluid className="product-card-layout">
+      <Container-fluid className="layout product-card-layout align-left">
       <Row className="layout">
-        <Col className="layout">
+        <Col  sm={{ span: 4 }} className="layout container align-left">
           <Row className="layout">IMAGE</Row>
-          <Row className="layout">CATEGORY</Row>
-          <Row className="layout">
+          <Row className="layout category">CATEGORY</Row>
+          <Row className="layout caption">
             Expanded Product Name with Extra Text
           </Row>
-          <Row className="layout">$123</Row>
-          <Row className="layout">*****</Row>
+          <Row className="layout price">$123</Row>
+          <Row className="layout stars">*****</Row>
         </Col>
       </Row>
       </Container-fluid>
