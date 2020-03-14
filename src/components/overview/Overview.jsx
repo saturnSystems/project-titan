@@ -27,6 +27,18 @@ constructor(props){
     }
   }
 
+  conditionalStyles(){
+    let storage =[]
+    for(let i=0; i<this.props.styles.length/4; i++){
+      storage.push(
+      <Row className="layout">
+        {this.props.styles.slice(4*i, (4*i)+4).map((each,i)=><button key={i}>{each.name}</button>)}
+      </Row>
+      )
+    }
+    return storage
+  }
+
   render(){
     return(
       <Container-fluid className="layout container">
@@ -43,8 +55,7 @@ constructor(props){
               <Row className="layout">STYLE > SELECTED STYLE</Row>
               <Row className="layout">
                 <Col className="layout">
-                  <Row className="layout">STYLE PREVIEW BUTTONS</Row>
-                  <Row className="layout">STYLE PREVIEW BUTTONS</Row>
+                  {this.props.styles && this.conditionalStyles().map((each,i)=><div key={i}>{each}</div>)}
                 </Col>
               </Row>
               <Row className="layout">SELECT SIZE | 1</Row>
@@ -58,7 +69,7 @@ constructor(props){
               <Row className="layout">{this.props.product.description}</Row>
             </Col>
             <Col className="layout" sm={3}>
-              {this.props.product.features && this.props.product.features.map(each=><Row className="layout">&#10003; {each.feature}: {each.value}</Row>)}
+              {this.props.product.features && this.props.product.features.map((each,i)=><Row className="layout" key={i}>&#10003; {each.feature}: {each.value}</Row>)}
             </Col>
           </Row>
         </Col>
