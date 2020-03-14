@@ -37,9 +37,9 @@ constructor(props){
               <Row className="layout">
                 {this.conditionalReviews()}
               </Row>
-              <Row className="layout">CATEGORY</Row>
-              <Row className="layout">Expanded Product Name</Row>
-              <Row className="layout">$369</Row>
+              <Row className="layout">{this.props.product.category}</Row>
+              <Row className="layout">{this.props.product.name}</Row>
+              <Row className="layout">${this.props.product.default_price}</Row>
               <Row className="layout">STYLE > SELECTED STYLE</Row>
               <Row className="layout">
                 <Col className="layout">
@@ -54,14 +54,11 @@ constructor(props){
           <br></br>
           <Row className="layout">
             <Col className="layout" sm={{span:7,offset:1}}>
-              <Row className="layout">Product Slogan, Pithy Description Or Catchphrase.</Row>
-              <Row className="layout">Description details.</Row>
+              <Row className="layout">{this.props.product.slogan}</Row>
+              <Row className="layout">{this.props.product.description}</Row>
             </Col>
             <Col className="layout" sm={3}>
-              <Row className="layout">Quick Details</Row>
-              <Row className="layout">Quick Details</Row>
-              <Row className="layout">Quick Details</Row>
-              <Row className="layout">Quick Details</Row>
+              {this.props.product.features && this.props.product.features.map(each=><Row className="layout">&#10003; {each.feature}: {each.value}</Row>)}
             </Col>
           </Row>
         </Col>
