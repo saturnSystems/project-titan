@@ -23,7 +23,7 @@ class RIAC extends React.Component{
         <Col sm={{ span: 10, offset: 1 }} className="layout container">
           <Row className="layout">Related Products</Row>
           <Row className="layout">
-            <Col className="layout">
+            <Col className="layout col-3">
               <Row className="layout">IMAGE</Row>
               <Row className="layout">CATEGORY</Row>
               <Row className="layout">
@@ -32,7 +32,7 @@ class RIAC extends React.Component{
               <Row className="layout">$123</Row>
               <Row className="layout">*****</Row>
             </Col>
-            <Col className="layout">
+            <Col className="layout col-3">
               <Row className="layout">IMAGE</Row>
               <Row className="layout">CATEGORY</Row>
               <Row className="layout">
@@ -41,7 +41,7 @@ class RIAC extends React.Component{
               <Row className="layout">$123</Row>
               <Row className="layout">*****</Row>
             </Col>
-            <Col className="layout">
+            <Col className="layout col-3">
               <Row className="layout">IMAGE</Row>
               <Row className="layout">CATEGORY</Row>
               <Row className="layout">
@@ -50,7 +50,7 @@ class RIAC extends React.Component{
               <Row className="layout">$123</Row>
               <Row className="layout">*****</Row>
             </Col>
-            <Col className="layout">
+            <Col className="layout col-3">
               <Row className="layout">IMAGE</Row>
               <Row className="layout">CATEGORY</Row>
               <Row className="layout">
