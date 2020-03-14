@@ -37,11 +37,12 @@ class Reviews extends React.Component {
 
   componentDidMount() {
     // sort this in helper by adding another parameter and alert team
-    helper.getListReviews(3, results =>
+    helper.getListReviews(50, results =>
       this.setState({ currentReview: results.results })
     );
   }
   render() {
+    console.log(this.state.currentReview);
     return (
       <Container-fluid className="layout container">
         <Col sm={{ span: 10, offset: 1 }} className="layout container">

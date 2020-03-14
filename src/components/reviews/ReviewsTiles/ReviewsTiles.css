@@ -1,10 +1,25 @@
-.layout {
-  /* background-color:#61dafb; */
-  border: 1px solid;
-  border-color: black;
-}
+/* .layout { */
+/* background-color:#61dafb; */
+/* border: 1px solid;
+  border-color: black; */
+/* } */
 
 .floaty {
   float: right;
   border: none;
 }
+
+.stars {
+  float: left;
+  border: none;
+}
+
+.response {
+  background-color: #e1f5fe;
+  border: none;
+}
+/* 
+dl {
+  padding: none;
+  margin: none;
+} */
