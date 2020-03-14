@@ -19,7 +19,7 @@ constructor(props){
             starDimension={"1em"} 
             starSpacing={"0"}
           />
-          <a href="" onClick={(e)=>{this.props.scroll(), e.preventDefault()}} style={{textDecoration:"underline"}}>Read all {this.props.numReviews} reviews</a>
+          {/* <a href="" onClick={(e)=>{this.props.scroll(), e.preventDefault()}} style={{textDecoration:"underline"}}>Read all {this.props.numReviews} reviews</a> */}
         </div>
       )
     }else{
