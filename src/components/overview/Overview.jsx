@@ -2,7 +2,7 @@ import React from 'react';
 import 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import StarRatings from 'react-star-ratings'
+// import StarRatings from 'react-star-ratings'
 
 class Overview extends React.Component{
 constructor(props){
