@@ -17,13 +17,19 @@ class Reviews extends React.Component {
       date: []
     };
   }
-
   ////////// CURRENT USER STORY I AM WORKING ON //////////////////////
   /**
-   * Reviews: As a user, I want to be able to see reviews
-   * created by other users so that I can decide
-   * if I want the product or not.
-   */
+   *Rating Helpfulness* - Any user on the site will have the ability to provide feedback 
+    on whether reviews are helpful.  At the bottom of the review tile the text “Was this review helpful?” 
+    will precede two links “Yes (#)” and “No (#)”.   Following “Yes” and “No” will be the count of users
+    that had selected that button.  Clicking either link should cast a vote for that selection.
+
+    A user on the site does not need to be logged in to provide feedback on helpfulness.  
+
+    A user can provide feedback on any review.  However, they can only make one submission for each review.
+    If the user selects either “Yes” or “No” for a review, they should not be able to select another option 
+    again for that review.
+  **/
   ////////////////////////////////////////////////////////////////////
 
   //////////// TODO //////////////////////////////////////////////////
@@ -99,33 +105,6 @@ class Reviews extends React.Component {
               })}
 
               <br></br>
-              {/* <Row className="layout">
-                <Col className="layout">
-                  <Row className="layout">
-                    <Col className="layout" sm={3}>
-                      <Row className="layout">*****</Row>
-                    </Col>
-                    <Col className="layout" sm={{ offset: 6 }}>
-                      <Row className="layout">User1234, Date</Row>
-                    </Col>
-                  </Row>
-                  <Row className="layout">
-                    <Col className="layout" sm={9}>
-                      <Row className="layout">Review Title</Row>
-                      <Row className="layout">...title continuation</Row>
-                      <Row className="layout">Review content</Row>
-                      <Row className="layout">Review Recommended</Row>
-                    </Col>
-                  </Row>
-                  <Row className="layout">
-                    <Col className="layout">
-                      <Row className="layout">Response:</Row>
-                      <Row className="layout">Response content</Row>
-                    </Col>
-                  </Row>
-                  <Row className="layout">Helpful? | Report</Row>
-                </Col>
-              </Row> */}
               <br></br>
               <Row className="layout">MORE REVIEWS | ADD A REVIEW +</Row>
             </Col>

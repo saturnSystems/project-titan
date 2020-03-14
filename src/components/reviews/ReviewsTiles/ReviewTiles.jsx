@@ -16,6 +16,9 @@ export default class ReviewTiles extends React.Component {
   }
 
   render() {
+    if (this.props.review.body.length < 54) {
+      return null;
+    }
     return (
       //////////// TODO ///////////////////////
       /**
@@ -87,7 +90,9 @@ export default class ReviewTiles extends React.Component {
                   ) : null}
                 </Col>
               </Row>
-              <Row className="layout">Helpful? | Report</Row>
+              <Row className="layout">
+                Helpful? Yes({this.props.review.helpfulness})| Report
+              </Row>
             </Col>
           </Row>
         </React.Fragment>
