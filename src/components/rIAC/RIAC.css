@@ -1,0 +1,16 @@
+.module-header {
+  font-size: 1.3em;
+  float: left;
+  border: none;
+}
+
+.align-left {
+  float: left;
+  border: none;
+}
+
+.caption {
+  font-size: 1em;
+  font-weight: 800;
+}
+
