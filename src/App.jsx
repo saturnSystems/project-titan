@@ -1,13 +1,14 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import Overview from "./components/overview/Overview";
 import RIAC from "./components/rIAC/RIAC";
 import Qa from "./components/q-a/Q-a";
-import Reviews from "./components/reviews/Reviews/Reviews.jsx";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import Reviews from "./components/reviews/Reviews/Reviews";
 import "react-bootstrap/Container";
+
 const helper = require("./helper/helper.js");
 
 class App extends React.Component {
@@ -30,36 +31,39 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    helper.getOneProduct(this.state.productID, result => {
+    const { productID } = this.state;
+    helper.getOneProduct(productID, result => {
       this.setState({
         currentProduct: result
       });
     });
-    helper.getReviewMetadata(this.state.productID, result => {
+    helper.getReviewMetadata(productID, result => {
       this.setState({
         currentReviewRating: helper.calculateReviewRating(result.ratings)
       });
     });
-    helper.getListReviews(this.state.productID, result => {
+    helper.getListReviews(productID, result => {
       this.setState({
         reviews: result.results
-      })
-    })
-    helper.getListQuestions(this.state.productID, result => { // Q&A - Questions
+      });
+    });
+    helper.getListQuestions(productID, result => {
+      // Q&A - Questions
       this.setState({
         questions: result.results
-      })
-    })
-    helper.getOneProductStyle(this.state.productID,result=>{
+      });
+    });
+    helper.getOneProductStyle(productID, result => {
       this.setState({
         styles: result.results
-      })
-    })
+      });
+    });
   }
 
   scrollToMyRef = () => window.scrollTo(0, this.myRef.current.offsetTop);
 
   render() {
+    const { reviews } = this.state;
     return (
       <Container-fluid className="layout">
         <Col className="layout">
@@ -82,19 +86,16 @@ class App extends React.Component {
           product={this.state.currentProduct}
           styles={this.state.styles}
         />
-        <br></br>
+        <br />
 
         <RIAC />
-        <br></br>
+        <br />
 
-        <Qa questions={this.state.questions}/>
-        <br></br>
+        <Qa questions={this.state.questions} />
+        <br />
 
         <div ref={this.myRef}>
-          <Reviews
-            reviews={this.state.reviews}
-            product={this.state.currentProduct}
-          />
+          <Reviews reviews={reviews} />
         </div>
       </Container-fluid>
     );
