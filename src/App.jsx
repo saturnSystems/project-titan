@@ -90,10 +90,12 @@ class App extends React.Component {
         />
         <br></br>
 
-        <RIAC
-          currentProduct={this.state.currentProduct}
-          relatedProducts={this.state.relatedProducts}
-        />
+        {this.state.currentProduct.id !== undefined &&
+          <RIAC
+            currentProduct={this.state.currentProduct}
+            relatedProducts={this.state.relatedProducts}
+          />
+        }
         <br></br>
 
         <Qa questions={this.state.questions}/>
