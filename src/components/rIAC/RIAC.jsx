@@ -24,13 +24,14 @@ class RIAC extends React.Component{
           <Row className="layout">Related Products</Row>
           <Row className="layout">
             <Col className="layout col-3">
-              <Row className="layout">IMAGE</Row>
+            <ProductCard />
+              {/* <Row className="layout">IMAGE</Row>
               <Row className="layout">Jackets</Row>
               <Row className="layout caption">
                 Camo Onesie - Forest Green &amp; Black <br/>.
               </Row>
               <Row className="layout">$140</Row>
-              <Row className="layout">****</Row>
+              <Row className="layout">****</Row> */}
             </Col>
             <Col className="layout col-3">
               <Row className="layout">IMAGE</Row>
@@ -73,7 +74,6 @@ class RIAC extends React.Component{
               </Row>
               <Row className="layout">$123</Row>
               <Row className="layout">*****</Row>
->>>>>>> d9d7a80891660b26466bb605ce07ced79e97c55c
             </Col>
           </Row>
           <br></br>
