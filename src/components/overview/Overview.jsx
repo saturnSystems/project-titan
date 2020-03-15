@@ -63,7 +63,7 @@ class Overview extends React.Component {
       storage.push(
         <Row className="layout">
           {styles.slice(4 * i, 4 * i + 4).map((each, i) => (
-            <Col key={i}>{each.photos&&<Image onClick={()=>this.setStyle(each)} src={`${each.photos[0].thumbnail_url}&h=300`} roundedCircle fluid></Image>}</Col>
+            <Col key={i}>{each.photos&&<Image onClick={()=>this.setStyle(each)} src={`${each.photos[0].thumbnail_url}&h=300`} alt={`Thumbnail of ${this.props.product.name} in ${each.name} style`} roundedCircle fluid></Image>}</Col>
           ))}
         </Row>
       );
