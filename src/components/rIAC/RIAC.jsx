@@ -2,8 +2,8 @@ import React from 'react'
 import 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import StarRatings from 'react-star-ratings'
-import Button from 'react-bootstrap/Button'
+// import StarRatings from 'react-star-ratings'  // not yet used
+// import Button from 'react-bootstrap/Button' // not yet used
 import ProductCard from './comp/ProductCard/ProductCard'
 import "./RIAC.css";
 
