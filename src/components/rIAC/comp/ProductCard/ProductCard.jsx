@@ -15,23 +15,29 @@ class ProductCard extends React.Component {
   render() {
     return (
       <Container-fluid className="layout product-card-layout align-left">
-        <div className="card mb-3">
-          <p>
-            <a href="../../overview/Overview.jsx" class="card-link">Card link
-              <img className="card-img-top" src="https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80" alt="Card image cap" />
-            </a>
-            {/* <a href="../../overview/Overview.jsx"> <img className="card-img-top" src="https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80" alt="Card image cap" />
-            </a> */}
-          </p>
-        <div className="card-img-overlay">
-            <p><a href="../../overview/Overview.jsx" className="btn btn-primary">X</a></p>
+        <div id="product-card-div">
+          <a href="../../overview/Overview.jsx">
+          <div className="card mb-3">
+            <p>
+              {/* <a className="card-link"> */}
+                <img className="card-img-top" src="https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80" alt="Card image cap" />
+                {/* <a href="../../overview/Overview.jsx"> <img className="card-img-top" src="https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80" alt="Card image cap" />
+                </a> */}
+              {/* </a> */}
+            </p>
+            <div className="card-img-overlay">
+              {/* <p><a href="../../overview/Overview.jsx" className="btn btn-primary">X</a></p> */}
+              <small><p className="btn btn-primary">x</p></small>
+            </div>
           </div>
+        </a>
         </div>
         <div className="card">
           <div className="card-body">
           <p className="card-text category">Jackets</p>
             <h5 className="card-title caption">Camo Onesie - Forest Green &amp; Black </h5>
-            <p className="card-text price"><small className="text-muted"></small>$140</p>
+            {/* <small><p className="card-text price" className="text-muted">$140</p></small> */}
+            <small><p className="card-text price" className="text-muted">$140</p></small>
             <p className="card-text">****</p>
           </div>
           {/* <img class="card-img-bottom" src="..." alt="Card image cap"> */}
