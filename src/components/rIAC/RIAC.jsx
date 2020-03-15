@@ -21,7 +21,7 @@ class RIAC extends React.Component{
 
       <Container-fluid className="layout container">
         <Col sm={{ span: 10, offset: 1 }} className="layout container">
-          <Row className="layout">Related Products</Row>
+          <strong><Row className="layout">Related Products</Row></strong>
           <Row className="layout">
             <Col className="layout col-3">
             <ProductCard />
