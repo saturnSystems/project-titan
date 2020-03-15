@@ -35,7 +35,7 @@ export default class ReviewTiles extends React.Component {
   handleHelpfulness = () => {
     // e.preventDefault();
 
-    this.setState({ helpfulness: ++this.state.helpfulness });
+    this.setState({ helpfulness: this.state.helpfulness +1});
     this.setState({ clicked: true });
     this.props.helper.putHelpfulReview(this.props.review.review_id, () => true);
   };
