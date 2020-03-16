@@ -7,6 +7,7 @@ import Form from "react-bootstrap/Form";
 import FormCheck from "react-bootstrap/FormCheck"
 import Button from "react-bootstrap/Button";
 import DropdownButton from "react-bootstrap/DropdownButton"
+import DropdownItem from "react-bootstrap/DropdownItem"
 import {FacebookShareButton, TwitterShareButton, PinterestShareButton} from "react-share"
 import {FacebookIcon,PinterestIcon,TwitterIcon} from "react-share";
 import StarRatings from "react-star-ratings";
@@ -60,7 +61,10 @@ class Overview extends React.Component {
   }
 
   setStyle(style){
-    this.setState({currentStyle:style})
+    this.setState({
+      currentStyle:style,
+      size:null
+    })
   }
 
   conditionalStyles() {
@@ -143,13 +147,35 @@ class Overview extends React.Component {
     }
   }
 
+  setSize(size){
+    console.log(size)
+    this.setState({size:size})
+  }
+
+  conditionalSizeSelector(){
+    if(this.state.currentStyle&&this.state.currentStyle.skus){
+      let sizes=Object.entries(this.state.currentStyle.skus)
+      if(sizes.length<=1&&!sizes[1]){
+        return <Button>OUT OF STOCK</Button>
+      }else{
+        return(
+        <DropdownButton title={this.state.size?`SIZE: ${this.state.size}`:"SELECT SIZE"}>
+          {sizes.map((size,i)=>(
+            !!size[1]&&<DropdownItem key={i} onClick={()=>this.setSize(size[0])}>{size[0]}</DropdownItem>
+          ))}
+        </DropdownButton>
+        )
+      }
+    }
+  }
+
   render() {
     return (
       <Container-fluid className="layout container">
         <Col className="layout container">
           <Row className="layout">
             <Col className="layout" sm={8}>
-              <Image src={require("../../logo.svg")} fluid alt="Placeholder logo of planet Saturn"/>
+              <Image src={require("../../logo.svg")} fluid style={{width:"60%"}} alt="Placeholder logo of planet Saturn"/>
             </Col>
             <Col className="layout">
               <Row className="layout">
@@ -174,7 +200,7 @@ class Overview extends React.Component {
                 </Col>
               </Row>
               <Row className="layout">
-                <DropdownButton title="Select a size"/>
+                {this.conditionalSizeSelector()}
               </Row>
               <Row className="layout">ADD TO BAG | *</Row>
               <FacebookShareButton url={window.location.href}>
