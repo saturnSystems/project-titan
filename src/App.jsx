@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unused-state */
+/* eslint-disable react/destructuring-assignment */
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
