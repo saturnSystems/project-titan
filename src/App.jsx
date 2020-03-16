@@ -88,7 +88,7 @@ class App extends React.Component {
         />
         <br />
 
-        <RIAC />
+        <RIAC currentProduct={this.state.currentProduct} />
         <br />
 
         <Qa questions={this.state.questions} />
