@@ -28,7 +28,8 @@ class App extends React.Component {
       reviews: [],
       questions: [],
       answers: [],
-      cart: []
+      cart: [],
+      relatedProducts: []
     };
     this.myRef = React.createRef();
     this.scrollToMyRef = this.scrollToMyRef.bind(this);
