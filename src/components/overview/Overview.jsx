@@ -247,10 +247,10 @@ class Overview extends React.Component {
         <Col className="layout container">
           <Row className="layout">
             <Col className="layout" sm={8}>
-              <Image src={this.stockLoaded?this.state.currentStyle.photos[0].url:null} 
+              {this.stockLoaded&&<Image src={this.state.currentStyle.photos[0].url} 
                 fluid style={{marginLeft: "auto",marginRight:"auto", maxHeight:"90vh", display:"block"}} 
-                alt={`Image of ${this.props.product.name} in ${this.stockLoaded&&this.state.currentStyle.name} style`}
-              />
+                alt={`Image of ${this.props.product.name} in ${this.state.currentStyle.name} style`}
+              />}
             </Col>
             <Col className="layout">
               <Row className="layout">
