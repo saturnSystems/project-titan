@@ -17,7 +17,6 @@ class Answers extends React.Component {
   }
 
   render() {
-    console.log(this.state.answers)
     const items = this.state.answers.map((answer, i) => (
       <Row className="layout" key={i}>
         A:
