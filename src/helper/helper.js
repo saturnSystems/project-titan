@@ -6,7 +6,7 @@
 // ///////////////// PRODUCTS ////////////////////////////////
 
 const getAllProducts = callback => {
-  fetch(`http://3.134.102.30/products/list`) // CHANGE: default is 5. example: /?count=50 to get 50...
+  fetch("http://3.134.102.30/products/list") // CHANGE: default is 5. example: /?count=50 to get 50...
     .then(response => response.json())
     .then(data => callback(data))
     .catch(err => callback(err));
@@ -42,7 +42,8 @@ const getRelatedProducts = (productId, callback) => {
 
 // ////////////Questions And Answers///////////////////
 
-// Retrieves a list of questions for a particular product. This list does not include any reported questions
+// Retrieves a list of questions for a particular product.
+// This list does not include any reported questions
 const getListQuestions = (productId, callback) => {
   fetch(`http://3.134.102.30/qa/${productId}`) // CHANGE: default is 5. example: /?count=50 to get 50...
     .then(response => response.json())
@@ -61,11 +62,11 @@ const getAnswersList = (questionId, callback) => {
 
 // Adds a question for the given product
 const postAQuestion = (productId, body, name, email, callback) => {
-  // Parameter |	Type |	Description
+  // Parameter | Type | Description
   // ------------------------------------------------
-  // body	     |  text |	Text of question being asked
-  // name	     |  text |	Username for question asker
-  // email	 |  text |	Email address for question asker
+  // body | text | Text of question being asked
+  // name | text | Username for question asker
+  // email| text | Email address for question asker
 
   fetch(`http://3.134.102.30/qa/${productId}`, {
     method: "POST",
@@ -85,12 +86,12 @@ const postAQuestion = (productId, body, name, email, callback) => {
 
 // Add an Answer
 const postAnAnswer = (questionId, body, name, email, photos, callback) => {
-  // Parameter |	Type  |	Description
+  // Parameter | Type | Description
   // ------------------------------------------------
-  // body	     |  text  |	Text of question being asked
-  // name	     |  text  |	Username for question asker
-  // email	 |  text  |	Email address for question asker
-  // phone     | [text] | an array of urls corresponding to images to display
+  // body | text | Text of question being asked
+  // name | text | Username for question asker
+  // email| text | Email address for question asker
+  // phone|[text]| an array of urls corresponding to images to display
 
   fetch(`http://3.134.102.30/qa/${questionId}/answers`, {
     method: "POST",
@@ -157,9 +158,11 @@ const putReportAnswer = (answerId, callback) => {
 
 // ///////// REVIEWS ////////////////////////////////
 
-// Returns a list of reviews for a particular product. This list does not include any reported reviews
+// Returns a list of reviews for a particular product.
+// This list does not include any reported reviews
 const getListReviews = (productId, callback) => {
-  fetch(`http://3.134.102.30/reviews/${productId}/list/?count=99999999`) // You can sort by /?sort="helpful" or "newest" or ...
+  fetch(`http://3.134.102.30/reviews/${productId}/list/?count=99999999`)
+    // You can sort by /?sort="helpful" or "newest" or ...
     .then(response => response.json())
     .then(data => callback(data))
     .catch(err => callback(err));
@@ -178,16 +181,18 @@ const getReviewMetadata = (productId, callback) => {
 
 const postReview = (productId, review, callback) => {
   /**
-     * Parameter |	Type     |	Description
+     * Parameter | Type     | Description
      * ------------------------------------------------------------
-       rating	       |    int	     | Integer (1-5) indicating the review rating
-       summary         |	text     | Summary text of the review
-       body	           |    text     | Continued or full text of the review
-       recommend       |	bool     | Value indicating if the reviewer recommends the product
-       name	text       |  Username   | for question asker
-       email	       |    text     | Email address for question asker
-       photos	       |   [text]	 | Array of text urls that link to images to be shown
-       characteristics |   object	 | Object of keys representing characteristic_id and values representing the review value for that characteristic. { "14": 5, "15": 5 //...}
+       rating        |    int      | Integer (1-5) indicating the review rating
+       summary         | text     | Summary text of the review
+       body            |    text     | Continued or full text of the review
+       recommend       | bool     | Value indicating if the reviewer recommends the product
+       name text       |  Username   | for question asker
+       email        |    text     | Email address for question asker
+       photos        |   [text]  | Array of text urls that link to images to be shown
+       characteristics |   object  | Object of keys representing characteristic_id and
+                                     values representing the review value for that
+                                     characteristic. { "14": 5, "15": 5 //...}
      */
 
   //* **EITHER send it over in one object called review OR in individual parts***//
@@ -277,7 +282,6 @@ module.exports = {
   getReviewMetadata,
   postReview,
   putHelpfulReview,
-  // putHelpfulReview,
   calculateReviewRating
   // calculateStarRating
 };

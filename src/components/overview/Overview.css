@@ -1,0 +1,21 @@
+.container input {
+  opacity: 0;
+}
+.checkmark {
+  position: absolute;
+  top: 0;
+  right: 10%;
+  width: 20%;
+}
+.checkmark:after {
+  position: absolute;
+  display: none;
+  content: url("./checkmark.svg");
+}
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+.container .checkmark:after {
+  top: 0;
+  width: 100%;
+}

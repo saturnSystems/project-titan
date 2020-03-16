@@ -2,9 +2,9 @@ import React from 'react'
 import 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import StarRatings from 'react-star-ratings'
-import Button from 'react-bootstrap/Button'
-import ProductCard from './comp/ProductCard/ProductCard'
+// import StarRatings from 'react-star-ratings'
+// import Button from 'react-bootstrap/Button'
+// import ProductCard from './comp/ProductCard/ProductCard'
 import "./RIAC.css";
 
 class RIAC extends React.Component{
@@ -65,7 +65,7 @@ class RIAC extends React.Component{
               <Row className="layout">$123</Row>
               <Row className="layout">*****</Row>
             </Col>
-            <Col className="layout col-3">
+            {/* <Col className="layout col-3">
               <Row className="layout">IMAGE</Row>
               <Row className="layout">CATEGORY</Row>
               <Row className="layout">
@@ -73,8 +73,7 @@ class RIAC extends React.Component{
               </Row>
               <Row className="layout">$123</Row>
               <Row className="layout">*****</Row>
->>>>>>> d9d7a80891660b26466bb605ce07ced79e97c55c
-            </Col>
+            </Col> */}
           </Row>
           <br></br>
           <Row className="layout">Your Outfit</Row>

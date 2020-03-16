@@ -1,9 +1,12 @@
+/* eslint-disable react/no-unused-state */
+/* eslint-disable react/destructuring-assignment */
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Overview from "./components/overview/Overview";
+import FormControl from "react-bootstrap/FormControl";
 import RIAC from "./components/rIAC/RIAC";
 import Qa from "./components/q-a/Q-a";
 import Reviews from "./components/reviews/Reviews/Reviews";
@@ -17,20 +20,27 @@ class App extends React.Component {
 
     this.state = {
       products: [],
-      productID: 1,
+      productID: window.location.search.substr(1) || 1, //productID = anything after /? in url,, or 1
       currentProduct: [],
       currentReviewRating: 0,
       styles: [],
       images: [],
       reviews: [],
       questions: [],
-      answers: []
+      answers: [],
+      cart: []
     };
     this.myRef = React.createRef();
     this.scrollToMyRef = this.scrollToMyRef.bind(this);
+    this.addToCart = this.addToCart.bind(this);
   }
 
   componentDidMount() {
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    this.setState({
+      cart: cart
+    });
+
     const { productID } = this.state;
     helper.getOneProduct(productID, result => {
       this.setState({
@@ -62,6 +72,15 @@ class App extends React.Component {
 
   scrollToMyRef = () => window.scrollTo(0, this.myRef.current.offsetTop);
 
+  addToCart(item) {
+    let cart = this.state.cart || [];
+    cart.push(item);
+    this.setState({
+      cart: cart
+    });
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+
   render() {
     const { reviews } = this.state;
     return (
@@ -69,14 +88,27 @@ class App extends React.Component {
         <Col className="layout">
           <Row className="layout">
             <Col className="layout" sm={2}>
-              Logo
+              <img
+                src={
+                  "https://upload.wikimedia.org/wikipedia/commons/1/1c/Saturn_mark.svg"
+                }
+                alt="Storefront logo: a line drawing of the planet saturn"
+                style={{ width: "2em" }}
+              />{" "}
+              Saturn Storefronts
             </Col>
             <Col className="layout" sm={{ span: 2, offset: 8 }}>
-              Search
+              <FormControl
+                type="text"
+                size="sm"
+                placeholder="Search..."
+              ></FormControl>
             </Col>
           </Row>
           <Row className="layout">
-            <Col className="layout">Sitewide Announcement</Col>
+            <Col className="layout">
+              Sitewide Announcement: 100% OFF FOR ALL DEVELOPERS OF THIS SITE
+            </Col>
           </Row>
         </Col>
         <Overview
@@ -85,6 +117,7 @@ class App extends React.Component {
           scroll={this.scrollToMyRef}
           product={this.state.currentProduct}
           styles={this.state.styles}
+          addToCart={this.addToCart}
         />
         <br />
 
