@@ -277,7 +277,6 @@ module.exports = {
   getReviewMetadata,
   postReview,
   putHelpfulReview,
-  // putHelpfulReview,
   calculateReviewRating
   // calculateStarRating
 };
