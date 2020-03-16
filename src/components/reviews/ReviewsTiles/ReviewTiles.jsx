@@ -6,6 +6,7 @@ import Col from "react-bootstrap/Col";
 import "./ReviewsTiles.css";
 import StarRatings from "react-star-ratings";
 import PropTypes from "prop-types";
+import ImageComponent from "../Image/ImageComponent";
 
 class ReviewTiles extends React.Component {
   constructor(props) {
@@ -84,6 +85,15 @@ class ReviewTiles extends React.Component {
                   ) : null}
                   {review.body.length <= 1000 ? (
                     <Row className="layout">{review.body}</Row>
+                  ) : null}
+                  {review.photos.length >= 1 ? (
+                    <Row className="layout">
+                      <ImageComponent
+                        review={review}
+                        reviewId={review.review_id}
+                        photos={review.photos}
+                      />
+                    </Row>
                   ) : null}
                   <Row className="layout">
                     {review.recommend === 1 ? (
