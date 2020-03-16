@@ -19,7 +19,7 @@ class App extends React.Component {
 
     this.state = {
       products: [],
-      productID: 1,
+      productID: 4,
       currentProduct: [],
       currentReviewRating: 0,
       styles: [],
@@ -71,14 +71,14 @@ class App extends React.Component {
         <Col className="layout">
           <Row className="layout">
             <Col className="layout" sm={2}>
-              Logo
+              <img src={"https://upload.wikimedia.org/wikipedia/commons/1/1c/Saturn_mark.svg"} alt="Storefront logo: a line drawing of the planet saturn" style={{width:"2em"}}/> Saturn Storefronts
             </Col>
             <Col className="layout" sm={{ span: 2, offset: 8 }}>
               Search
             </Col>
           </Row>
           <Row className="layout">
-            <Col className="layout">Sitewide Announcement</Col>
+            <Col className="layout">Sitewide Announcement: 100% OFF FOR ALL DEVELOPERS OF THIS SITE</Col>
           </Row>
         </Col>
         <Overview
