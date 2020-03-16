@@ -90,10 +90,12 @@ class App extends React.Component {
         />
         <br></br>
 
+        {console.log("A: t.s.rPs: ", this.state.relatedProducts)}
+
         {this.state.currentProduct.id !== undefined &&
           <RIAC
             currentProduct={this.state.currentProduct}
-            relatedProducts={this.state.relatedProducts}
+            relatedProductsIds={this.state.relatedProducts}
           />
         }
         <br></br>
