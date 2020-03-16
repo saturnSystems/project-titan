@@ -181,7 +181,7 @@ class Overview extends React.Component {
               {this.props.product.features &&
                 this.props.product.features.map((each, i) => (
                   <Row className="layout" key={i}>
-                    &#10003; {each.feature}: {each.value}
+                    &#10003; {each.feature}{each.value!=='null'?`: ${each.value}`:null}
                   </Row>
                 ))
               }
