@@ -48,9 +48,9 @@ class RIAC extends React.Component{
 // console.log("R: t.p.rP: ", this.props.relatedProductsIds);
 // console.log("R: t.p.rPIds: ", this.props.relatedProductsIds)
 let relatedProductsIds = this.props.relatedProductsIds;
-if (relatedProductsIds[0] !== undefined) {
+// if (relatedProductsIds[0] !== undefined) {
   // console.log("R: rPIds: ", relatedProductsIds)
-}
+// }
 let relatedProductId = relatedProductsIds[0];
 // let allProds = this.state.allProducts;
 // console.log("R: to: aPs: ", typeof allProds)
