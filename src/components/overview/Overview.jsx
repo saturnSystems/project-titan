@@ -123,7 +123,7 @@ class Overview extends React.Component {
         </Row>
       );
     }
-    return <Form>{storage.map(each=><div>{each}<br/></div>)}</Form>
+    return <Form>{storage.map((each,i)=><div key={i}>{each}<br/></div>)}</Form>
   }
 
   conditionalSalePrice(){
@@ -268,7 +268,7 @@ class Overview extends React.Component {
               {this.conditionalSalePrice()}
               <br/>
               <Row className="layout">
-                <Col className="layout"><text style={{fontWeight: "bold"}}>STYLE ></text> {this.state.currentStyle&&this.state.currentStyle.name}</Col>
+                <Col className="layout"><b>STYLE ></b> {this.state.currentStyle&&this.state.currentStyle.name}</Col>
               </Row>
               <br/>
               <Row className="layout">
