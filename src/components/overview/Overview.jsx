@@ -123,7 +123,7 @@ class Overview extends React.Component {
         </Row>
       );
     }
-    return <Form>{storage.map(each=>each)}</Form>
+    return <Form>{storage.map(each=><div>{each}<br/></div>)}</Form>
   }
 
   conditionalSalePrice(){
@@ -131,19 +131,25 @@ class Overview extends React.Component {
       return (
         <div>
           <Row className="layout">
-            ${this.state.currentStyle&&this.state.currentStyle.sale_price}
+            <Col className="layout">
+              ${this.state.currentStyle&&this.state.currentStyle.sale_price}
+            </Col>
           </Row>
           <Row className="layout">
-            <del style={{color:"red"}}>
-              ${this.state.currentStyle&&this.state.currentStyle.original_price}
-            </del>
+            <Col className="layout">
+              <del style={{color:"red"}}>
+                ${this.state.currentStyle&&this.state.currentStyle.original_price}
+              </del>
+            </Col>
           </Row>
         </div>
       )
     }else{
       return (
         <Row className="layout">
-          ${this.state.currentStyle&&this.state.currentStyle.original_price}
+          <Col className="layout">
+            ${this.state.currentStyle&&this.state.currentStyle.original_price}
+          </Col>
         </Row>
       )
     }
@@ -241,25 +247,30 @@ class Overview extends React.Component {
         <Col className="layout container">
           <Row className="layout">
             <Col className="layout" sm={8}>
-              <Image src={require("../../logo.svg")} fluid style={{margin: "auto", width:"60%"}} alt="Placeholder logo of planet Saturn"/>
+              <Image src={require("../../logo.svg")} fluid style={{margin: "auto", width:"80%"}} alt="Placeholder logo of planet Saturn"/>
             </Col>
             <Col className="layout">
               <Row className="layout">
-                <StarRatings
-                  rating={this.props.reviewRating}
-                  starDimension="1em"
-                  starSpacing={"0"}
-                />
-                <Button variant="link" onClick={this.props.scroll}>
-                  Read all {this.props.numReviews} reviews
-                </Button>
+                <Col className="layout">
+                  <StarRatings
+                    rating={this.props.reviewRating}
+                    starDimension="1em"
+                    starSpacing={"0"}
+                  />
+                  <Button variant="link" onClick={this.props.scroll}>
+                    Read all {this.props.numReviews} reviews
+                  </Button>
+                </Col>
               </Row>
-              <Row className="layout">{this.props.product.category}</Row>
-              <Row className="layout">{this.props.product.name}</Row>
+              <Row className="layout"><Col className="layout">{this.props.product.category}</Col></Row>
+              <Row className="layout"><Col className="layout"><h1>{this.props.product.name}</h1></Col></Row>
+              <br/>
               {this.conditionalSalePrice()}
+              <br/>
               <Row className="layout">
-                STYLE > {this.state.currentStyle&&this.state.currentStyle.name}
+                <Col className="layout"><text style={{fontWeight: "bold"}}>STYLE ></text> {this.state.currentStyle&&this.state.currentStyle.name}</Col>
               </Row>
+              <br/>
               <Row className="layout">
                 <Col className="layout">
                   {this.conditionalStyles()}
@@ -270,9 +281,11 @@ class Overview extends React.Component {
                 <Col className="layout" sm={8}>{this.conditionalSizeSelector()}</Col>
                 <Col className="layout" sm={4}>{this.conditionalQuantitySelector()}</Col>
               </Row>
+              <br/>
               <Row className="layout">
                 <Col className="layout">{!this.state.outOfStock&&<Button onClick={()=>this.bagger()}>ADD TO BAG</Button>}</Col>
               </Row>
+              <br/>
               <FacebookShareButton url={window.location.href}>
                 <FacebookIcon size="1.5em"/>
               </FacebookShareButton>
