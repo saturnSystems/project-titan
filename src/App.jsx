@@ -19,20 +19,27 @@ class App extends React.Component {
 
     this.state = {
       products: [],
-      productID: 4,
+      productID: window.location.pathname ||1, //productID = anything after / in url,, or 1
       currentProduct: [],
       currentReviewRating: 0,
       styles: [],
       images: [],
       reviews: [],
       questions: [],
-      answers: []
+      answers: [],
+      cart: []
     };
     this.myRef = React.createRef();
     this.scrollToMyRef = this.scrollToMyRef.bind(this);
+    this.addToCart = this.addToCart.bind(this)
   }
 
   componentDidMount() {
+    let cart=JSON.parse(localStorage.getItem('cart'))
+    this.setState({
+      cart: cart
+    })
+
     const { productID } = this.state;
     helper.getOneProduct(productID, result => {
       this.setState({
@@ -63,6 +70,15 @@ class App extends React.Component {
   }
 
   scrollToMyRef = () => window.scrollTo(0, this.myRef.current.offsetTop);
+
+  addToCart(item){
+    let cart = this.state.cart || []
+    cart.push(item)
+    this.setState({
+      cart: cart
+    }) 
+    localStorage.setItem('cart', JSON.stringify(cart))
+  }
 
   render() {
     const { reviews } = this.state;
@@ -96,6 +112,7 @@ class App extends React.Component {
           scroll={this.scrollToMyRef}
           product={this.state.currentProduct}
           styles={this.state.styles}
+          addToCart={this.addToCart}
         />
         <br />
 
