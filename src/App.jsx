@@ -17,17 +17,19 @@ class App extends React.Component {
 
     this.state = {
       products: [],
-      productID: window.location.search.substring(1) ||1, //productID = anything after ? in localhost:3000/?,, or 1
+      productID: window.location.pathname ||1, //productID = anything after / in url,, or 1
       currentProduct: [],
       currentReviewRating: 0,
       styles: [],
       images: [],
       reviews: [],
       questions: [],
-      answers: []
+      answers: [],
+      cart: []
     };
     this.myRef = React.createRef();
     this.scrollToMyRef = this.scrollToMyRef.bind(this);
+    this.addToCart = this.addToCart.bind(this)
   }
 
   componentDidMount() {
@@ -62,6 +64,12 @@ class App extends React.Component {
 
   scrollToMyRef = () => window.scrollTo(0, this.myRef.current.offsetTop);
 
+  addToCart(item){
+    this.setState({
+      cart: [...this.state.cart, item]
+    })
+  }
+
   render() {
     const { reviews } = this.state;
     return (
@@ -85,6 +93,7 @@ class App extends React.Component {
           scroll={this.scrollToMyRef}
           product={this.state.currentProduct}
           styles={this.state.styles}
+          addToCart={this.addToCart}
         />
         <br />
 

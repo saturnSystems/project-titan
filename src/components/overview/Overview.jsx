@@ -19,7 +19,9 @@ class Overview extends React.Component {
     this.state = {
     };
     this.defaultRadio = React.createRef()
-    this.loaded=false
+    this.sizeSelector = React.createRef()
+    this.radioLoaded=false
+    this.stockLoaded=false
   }
 
   componentDidUpdate(prevProps) {
@@ -35,9 +37,24 @@ class Overview extends React.Component {
       });
     }
     
-    if(this.defaultRadio.current&&this.loaded===false){
+    if(this.defaultRadio.current&&this.radioLoaded===false){
       this.defaultRadio.current.checked=true
-      this.loaded=true
+      this.radioLoaded=true
+    }
+
+    if(this.state.currentStyle&&this.state.currentStyle.skus&&!this.stockLoaded){
+      let sizes=Object.entries(this.state.currentStyle.skus)
+      if(sizes.length<=1&&!sizes[0][1]){
+        this.setState({
+          outOfStock:true
+        })
+        this.stockLoaded=true
+      }else{
+        this.setState({
+          outOfStock:false
+        })
+        this.stockLoaded=true
+      }
     }
   }
 
@@ -149,17 +166,19 @@ class Overview extends React.Component {
 
   setSize(size,quantity){
     this.setState({size:size,
-    quantity:quantity||1})
+    quantity:quantity||1,
+    noSize: false
+    })
   }
 
   conditionalSizeSelector(){
-    if(this.state.currentStyle&&this.state.currentStyle.skus){
+    if(this.stockLoaded){
       let sizes=Object.entries(this.state.currentStyle.skus)
-      if(sizes.length<=1&&!sizes[0][1]){
+      if(this.state.outOfStock){
         return <Button>OUT OF STOCK</Button>
       }else{
         return(
-        <DropdownButton title={this.state.size?`SIZE: ${this.state.size}`:"SELECT SIZE"}>
+        <DropdownButton title={this.state.size?`SIZE: ${this.state.size}`:"SELECT SIZE"} ref={this.sizeSelector}>
           {sizes.map((size,i)=>(
             !!size[1]&&<DropdownItem key={i} onClick={()=>this.setSize(size[0])}>{size[0]}</DropdownItem>
           ))}
@@ -198,6 +217,24 @@ class Overview extends React.Component {
     }
   }
 
+  bagger(){
+    if(this.state.size&&this.state.quantity){
+      this.props.addToCart({
+        product: this.props.product,
+        style: this.state.currentStyle,
+        size: this.state.size,
+        quantity: this.state.quantity
+      })
+      this.setState({
+        size:null,
+        quantity:null
+      })
+    }else{
+      this.setState({noSize:true})
+      this.sizeSelector.current.firstChild.click()
+    }
+  }
+
   render() {
     return (
       <Container-fluid className="layout container">
@@ -228,11 +265,14 @@ class Overview extends React.Component {
                   {this.conditionalStyles()}
                 </Col>
               </Row>
+              {this.state.noSize&&<Row>Please select size</Row>}
               <Row className="layout">
-                {this.conditionalSizeSelector()}
-                {this.conditionalQuantitySelector()}
+                <Col className="layout" sm={8}>{this.conditionalSizeSelector()}</Col>
+                <Col className="layout" sm={4}>{this.conditionalQuantitySelector()}</Col>
               </Row>
-              <Row className="layout">ADD TO BAG | *</Row>
+              <Row className="layout">
+                <Col>{!this.state.outOfStock&&<Button onClick={()=>this.bagger()}>ADD TO BAG</Button>}</Col>
+              </Row>
               <FacebookShareButton url={window.location.href}>
                 <FacebookIcon size="1.5em"/>
               </FacebookShareButton>
