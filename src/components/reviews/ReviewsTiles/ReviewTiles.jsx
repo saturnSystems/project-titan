@@ -137,7 +137,7 @@ ReviewTiles.propTypes = {
 };
 
 ReviewTiles.defaultProps = {
-  review: [],
+  review: {},
   date: ""
 };
 
