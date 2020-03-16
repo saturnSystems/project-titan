@@ -50,16 +50,24 @@ class ProductCard extends React.Component {
     const relDefPrice = relProduct.default_price;
     const relRating = "***";
     
-    console.log("PC: styles: ", this.props.styles)
+    console.log("PC: t.p.s: ", this.props.styles)
+    const relStyles = this.props.styles;
+    console.log("PC: relStyles: ", relStyles)
+
     console.log("PC: reviewRating: ", this.props.reviewRating)
 
     const relStyleIndex = 1;
     const relStyle = this.props.styles[relStyleIndex];
+    console.log("PC: rS: ", relStyle);
 
 
     const relThumbnailIndex = 1;
-    const relThumbnail = relStyle.photos[relThumbnailIndex].thumbnail_url;
-
+    // const relThumbnail = relStyles[relStyleIndex].photos[relThumbnailIndex].thumbnail_url;
+    let relThumbnail = "";
+    if (this.props.styles[0] !== undefined) {
+      relThumbnail = this.props.styles[0].photos[relThumbnailIndex].thumbnail_url;
+    }
+    // console.log("PC: rT: ", relThumbnail)
     // const relCategory = relProduct.category;
     // const relCaption = relProduct.name + ' - ' + relProduct.slogan;
 

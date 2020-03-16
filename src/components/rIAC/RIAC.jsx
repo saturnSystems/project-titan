@@ -56,6 +56,7 @@ let relProductId = 2;
 // console.log("R: keys: aPs: ", allProds.keys())
 
 // console.log("R: aPs[1].id}: ", allProds[1].id)
+console.log("R: t.p.s: ", this.props.styles)
     return (
 
       <Container-fluid className="layout container">
