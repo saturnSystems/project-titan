@@ -12,14 +12,14 @@
 }
 .big-image {
   /* position: absolute; */
-  max-height: 40rem;
+  max-height: 50rem;
 }
 .small-image {
   height: 8rem;
   width: 10rem;
   margin-right: 4px;
   padding: 3px;
-  border: 1px solid black;
+  border: 1px solid white;
 }
 
 .relative {

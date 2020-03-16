@@ -49,7 +49,7 @@ class ReviewTiles extends React.Component {
 
   render() {
     const { review } = this.props;
-    console.log(review);
+    // console.log(review);
     const { helpfulness } = this.state;
     const { clicked } = this.state;
     const { date } = this.props;

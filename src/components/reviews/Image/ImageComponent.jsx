@@ -41,9 +41,9 @@ export default class ImageComponent extends Component {
           <img
             className="small-image"
             src={photo}
+            // onerror="this.style.display='none'"
             onClick={this.handleShowImage}
-            alt="review"
-            thumbnail
+            alt=""
           />
           {isOpen && (
             <dialog
@@ -54,9 +54,9 @@ export default class ImageComponent extends Component {
             >
               <img
                 className="big-image"
-                src={photo}
+                src={photo || null}
                 onClick={this.handleShowImage}
-                alt="review"
+                alt="You found me!!"
               />
             </dialog>
           )}
