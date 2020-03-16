@@ -7,16 +7,55 @@ import Col from 'react-bootstrap/Col'
 import ProductCard from './comp/ProductCard/ProductCard'
 import "./RIAC.css";
 
+// const helper = require("../../../src/helper/helper.js");
+
 class RIAC extends React.Component{
   constructor(props){
     super(props)
     this.state={
       productCards: [],
-      currentRelatedProductCard: null
+      currentRelatedProductCard: null,
+      // currProduct: this.props.currentProduct,
+      // relProductsIds: this.props.relatedProductsIds,
+      relProduct: null,
+      allProducts: []
     }
   }
+
+  // componentDidUpdate(prevProps) {
+  //   if (prevProps !== this.props) {
+  //     let relProducts=[];
+  //     for(let i=0; i< relProducts.length; i++){
+  //       if(this.props.[i]["default?"]){
+  //         defaultStyle=this.props.styles[i]
+  //       }
+  //     }
+  //     this.setState({
+  //       currentStyle:defaultStyle
+  //     });
+  //   }
+  // }
    
   render() {
+    console.log("R: t.p.cP: ", this.props.currentProduct);
+    let currProduct = this.props.currentProduct;
+    console.log("R: cP: ", currProduct);
+// console.log("R: ENTER: t.p: ", this.props);
+    // console.log("R: ENTER: currentProduct: ", currentProduct);
+    // const currProd = this.props;
+    // const currName = currProd.name;
+    // console.log("R: cN: ", currName);
+// console.log("R: t.p.cP: ", this.props.currentProduct);
+// console.log("R: t.p.rP: ", this.props.relatedProducts);
+console.log("R: t.p.rPIds: ", this.props.relatedProductsIds)
+let relProductsIds = this.props.relatedProductsIds;
+console.log("R: rPIds: ", relProductsIds)
+let relProductId = 2;
+// let allProds = this.state.allProducts;
+// console.log("R: to: aPs: ", typeof allProds)
+// console.log("R: keys: aPs: ", allProds.keys())
+
+// console.log("R: aPs[1].id}: ", allProds[1].id)
     return (
 
       <Container-fluid className="layout container">
@@ -24,7 +63,12 @@ class RIAC extends React.Component{
           <strong><Row className="layout">Related Products</Row></strong>
           <Row className="layout">
             <Col className="layout col-3">
-            <ProductCard />
+            <ProductCard 
+              currProduct={this.props.currentProduct}
+              // relatedProductId={this.props.relatedProducts[1]}
+              relProductId={relProductId}
+              // relProduct={this.state.relProduct}
+            />
               {/* <Row className="layout">IMAGE</Row>
               <Row className="layout">Jackets</Row>
               <Row className="layout caption">
@@ -59,14 +103,14 @@ class RIAC extends React.Component{
               </Row>
               <Row className="layout">$65</Row>
               <Row className="layout">*</Row>
-              <Row className="layout">CATEGORY</Row>
+              {/* <Row className="layout">CATEGORY</Row>
               <Row className="layout">
                 Expanded Product Name with Extra Text
               </Row>
               <Row className="layout">$123</Row>
-              <Row className="layout">*****</Row>
+              <Row className="layout">*****</Row> */}
             </Col>
-            <Col className="layout col-3">
+            {/* <Col className="layout col-3">
               <Row className="layout">IMAGE</Row>
               <Row className="layout">CATEGORY</Row>
               <Row className="layout">
@@ -74,7 +118,7 @@ class RIAC extends React.Component{
               </Row>
               <Row className="layout">$123</Row>
               <Row className="layout">*****</Row>
-            </Col>
+            </Col> */}
           </Row>
           <br></br>
           <Row className="layout">Your Outfit</Row>
