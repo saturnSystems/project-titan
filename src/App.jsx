@@ -93,12 +93,12 @@ class App extends React.Component {
         />
         <br />
 
-        {console.log("A: t.s.rPs: ", this.state.relatedProducts)}
+        {/* {console.log("A: t.s.rPs: ", this.state.relatedProducts)} */}
 
         {this.state.currentProduct.id !== undefined &&
           <RIAC
             currentProduct={this.state.currentProduct}
-            relatedProductsIds={this.state.relatedProducts}
+            relatedProducts={this.state.relatedProducts}
             reviewRating={this.state.currentReviewRating}
             styles={this.state.styles}
           />
