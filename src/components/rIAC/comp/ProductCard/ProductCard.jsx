@@ -19,11 +19,11 @@ class ProductCard extends React.Component {
   componentDidMount() {
 
     if (this.props.relatedProductId !== undefined) {
-  console.log("PC: cDM: t.p.rPId: ", this.props.relatedProductId)
+  // console.log("PC: cDM: t.p.rPId: ", this.props.relatedProductId)
     }
     // if (this.props.relatedProductId !== undefined) {
       // helper.getOneProduct(this.props.relatedProductId, result => {
-        helper.getOneProduct(2, result => {
+        helper.getOneProduct(3, result => {
           this.setState({
             relatedProduct: result
           });
@@ -32,7 +32,7 @@ class ProductCard extends React.Component {
 
     // if (this.props.relatedProductId !== undefined) {
       // helper.getOneProductStyle(this.props.relatedProductId, result=>{
-      helper.getOneProductStyle(2, result=>{
+      helper.getOneProductStyle(11, result=>{
         this.setState({
           styles: result.results
         })
@@ -58,7 +58,7 @@ class ProductCard extends React.Component {
 //     }
     const relatedProduct = this.state.relatedProduct;
 // console.log("PC: t.s.rP: ", this.state.relatedProduct);
-console.log("PC: rP: ", relatedProduct);
+// console.log("PC: rP: ", relatedProduct);
     // if (relatedProduct !== undefined && relatedProduct[relatedProductId] !== undefined) {
     //   console.log("PC: rP[rPId]: ", relatedProduct[relatedProductId] );
     // }
@@ -80,34 +80,34 @@ console.log("PC: rP: ", relatedProduct);
     // }
     const relatedPropsStyles = this.props.styles;
     if (relatedPropsStyles[0] !== undefined) {
-      console.log("PC: rPsSs[0]: ", relatedPropsStyles[0])
+      // console.log("PC: rPsSs[0]: ", relatedPropsStyles[0])
     }
     if (this.state.styles !== undefined) {
-      console.log("PC: t.s.s: ", this.state.styles)
+      // console.log("PC: t.s.s: ", this.state.styles)
     }
     const relatedStateStyles = this.state.styles;
     if (relatedStateStyles !== undefined) {
-      console.log("PC: rSS: ", relatedStateStyles)
+      // console.log("PC: rSS: ", relatedStateStyles)
     }
     const relatedPropStyleIndex = 0;
 
     const relatedPropStyle = this.props.styles[relatedPropStyleIndex];
     if (relatedPropStyle !== undefined) {
-      console.log("PC: rPS: ", relatedPropStyle);
+      // console.log("PC: rPS: ", relatedPropStyle);
     }
     if (this.state.styles !== undefined) {
       const relatedStateStyle = this.state.styles[relatedPropStyleIndex];
-      console.log("PC: rSS: ", relatedStateStyle);
+// console.log("PC: rSS: ", relatedStateStyle);
     }
 
     const relThumbnailIndex = 0;
     // const relThumbnail = relatedPropStyles[relatedPropStyleIndex].photos[relThumbnailIndex].thumbnail_url;
     let relThumbnail = "(NO IMAGE AVAILABLE)";
 
-    // if (this.props.styles[0] !== undefined) {
+    if (this.props.styles[0] !== undefined) {
       // relThumbnail = this.props.styles[0].photos[relThumbnailIndex].thumbnail_url;
-      // relThumbnail = relatedPropsStyles[0].photos[relThumbnailIndex].thumbnail_url;
-    // }
+      relThumbnail = relatedPropsStyles[2].photos[relThumbnailIndex].thumbnail_url;
+    }
 
     if (this.state.styles !== undefined && this.state.styles[0] !== undefined) {
       // relThumbnail = this.state.styles[0].photos[relThumbnailIndex].thumbnail_url;
@@ -133,15 +133,15 @@ console.log("PC: rP: ", relatedProduct);
               {}
               {/* <a className="card-link"> */}
                 {/* <img className="card-img-top" src="https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80" alt="Card image cap" /> */}
-                <img className="card-img-top" src="https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80" alt="" />
-                {/* <img className="card-img-top" src={relThumbnail}  alt=""/> */}
+                {/* <img className="card-img-top" src="https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80" alt="" /> */}
+                <img className="card-img-top" src={relThumbnail}  alt=""/>
                 {/* <a href="../../overview/Overview.jsx"> <img className="card-img-top" src="https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80" alt="Card image cap" />
                 </a> */}
               {/* </a> */}
             </p>
             <div className="card-img-overlay">
               {/* <p><a href="../../overview/Overview.jsx" className="btn btn-primary">X</a></p> */}
-              <small><p className="btn btn-primary">x</p></small>
+              <small><p className="btn btn-primary">*</p></small>
             </div>
           </div>
         </a>
