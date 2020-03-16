@@ -6,6 +6,7 @@ import Image from "react-bootstrap/Image"
 import Form from "react-bootstrap/Form";
 import FormCheck from "react-bootstrap/FormCheck"
 import Button from "react-bootstrap/Button";
+import DropdownButton from "react-bootstrap/DropdownButton"
 import {FacebookShareButton, TwitterShareButton, PinterestShareButton} from "react-share"
 import {FacebookIcon,PinterestIcon,TwitterIcon} from "react-share";
 import StarRatings from "react-star-ratings";
@@ -172,7 +173,9 @@ class Overview extends React.Component {
                   {this.conditionalStyles()}
                 </Col>
               </Row>
-              <Row className="layout">SELECT SIZE | 1</Row>
+              <Row className="layout">
+                <DropdownButton title="Select a size"/>
+              </Row>
               <Row className="layout">ADD TO BAG | *</Row>
               <FacebookShareButton url={window.location.href}>
                 <FacebookIcon size="1.5em"/>
