@@ -2,6 +2,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { Component } from "react";
 import "./ImageComponent.css";
+import PropTypes from "prop-types";
 
 export default class ImageComponent extends Component {
   constructor(props) {
@@ -18,33 +19,43 @@ export default class ImageComponent extends Component {
   };
 
   render() {
-    // console.log(this.props.review);
-    // console.log(this.props.photos);
+    const { photo, id } = this.props;
     const { isOpen } = this.state;
     return (
       <div>
-        <img
-          className="small"
-          src="https://cdn.filestackcontent.com/pnqFRG2AQu2I8ChN1jpp"
-          onClick={this.handleShowImage}
-          alt="review"
-        />
-        {isOpen && (
-          <dialog
-            className="dialog"
-            style={{ position: "absolute" }}
-            open
+        <React.Fragment key={id}>
+          <img
+            className="small-image"
+            src={photo}
             onClick={this.handleShowImage}
-          >
-            <img
-              className="image"
-              src="https://cdn.filestackcontent.com/pnqFRG2AQu2I8ChN1jpp"
+            alt="review"
+          />
+          {isOpen && (
+            <dialog
+              className="dialog"
+              style={{ position: "absolute" }}
+              open
               onClick={this.handleShowImage}
-              alt="review"
-            />
-          </dialog>
-        )}
+            >
+              <img
+                className="big-image"
+                src={photo}
+                onClick={this.handleShowImage}
+                alt="review"
+              />
+            </dialog>
+          )}
+        </React.Fragment>
       </div>
     );
   }
 }
+
+ImageComponent.propTypes = {
+  photo: PropTypes.string,
+  id: PropTypes.number
+};
+ImageComponent.defaultProps = {
+  photo: "",
+  id: 27255
+};

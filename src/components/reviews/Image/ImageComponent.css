@@ -1,6 +1,9 @@
-.small {
+.small-image {
   height: 150px;
   width: 200px;
+  margin-right: 4px;
+  padding: 3px;
+  border: 1px solid black;
 }
 .dialog {
   box-shadow: 0 8px 6px -6px black;
@@ -8,8 +11,4 @@
   left: -50%;
   top: -10%;
   bottom: 285%;
-}
-
-.image {
-  /* width: 300px; */
 }

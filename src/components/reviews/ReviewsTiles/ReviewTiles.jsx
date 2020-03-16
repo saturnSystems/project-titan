@@ -86,15 +86,18 @@ class ReviewTiles extends React.Component {
                   {review.body.length <= 1000 ? (
                     <Row className="layout">{review.body}</Row>
                   ) : null}
-                  {review.photos.length >= 1 ? (
-                    <Row className="layout">
-                      <ImageComponent
-                        review={review}
-                        reviewId={review.review_id}
-                        photos={review.photos}
-                      />
-                    </Row>
-                  ) : null}
+                  <Row className="layout">
+                    {review.photos.length >= 1
+                      ? review.photos.map((photo, _i) => (
+                          <ImageComponent
+                            photo={photo.url}
+                            id={photo.id}
+                            // eslint-disable-next-line react/no-array-index-key
+                            key={_i}
+                          />
+                        ))
+                      : null}
+                  </Row>
                   <Row className="layout">
                     {review.recommend === 1 ? (
                       <p>&#10004; I recommend this product</p>
