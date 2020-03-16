@@ -8,13 +8,13 @@ import Col from 'react-bootstrap/Col'
 import "./RIAC.css";
 
 class RIAC extends React.Component{
-  // constructor(props){
-  //   super(props)
-  //   this.state={
-  //     productCards: [],
-  //     currentRelatedProductCard: null
-  //   }
-  // }
+  constructor(props){
+    super(props)
+    this.state={
+      productCards: [],
+      currentRelatedProductCard: null
+    }
+  }
    
   render() {
     return (

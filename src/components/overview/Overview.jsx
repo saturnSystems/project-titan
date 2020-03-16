@@ -147,15 +147,15 @@ class Overview extends React.Component {
     }
   }
 
-  setSize(size){
-    console.log(size)
-    this.setState({size:size})
+  setSize(size,quantity){
+    this.setState({size:size,
+    quantity:quantity||1})
   }
 
   conditionalSizeSelector(){
     if(this.state.currentStyle&&this.state.currentStyle.skus){
       let sizes=Object.entries(this.state.currentStyle.skus)
-      if(sizes.length<=1&&!sizes[1]){
+      if(sizes.length<=1&&!sizes[0][1]){
         return <Button>OUT OF STOCK</Button>
       }else{
         return(
@@ -169,13 +169,42 @@ class Overview extends React.Component {
     }
   }
 
+  conditionalQuantitySelector(){
+    if(this.state.currentStyle&&this.state.currentStyle.skus){
+      let sizes=this.state.currentStyle.skus
+      if(!this.state.size){
+        return <Button>-</Button>
+      }else{
+        let quantity=[]
+
+        if(sizes[this.state.size]<15){
+          for(let i=1;i<=sizes[this.state.size];i++){
+          quantity.push(i)
+          }
+        }else{
+          for(let i=1;i<=15;i++){
+            quantity.push(i)
+          }
+        }
+        
+        return(
+        <DropdownButton title={this.state.quantity}>
+          {quantity.map((number,i)=>(
+            <DropdownItem key={i} onClick={()=>this.setSize(this.state.size, number)}>{number}</DropdownItem>
+          ))}
+        </DropdownButton>
+        )
+      }
+    }
+  }
+
   render() {
     return (
       <Container-fluid className="layout container">
         <Col className="layout container">
           <Row className="layout">
             <Col className="layout" sm={8}>
-              <Image src={require("../../logo.svg")} fluid style={{width:"60%"}} alt="Placeholder logo of planet Saturn"/>
+              <Image src={require("../../logo.svg")} fluid style={{margin: "auto", width:"60%"}} alt="Placeholder logo of planet Saturn"/>
             </Col>
             <Col className="layout">
               <Row className="layout">
@@ -201,6 +230,7 @@ class Overview extends React.Component {
               </Row>
               <Row className="layout">
                 {this.conditionalSizeSelector()}
+                {this.conditionalQuantitySelector()}
               </Row>
               <Row className="layout">ADD TO BAG | *</Row>
               <FacebookShareButton url={window.location.href}>
