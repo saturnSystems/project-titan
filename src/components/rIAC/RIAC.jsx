@@ -13,19 +13,18 @@ class RIAC extends React.Component{
   constructor(props){
     super(props)
     this.state={
-      productCards: [],
+      // productCards: [],
       currentRelatedProductCard: null,
       // currProduct: this.props.currentProduct,
-      // relProductsIds: this.props.relatedProductsIds,
-      relProduct: null,
-      allProducts: []
+      // relatedProductsIds: this.props.relatedProductsIds,
+      relatedProducts: null
     }
   }
 
   // componentDidUpdate(prevProps) {
   //   if (prevProps !== this.props) {
-  //     let relProducts=[];
-  //     for(let i=0; i< relProducts.length; i++){
+  //     let relatedProductsIds=[];
+  //     for(let i=0; i< relatedProductsIdss.length; i++){
   //       if(this.props.[i]["default?"]){
   //         defaultStyle=this.props.styles[i]
   //       }
@@ -37,26 +36,31 @@ class RIAC extends React.Component{
   // }
    
   render() {
-    console.log("R: t.p.cP: ", this.props.currentProduct);
+    // console.log("R: t.p.cP: ", this.props.currentProduct);
     let currProduct = this.props.currentProduct;
-    console.log("R: cP: ", currProduct);
+    // console.log("R: cP: ", currProduct);
 // console.log("R: ENTER: t.p: ", this.props);
     // console.log("R: ENTER: currentProduct: ", currentProduct);
     // const currProd = this.props;
     // const currName = currProd.name;
     // console.log("R: cN: ", currName);
 // console.log("R: t.p.cP: ", this.props.currentProduct);
-// console.log("R: t.p.rP: ", this.props.relatedProducts);
-console.log("R: t.p.rPIds: ", this.props.relatedProductsIds)
-let relProductsIds = this.props.relatedProductsIds;
-console.log("R: rPIds: ", relProductsIds)
-let relProductId = 2;
+// console.log("R: t.p.rP: ", this.props.relatedProductsIds);
+// console.log("R: t.p.rPIds: ", this.props.relatedProductsIds)
+let relatedProductsIds = this.props.relatedProductsIds;
+if (relatedProductsIds[0] !== undefined) {
+  // console.log("R: rPIds: ", relatedProductsIds)
+}
+let relatedProductId = relatedProductsIds[0];
 // let allProds = this.state.allProducts;
 // console.log("R: to: aPs: ", typeof allProds)
 // console.log("R: keys: aPs: ", allProds.keys())
 
 // console.log("R: aPs[1].id}: ", allProds[1].id)
-console.log("R: t.p.s: ", this.props.styles)
+if (this.props.styles[0] !== undefined) {
+  // console.log("R: t.p.s: ", this.props.styles)
+}
+
     return (
 
       <Container-fluid className="layout container">
@@ -65,10 +69,10 @@ console.log("R: t.p.s: ", this.props.styles)
           <Row className="layout">
             <Col className="layout col-3">
             <ProductCard 
-              currProduct={this.props.currentProduct}
-              // relatedProductId={this.props.relatedProducts[1]}
-              relProductId={relProductId}
-              // relProduct={this.state.relProduct}
+              currentProduct={this.props.currentProduct}
+              // relatedProductId={this.props.relatedProductsIds[1]}
+              relatedProductId={relatedProductId}
+              // relatedProductsIds={this.state.relatedProductsIds}
               reviewRating={this.props.reviewRating}
               styles={this.props.styles}
               />
