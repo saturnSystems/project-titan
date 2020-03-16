@@ -1,3 +1,6 @@
+.relative {
+  position: relative;
+}
 .floaty {
   float: right;
   border: none;

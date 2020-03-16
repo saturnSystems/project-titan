@@ -6,6 +6,7 @@ import Col from "react-bootstrap/Col";
 import "./ReviewsTiles.css";
 import StarRatings from "react-star-ratings";
 import PropTypes from "prop-types";
+import ImageComponent from "../Image/ImageComponent";
 
 class ReviewTiles extends React.Component {
   constructor(props) {
@@ -13,7 +14,8 @@ class ReviewTiles extends React.Component {
 
     this.state = {
       helpfulness: 0,
-      clicked: false
+      clicked: false,
+      isOpen: false
     };
   }
 
@@ -26,7 +28,8 @@ class ReviewTiles extends React.Component {
                  Any images that were submitted as part of the review should appear as *thumbnails* below the review text. Upon clicking a thumbnail, the image should open in a modal window, displaying at full resolution.  The only functionality available within this modal should be the ability to close the window. 
  
  * Reviewer name - The username for the reviewer will appear.  Only the username will appear. No email addresses or other personal information will display.  However, if the user’s email is associated to a sale in the system then next to the username the text “Verified Purchaser” will appear.
- * Rating Helpfulness - There is no data for "No" so only doing "Yes". Will add as future implementation
+ * Rating Helpfulness - There is no data for "No" so only doing "Yes". Will add as future implementation.
+ *                      Also change the icon to be a pointer hand or something.
 
  */
 
@@ -35,7 +38,8 @@ class ReviewTiles extends React.Component {
     this.setState({ helpfulness: review.helpfulness });
   };
 
-  handleHelpfulness = ({ helper }) => {
+  handleHelpfulness = () => {
+    const { helper } = this.props;
     const { review } = this.props;
     const { helpfulness } = this.state;
     this.setState({ helpfulness: helpfulness + 1 });
@@ -45,12 +49,13 @@ class ReviewTiles extends React.Component {
 
   render() {
     const { review } = this.props;
+    // console.log(review);
     const { helpfulness } = this.state;
     const { clicked } = this.state;
     const { date } = this.props;
-    if (review.body.length < 50) {
-      return null;
-    }
+    // if (review.body.length < 50) {
+    //   return null;
+    // }
     return (
       <dl>
         <React.Fragment key={review.review_id}>
@@ -85,6 +90,19 @@ class ReviewTiles extends React.Component {
                   {review.body.length <= 1000 ? (
                     <Row className="layout">{review.body}</Row>
                   ) : null}
+                  <Row className="layout">
+                    {review.photos.length >= 1
+                      ? review.photos.map((photo, i) => (
+                          <ImageComponent
+                            photo={photo.url}
+                            id={photo.id}
+                            handleShowImage={this.handleShowImage}
+                            // eslint-disable-next-line react/no-array-index-key
+                            key={i}
+                          />
+                        ))
+                      : null}
+                  </Row>
                   <Row className="layout">
                     {review.recommend === 1 ? (
                       <p>&#10004; I recommend this product</p>
