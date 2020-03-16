@@ -247,7 +247,7 @@ class Overview extends React.Component {
         <Col className="layout container">
           <Row className="layout">
             <Col className="layout" sm={8}>
-              <Image src={require("../../logo.svg")} fluid style={{margin: "auto", width:"80%"}} alt="Placeholder logo of planet Saturn"/>
+              <Image src={this.stockLoaded?this.state.currentStyle.photos[0].url:null} fluid style={{margin: "auto", height:"65%"}} alt="Placeholder logo of planet Saturn"/>
             </Col>
             <Col className="layout">
               <Row className="layout">
