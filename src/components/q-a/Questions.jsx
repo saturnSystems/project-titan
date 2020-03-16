@@ -2,17 +2,10 @@
 import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-// getListQuestions
+import Answers from "./Answers";
 
 
 class Questions extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-     question_id: props.question_id,
-     answers: []
-    };
-  }
 
   render() {
     const items = this.props.questions.map((question, i) =>
@@ -26,31 +19,7 @@ class Questions extends React.Component {
               <Row className="layout">Helpful? | Add answer</Row>
             </Col>
           </Row>
-          <Row className="layout">A:
-
-        <Col className="layout" sm={9}>
-              <Row className="layout">
-                <Col className="layout">
-                  <Row className="layout">Answer Text</Row>
-
-                  <Row className="layout">{new Date(
-                      question.question_date
-                   ).toLocaleDateString("en-US",
-        {weekday: "long", 
-        year: "numeric", 
-        month: "short",  
-        day: "numeric"})} | Helpful? {' Yes (' + question.question_helpfulness + ')'} | Report</Row>
-        </Col>
-        </Row>
-        <Row className="layout">
-        <Col className="layout">
-        <Row className="layout">Answer to reply?</Row>
-        <Row className="layout">IMAGES</Row>
-        <Row className="layout">Date | Helpful | Report</Row>
-        </Col>
-        </Row>
-        </Col>
-        </Row>
+          <Answers questionId={question.question_id}/>
         <Row>
         <Col>Load more answers</Col>
         </Row>
