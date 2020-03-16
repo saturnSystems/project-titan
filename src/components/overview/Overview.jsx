@@ -85,7 +85,7 @@ class Overview extends React.Component {
                     style={{position:"absolute", right:"10%", top:0}}
                   >
                   </Form.Check.Input>
-                }
+                }<span className="checkmark"></span>
                 {each.photos&&       
                   <Image
                     style={{position:"relative", zIndex:-1}} 
