@@ -98,7 +98,7 @@ class App extends React.Component {
         {this.state.currentProduct.id !== undefined &&
           <RIAC
             currentProduct={this.state.currentProduct}
-            relatedProducts={this.state.relatedProducts}
+            relatedProductsIds={this.state.relatedProducts}
             reviewRating={this.state.currentReviewRating}
             styles={this.state.styles}
           />
