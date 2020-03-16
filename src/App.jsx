@@ -17,7 +17,7 @@ class App extends React.Component {
 
     this.state = {
       products: [],
-      productID: 1,
+      productID: 4,
       currentProduct: [],
       currentReviewRating: 0,
       styles: [],
@@ -76,7 +76,7 @@ class App extends React.Component {
             </Col>
           </Row>
           <Row className="layout">
-            <Col className="layout">Sitewide Announcement</Col>
+            <Col className="layout">Sitewide Announcement: 100% OFF FOR ALL DEVELOPERS OF THIS SITE</Col>
           </Row>
         </Col>
         <Overview

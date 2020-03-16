@@ -11,7 +11,6 @@ import {FacebookIcon,PinterestIcon,TwitterIcon} from "react-share";
 import StarRatings from "react-star-ratings";
 import "./Overview.css"
 
-
 class Overview extends React.Component {
   constructor(props) {
     super(props);
@@ -149,7 +148,7 @@ class Overview extends React.Component {
         <Col className="layout container">
           <Row className="layout">
             <Col className="layout" sm={8}>
-              IMAGE CAROUSEL
+              <Image src={require("../../logo.svg")} fluid alt="Placeholder logo of planet Saturn"/>
             </Col>
             <Col className="layout">
               <Row className="layout">
