@@ -19,8 +19,8 @@ class ProductCard extends React.Component {
   componentDidMount() {
     console.log("PC: cDM: t.p.rPId: ", this.props.relProductsId)
     // if (this.props.relProductsId !== undefined) {
-    // helper.getOneProduct(this.props.relProductId, result => {
-      helper.getOneProduct(2, result => {
+    helper.getOneProduct(this.props.relProductId, result => {
+      // helper.getOneProduct(2, result => {
         this.setState({
           relatedProduct: result
         });
@@ -45,6 +45,10 @@ class ProductCard extends React.Component {
     console.log("PC: t.p.rP: ", this.state.relatedProduct);
     const relProduct = this.state.relatedProduct;
     console.log("PC: rP: ", relProduct);
+    const relCategory = relProduct.category;
+    const relCaption = relProduct.name + ' - ' + relProduct.slogan;
+    const relDefPrice = relProduct.default_price;
+    const relRating = "***";
 
     // const relStyleIndex = 1;
     // const relStyle = relProduct.styles[relStyleIndex];
@@ -85,12 +89,12 @@ class ProductCard extends React.Component {
           <div className="card-body">
           {/* <p className="card-text category">Jackets</p> */}
           {/* {const currCategory=this.props[0].category;} */}
-          <p className="card-text category">relCategory</p>
+          <p className="card-text category">{relCategory}</p>
             {/* <h5 className="card-title caption">Camo Onesie - Forest Green &amp; Black </h5> */}
-            <h5 className="card-title caption">relCaption</h5>
+            <h5 className="card-title caption">{relCaption}</h5>
             {/* <small><p className="card-text price" className="text-muted">$140</p></small> */}
-            <small><p className="card-text text-muted price">relDefPrice</p></small>
-            <p className="card-text">****</p>
+            <small><p className="card-text text-muted price">{relDefPrice}</p></small>
+            <p className="card-text">{relRating}</p>
           </div>
           {/* <img class="card-img-bottom" src="..." alt="Card image cap"> */}
         </div>
