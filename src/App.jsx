@@ -99,6 +99,8 @@ class App extends React.Component {
           <RIAC
             currentProduct={this.state.currentProduct}
             relatedProductsIds={this.state.relatedProducts}
+            reviewRating={this.state.currentReviewRating}
+            styles={this.state.styles}
           />
         }
         <br></br>
