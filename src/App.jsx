@@ -4,6 +4,7 @@ import "./App.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Overview from "./components/overview/Overview";
+import FormControl from "react-bootstrap/FormControl"
 import RIAC from "./components/rIAC/RIAC";
 import Qa from "./components/q-a/Q-a";
 import Reviews from "./components/reviews/Reviews/Reviews";
@@ -17,7 +18,7 @@ class App extends React.Component {
 
     this.state = {
       products: [],
-      productID: window.location.pathname ||1, //productID = anything after / in url,, or 1
+      productID: window.location.search.substr(1) ||1, //productID = anything after /? in url,, or 1
       currentProduct: [],
       currentReviewRating: 0,
       styles: [],
@@ -88,7 +89,7 @@ class App extends React.Component {
               <img src={"https://upload.wikimedia.org/wikipedia/commons/1/1c/Saturn_mark.svg"} alt="Storefront logo: a line drawing of the planet saturn" style={{width:"2em"}}/> Saturn Storefronts
             </Col>
             <Col className="layout" sm={{ span: 2, offset: 8 }}>
-              Search
+              <FormControl type="text" size="sm" placeholder="Search..."></FormControl>
             </Col>
           </Row>
           <Row className="layout">
