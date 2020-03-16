@@ -19,7 +19,7 @@ class Answers extends React.Component {
     render() {
     const items = this.state.answers.map((answer, i) => {    
     return (
-    <Row className="layout">A:
+    <Row className="layout" key={i}>A:
 
     <Col className="layout" sm={9}>
       <Row className="layout">
