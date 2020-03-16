@@ -9,10 +9,20 @@ export default class ImageComponent extends Component {
     super(props);
 
     this.state = {
-      isOpen: false
+      isOpen: false,
+      tempPhoto: ""
     };
   }
 
+  // /////////// TOFIX ///////////////////
+  // When user clicks on multiple images it opens it up as well and you have to click
+  // the photo modal the same number of times to close it.
+  // /////////////////////////////////////
+
+  componentDidMount = () => {
+    const { photo } = this.props;
+    this.setState({ tempPhoto: photo });
+  };
   handleShowImage = () => {
     const { isOpen } = this.state;
     this.setState({ isOpen: !isOpen });
@@ -21,6 +31,10 @@ export default class ImageComponent extends Component {
   render() {
     const { photo, id } = this.props;
     const { isOpen } = this.state;
+    // if (photo === this.state.tempPhoto) {
+    //   return null;
+    // }
+
     return (
       <div>
         <React.Fragment key={id}>
@@ -29,6 +43,7 @@ export default class ImageComponent extends Component {
             src={photo}
             onClick={this.handleShowImage}
             alt="review"
+            thumbnail
           />
           {isOpen && (
             <dialog

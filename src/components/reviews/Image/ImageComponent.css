@@ -1,14 +1,27 @@
+.dialog {
+  display: block;
+  box-shadow: 0 8px 6px -6px black;
+  position: absolute;
+  left: -60%;
+  top: 260%;
+  bottom: 285%;
+  background-color: white;
+  border: 1px solid black;
+  overflow-block: 3px;
+  z-index: 1;
+}
+.big-image {
+  /* position: absolute; */
+  max-height: 40rem;
+}
 .small-image {
-  height: 150px;
-  width: 200px;
+  height: 8rem;
+  width: 10rem;
   margin-right: 4px;
   padding: 3px;
   border: 1px solid black;
 }
-.dialog {
-  box-shadow: 0 8px 6px -6px black;
-  position: static;
-  left: -50%;
-  top: -10%;
-  bottom: 285%;
+
+.relative {
+  position: relative;
 }

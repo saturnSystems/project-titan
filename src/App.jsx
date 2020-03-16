@@ -71,14 +71,23 @@ class App extends React.Component {
         <Col className="layout">
           <Row className="layout">
             <Col className="layout" sm={2}>
-              <img src={"https://upload.wikimedia.org/wikipedia/commons/1/1c/Saturn_mark.svg"} alt="Storefront logo: a line drawing of the planet saturn" style={{width:"2em"}}/> Saturn Storefronts
+              <img
+                src={
+                  "https://upload.wikimedia.org/wikipedia/commons/1/1c/Saturn_mark.svg"
+                }
+                alt="Storefront logo: a line drawing of the planet saturn"
+                style={{ width: "2em" }}
+              />{" "}
+              Saturn Storefronts
             </Col>
             <Col className="layout" sm={{ span: 2, offset: 8 }}>
               Search
             </Col>
           </Row>
           <Row className="layout">
-            <Col className="layout">Sitewide Announcement: 100% OFF FOR ALL DEVELOPERS OF THIS SITE</Col>
+            <Col className="layout">
+              Sitewide Announcement: 100% OFF FOR ALL DEVELOPERS OF THIS SITE
+            </Col>
           </Row>
         </Col>
         <Overview

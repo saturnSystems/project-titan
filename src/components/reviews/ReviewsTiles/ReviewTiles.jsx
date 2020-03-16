@@ -14,7 +14,8 @@ class ReviewTiles extends React.Component {
 
     this.state = {
       helpfulness: 0,
-      clicked: false
+      clicked: false,
+      isOpen: false
     };
   }
 
@@ -44,14 +45,20 @@ class ReviewTiles extends React.Component {
     helper.putHelpfulReview(review.review_id, () => true);
   };
 
+  handleShowImage = () => {
+    const { isOpen } = this.state;
+    this.setState({ isOpen: !isOpen });
+  };
+
   render() {
     const { review } = this.props;
+    console.log(review);
     const { helpfulness } = this.state;
     const { clicked } = this.state;
     const { date } = this.props;
-    if (review.body.length < 50) {
-      return null;
-    }
+    // if (review.body.length < 50) {
+    //   return null;
+    // }
     return (
       <dl>
         <React.Fragment key={review.review_id}>
@@ -88,12 +95,13 @@ class ReviewTiles extends React.Component {
                   ) : null}
                   <Row className="layout">
                     {review.photos.length >= 1
-                      ? review.photos.map((photo, _i) => (
+                      ? review.photos.map((photo, i) => (
                           <ImageComponent
                             photo={photo.url}
                             id={photo.id}
+                            handleShowImage={this.handleShowImage}
                             // eslint-disable-next-line react/no-array-index-key
-                            key={_i}
+                            key={i}
                           />
                         ))
                       : null}
