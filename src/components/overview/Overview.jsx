@@ -128,6 +128,21 @@ class Overview extends React.Component {
     }
   }
 
+  conditionalPinterest(){
+    if(this.state.currentStyle&&this.state.currentStyle.photos&&this.state.currentStyle.photos[0].url!==null){
+      return(
+      <PinterestShareButton url={window.location.href} media={this.state.currentStyle.photos[0].url}>
+        <PinterestIcon size="1.5em"/>
+      </PinterestShareButton>)
+    }else{
+      return(
+      <PinterestShareButton url={window.location.href} media={"../../logo.png"}>
+        <PinterestIcon size="1.5em"/>
+      </PinterestShareButton>
+      )
+    }
+  }
+
   render() {
     return (
       <Container-fluid className="layout container">
@@ -163,9 +178,7 @@ class Overview extends React.Component {
               <FacebookShareButton url={window.location.href}>
                 <FacebookIcon size="1.5em"/>
               </FacebookShareButton>
-              <PinterestShareButton url={window.location.href}>
-                <PinterestIcon size="1.5em"/>
-              </PinterestShareButton>
+              {this.conditionalPinterest()}
               <TwitterShareButton url={window.location.href}>
                 <TwitterIcon size="1.5em"/>
               </TwitterShareButton>
