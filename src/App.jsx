@@ -33,6 +33,11 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    let cart=JSON.parse(localStorage.getItem('cart'))
+    this.setState({
+      cart: cart
+    })
+
     const { productID } = this.state;
     helper.getOneProduct(productID, result => {
       this.setState({
@@ -65,9 +70,12 @@ class App extends React.Component {
   scrollToMyRef = () => window.scrollTo(0, this.myRef.current.offsetTop);
 
   addToCart(item){
+    let cart = this.state.cart || []
+    cart.push(item)
     this.setState({
-      cart: [...this.state.cart, item]
-    })
+      cart: cart
+    }) 
+    localStorage.setItem('cart', JSON.stringify(cart))
   }
 
   render() {
