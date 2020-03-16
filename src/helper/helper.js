@@ -158,9 +158,11 @@ const putReportAnswer = (answerId, callback) => {
 
 // ///////// REVIEWS ////////////////////////////////
 
-// Returns a list of reviews for a particular product. This list does not include any reported reviews
+// Returns a list of reviews for a particular product.
+// This list does not include any reported reviews
 const getListReviews = (productId, callback) => {
-  fetch(`http://3.134.102.30/reviews/${productId}/list/?count=99999999`) // You can sort by /?sort="helpful" or "newest" or ...
+  fetch(`http://3.134.102.30/reviews/${productId}/list/?count=99999999`)
+  // You can sort by /?sort="helpful" or "newest" or ...
     .then((response) => response.json())
     .then((data) => callback(data))
     .catch((err) => callback(err));
@@ -179,16 +181,18 @@ const getReviewMetadata = (productId, callback) => {
 
 const postReview = (productId, review, callback) => {
   /**
-     * Parameter |	Type     |	Description
+     * Parameter | Type     | Description
      * ------------------------------------------------------------
-       rating	       |    int	     | Integer (1-5) indicating the review rating
-       summary         |	text     | Summary text of the review
-       body	           |    text     | Continued or full text of the review
-       recommend       |	bool     | Value indicating if the reviewer recommends the product
-       name	text       |  Username   | for question asker
-       email	       |    text     | Email address for question asker
-       photos	       |   [text]	 | Array of text urls that link to images to be shown
-       characteristics |   object	 | Object of keys representing characteristic_id and values representing the review value for that characteristic. { "14": 5, "15": 5 //...}
+       rating        |    int      | Integer (1-5) indicating the review rating
+       summary         | text     | Summary text of the review
+       body            |    text     | Continued or full text of the review
+       recommend       | bool     | Value indicating if the reviewer recommends the product
+       name text       |  Username   | for question asker
+       email        |    text     | Email address for question asker
+       photos        |   [text]  | Array of text urls that link to images to be shown
+       characteristics |   object  | Object of keys representing characteristic_id and
+                                     values representing the review value for that
+                                     characteristic. { "14": 5, "15": 5 //...}
      */
 
   //* **EITHER send it over in one object called review OR in individual parts***//
