@@ -28,7 +28,8 @@ class ReviewTiles extends React.Component {
                  Any images that were submitted as part of the review should appear as *thumbnails* below the review text. Upon clicking a thumbnail, the image should open in a modal window, displaying at full resolution.  The only functionality available within this modal should be the ability to close the window. 
  
  * Reviewer name - The username for the reviewer will appear.  Only the username will appear. No email addresses or other personal information will display.  However, if the user’s email is associated to a sale in the system then next to the username the text “Verified Purchaser” will appear.
- * Rating Helpfulness - There is no data for "No" so only doing "Yes". Will add as future implementation
+ * Rating Helpfulness - There is no data for "No" so only doing "Yes". Will add as future implementation.
+ *                      Also change the icon to be a pointer hand or something.
 
  */
 
@@ -37,17 +38,13 @@ class ReviewTiles extends React.Component {
     this.setState({ helpfulness: review.helpfulness });
   };
 
-  handleHelpfulness = ({ helper }) => {
+  handleHelpfulness = () => {
+    const { helper } = this.props;
     const { review } = this.props;
     const { helpfulness } = this.state;
     this.setState({ helpfulness: helpfulness + 1 });
     this.setState({ clicked: true });
     helper.putHelpfulReview(review.review_id, () => true);
-  };
-
-  handleShowImage = () => {
-    const { isOpen } = this.state;
-    this.setState({ isOpen: !isOpen });
   };
 
   render() {
