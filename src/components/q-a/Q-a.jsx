@@ -1,26 +1,24 @@
 // Q-a.jsx stub
-import React from 'react';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import RenderList from './Q-a-RenderList.jsx'
+import React from "react";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import List from "./List";
 
 class Qa extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            change: ''
-        }
-    }
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
 
   render() {
     // console.log(this.props)
     return (
       <div>
       <Container-fluid className="layout container">
-        <Col sm={{ span: 10, offset: 1 }} className="layout container">
-        <Row className="layout">{"QUESTIONS & ANSWERS"}</Row>
-        <Row className="layout">Search Bar</Row>
-        <RenderList questions={this.props.questions}/>
+          <Col sm={{ span: 10, offset: 1 }} className="layout container">
+            <Row className="layout">"QUESTIONS & ANSWERS"</Row>
+            <Row className="layout">Search Bar</Row>
+            <List questions={this.props.questions}/>
         {/* <Row className="layout">
         <Col className="layout">
         <Row className="layout">Q:
@@ -52,11 +50,13 @@ class Qa extends React.Component {
         </Row>
         </Col>
         </Row> */}
-        <Row className="layout">MORE ANSWERED QUESTIONS | ADD A QUESTION +</Row>
-        </Col>
+            <Row className="layout">
+              MORE ANSWERED QUESTIONS | ADD A QUESTION +
+            </Row>
+          </Col>
         </Container-fluid>
-        <br></br>
-    </div>
+        <br />
+      </div>
     )
   }
 }

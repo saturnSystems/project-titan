@@ -2,25 +2,17 @@
 import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-// getListQuestions
+import Questions from '../q-a/Questions';
 
 
-class RenderQuestions extends React.Component {
+class List extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            question_id: props.question_id,
-            answers: []
+            question_id: props.question_id
         }
     }
 
-    RenderAnswers() {
-        return (
-            <div></div>
-        )
-    }
-    // a method to set state to the question id?
-    // create a method to pull in answers 
     render() {
         const items = this.props.questions.map((question, i) =>
         <Row className="layout" key={i}>
@@ -61,11 +53,13 @@ class RenderQuestions extends React.Component {
         </Row>
         )
         return (
+            <div>
           <div> { items } </div>
+          <Questions questions={this.props.questions}/>
+          </div>
         )
     }
 }
 
 
-
-export default RenderQuestions;
+export default List;
