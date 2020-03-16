@@ -18,7 +18,7 @@ class Overview extends React.Component {
     this.state = {
     };
     this.defaultRadio = React.createRef()
-    this.loaded=0
+    this.loaded=false
   }
 
   componentDidUpdate(prevProps) {
@@ -34,9 +34,9 @@ class Overview extends React.Component {
       });
     }
     
-    if(this.defaultRadio.current&&this.loaded===0){
+    if(this.defaultRadio.current&&this.loaded===false){
       this.defaultRadio.current.checked=true
-      this.loaded++
+      this.loaded=true
     }
   }
 
