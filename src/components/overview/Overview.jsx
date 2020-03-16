@@ -265,13 +265,13 @@ class Overview extends React.Component {
                   {this.conditionalStyles()}
                 </Col>
               </Row>
-              {this.state.noSize&&<Row>Please select size</Row>}
+              {this.state.noSize&&<Row className="layout"><Col className="layout">Please select size</Col></Row>}
               <Row className="layout">
                 <Col className="layout" sm={8}>{this.conditionalSizeSelector()}</Col>
                 <Col className="layout" sm={4}>{this.conditionalQuantitySelector()}</Col>
               </Row>
               <Row className="layout">
-                <Col>{!this.state.outOfStock&&<Button onClick={()=>this.bagger()}>ADD TO BAG</Button>}</Col>
+                <Col className="layout">{!this.state.outOfStock&&<Button onClick={()=>this.bagger()}>ADD TO BAG</Button>}</Col>
               </Row>
               <FacebookShareButton url={window.location.href}>
                 <FacebookIcon size="1.5em"/>
