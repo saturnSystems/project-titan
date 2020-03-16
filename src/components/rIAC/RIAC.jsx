@@ -68,7 +68,9 @@ let relProductId = 2;
               // relatedProductId={this.props.relatedProducts[1]}
               relProductId={relProductId}
               // relProduct={this.state.relProduct}
-            />
+              reviewRating={this.props.reviewRating}
+              styles={this.props.styles}
+              />
               {/* <Row className="layout">IMAGE</Row>
               <Row className="layout">Jackets</Row>
               <Row className="layout caption">

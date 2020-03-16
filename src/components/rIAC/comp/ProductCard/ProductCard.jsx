@@ -49,12 +49,16 @@ class ProductCard extends React.Component {
     const relCaption = relProduct.name + ' - ' + relProduct.slogan;
     const relDefPrice = relProduct.default_price;
     const relRating = "***";
+    
+    console.log("PC: styles: ", this.props.styles)
+    console.log("PC: reviewRating: ", this.props.reviewRating)
 
-    // const relStyleIndex = 1;
-    // const relStyle = relProduct.styles[relStyleIndex];
+    const relStyleIndex = 1;
+    const relStyle = this.props.styles[relStyleIndex];
 
-    // const relThumbnailIndex = 1;
-    // const relThumbnail = relStyle.photos[relThumbnailIndex].thumbnail_url;
+
+    const relThumbnailIndex = 1;
+    const relThumbnail = relStyle.photos[relThumbnailIndex].thumbnail_url;
 
     // const relCategory = relProduct.category;
     // const relCaption = relProduct.name + ' - ' + relProduct.slogan;
@@ -72,8 +76,8 @@ class ProductCard extends React.Component {
               {}
               {/* <a className="card-link"> */}
                 {/* <img className="card-img-top" src="https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80" alt="Card image cap" /> */}
-                <img className="card-img-top" src="https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80" alt="" />
-                {/* <img className="card-img-top" src={relThumbnail}  alt=""/> */}
+                {/* <img className="card-img-top" src="https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80" alt="" /> */}
+                <img className="card-img-top" src={relThumbnail}  alt=""/>
                 {/* <a href="../../overview/Overview.jsx"> <img className="card-img-top" src="https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80" alt="Card image cap" />
                 </a> */}
               {/* </a> */}
