@@ -34,7 +34,7 @@ class ProductCard extends React.Component {
 
   }
 
-  setProductId = () => { // (event) parameter not used
+  setProductId = (event) => { // (Event) parameter not actually used
     this.props.setProductId(this.props.relatedProductId);
   }
 
@@ -71,7 +71,7 @@ class ProductCard extends React.Component {
 
     return (
       <Container-fluid className="layout product-card-layout align-left">
-        <div id="product-card-div" onClick={this.setProductId}>
+        <div id="product-card-div" onClick={() =>this.setProductId()}>
           <a onClick={this.scrollToTop}>
             <div className="card mb-3">
               <img className="card-img-top" src={relThumbnail}  alt=""/>
