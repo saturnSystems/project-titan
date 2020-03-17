@@ -9,6 +9,7 @@ class Answers extends React.Component {
     super(props);
     this.state = {
       answers: [],
+      renderAnswers: 2
     };
   }
 
@@ -17,7 +18,7 @@ class Answers extends React.Component {
   }
 
   render() {
-    let sortedAnswers = [...this.state.answers]
+    let sortedAnswers = [...this.state.answers];
 
     function compare(a, b) {
 
@@ -33,7 +34,7 @@ class Answers extends React.Component {
       }
     }
 
-    sortedAnswers = sortedAnswers.sort(compare);
+    sortedAnswers = sortedAnswers.sort(compare).slice(0, this.state.renderAnswers);
 
     const items = sortedAnswers.map((answer, i) => (
       <Row className="layout" key={i}>
@@ -44,15 +45,15 @@ class Answers extends React.Component {
             <Col className="layout">
               <Row className="layout">{ answer.body }</Row>
 
-              <Row className="layout"> {answer.answerer_name === 'Seller' ? 
-                <div>{' By '}<b>{answer.answerer_name}</b> </div> : 
-                <div>{' By '}{answer.answerer_name} </div>}{' on '}
+              <Row className="layout"> By&nbsp;{answer.answerer_name === 'Seller' ? 
+                <strong> {answer.answerer_name}</strong> : 
+                answer.answerer_name}&nbsp;on&nbsp;
                 {new Date(answer.date).toLocaleDateString("en-US",
                   { weekday: 'long',
                     year: 'numeric',
                     month: 'short',
                     day: 'numeric',
-                  })}
+                  })}&nbsp;
                 | Helpful? {' Yes ('}{answer.helpfulness}{') '} 
                 | Report</Row>
             </Col>
