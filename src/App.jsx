@@ -6,7 +6,7 @@ import "./App.css";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Overview from "./components/overview/Overview";
-import FormControl from "react-bootstrap/FormControl"
+import FormControl from "react-bootstrap/FormControl";
 import RIAC from "./components/rIAC/RIAC";
 import Qa from "./components/q-a/Q-a";
 import Reviews from "./components/reviews/Reviews/Reviews";
@@ -20,7 +20,7 @@ class App extends React.Component {
 
     this.state = {
       products: [],
-      productID: window.location.search.substr(1) ||1, //productID = anything after /? in url,, or 1
+      productID: window.location.search.substr(1) || 1, //productID = anything after /? in url,, or 1
       currentProduct: [],
       currentReviewRating: 0,
       styles: [],
@@ -33,14 +33,14 @@ class App extends React.Component {
     };
     this.myRef = React.createRef();
     this.scrollToMyRef = this.scrollToMyRef.bind(this);
-    this.addToCart = this.addToCart.bind(this)
+    this.addToCart = this.addToCart.bind(this);
   }
 
   componentDidMount() {
-    let cart=JSON.parse(localStorage.getItem('cart'))
+    let cart = JSON.parse(localStorage.getItem("cart"));
     this.setState({
       cart: cart
-    })
+    });
 
     const { productID } = this.state;
     helper.getOneProduct(productID, result => {
@@ -77,13 +77,13 @@ class App extends React.Component {
 
   scrollToMyRef = () => window.scrollTo(0, this.myRef.current.offsetTop);
 
-  addToCart(item){
-    let cart = this.state.cart || []
-    cart.push(item)
+  addToCart(item) {
+    let cart = this.state.cart || [];
+    cart.push(item);
     this.setState({
       cart: cart
-    }) 
-    localStorage.setItem('cart', JSON.stringify(cart))
+    });
+    localStorage.setItem("cart", JSON.stringify(cart));
   }
 
   render() {
@@ -103,7 +103,11 @@ class App extends React.Component {
               Saturn Storefronts
             </Col>
             <Col className="layout" sm={{ span: 2, offset: 8 }}>
-              <FormControl type="text" size="sm" placeholder="Search..."></FormControl>
+              <FormControl
+                type="text"
+                size="sm"
+                placeholder="Search..."
+              ></FormControl>
             </Col>
           </Row>
           <Row className="layout">
