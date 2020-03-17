@@ -1,6 +1,9 @@
 // this component is for use in RIAC.jsx
 //   for both Related Products and Your Outfit
 import React from 'react';
+import Row from 'react-bootstrap/Row'
+// import Col from 'react-bootstrap/Col' // NOT USED
+import StarRatings from "react-star-ratings";
 
 const helper = require("../../../../helper/helper.js");
 
@@ -9,7 +12,7 @@ class ProductCard extends React.Component {
     super(props)
     this.state={
       relatedProduct: {}
-      // relatedProductId: props.relatedProductId // not yet needed
+      // relatedProductId: props.relatedProductId // NOT USED
     }
   }
 
@@ -31,7 +34,7 @@ class ProductCard extends React.Component {
 
   }
 
-  setProductId = (event) => {
+  setProductId = () => { // (event) parameter not actually used
     this.props.setProductId(this.props.relatedProductId);
   }
 
@@ -40,16 +43,16 @@ class ProductCard extends React.Component {
   }
 
   render() {
-    // const currentProduct = this.props.currentProduct; // not currently needed
+    // const currentProduct = this.props.currentProduct; // NOT USED
     // console.log("PC: cP: ", currentProduct);
-    const relatedProductId = this.props.relatedProductId;
+    // const relatedProductId = this.props.relatedProductId; // NOT USED
     // console.log("PC: rPId: ", relatedProductId);
 
     const relatedProduct = this.state.relatedProduct;
     const relatedCategory = relatedProduct.category;
     const relatedCaption = relatedProduct.name + ' - ' + relatedProduct.slogan;
     const relatedDefPrice = relatedProduct.default_price;
-    const relatedRating = "***";
+    // const relatedRating = "***"; // NOT USED. Superceded by actual star rating
     
     const relatedStyles = this.props.styles;
       // console.log("PC: rPsSs[0]: ", relatedStyles[0])
@@ -64,14 +67,17 @@ class ProductCard extends React.Component {
       relThumbnail = relatedStyle.photos[relatedThumbnailIndex].thumbnail_url;
     }
 
+    // let reviewRating = this.props.reviewRating; // NOT USED
+
     return (
       <Container-fluid className="layout product-card-layout align-left">
-        <div id="product-card-div" onClick={this.setProductId}>
+        <div id="product-card-div" onClick={() =>this.setProductId()}>
           <a onClick={this.scrollToTop}>
             <div className="card mb-3">
-              <p>
-                <img className="card-img-top" src={relThumbnail}  alt=""/>
-              </p>
+              <img className="card-img-top" src={relThumbnail}  alt=""/>
+              <div className="card-img-overlay">
+                <small><p className="btn btn-primary">*</p></small>
+              </div>
             </div>
           </a>
         </div>
@@ -80,7 +86,15 @@ class ProductCard extends React.Component {
           <p className="card-text category">{relatedCategory}</p>
             <h5 className="card-title caption">{relatedCaption}</h5>
             <small><p className="card-text text-muted price">{relatedDefPrice}</p></small>
-            <p className="card-text">{relatedRating}</p>
+            {/* Placeholder. Superceded by star ratings, below. */}
+            {/* <p className="card-text">{relatedRating}</p> */}
+            <Row>              
+              <StarRatings
+                rating={this.props.reviewRating}
+                starDimension="1em"
+                starSpacing={"0"}
+              />
+            </Row>
           </div>
         </div>
       </Container-fluid>
