@@ -22,7 +22,7 @@ class Answers extends React.Component {
     function compare(a, b) {
 
       if (a.answerer_name === 'Seller' && b.helpfulness < a.helpfulness) {
-        return -1
+        return -1;
         // eslint-disable-next-line no-else-return
       } else if (a.answerer_name !== 'Seller' && a.helpfulness < b.helpfulness) {
         return 1;
@@ -44,11 +44,17 @@ class Answers extends React.Component {
             <Col className="layout">
               <Row className="layout">{ answer.body }</Row>
 
-              <Row className="layout">By {answer.answerer_name + ' on ' + new Date(answer.date).toLocaleDateString("en-US",
-                {weekday: "long", 
-                  year: "numeric", 
-                  month: "short",  
-                  day: "numeric"})} | Helpful? {' Yes (' + answer.helpfulness + ')'} | Report</Row>
+              <Row className="layout"> {answer.answerer_name === 'Seller' ? 
+                <div>{' By '}<b>{answer.answerer_name}</b> </div> : 
+                <div>{' By '}{answer.answerer_name} </div>}{' on '}
+                {new Date(answer.date).toLocaleDateString("en-US",
+                  { weekday: 'long',
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                  })}
+                | Helpful? {' Yes ('}{answer.helpfulness}{') '} 
+                | Report</Row>
             </Col>
           </Row>
           <Row className="layout">
