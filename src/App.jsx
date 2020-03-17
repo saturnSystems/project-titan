@@ -75,6 +75,15 @@ class App extends React.Component {
     });
   }
 
+  setCurrentProduct = (productID) => {
+    helper.getOneProduct(productID, result => {
+      console.log("~~~ App resulting product:", result);
+      this.setState({
+        currentProduct: result
+      });
+    });
+  }
+
   scrollToMyRef = () => window.scrollTo(0, this.myRef.current.offsetTop);
 
   addToCart(item){
@@ -126,6 +135,8 @@ class App extends React.Component {
 
         {this.state.currentProduct.id !== undefined &&
           <RIAC
+            setCurrentProduct={this.setCurrentProduct}
+            products={this.state.products}
             currentProduct={this.state.currentProduct}
             relatedProductsIds={this.state.relatedProducts}
             reviewRating={this.state.currentReviewRating}
