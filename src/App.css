@@ -39,9 +39,12 @@
 
 .layout {
   /* background-color:#61dafb; */
-  border:1px solid;
-  border-color: black;
+  /* border:1px solid;
+  border-color: black; */
 }
  /* .container{
   border-color:red;
 } */
+.btn-primary{
+  background-color: #00b0ff;
+}

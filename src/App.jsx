@@ -90,7 +90,7 @@ class App extends React.Component {
     const { reviews } = this.state;
     return (
       <Container-fluid className="layout">
-        <Col className="layout">
+        <Col className="layout" style={{backgroundColor:"#00b0ff"}}>
           <Row className="layout">
             <Col className="layout" sm={2}>
               <img

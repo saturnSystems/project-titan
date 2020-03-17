@@ -46,12 +46,12 @@ class ProductCard extends React.Component {
   render() {
 // console.log("PC: ENTER: t.p: ", this.props);
 
-    const currentProduct = this.props.currentProduct;
+    // const currentProduct = this.props.currentProduct;
 // console.log("PC: cP: ", currentProduct);
     // const relProductId = this.props.relatedProductId;
     // console.log("PC: rP: ", relProductId);
 ////
-    const relatedProductId = this.props.relatedProductId;
+    // const relatedProductId = this.props.relatedProductId;
 
 //     if (this.props.relatedProductId !== undefined) {
 // console.log("PC: rPId: ", relatedProductId);
@@ -96,7 +96,7 @@ class ProductCard extends React.Component {
       // console.log("PC: rPS: ", relatedPropStyle);
     }
     if (this.state.styles !== undefined) {
-      const relatedStateStyle = this.state.styles[relatedPropStyleIndex];
+      // const relatedStateStyle = this.state.styles[relatedPropStyleIndex];
 // console.log("PC: rSS: ", relatedStateStyle);
     }
 

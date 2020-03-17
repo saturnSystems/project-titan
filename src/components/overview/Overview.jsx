@@ -246,7 +246,7 @@ class Overview extends React.Component {
       <Container-fluid className="layout container">
         <Col className="layout container">
           <Row className="layout">
-            <Col className="layout" sm={8} style={{backgroundColor:"lightgray"}}>
+            <Col className="layout" sm={8} style={{backgroundColor:"#e1f5fe"}}>
               {this.stockLoaded&&<Image src={this.state.currentStyle.photos[0].url} 
                 fluid style={{marginLeft: "auto",marginRight:"auto", maxHeight:"90vh", display:"block"}} 
                 alt={`Image of ${this.props.product.name} in ${this.state.currentStyle.name} style`}

@@ -37,7 +37,7 @@ class RIAC extends React.Component{
    
   render() {
     // console.log("R: t.p.cP: ", this.props.currentProduct);
-    let currProduct = this.props.currentProduct;
+    // let currProduct = this.props.currentProduct;
     // console.log("R: cP: ", currProduct);
 // console.log("R: ENTER: t.p: ", this.props);
     // console.log("R: ENTER: currentProduct: ", currentProduct);
