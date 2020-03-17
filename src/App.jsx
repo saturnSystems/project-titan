@@ -34,6 +34,7 @@ class App extends React.Component {
     this.myRef = React.createRef();
     this.scrollToMyRef = this.scrollToMyRef.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.setProductId = this.setProductId.bind(this);
   }
 
   componentDidMount() {
@@ -80,7 +81,7 @@ class App extends React.Component {
     // console.log("A: sPI: pID:", productID);
     this.setState({
       productID: productID
-    });
+    }, () => this.componentDidMount());
   }
 
   scrollToMyRef = () => window.scrollTo(0, this.myRef.current.offsetTop);
