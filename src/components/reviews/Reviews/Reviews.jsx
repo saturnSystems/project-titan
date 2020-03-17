@@ -14,21 +14,27 @@ class Reviews extends React.Component {
 
     this.state = {
       reviewsBtn: false,
-      reviews: []
+      reviews: [],
+      productId: this.props.productID,
+      itemsToShow: 2
     };
   }
 
-  // componentDidMount = () => {
-  //   this.setState({ reviews: this.props.reviews });
-  // };
-
-  moreReviews = e => {
-    this.setState({ reviewsBtn: !this.state.reviewsBtn });
+  componentDidMount() {
+    const { productID } = this.props;
+    helper.getListReviews(productID, result => {
+      this.setState({
+        reviews: result.results
+      });
+    });
+  }
+  moreReviews = () => {
+    this.setState({ itemsToShow: this.state.itemsToShow + 2 });
   };
 
   render() {
     const { reviews } = this.props;
-    // const numOfTimes = this.state.moreReviews ? reviews.length : 4;
+    const { itemsToShow } = this.state;
     return (
       <Container-fluid className="layout container">
         <Col sm={{ span: 10, offset: 1 }} className="layout container">
@@ -69,8 +75,8 @@ class Reviews extends React.Component {
                 {reviews.length}, sorted by relevance
               </Row>
               <br />
-              {reviews.length > 2
-                ? reviews.slice(0, 2).map(review => {
+              {reviews.length >= 2
+                ? reviews.slice(0, itemsToShow).map(review => {
                     const date = new Date(review.date).toLocaleDateString(
                       "en-US",
                       {
@@ -106,30 +112,32 @@ class Reviews extends React.Component {
                       />
                     );
                   })}
-              {!this.state.reviewsBtn ? (
+              {!this.state.reviewsBtn &&
+              this.state.itemsToShow !== this.state.reviews.length ? (
                 <button type="button" onClick={e => this.moreReviews()}>
                   Show more reviews
                 </button>
-              ) : (
-                reviews.slice(2, 4).map(review => {
-                  const date = new Date(review.date).toLocaleDateString(
-                    "en-US",
-                    {
-                      day: "numeric",
-                      month: "short",
-                      year: "numeric"
-                    }
-                  );
-                  return (
-                    <ReviewTiles
-                      review={review}
-                      date={`${date}`}
-                      key={review.review_id}
-                      helper={helper}
-                    />
-                  );
-                })
-              )}
+              ) : null}
+
+              {/* reviews.slice(2, 4).map(review => {
+              //     const date = new Date(review.date).toLocaleDateString(
+              //       "en-US",
+              //       {
+              //         day: "numeric",
+              //         month: "short",
+              //         year: "numeric"
+              //       }
+              //     );
+              //     return (
+              //       <ReviewTiles
+              //         review={review}
+              //         date={`${date}`}
+              //         key={review.review_id}
+              //         helper={helper}
+              //       />
+              //     );
+              //   })
+              // )} */}
               <br />
               <br />
               <Row className="layout">MORE REVIEWS | ADD A REVIEW +</Row>
