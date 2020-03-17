@@ -91,7 +91,7 @@ class ReviewTiles extends React.Component {
                       {`... ${review.summary.slice(60)}`}
                     </Row>
                   ) : null}
-                  {review.body.length >= 200 &&
+                  {review.body.length >= 250 &&
                   review.body.length <= 1000 &&
                   this.state.showMore === false ? (
                     <Row className="layout">
@@ -100,7 +100,7 @@ class ReviewTiles extends React.Component {
                         name="showMore"
                         onClick={this.showMore} //////////////////////HERE!!!!!!!!!!!!!!!!!
                       >
-                        show more
+                        Show more
                       </button>
                     </Row>
                   ) : (
