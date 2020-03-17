@@ -15,7 +15,7 @@ class ReviewTiles extends React.Component {
     this.state = {
       helpfulness: 0,
       clicked: false,
-      isOpen: false
+      showMore: false
     };
   }
 
@@ -45,6 +45,10 @@ class ReviewTiles extends React.Component {
     this.setState({ helpfulness: helpfulness + 1 });
     this.setState({ clicked: true });
     helper.putHelpfulReview(review.review_id, () => true);
+  };
+
+  showMore = e => {
+    this.setState({ [e.target.name]: !this.state[e.target.name] });
   };
 
   render() {
@@ -87,9 +91,24 @@ class ReviewTiles extends React.Component {
                       {`... ${review.summary.slice(60)}`}
                     </Row>
                   ) : null}
-                  {review.body.length <= 1000 ? (
+                  {review.body.length >= 250 &&
+                  review.body.length <= 1000 &&
+                  this.state.showMore === false ? (
+                    <Row className="layout">
+                      {review.body.slice(0, 200) + "..."}
+                      <button
+                        name="showMore"
+                        onClick={this.showMore} //////////////////////HERE!!!!!!!!!!!!!!!!!
+                      >
+                        Show more
+                      </button>
+                    </Row>
+                  ) : (
                     <Row className="layout">{review.body}</Row>
-                  ) : null}
+                  )}
+                  {/* {review.body.length <= 1000 ? (
+                    <Row className="layout">{review.body}</Row>
+                  ) : null} */}
                   <Row className="layout">
                     {review.photos.length >= 1
                       ? review.photos.map((photo, i) => (

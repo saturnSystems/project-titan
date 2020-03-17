@@ -17,7 +17,25 @@ class Answers extends React.Component {
   }
 
   render() {
-    const items = this.state.answers.map((answer, i) => (
+    let sortedAnswers = [...this.state.answers]
+
+    function compare(a, b) {
+
+      if (a.answerer_name === 'Seller' && b.helpfulness < a.helpfulness) {
+        return -1
+        // eslint-disable-next-line no-else-return
+      } else if (a.answerer_name !== 'Seller' && a.helpfulness < b.helpfulness) {
+        return 1;
+      } else if (b.answerer_name === 'Seller') {
+        return 1;
+      } else {
+        return -1;
+      }
+    }
+
+    sortedAnswers = sortedAnswers.sort(compare);
+
+    const items = sortedAnswers.map((answer, i) => (
       <Row className="layout" key={i}>
         A:
 
@@ -26,7 +44,7 @@ class Answers extends React.Component {
             <Col className="layout">
               <Row className="layout">{ answer.body }</Row>
 
-              <Row className="layout">{new Date(answer.date).toLocaleDateString("en-US",
+              <Row className="layout">By {answer.answerer_name + ' on ' + new Date(answer.date).toLocaleDateString("en-US",
                 {weekday: "long", 
                   year: "numeric", 
                   month: "short",  
@@ -42,8 +60,7 @@ class Answers extends React.Component {
           </Row>
         </Col>
       </Row>
-    ),
-    );
+    ));
 
     return (
       <div>{ items }</div>
