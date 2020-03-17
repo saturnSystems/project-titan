@@ -16,7 +16,7 @@ const Questions = (props) => {
             <Row className="layout">{question.question_body}</Row>
           </Col>
           <Col className="layout">
-            <Row className="layout">Helpful? | Add answer</Row>
+            <Row className="layout">Helpful? {' Yes (' + question.question_helpfulness + ')'} | Add answer</Row>
           </Col>
         </Row>
         <Answers questionId={question.question_id} />
