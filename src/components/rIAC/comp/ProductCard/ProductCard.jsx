@@ -11,18 +11,25 @@ class ProductCard extends React.Component {
   constructor(props) {
     super(props)
     this.state={
-      relatedProduct: {}
+      relatedProduct: {},
+      relatedProductId: props.relatedProductId
     }
 
   }
 
-  componentDidMount() {
 
-    if (this.props.relatedProductId !== undefined) {
+  //componentDidMount() {
+  componentDidUpdate(prevProps) {
+    //console.log("before if PC: cDM: t.p.rPId: ", this.props.relatedProductId)
+    //console.log("product card state.relatedpProductId: ", this.state.relatedProductId)
+
+    let currId = this.props.relatedProductId
+    if (typeof currId === 'number' && currId !== prevProps.relatedProductId) {
   // console.log("PC: cDM: t.p.rPId: ", this.props.relatedProductId)
-    }
+    console.log("PC: cDM: t.p.rPId: ", currId)
     // if (this.props.relatedProductId !== undefined) {
       // helper.getOneProduct(this.props.relatedProductId, result => {
+        //helper.getOneProduct(currId, result => {
         helper.getOneProduct(3, result => {
           this.setState({
             relatedProduct: result
@@ -32,12 +39,32 @@ class ProductCard extends React.Component {
 
     // if (this.props.relatedProductId !== undefined) {
       // helper.getOneProductStyle(this.props.relatedProductId, result=>{
-      helper.getOneProductStyle(11, result=>{
+        //helper.getOneProductStyle(currId, result=>{
+        helper.getOneProductStyle(11, result=>{
         this.setState({
           styles: result.results
         })
       });
     // }  
+   }
+
+  }
+
+  setCurrentProduct = (event) => {
+    //let productID = event.currentTarget.getAttribute("productid");
+    //let productID = "3";
+    // this.props.helper.getOneProduct(productID, result => {
+    // //helper.getOneProduct(productID, result => {
+    //  this.setState({
+    //    currentProduct: result
+    //  });
+    // });
+    // console.log(this.props);
+    this.props.setCurrentProduct(this.props.relatedProductId);
+  }
+
+  scrollToTop () {
+    window.scrollTo(0, 0);
   }
 
   // const currentImage = "https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80";
@@ -48,7 +75,7 @@ class ProductCard extends React.Component {
 
     const currentProduct = this.props.currentProduct;
 // console.log("PC: cP: ", currentProduct);
-    // const relProductId = this.props.relatedProductId;
+    // const relatedProductId = this.props.relatedProductId;
     // console.log("PC: rP: ", relProductId);
 ////
     const relatedProductId = this.props.relatedProductId;
@@ -123,28 +150,34 @@ class ProductCard extends React.Component {
 
     ////
     // console.log("PC: reviewRating: ", this.props.reviewRating)
+    let reviewRating = this.props.reviewRating;
+
+    // Questions
+    // 1. Is this whole component being destroyed when the "overview.jsx" link gets clicked?
+
+
 
     return (
       <Container-fluid className="layout product-card-layout align-left">
-        <div id="product-card-div">
-          <a href="../../overview/Overview.jsx">
-          <div className="card mb-3">
-            <p>
-              {}
-              {/* <a className="card-link"> */}
+        <div id="product-card-div" onClick={this.setCurrentProduct}>
+          <a onClick={this.scrollToTop}>
+            <div className="card mb-3">
+              <p>
+                {}
+                {/* <a className="card-link"> */}
                 {/* <img className="card-img-top" src="https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80" alt="Card image cap" /> */}
                 {/* <img className="card-img-top" src="https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80" alt="" /> */}
                 <img className="card-img-top" src={relThumbnail}  alt=""/>
                 {/* <a href="../../overview/Overview.jsx"> <img className="card-img-top" src="https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80" alt="Card image cap" />
                 </a> */}
-              {/* </a> */}
-            </p>
-            <div className="card-img-overlay">
-              {/* <p><a href="../../overview/Overview.jsx" className="btn btn-primary">X</a></p> */}
-              <small><p className="btn btn-primary">*</p></small>
+                {/* </a> */}
+              </p>
+              <div className="card-img-overlay">
+                {/* <p><a href="../../overview/Overview.jsx" className="btn btn-primary">X</a></p> */}
+                <small><p className="btn btn-primary">*</p></small>
+              </div>
             </div>
-          </div>
-        </a>
+          </a>
         </div>
         <div className="card">
           <div className="card-body">
@@ -156,6 +189,7 @@ class ProductCard extends React.Component {
             {/* <small><p className="card-text price" className="text-muted">$140</p></small> */}
             <small><p className="card-text text-muted price">{relatedDefPrice}</p></small>
             <p className="card-text">{relatedRating}</p>
+            {/* <p className="card-text">{review}</p> */}
           </div>
           {/* <img class="card-img-bottom" src="..." alt="Card image cap"> */}
         </div>
