@@ -16,11 +16,7 @@ const Questions = (props) => {
             <Row className="layout">{question.question_body}</Row>
           </Col>
           <Col className="layout">
-<<<<<<< HEAD
             <Row className="layout">Helpful? {' Yes (' + question.question_helpfulness + ')'} | Add answer</Row>
-=======
-            <Row className="layout">Helpful? | Add answer</Row>
->>>>>>> 9b6f39e2141da11a9133a7a5c3bb8267b1ed20dc
           </Col>
         </Row>
         <Answers questionId={question.question_id} />

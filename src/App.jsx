@@ -18,7 +18,7 @@ class App extends React.Component {
 
     this.state = {
       products: [],
-      productID: window.location.search.substr(1) ||1, //productID = anything after /? in url,, or 1
+      productID: window.location.search.substr(1) || 1, //productID = anything after /? in url,, or 1
       currentProduct: [],
       currentReviewRating: 0,
       styles: [],
