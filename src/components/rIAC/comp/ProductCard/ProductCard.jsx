@@ -51,15 +51,6 @@ class ProductCard extends React.Component {
   }
 
   setProductId = (event) => {
-    //let productID = event.currentTarget.getAttribute("productid");
-    //let productID = "3";
-    // this.props.helper.getOneProduct(productID, result => {
-    // //helper.getOneProduct(productID, result => {
-    //  this.setState({
-    //    currentProduct: result
-    //  });
-    // });
-    // console.log(this.props);
     this.props.setProductId(this.props.relatedProductId);
   }
 
