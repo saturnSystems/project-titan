@@ -57,9 +57,9 @@ class ReviewTiles extends React.Component {
     const { helpfulness } = this.state;
     const { clicked } = this.state;
     const { date } = this.props;
-    // if (review.body.length < 50) {
-    //   return null;
-    // }
+    if (review.body.length < 50) {
+      return null;
+    }
     return (
       <dl>
         <React.Fragment key={review.review_id}>
@@ -135,7 +135,7 @@ class ReviewTiles extends React.Component {
                   review.response !== "null" ? (
                     <dl>
                       <Row className="layout response">
-                        Response From Seller:
+                        <strong>Response From Seller:</strong>
                       </Row>
                       <Row className="layout response">{review.response}</Row>
                     </dl>
