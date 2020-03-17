@@ -18,9 +18,7 @@ class RIAC extends React.Component{
       // currProduct: this.props.currentProduct,
       // relatedProductsIds: this.props.relatedProductsIds,
       relatedProducts: null,
-      relatedProductId: null
     }
-    this.workingProductId = null;
   }
 
   // componentDidUpdate(prevProps) {
@@ -37,22 +35,6 @@ class RIAC extends React.Component{
   //   }
   // }
 
-  componentDidUpdate (prevProps) {
-    //console.log("calling update, props.relatedProductIds", this.props.relatedProductIds);
-    //console.log("calling update workingProductId", this.workingProductId);
-    //if (this.props.relatedProductIds !== undefined) {
-    if (this.workingProductId !== this.prevProductId) {
-      //console.log("related prod ids", this.props.relatedProductIds);
-      this.prevProductId = this.workingProductId;
-      //if (this.props.relatedProductIds[1] !== prevProps.relatedProductIds[1]) {
-        this.setState({
-          //relatedProductId: this.props.relatedProductIds[1]
-          relatedProductId: this.workingProductId
-        });
-      //}
-    }
-  }
-   
   render() {
     // console.log("R: t.p.cP: ", this.props.currentProduct);
     let currProduct = this.props.currentProduct;
@@ -70,9 +52,6 @@ let relatedProductsIds = this.props.relatedProductsIds;
   // console.log("R: rPIds: ", relatedProductsIds)
 // }
 let relatedProductId = this.props.relatedProductsIds[1];
-if (relatedProductId !== undefined) {
-  this.workingProductId = relatedProductId;
-}
 // let allProds = this.state.allProducts;
 // console.log("R: to: aPs: ", typeof allProds)
 // console.log("R: keys: aPs: ", allProds.keys())
@@ -95,7 +74,8 @@ if (this.props.styles[0] !== undefined) {
               setProductId={this.props.setProductId}
               currentProduct={this.props.currentProduct}
               // relatedProductId={this.props.relatedProductsIds[1]}
-              relatedProductId={this.state.relatedProductId}
+              // relatedProductId={this.state.relatedProductId}
+              relatedProductId={relatedProductId}
               // relatedProductsIds={this.state.relatedProductsIds}
               reviewRating={this.props.reviewRating}
               styles={this.props.styles}
