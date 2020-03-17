@@ -76,7 +76,6 @@ class App extends React.Component {
   }
 
   setProductId = (productID) => {
-    console.log("~~~ App resulting productID:", productID);
     this.setState({
       productID: productID
     });
