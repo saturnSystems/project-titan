@@ -28,7 +28,8 @@ class App extends React.Component {
       reviews: [],
       questions: [],
       answers: [],
-      cart: []
+      cart: [],
+      relatedProducts: []
     };
     this.myRef = React.createRef();
     this.scrollToMyRef = this.scrollToMyRef.bind(this);
@@ -55,17 +56,21 @@ class App extends React.Component {
     helper.getListReviews(productID, result => {
       this.setState({
         reviews: result.results
-      });
+      })
     });
-    helper.getListQuestions(productID, result => {
-      // Q&A - Questions
+    helper.getListQuestions(this.state.productID, result => { // Q&A - Questions
       this.setState({
         questions: result.results
-      });
+      })
     });
-    helper.getOneProductStyle(productID, result => {
+    helper.getOneProductStyle(this.state.productID,result=>{
       this.setState({
         styles: result.results
+      })
+    });
+    helper.getRelatedProducts(this.state.productID, result => {
+      this.setState({
+        relatedProducts: result
       });
     });
   }
@@ -121,8 +126,17 @@ class App extends React.Component {
         />
         <br />
 
-        <RIAC currentProduct={this.state.currentProduct} />
-        <br />
+        {/* {console.log("A: t.s.rPs: ", this.state.relatedProducts)} */}
+
+        {this.state.currentProduct.id !== undefined &&
+          <RIAC
+            currentProduct={this.state.currentProduct}
+            relatedProductsIds={this.state.relatedProducts}
+            reviewRating={this.state.currentReviewRating}
+            styles={this.state.styles}
+          />
+        }
+        <br></br>
 
         <Qa questions={this.state.questions} />
         <br />
