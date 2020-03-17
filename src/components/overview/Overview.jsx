@@ -1,6 +1,5 @@
 import React from "react";
-import "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
+  import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image"
 import Form from "react-bootstrap/Form";
@@ -247,10 +246,14 @@ class Overview extends React.Component {
         <Col className="layout container">
           <Row className="layout">
             <Col className="layout" sm={8} style={{backgroundColor:"#e1f5fe"}}>
-              {this.stockLoaded&&<Image src={this.state.currentStyle.photos[0].url} 
-                fluid style={{marginLeft: "auto",marginRight:"auto", maxHeight:"90vh", display:"block"}} 
+              {this.stockLoaded&&<Row className="layout">
+              <Image src={this.state.currentStyle.photos[0].url} fluid
+                style={{position:"relative", width:"100%", objectFit:"cover", maxHeight:"90vh"}} 
                 alt={`Image of ${this.props.product.name} in ${this.state.currentStyle.name} style`}
-              />}
+              />
+              <Col sm={2} style={{position:"absolute", top:"0"}} className="layout">test</Col>
+              </Row>}
+              
             </Col>
             <Col className="layout">
               <Row className="layout">
@@ -279,16 +282,17 @@ class Overview extends React.Component {
               </Row>
               <br/>
               <Row className="layout">
-                <Col className="layout">{!this.state.outOfStock&&<Button variant="outline-primary" onClick={()=>this.bagger()}>ADD TO BAG</Button>}</Col>
+                <Col className="layout" sm={9}>{!this.state.outOfStock&&<Button variant="outline-primary" onClick={()=>this.bagger()}>ADD TO BAG</Button>}</Col>   
+              <Col className="layout" style={{margin:"auto"}}>
+                <FacebookShareButton url={window.location.href}>
+                  <FacebookIcon size="1.5em"/>
+                </FacebookShareButton>
+                {this.conditionalPinterest()}
+                <TwitterShareButton url={window.location.href}>
+                  <TwitterIcon size="1.5em"/>
+                </TwitterShareButton>
+              </Col>
               </Row>
-              <br/>
-              <FacebookShareButton url={window.location.href}>
-                <FacebookIcon size="1.5em"/>
-              </FacebookShareButton>
-              {this.conditionalPinterest()}
-              <TwitterShareButton url={window.location.href}>
-                <TwitterIcon size="1.5em"/>
-              </TwitterShareButton>
             </Col>
           </Row>
           <br></br>
