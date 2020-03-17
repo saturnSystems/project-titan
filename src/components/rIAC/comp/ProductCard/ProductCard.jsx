@@ -50,7 +50,7 @@ class ProductCard extends React.Component {
 
   }
 
-  setCurrentProduct = (event) => {
+  setProductId = (event) => {
     //let productID = event.currentTarget.getAttribute("productid");
     //let productID = "3";
     // this.props.helper.getOneProduct(productID, result => {
@@ -60,7 +60,7 @@ class ProductCard extends React.Component {
     //  });
     // });
     // console.log(this.props);
-    this.props.setCurrentProduct(this.props.relatedProductId);
+    this.props.setProductId(this.props.relatedProductId);
   }
 
   scrollToTop () {
@@ -159,7 +159,7 @@ class ProductCard extends React.Component {
 
     return (
       <Container-fluid className="layout product-card-layout align-left">
-        <div id="product-card-div" onClick={this.setCurrentProduct}>
+        <div id="product-card-div" onClick={this.setProductId}>
           <a onClick={this.scrollToTop}>
             <div className="card mb-3">
               <p>

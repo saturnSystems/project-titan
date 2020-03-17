@@ -75,12 +75,10 @@ class App extends React.Component {
     });
   }
 
-  setCurrentProduct = (productID) => {
-    helper.getOneProduct(productID, result => {
-      console.log("~~~ App resulting product:", result);
-      this.setState({
-        currentProduct: result
-      });
+  setProductId = (productID) => {
+    console.log("~~~ App resulting productID:", productID);
+    this.setState({
+      productID: productID
     });
   }
 
@@ -135,7 +133,7 @@ class App extends React.Component {
 
         {this.state.currentProduct.id !== undefined &&
           <RIAC
-            setCurrentProduct={this.setCurrentProduct}
+            setProductId={this.setProductId}
             products={this.state.products}
             currentProduct={this.state.currentProduct}
             relatedProductsIds={this.state.relatedProducts}

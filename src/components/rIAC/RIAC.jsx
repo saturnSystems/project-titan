@@ -92,7 +92,7 @@ if (this.props.styles[0] !== undefined) {
           <Row className="layout">
             <Col className="layout col-3">
             <ProductCard 
-              setCurrentProduct={this.props.setCurrentProduct}
+              setProductId={this.props.setProductId}
               currentProduct={this.props.currentProduct}
               // relatedProductId={this.props.relatedProductsIds[1]}
               relatedProductId={this.state.relatedProductId}
