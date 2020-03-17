@@ -181,10 +181,10 @@ class Overview extends React.Component {
     if(this.stockLoaded){
       let sizes=Object.entries(this.state.currentStyle.skus)
       if(this.state.outOfStock){
-        return <Button>OUT OF STOCK</Button>
+        return <Button variant="outline-primary">OUT OF STOCK</Button>
       }else{
         return(
-        <DropdownButton title={this.state.size?`SIZE: ${this.state.size}`:"SELECT SIZE"} ref={this.sizeSelector}>
+        <DropdownButton variant="outline-primary" title={this.state.size?`SIZE: ${this.state.size}`:"SELECT SIZE"} ref={this.sizeSelector}>
           {sizes.map((size,i)=>(
             !!size[1]&&<DropdownItem key={i} onClick={()=>this.setSize(size[0])}>{size[0]}</DropdownItem>
           ))}
@@ -198,7 +198,7 @@ class Overview extends React.Component {
     if(this.state.currentStyle&&this.state.currentStyle.skus){
       let sizes=this.state.currentStyle.skus
       if(!this.state.size){
-        return <Button>-</Button>
+        return <Button variant="outline-primary">-</Button>
       }else{
         let quantity=[]
 
@@ -213,7 +213,7 @@ class Overview extends React.Component {
         }
         
         return(
-        <DropdownButton title={this.state.quantity}>
+        <DropdownButton variant="outline-primary" title={this.state.quantity}>
           {quantity.map((number,i)=>(
             <DropdownItem key={i} onClick={()=>this.setSize(this.state.size, number)}>{number}</DropdownItem>
           ))}
@@ -255,14 +255,7 @@ class Overview extends React.Component {
             <Col className="layout">
               <Row className="layout">
                 <Col className="layout">
-                  <StarRatings
-                    rating={this.props.reviewRating}
-                    starDimension="1em"
-                    starSpacing={"0"}
-                  />
-                  <Button variant="link" onClick={this.props.scroll}>
-                    Read all {this.props.numReviews} reviews
-                  </Button>
+                  {this.conditionalReviews()}
                 </Col>
               </Row>
               <Row className="layout"><Col className="layout">{this.props.product.category}</Col></Row>
@@ -286,7 +279,7 @@ class Overview extends React.Component {
               </Row>
               <br/>
               <Row className="layout">
-                <Col className="layout">{!this.state.outOfStock&&<Button onClick={()=>this.bagger()}>ADD TO BAG</Button>}</Col>
+                <Col className="layout">{!this.state.outOfStock&&<Button variant="outline-primary" onClick={()=>this.bagger()}>ADD TO BAG</Button>}</Col>
               </Row>
               <br/>
               <FacebookShareButton url={window.location.href}>
