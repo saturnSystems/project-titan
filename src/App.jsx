@@ -34,6 +34,7 @@ class App extends React.Component {
     this.myRef = React.createRef();
     this.scrollToMyRef = this.scrollToMyRef.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.setProductId = this.setProductId.bind(this);
   }
 
   componentDidMount() {
@@ -56,23 +57,31 @@ class App extends React.Component {
     helper.getListReviews(productID, result => {
       this.setState({
         reviews: result.results
-      })
+      });
     });
-    helper.getListQuestions(this.state.productID, result => { // Q&A - Questions
+    helper.getListQuestions(this.state.productID, result => {
+      // Q&A - Questions
       this.setState({
         questions: result.results
-      })
+      });
     });
-    helper.getOneProductStyle(this.state.productID,result=>{
+    helper.getOneProductStyle(this.state.productID, result => {
       this.setState({
         styles: result.results
-      })
+      });
     });
     helper.getRelatedProducts(this.state.productID, result => {
       this.setState({
         relatedProducts: result
       });
     });
+  }
+
+  setProductId = (productID) => {
+    // console.log("A: sPI: pID:", productID);
+    this.setState({
+      productID: productID
+    }, () => this.componentDidMount());
   }
 
   scrollToMyRef = () => window.scrollTo(0, this.myRef.current.offsetTop);
@@ -128,21 +137,27 @@ class App extends React.Component {
 
         {/* {console.log("A: t.s.rPs: ", this.state.relatedProducts)} */}
 
-        {this.state.currentProduct.id !== undefined &&
+        {this.state.currentProduct.id !== undefined && (
           <RIAC
+            setProductId={this.setProductId}
+            products={this.state.products}
             currentProduct={this.state.currentProduct}
             relatedProductsIds={this.state.relatedProducts}
             reviewRating={this.state.currentReviewRating}
             styles={this.state.styles}
           />
-        }
+        )}
         <br></br>
 
         <Qa questions={this.state.questions} />
         <br />
 
         <div ref={this.myRef}>
-          <Reviews reviews={reviews} />
+          <Reviews
+            reviews={reviews}
+            product={this.state.currentProduct}
+            productID={this.state.productID}
+          />
         </div>
       </Container-fluid>
     );
