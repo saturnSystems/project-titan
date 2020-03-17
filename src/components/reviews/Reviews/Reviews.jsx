@@ -113,31 +113,12 @@ class Reviews extends React.Component {
                     );
                   })}
               {!this.state.reviewsBtn &&
-              this.state.itemsToShow !== this.state.reviews.length ? (
+              this.state.itemsToShow < this.state.reviews.length ? (
                 <button type="button" onClick={e => this.moreReviews()}>
                   Show more reviews
                 </button>
               ) : null}
 
-              {/* reviews.slice(2, 4).map(review => {
-              //     const date = new Date(review.date).toLocaleDateString(
-              //       "en-US",
-              //       {
-              //         day: "numeric",
-              //         month: "short",
-              //         year: "numeric"
-              //       }
-              //     );
-              //     return (
-              //       <ReviewTiles
-              //         review={review}
-              //         date={`${date}`}
-              //         key={review.review_id}
-              //         helper={helper}
-              //       />
-              //     );
-              //   })
-              // )} */}
               <br />
               <br />
               <Row className="layout">MORE REVIEWS | ADD A REVIEW +</Row>
