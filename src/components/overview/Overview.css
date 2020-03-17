@@ -10,7 +10,7 @@
 .checkmark:after {
   position: absolute;
   display: none;
-  content: url("./checkmark2.svg");
+  content: url("./checkmark.svg");
 }
 .container input:checked ~ .checkmark:after {
   display: block;
