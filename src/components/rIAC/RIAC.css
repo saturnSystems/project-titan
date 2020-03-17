@@ -1,7 +1,7 @@
 .module-header {
   font-size: 1.3em;
   float: left;
-  border: none;
+  /* border: none; */
 }
 
 .align-left {
