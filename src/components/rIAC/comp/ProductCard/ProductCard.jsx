@@ -34,7 +34,7 @@ class ProductCard extends React.Component {
 
   }
 
-  setProductId = (event) => { // (Event) parameter not actually used
+  setProductId = () => { // (event) parameter not actually used
     this.props.setProductId(this.props.relatedProductId);
   }
 
