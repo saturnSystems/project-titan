@@ -17,5 +17,39 @@
 }
 .container .checkmark:after {
   top: 0;
+  right:0;
   width: 100%;
+}
+
+/* .carousel-indicators {
+  position: absolute;
+  z-index: 15;
+  display: grid;
+  justify-content: left;
+  left:0;
+  top:0;
+  margin:0;
+  right:unset;
+} */
+
+.btn-outline-primary{
+  width:100%;
+}
+
+.image-gallery-fullscreen-button{
+  top: 0;
+  right: 0;
+  padding: 0;
+  bottom: unset!important;
+  padding: 0px!important;
+}
+
+.image-gallery-slide .image-gallery-image {
+  width: 100%!important;
+  object-fit: cover !important;
+  height: 92.11vh !important;
+}
+
+.image-gallery-left-nav[disabled], .image-gallery-right-nav[disabled] {
+  opacity: 0!important;
 }
