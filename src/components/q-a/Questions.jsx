@@ -11,6 +11,11 @@ class Questions extends React.Component {
     this.state = {
       renderQuestions: 2,
     };
+    this.ShowTwoMore = this.ShowTwoMore.bind(this);
+  }
+
+  ShowTwoMore() {
+    this.setState((prevState) => ({ renderQuestions: prevState.renderQuestions + 2 }));
   }
 
   render() {
@@ -33,8 +38,8 @@ class Questions extends React.Component {
             <Answers questionId={question.question_id} />
           </Col>
         </Row>
-        {i === questionList.length - 1 && i !== this.state.renderQuestions.length - 1
-          ? <Row className="layout"><button>MORE ANSWERED QUESTIONS</button> | ADD A QUESTION +</Row>
+        {i === questionList.length - 1 && i !== this.props.questions.length - 1
+          ? <Row className="layout"><button onClick={this.ShowTwoMore}>MORE ANSWERED QUESTIONS</button> | ADD A QUESTION +</Row>
           : null}
       </div>
 
