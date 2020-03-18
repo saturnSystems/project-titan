@@ -7,11 +7,13 @@ import FormCheck from "react-bootstrap/FormCheck"
 import Button from "react-bootstrap/Button";
 import DropdownButton from "react-bootstrap/DropdownButton"
 import DropdownItem from "react-bootstrap/DropdownItem"
-import Carousel from "react-bootstrap/Carousel"
+// import Carousel from "react-bootstrap/Carousel"
 import {FacebookShareButton, TwitterShareButton, PinterestShareButton} from "react-share"
 import {FacebookIcon,PinterestIcon,TwitterIcon} from "react-share";
 import StarRatings from "react-star-ratings";
 import "./Overview.css"
+import ImageGallery from "react-image-gallery"
+import "react-image-gallery/styles/css/image-gallery.css";
 
 class Overview extends React.Component {
   constructor(props) {
@@ -249,13 +251,28 @@ class Overview extends React.Component {
     console.log(i)
   }
 
+  conditionalImageGallery(){
+    let photoArray=[]
+    this.state.currentStyle&&this.state.currentStyle.photos.forEach(each=>{
+      photoArray.push({original:each.url, thumbnail:each.thumbnail_url+"&h=300"})
+    })
+    return <ImageGallery 
+      items={photoArray} 
+      thumbnailPosition="left" 
+      showPlayButton={false} 
+      infinite={false} 
+      startIndex={this.state.carouselIndex}
+      onSlide={(currentIndex)=>this.setState({carouselIndex:currentIndex})}
+    />
+  }
+
   render() {
     return (
       <Container-fluid className="layout container">
         <Col className="layout container">
           <Row className="layout">
             <Col className="layout" sm={8} style={{padding:"0"}}>
-              <Col className="layout" sm={2} style={{position:"absolute", top:"0", maxHeight:"90vh"}}>
+              {/* <Col className="layout" sm={2} style={{position:"absolute", top:"0", maxHeight:"90vh"}}>
                 {this.state.currentStyle&&this.state.currentStyle.photos.map((each,i)=>
                 <Row key={i} className="layout" style={{padding:"1vh"}}>
                   <Image src={`${each.thumbnail_url}&h=300`} style={{maxHeight:"10vh", zIndex:"1"}} onClick={()=>this.setCarousel(i)}/>
@@ -267,7 +284,8 @@ class Overview extends React.Component {
                     <Image src={stylePhoto.url} style={{width:"100%", objectFit:"cover", height:"92vh", padding:"0", margin:"0"}}/>
                   </Carousel.Item>
                 ))}
-              </Carousel>        
+              </Carousel>         */}
+              {this.conditionalImageGallery()}
             </Col>
             <Col className="layout">
               <Row className="layout">
