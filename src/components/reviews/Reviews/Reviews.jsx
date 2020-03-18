@@ -36,12 +36,25 @@ class Reviews extends React.Component {
       });
     });
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    const { productID } = this.props;
+    if (prevState.sortedBy !== this.state.sortedBy) {
+      helper.getListReviews(productID, this.state.sortedBy, result => {
+        this.setState({
+          reviews: result.results
+        });
+      });
+    }
+  }
+
   moreReviews = () => {
     this.setState({ itemsToShow: this.state.itemsToShow + 2 });
   };
 
   setOption = option => {
-    this.setState({ option: option });
+    //// Do a helper call with sortedBy state? //////
+    this.setState({ sortedBy: option });
   };
   // onChange = newOptions => {
   //   // take original options and remove selected options
