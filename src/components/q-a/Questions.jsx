@@ -19,10 +19,22 @@ class Questions extends React.Component {
   }
 
   render() {
-    let questionList = [...this.props.questions];
-    questionList = questionList.slice(0, this.state.renderQuestions);
+    // let questionList = [...this.props.questions];
+    // questionList = questionList.slice(0, this.state.renderQuestions);
 
-    const items = questionList.map((question, i) => (
+    let sortedQuestions = [...this.props.questions];
+
+    function compare(a, b) {
+      if (a.question_helpfulness < b.question_helpfulness) {
+        return 1;
+        // eslint-disable-next-line no-else-return
+      } else {
+        return -1;
+      }
+    }
+
+    sortedQuestions = sortedQuestions.sort(compare).slice(0, this.state.renderQuestions);
+    const items = sortedQuestions.map((question, i) => (
       <div>
         <Row className="layout" key={i}>
           <Col className="layout">
@@ -38,7 +50,7 @@ class Questions extends React.Component {
             <Answers questionId={question.question_id} />
           </Col>
         </Row>
-        {i === questionList.length - 1 && i !== this.props.questions.length - 1
+        {i === sortedQuestions.length - 1 && i !== this.props.questions.length - 1
           ? <Row className="layout"><button onClick={this.ShowTwoMore}>MORE ANSWERED QUESTIONS</button> | ADD A QUESTION +</Row>
           : null}
       </div>
