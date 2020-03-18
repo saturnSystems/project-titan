@@ -19,7 +19,8 @@ class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      carouselIndex:0
+      carouselIndex:0,
+      fullscreen: false
     };
     this.defaultRadio = React.createRef()
     this.sizeSelector = React.createRef()
@@ -264,6 +265,7 @@ class Overview extends React.Component {
       startIndex={this.state.carouselIndex}
       onSlide={(currentIndex)=>this.setState({carouselIndex:currentIndex})}
       useBrowserFullscreen={false}
+      onScreenChange={()=>this.setState({fullscreen:!this.state.fullscreen})}
     />
   }
 
@@ -272,23 +274,10 @@ class Overview extends React.Component {
       <Container-fluid>
         <Col className="layout overview">
           <Row className="layout">
-            <Col className="layout" sm={8} style={{padding:"0"}}>
-              {/* <Col className="layout" sm={2} style={{position:"absolute", top:"0", maxHeight:"90vh"}}>
-                {this.state.currentStyle&&this.state.currentStyle.photos.map((each,i)=>
-                <Row key={i} className="layout" style={{padding:"1vh"}}>
-                  <Image src={`${each.thumbnail_url}&h=300`} style={{maxHeight:"10vh", zIndex:"1"}} onClick={()=>this.setCarousel(i)}/>
-                </Row>)}
-              </Col>               
-              <Carousel interval={null} activeIndex={this.state.carouselIndex}>
-                {this.state.currentStyle&&this.state.currentStyle.photos.map((stylePhoto,i)=>(
-                  <Carousel.Item key={i}>
-                    <Image src={stylePhoto.url} style={{width:"100%", objectFit:"cover", height:"92vh", padding:"0", margin:"0"}}/>
-                  </Carousel.Item>
-                ))}
-              </Carousel>         */}
+            <Col sm={this.state.fullscreen?12:8} className="layout" style={{padding:"0"}} id="carousel">
               {this.conditionalImageGallery()}
             </Col>
-            <Col className="layout">
+            <Col sm={4} className="layout" id="details" style={this.state.fullscreen?{display:"none"}:null}>
               <Row className="layout">
                 <Col className="layout">
                   {this.conditionalReviews()}
