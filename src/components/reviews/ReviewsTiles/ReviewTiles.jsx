@@ -7,7 +7,7 @@ import "./ReviewsTiles.css";
 import StarRatings from "react-star-ratings";
 import PropTypes from "prop-types";
 import ImageComponent from "../Image/ImageComponent";
-import Button from "react-bootstrap/Button";
+// import Button from "react-bootstrap/Button";
 
 class ReviewTiles extends React.Component {
   constructor(props) {
