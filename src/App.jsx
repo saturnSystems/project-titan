@@ -20,7 +20,7 @@ class App extends React.Component {
 
     this.state = {
       products: [],
-      productID: window.location.search.substr(1) || 1,
+      productId: window.location.search.substr(1) || 1,
       currentProduct: [],
       currentReviewRating: 0,
       styles: [],
@@ -37,40 +37,40 @@ class App extends React.Component {
   }
 
   getProductInformation(){
-    if (this.state.previousProductId !== this.state.productID) {
+    if (this.state.previousProductId !== this.state.productId) {
 
-      helper.getOneProduct(this.state.productID, result => {
+      helper.getOneProduct(this.state.productId, result => {
         this.setState({
           currentProduct: result
         });
       });
-      helper.getReviewMetadata(this.state.productID, result => {
+      helper.getReviewMetadata(this.state.productId, result => {
         this.setState({
           currentReviewRating: helper.calculateReviewRating(result.ratings)
         });
       });
-      helper.getListReviews(this.state.productID, result => {
+      helper.getListReviews(this.state.productId, result => {
         this.setState({
           reviews: result.results
         });
       });
-      helper.getListQuestions(this.state.productID, result => {
+      helper.getListQuestions(this.state.productId, result => {
         this.setState({
           questions: result.results
         });
       });
-      helper.getOneProductStyle(this.state.productID, result => {
+      helper.getOneProductStyle(this.state.productId, result => {
         this.setState({
           styles: result.results
         });
       });
-      helper.getRelatedProducts(this.state.productID, result => {
+      helper.getRelatedProducts(this.state.productId, result => {
         this.setState({
           relatedProducts: result
         });
       });
       this.setState({
-        previousProductId: this.state.productID
+        previousProductId: this.state.productId
       });
     }
   }
@@ -164,7 +164,7 @@ class App extends React.Component {
           <Reviews
             reviews={reviews}
             product={this.state.currentProduct}
-            productID={this.state.productID}
+            productID={this.state.productId}
           />
         </div>
       </Container-fluid>
