@@ -34,7 +34,9 @@ class Questions extends React.Component {
       <div>
         <Row className="layout" key={i}>
           <Col className="layout">
-            <Row className="layout"><input type="text" placeholder="Search questions..." /></Row>
+            {i === 0
+              ? <Row className="layout"><div><form><input type="text" placeholder="Search questions" /></form></div></Row>
+              : null}
             <Row className="layout">
               <b>Q:</b>
               <Col className="layout" sm={9}>
@@ -42,8 +44,8 @@ class Questions extends React.Component {
               </Col>
               <Col className="layout">
                 <Row className="layout">
-                Helpful? 
-                  {' Yes (' + question.question_helpfulness + ')'}
+                Helpful?
+                  {' Yes (' + question.question_helpfulness + ') '}
                 | Add answer
                 </Row>
               </Col>
