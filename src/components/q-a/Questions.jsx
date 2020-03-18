@@ -5,9 +5,19 @@ import Col from 'react-bootstrap/Col';
 import Answers from './Answers';
 
 
-const Questions = (props) => {
+class Questions extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      renderQuestions: 4,
+    };
+  }
 
-  const items = props.questions.map((question, i) => (
+  render() {
+    let questionList = [...this.props.questions];
+    questionList = questionList.slice(0, this.state.renderQuestions);
+
+  const items = questionList.map((question, i) => (
     <Row className="layout" key={i}>
       <Col className="layout">
         <Row className="layout">
@@ -23,15 +33,16 @@ const Questions = (props) => {
       </Col>
     </Row>
 
-  ),
+    ),
   );
 
-  return (
-    <div>
-      { items }
-    </div>
-  );
-};
+    return (
+      <div>
+        { items }
+      </div>
+    );
+  }
+}
 
 
 export default Questions;
