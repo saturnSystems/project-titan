@@ -1,3 +1,15 @@
 import React from 'react';
 
-//export component here
+class Search extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+
+    render() {
+        return (
+            <div></div>
+        )
+    }
+}
+
+export Search here;

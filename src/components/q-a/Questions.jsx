@@ -3,6 +3,7 @@ import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Answers from './Answers';
+// import FormControl from "react-bootstrap/FormControl";
 
 
 class Questions extends React.Component {
@@ -33,13 +34,18 @@ class Questions extends React.Component {
       <div>
         <Row className="layout" key={i}>
           <Col className="layout">
+            <Row className="layout"><input type="text" placeholder="Search questions..." /></Row>
             <Row className="layout">
-        Q:
+              <b>Q:</b>
               <Col className="layout" sm={9}>
-                <Row className="layout">{question.question_body}</Row>
+                <Row className="layout"><b>{question.question_body}</b></Row>
               </Col>
               <Col className="layout">
-                <Row className="layout">Helpful? {' Yes (' + question.question_helpfulness + ')'} | Add answer</Row>
+                <Row className="layout">
+                Helpful? 
+                  {' Yes (' + question.question_helpfulness + ')'}
+                | Add answer
+                </Row>
               </Col>
             </Row>
             <Answers questionId={question.question_id} />
