@@ -36,9 +36,8 @@ class App extends React.Component {
     this.setProductId = this.setProductId.bind(this);
   }
 
-  getProductInformation(){
+  getProductInformation() {
     if (this.state.previousProductId !== this.state.productId) {
-
       helper.getOneProduct(this.state.productId, result => {
         this.setState({
           currentProduct: result
@@ -49,7 +48,8 @@ class App extends React.Component {
           currentReviewRating: helper.calculateReviewRating(result.ratings)
         });
       });
-      helper.getListReviews(this.state.productId, result => {
+      const sortedBy = "relevant";
+      helper.getListReviews(this.state.productId, sortedBy, result => {
         this.setState({
           reviews: result.results
         });
@@ -75,12 +75,15 @@ class App extends React.Component {
     }
   }
 
-  setProductId = (newProductId) => {
-    this.setState({
-      productID: newProductId
-    },()=>this.getProductInformation());
+  setProductId = newProductId => {
+    this.setState(
+      {
+        productID: newProductId
+      },
+      () => this.getProductInformation()
+    );
     window.scrollTo(0, 0);
-  }
+  };
 
   scrollToReviews = () => window.scrollTo(0, this.reviewsRef.current.offsetTop);
 
@@ -93,7 +96,7 @@ class App extends React.Component {
     localStorage.setItem("cart", JSON.stringify(cart));
   }
 
-  retrieveCart(){
+  retrieveCart() {
     let cart = JSON.parse(localStorage.getItem("cart"));
     this.setState({
       cart: cart
@@ -101,21 +104,19 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    this.retrieveCart()
-    this.getProductInformation()
+    this.retrieveCart();
+    this.getProductInformation();
   }
 
   render() {
     const { reviews } = this.state;
     return (
       <Container-fluid className="layout">
-        <Col className="layout" style={{backgroundColor:"#00b0ff"}}>
+        <Col className="layout" style={{ backgroundColor: "#00b0ff" }}>
           <Row className="layout">
             <Col className="layout" sm={2}>
               <img
-                src={
-                  require("./logo.svg")
-                }
+                src={require("./logo.svg")}
                 alt="Storefront logo: a line drawing of the planet saturn"
                 style={{ width: "2em" }}
               />{" "}
