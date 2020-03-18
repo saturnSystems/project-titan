@@ -13,9 +13,7 @@ const Qa = (props) => (
         </Row>
         <Row className="layout">Search Bar</Row>
         <List questions={props.questions}/>
-        <Row className="layout">
-          MORE ANSWERED QUESTIONS | ADD A QUESTION +
-        </Row>
+
       </Col>
     </Container-fluid>
     <br />

@@ -9,7 +9,7 @@ class Questions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      renderQuestions: 4,
+      renderQuestions: 2,
     };
   }
 
@@ -17,24 +17,28 @@ class Questions extends React.Component {
     let questionList = [...this.props.questions];
     questionList = questionList.slice(0, this.state.renderQuestions);
 
-  const items = questionList.map((question, i) => (
-    <Row className="layout" key={i}>
-      <Col className="layout">
-        <Row className="layout">
-        Q:
-          <Col className="layout" sm={9}>
-            <Row className="layout">{question.question_body}</Row>
-          </Col>
+    const items = questionList.map((question, i) => (
+      <div>
+        <Row className="layout" key={i}>
           <Col className="layout">
-            <Row className="layout">Helpful? {' Yes (' + question.question_helpfulness + ')'} | Add answer</Row>
+            <Row className="layout">
+        Q:
+              <Col className="layout" sm={9}>
+                <Row className="layout">{question.question_body}</Row>
+              </Col>
+              <Col className="layout">
+                <Row className="layout">Helpful? {' Yes (' + question.question_helpfulness + ')'} | Add answer</Row>
+              </Col>
+            </Row>
+            <Answers questionId={question.question_id} />
           </Col>
         </Row>
-        <Answers questionId={question.question_id} />
-      </Col>
-    </Row>
+        {i === questionList.length - 1 && i !== this.state.renderQuestions.length - 1
+          ? <Row className="layout"><button>MORE ANSWERED QUESTIONS</button> | ADD A QUESTION +</Row>
+          : null}
+      </div>
 
-    ),
-  );
+    ));
 
     return (
       <div>
