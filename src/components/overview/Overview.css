@@ -82,16 +82,12 @@
   display: none;
 }
 
-.overview .image-gallery.fullscreen-modal .image-gallery-slide-wrapper.left, .image-gallery-slide-wrapper.right {
-  width: 100%;
-}
-
 .overview .image-gallery-thumbnails-wrapper.left, .image-gallery-thumbnails-wrapper.right {
   z-index: 2;
   position: absolute;
   height: 100%!important;
 }
 
-.image-gallery-slide-wrapper.left, .image-gallery-slide-wrapper.right {
+.overview .image-gallery-slide-wrapper.left{
   width: 100%;
 }
