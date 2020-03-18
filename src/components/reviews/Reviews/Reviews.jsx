@@ -3,6 +3,10 @@ import React from "react";
 import "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import "./Reviews.css";
+import Button from "react-bootstrap/Button";
+import DropdownButton from "react-bootstrap/DropdownButton";
+import DropdownItem from "react-bootstrap/DropdownItem";
 
 import ReviewTiles from "../ReviewsTiles/ReviewTiles";
 
@@ -16,24 +20,44 @@ class Reviews extends React.Component {
       reviewsBtn: false,
       reviews: [],
       productId: this.props.productID,
-      itemsToShow: 2
+      itemsToShow: 2,
+      options: ["newest", "helpful", "relevant"],
+      option: "",
+      sortedBy: "relevant"
     };
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
     const { productID } = this.props;
-    helper.getListReviews(productID, result => {
+    const sortedBy = "relevant";
+    helper.getListReviews(productID, this.state.sortedBy, result => {
       this.setState({
         reviews: result.results
       });
     });
-  }
+  };
   moreReviews = () => {
     this.setState({ itemsToShow: this.state.itemsToShow + 2 });
   };
 
+  setOption = option => {
+    this.setState({ option: option });
+  };
+  // onChange = newOptions => {
+  //   // take original options and remove selected options
+  //   const stateOptions = options.filter(
+  //     option => !newOptions.find(op => op === option)
+  //   );
+  //   // sort the selected options
+  //   const orderedNewOptions = newOptions.sort(compare);
+  //   this.setState({
+  //     // concat the two arrays
+  //     options: orderedNewOptions.concat(stateOptions)
+  //   });
+  // };
+
   render() {
-    const { reviews } = this.props;
+    const { reviews } = this.state;
     const { itemsToShow } = this.state;
     return (
       <Container-fluid className="layout container">
@@ -72,7 +96,19 @@ class Reviews extends React.Component {
             </Col>
             <Col className="layout">
               <Row className="layout">
-                {reviews.length}, sorted by relevance
+                <span className="ptag">{reviews.length} Reviews, sort on</span>
+                <DropdownButton title={this.state.sortedBy}>
+                  {this.state.options.map(option => (
+                    <DropdownItem
+                      key={option}
+                      title={option} /////////////////////////I AM WORKING HERE/////////////
+                      // get selection and make
+                      onClick={() => this.setState({ sortedBy: option })} // right now not triggering refresh
+                    >
+                      {option}
+                    </DropdownItem>
+                  ))}
+                </DropdownButton>
               </Row>
               <br />
               {reviews.length >= 2
@@ -112,16 +148,27 @@ class Reviews extends React.Component {
                       />
                     );
                   })}
-              {!this.state.reviewsBtn &&
+              {/* {!this.state.reviewsBtn &&
               this.state.itemsToShow < this.state.reviews.length ? (
                 <button type="button" onClick={e => this.moreReviews()}>
                   Show more reviews
                 </button>
-              ) : null}
+              ) : null} */}
 
-              <br />
-              <br />
-              <Row className="layout">MORE REVIEWS | ADD A REVIEW +</Row>
+              {/* <br /> */}
+              <Row className="layout">
+                {!this.state.reviewsBtn &&
+                this.state.itemsToShow < this.state.reviews.length ? (
+                  <button
+                    type="button"
+                    className="blueBtn"
+                    onClick={e => this.moreReviews()}
+                  >
+                    Show more reviews
+                  </button>
+                ) : null}{" "}
+                <span className="addReviewBtn">| ADD A REVIEW </span>
+              </Row>
             </Col>
           </Row>
         </Col>

@@ -7,6 +7,7 @@ import "./ReviewsTiles.css";
 import StarRatings from "react-star-ratings";
 import PropTypes from "prop-types";
 import ImageComponent from "../Image/ImageComponent";
+import Button from "react-bootstrap/Button";
 
 class ReviewTiles extends React.Component {
   constructor(props) {
@@ -98,6 +99,7 @@ class ReviewTiles extends React.Component {
                       {review.body.slice(0, 200) + "..."}
                       <button
                         name="showMore"
+                        className="showBtn"
                         onClick={this.showMore} //////////////////////HERE!!!!!!!!!!!!!!!!!
                       >
                         Show more

@@ -43,6 +43,7 @@ class App extends React.Component {
     });
 
     const { productID } = this.state;
+    let sortedBy = "relevant";
     helper.getOneProduct(productID, result => {
       this.setState({
         currentProduct: result
@@ -53,10 +54,10 @@ class App extends React.Component {
         currentReviewRating: helper.calculateReviewRating(result.ratings)
       });
     });
-    helper.getListReviews(productID, result => {
+    helper.getListReviews(productID, sortedBy, result => {
       this.setState({
         reviews: result.results
-      });
+      }); // add sortedBy
     });
     helper.getListQuestions(this.state.productID, result => {
       // Q&A - Questions
