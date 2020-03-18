@@ -268,8 +268,8 @@ class Overview extends React.Component {
 
   render() {
     return (
-      <Container-fluid className="layout container">
-        <Col className="layout container">
+      <Container-fluid>
+        <Col className="layout overview">
           <Row className="layout">
             <Col className="layout" sm={8} style={{padding:"0"}}>
               {/* <Col className="layout" sm={2} style={{position:"absolute", top:"0", maxHeight:"90vh"}}>

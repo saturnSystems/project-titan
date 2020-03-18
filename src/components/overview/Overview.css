@@ -1,21 +1,21 @@
-.container input {
+.overview input {
   opacity: 0;
 }
-.checkmark {
+.overview .checkmark {
   position: absolute;
   top: 0;
   right: 10%;
   width: 20%;
 }
-.checkmark:after {
+.overview .checkmark:after {
   position: absolute;
   display: none;
   content: url("./checkmark.svg");
 }
-.container input:checked ~ .checkmark:after {
+.overview input:checked ~ .checkmark:after {
   display: block;
 }
-.container .checkmark:after {
+.overview .checkmark:after {
   top: 0;
   right:0;
   width: 100%;
@@ -32,11 +32,11 @@
   right:unset;
 } */
 
-.btn-outline-primary{
+.overview .btn-outline-primary{
   width:100%;
 }
 
-.image-gallery-fullscreen-button{
+.overview .image-gallery-fullscreen-button{
   top: 0;
   right: 0;
   padding: 0;
@@ -44,12 +44,12 @@
   padding: 0px!important;
 }
 
-.image-gallery-slide .image-gallery-image {
+.overview .image-gallery-slide .image-gallery-image {
   width: 100%!important;
   object-fit: cover !important;
   height: 92.11vh !important;
 }
 
-.image-gallery-left-nav[disabled], .image-gallery-right-nav[disabled] {
+.overview .image-gallery-left-nav[disabled], .image-gallery-right-nav[disabled] {
   opacity: 0!important;
 }
