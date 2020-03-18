@@ -35,3 +35,7 @@
 .btn-outline-primary{
   width:100%;
 }
+
+.carousel-control-prev{
+  left: 12%;
+}

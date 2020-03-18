@@ -72,14 +72,14 @@ class ProductCard extends React.Component {
     return (
       <Container-fluid className="layout product-card-layout align-left">
         <div id="product-card-div" onClick={() =>this.setProductId()}>
-          <a onClick={this.scrollToTop}>
+          <div onClick={this.scrollToTop}>
             <div className="card mb-3">
               <img className="card-img-top" src={relThumbnail}  alt=""/>
               <div className="card-img-overlay">
                 <small><p className="btn btn-primary">*</p></small>
               </div>
             </div>
-          </a>
+          </div>
         </div>
         <div className="card">
           <div className="card-body">

@@ -17,6 +17,7 @@ class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      carouselIndex:0
     };
     this.defaultRadio = React.createRef()
     this.sizeSelector = React.createRef()
@@ -241,30 +242,32 @@ class Overview extends React.Component {
     }
   }
 
+  setCarousel(i){
+    this.setState({
+      carouselIndex:i
+    })
+    console.log(i)
+  }
+
   render() {
     return (
       <Container-fluid className="layout container">
         <Col className="layout container">
           <Row className="layout">
             <Col className="layout" sm={8} style={{padding:"0"}}>
-              {this.stockLoaded&&
-                // <Row className="layout">
-                //   <Image src={this.state.currentStyle.photos[0].url} fluid
-                //     style={{position:"relative", width:"100%", objectFit:"cover", maxHeight:"90vh"}} 
-                //     alt={`Image of ${this.props.product.name} in ${this.state.currentStyle.name} style`}
-                //   />
-                //   <Col sm={2} style={{position:"absolute", top:"0", maxHeight:"90vh"}}>
-                //     {this.state.currentStyle.photos.map((each,i)=><Row key={i} className="thumbRow" style={{padding:"1vh"}}><Image src={`${each.thumbnail_url}&h=300`} style={{maxHeight:"10vh"}}/></Row>)}
-                //   </Col>
-                // </Row>
-                <Carousel interval={null}>
-                  {this.state.currentStyle.photos.map((stylePhoto,i)=>(
-                    <Carousel.Item key={i}>
-                      <Image src={stylePhoto.url} style={{width:"100%", objectFit:"cover", height:"92vh", padding:"0", margin:"0"}}/>
-                    </Carousel.Item>
-                  ))}
-                </Carousel>
-              }             
+              <Col sm={2} style={{position:"absolute", top:"0", maxHeight:"90vh"}}>
+                {this.state.currentStyle&&this.state.currentStyle.photos.map((each,i)=>
+                <Row key={i} className="thumbRow" style={{padding:"1vh"}}>
+                  <Image src={`${each.thumbnail_url}&h=300`} style={{maxHeight:"10vh", zIndex:"1"}} onClick={()=>this.setCarousel(i)}/>
+                </Row>)}
+              </Col>               
+              <Carousel interval={null} activeIndex={this.state.carouselIndex}>
+                {this.state.currentStyle&&this.state.currentStyle.photos.map((stylePhoto,i)=>(
+                  <Carousel.Item key={i}>
+                    <Image src={stylePhoto.url} style={{width:"100%", objectFit:"cover", height:"92vh", padding:"0", margin:"0"}}/>
+                  </Carousel.Item>
+                ))}
+              </Carousel>        
             </Col>
             <Col className="layout">
               <Row className="layout">
