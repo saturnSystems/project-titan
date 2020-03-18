@@ -20,9 +20,6 @@ const Questions = (props) => {
           </Col>
         </Row>
         <Answers questionId={question.question_id} />
-        <Row>
-          <Col>Load more answers</Col>
-        </Row>
       </Col>
     </Row>
 
