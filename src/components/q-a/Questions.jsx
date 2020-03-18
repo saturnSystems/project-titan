@@ -1,9 +1,7 @@
-// this component will go in Q-a.jsx
 import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Answers from './Answers';
-// import FormControl from "react-bootstrap/FormControl";
 
 
 class Questions extends React.Component {
@@ -11,7 +9,7 @@ class Questions extends React.Component {
     super(props);
     this.state = {
       renderQuestions: 4,
-      SearchText: ''
+      SearchText: '',
     };
     this.ShowTwoMore = this.ShowTwoMore.bind(this);
     this.SearchBox = this.SearchBox.bind(this);
@@ -23,7 +21,7 @@ class Questions extends React.Component {
 
   SearchBox(event) {
     this.setState({
-      SearchText: event.target.value.toUpperCase()
+      SearchText: event.target.value.toUpperCase(),
     });
   }
 
@@ -37,15 +35,16 @@ class Questions extends React.Component {
       return -1;
     }
 
-    sortedQuestions = sortedQuestions.sort(compare).slice(0, this.state.renderQuestions)
-    .filter(question => question.question_body.toUpperCase().includes(this.state.SearchText) ? true : false);
+    sortedQuestions = sortedQuestions.sort(compare).slice(0, this.state.renderQuestions);
+    if (this.state.SearchText.length >= 3) {
+      sortedQuestions = sortedQuestions.filter(question => question.question_body
+        .toUpperCase().includes(this.state.SearchText));
+    }
+
     const items = sortedQuestions.map((question, i) => (
       <div>
         <Row className="layout" key={i}>
           <Col className="layout">
-            {i === 0
-              ? <Row className="layout"><div><form><input type="text" placeholder="Search questions" onChange={this.SearchBox}/></form></div></Row>
-              : null}
             <Row className="layout">
               <b>Q:</b>
               <Col className="layout" sm={9}>
@@ -71,6 +70,7 @@ class Questions extends React.Component {
 
     return (
       <div>
+        <Row className="layout"><div><form><input type="text" placeholder="Have a question? Search for answers…" onChange={this.SearchBox} /></form></div></Row>
         { items }
       </div>
     );
