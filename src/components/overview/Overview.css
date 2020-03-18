@@ -1,21 +1,55 @@
-.container input {
+.overview input {
   opacity: 0;
 }
-.checkmark {
+.overview .checkmark {
   position: absolute;
   top: 0;
   right: 10%;
   width: 20%;
 }
-.checkmark:after {
+.overview .checkmark:after {
   position: absolute;
   display: none;
   content: url("./checkmark.svg");
 }
-.container input:checked ~ .checkmark:after {
+.overview input:checked ~ .checkmark:after {
   display: block;
 }
-.container .checkmark:after {
+.overview .checkmark:after {
   top: 0;
+  right:0;
   width: 100%;
+}
+
+/* .carousel-indicators {
+  position: absolute;
+  z-index: 15;
+  display: grid;
+  justify-content: left;
+  left:0;
+  top:0;
+  margin:0;
+  right:unset;
+} */
+
+.overview .btn-outline-primary{
+  width:100%;
+}
+
+.overview .image-gallery-fullscreen-button{
+  top: 0;
+  right: 0;
+  padding: 0;
+  bottom: unset!important;
+  padding: 0px!important;
+}
+
+.overview .image-gallery-slide .image-gallery-image {
+  width: 100%!important;
+  object-fit: cover !important;
+  height: 92.11vh !important;
+}
+
+.overview .image-gallery-left-nav[disabled], .image-gallery-right-nav[disabled] {
+  opacity: 0!important;
 }

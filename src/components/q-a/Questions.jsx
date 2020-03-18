@@ -11,12 +11,20 @@ class Questions extends React.Component {
     super(props);
     this.state = {
       renderQuestions: 4,
+      SearchText: ''
     };
     this.ShowTwoMore = this.ShowTwoMore.bind(this);
+    this.SearchBox = this.SearchBox.bind(this);
   }
 
   ShowTwoMore() {
     this.setState((prevState) => ({ renderQuestions: prevState.renderQuestions + 2 }));
+  }
+
+  SearchBox(event) {
+    this.setState({
+      SearchText: event.target.value
+    })
   }
 
   render() {
@@ -35,7 +43,7 @@ class Questions extends React.Component {
         <Row className="layout" key={i}>
           <Col className="layout">
             {i === 0
-              ? <Row className="layout"><div><form><input type="text" placeholder="Search questions" /></form></div></Row>
+              ? <Row className="layout"><div><form><input type="text" placeholder="Search questions" onChange={this.SearchBox}/></form></div></Row>
               : null}
             <Row className="layout">
               <b>Q:</b>
