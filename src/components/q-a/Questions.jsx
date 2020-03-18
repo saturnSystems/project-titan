@@ -23,8 +23,8 @@ class Questions extends React.Component {
 
   SearchBox(event) {
     this.setState({
-      SearchText: event.target.value
-    })
+      SearchText: event.target.value.toUpperCase()
+    });
   }
 
   render() {
@@ -37,7 +37,8 @@ class Questions extends React.Component {
       return -1;
     }
 
-    sortedQuestions = sortedQuestions.sort(compare).slice(0, this.state.renderQuestions);
+    sortedQuestions = sortedQuestions.sort(compare).slice(0, this.state.renderQuestions)
+    .filter(question => question.question_body.toUpperCase().includes(this.state.SearchText) ? true : false);
     const items = sortedQuestions.map((question, i) => (
       <div>
         <Row className="layout" key={i}>
