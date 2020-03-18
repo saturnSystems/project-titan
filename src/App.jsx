@@ -20,14 +20,17 @@ class App extends React.Component {
 
     this.state = {
       products: [],
-      productID: window.location.search.substr(1) || 1, //productID = anything after /? in url,, or 1
+      // productID: window.location.search.substr(1) || 1, //productID = anything after /? in url,, or 1
+      // productID: window.location.search.substr(1) || 1, //productID = anything after /? in url,, or 1
+      productID: 3, // set in componentDidMount
+      previousProductId: 999,
       currentProduct: [],
       currentReviewRating: 0,
       styles: [],
-      images: [],
+      images: [], // nsb: NEEDED?
       reviews: [],
       questions: [],
-      answers: [],
+      answers: [], // nsb: NEEDED?
       cart: [],
       relatedProducts: []
     };
@@ -43,45 +46,109 @@ class App extends React.Component {
       cart: cart
     });
 
-    const { productID } = this.state;
-    helper.getOneProduct(productID, result => {
-      this.setState({
-        currentProduct: result
-      });
+    // instead of setting productID in this.state
+    this.setState({
+      previousProductId: 999
     });
-    helper.getReviewMetadata(productID, result => {
-      this.setState({
-        currentReviewRating: helper.calculateReviewRating(result.ratings)
-      });
+    this.setState({
+      productID: window.location.search.substr(1) || 1 // productID = number after /? in url, OR 1
     });
-    helper.getListReviews(productID, result => {
-      this.setState({
-        reviews: result.results
-      });
-    });
-    helper.getListQuestions(this.state.productID, result => {
-      // Q&A - Questions
-      this.setState({
-        questions: result.results
-      });
-    });
-    helper.getOneProductStyle(this.state.productID, result => {
-      this.setState({
-        styles: result.results
-      });
-    });
-    helper.getRelatedProducts(this.state.productID, result => {
-      this.setState({
-        relatedProducts: result
-      });
-    });
+
+    // const { productID } = this.state;
+
+    // helper.getOneProduct(productID, result => {
+    //   this.setState({
+    //     currentProduct: result
+    //   });
+    // });
+    // helper.getReviewMetadata(productID, result => {
+    //   this.setState({
+    //     currentReviewRating: helper.calculateReviewRating(result.ratings)
+    //   });
+    // });
+    // helper.getListReviews(productID, result => {
+    //   this.setState({
+    //     reviews: result.results
+    //   });
+    // });
+    // helper.getListQuestions(this.state.productID, result => {
+    //   // Q&A - Questions
+    //   this.setState({
+    //     questions: result.results
+    //   });
+    // });
+    // helper.getOneProductStyle(this.state.productID, result => {
+    //   this.setState({
+    //     styles: result.results
+    //   });
+    // });
+    // helper.getRelatedProducts(this.state.productID, result => {
+    //   this.setState({
+    //     relatedProducts: result
+    //   });
+    // });
   }
 
-  setProductId = (productID) => {
+  // // A change in productID will trigger componentDidUpdate
+  // setProductId = (productID) => {
+  //   // console.log("A: sPI: pID:", productID);
+  //   this.setState({
+  //     productID: productID
+  //   }, () => this.componentDidMount());
+  // }
+
+  setProductId = (newProductId) => {
     // console.log("A: sPI: pID:", productID);
+    // this.setState({ // nsb: PROBABLY NOT NEEDED
+    //   previousProductId: this.state.productID
+    //   // productID: newProductId
+    // });
     this.setState({
-      productID: productID
-    }, () => this.componentDidMount());
+      // previousProductId: this.state.productID
+      productID: newProductId
+    })
+  }
+
+  componentDidUpdate = () => {
+    if (this.state.previousProductId !== this.state.productID) {
+
+      helper.getOneProduct(this.state.productID, result => {
+        this.setState({
+          currentProduct: result
+        });
+      });
+      helper.getReviewMetadata(this.state.productID, result => {
+        this.setState({
+          currentReviewRating: helper.calculateReviewRating(result.ratings)
+        });
+      });
+      helper.getListReviews(this.state.productID, result => {
+        this.setState({
+          reviews: result.results
+        });
+      });
+      helper.getListQuestions(this.state.productID, result => {
+        // Q&A - Questions
+        this.setState({
+          questions: result.results
+        });
+      });
+      helper.getOneProductStyle(this.state.productID, result => {
+        this.setState({
+          styles: result.results
+        });
+      });
+      helper.getRelatedProducts(this.state.productID, result => {
+        this.setState({
+          relatedProducts: result
+        });
+      });
+
+      // to prevent infinite loop!
+      this.setState({
+        previousProductId: this.state.productID
+      });
+    }
   }
 
   scrollToMyRef = () => window.scrollTo(0, this.myRef.current.offsetTop);
