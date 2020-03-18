@@ -1,0 +1,21 @@
+.sorty {
+  margin-left: 5px;
+}
+
+.ptag {
+  margin-right: 5px;
+  margin-top: 5px;
+}
+
+.addReviewBtn {
+  margin-left: 5px;
+}
+
+.blueBtn {
+  background-color: #00b0ff;
+  margin-bottom: 8px;
+}
+
+.noBorder {
+  border: none;
+}

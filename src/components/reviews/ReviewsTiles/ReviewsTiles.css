@@ -20,3 +20,19 @@
   margin-left: 4px;
   margin-right: 4px;
 }
+
+.showBtn {
+  background-color: #00b0ff;
+}
+
+.noBorder {
+  border: none;
+}
+
+.imgBorder {
+  border-bottom: 1px solid black;
+}
+
+.summaryRow {
+  color: lightslategray;
+}
