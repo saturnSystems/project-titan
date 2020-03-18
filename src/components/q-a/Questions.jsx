@@ -9,7 +9,7 @@ class Questions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      renderQuestions: 2,
+      renderQuestions: 4,
     };
     this.ShowTwoMore = this.ShowTwoMore.bind(this);
   }
@@ -19,18 +19,13 @@ class Questions extends React.Component {
   }
 
   render() {
-    // let questionList = [...this.props.questions];
-    // questionList = questionList.slice(0, this.state.renderQuestions);
-
     let sortedQuestions = [...this.props.questions];
 
     function compare(a, b) {
       if (a.question_helpfulness < b.question_helpfulness) {
         return 1;
-        // eslint-disable-next-line no-else-return
-      } else {
-        return -1;
       }
+      return -1;
     }
 
     sortedQuestions = sortedQuestions.sort(compare).slice(0, this.state.renderQuestions);
