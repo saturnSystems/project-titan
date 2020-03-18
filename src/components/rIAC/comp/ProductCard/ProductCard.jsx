@@ -38,10 +38,6 @@ class ProductCard extends React.Component {
     this.props.setProductId(this.props.relatedProductId);
   }
 
-  scrollToTop () {
-    window.scrollTo(0, 0);
-  }
-
   render() {
     // const currentProduct = this.props.currentProduct; // NOT USED
     // console.log("PC: cP: ", currentProduct);
@@ -72,14 +68,14 @@ class ProductCard extends React.Component {
     return (
       <Container-fluid className="layout product-card-layout align-left">
         <div id="product-card-div" onClick={() =>this.setProductId()}>
-          <a onClick={this.scrollToTop}>
+          {/* <a onClick={this.scrollToTop}> */}
             <div className="card mb-3">
               <img className="card-img-top" src={relThumbnail}  alt=""/>
               <div className="card-img-overlay">
                 <small><p className="btn btn-primary">*</p></small>
               </div>
             </div>
-          </a>
+          {/* </a> */}
         </div>
         <div className="card">
           <div className="card-body">
