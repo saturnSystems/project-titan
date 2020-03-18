@@ -160,8 +160,10 @@ const putReportAnswer = (answerId, callback) => {
 
 // Returns a list of reviews for a particular product.
 // This list does not include any reported reviews
-const getListReviews = (productId, callback) => {
-  fetch(`http://3.134.102.30/reviews/${productId}/list/?count=99999999`)
+const getListReviews = (productId, sortedBy, callback) => {
+  fetch(
+    `http://3.134.102.30/reviews/${productId}/list/?count=99999999&sort=${sortedBy}`
+  )
     // You can sort by /?sort="helpful" or "newest" or ...
     .then(response => response.json())
     .then(data => callback(data))
