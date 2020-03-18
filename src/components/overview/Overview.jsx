@@ -255,9 +255,9 @@ class Overview extends React.Component {
         <Col className="layout container">
           <Row className="layout">
             <Col className="layout" sm={8} style={{padding:"0"}}>
-              <Col sm={2} style={{position:"absolute", top:"0", maxHeight:"90vh"}}>
+              <Col className="layout" sm={2} style={{position:"absolute", top:"0", maxHeight:"90vh"}}>
                 {this.state.currentStyle&&this.state.currentStyle.photos.map((each,i)=>
-                <Row key={i} className="thumbRow" style={{padding:"1vh"}}>
+                <Row key={i} className="layout" style={{padding:"1vh"}}>
                   <Image src={`${each.thumbnail_url}&h=300`} style={{maxHeight:"10vh", zIndex:"1"}} onClick={()=>this.setCarousel(i)}/>
                 </Row>)}
               </Col>               
