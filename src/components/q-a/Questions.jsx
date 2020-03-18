@@ -30,8 +30,8 @@ class Questions extends React.Component {
 
     sortedQuestions = sortedQuestions.sort(compare).slice(0, this.state.renderQuestions);
     const items = sortedQuestions.map((question, i) => (
-      <div>
-        <Row className="layout" key={i}>
+      <div key={i}>
+        <Row className="layout" >
           <Col className="layout">
             <Row className="layout">
         Q:

@@ -99,12 +99,12 @@ class App extends React.Component {
     const { reviews } = this.state;
     return (
       <Container-fluid className="layout">
-        <Col className="layout">
+        <Col className="layout" style={{backgroundColor:"#00b0ff"}}>
           <Row className="layout">
             <Col className="layout" sm={2}>
               <img
                 src={
-                  "https://upload.wikimedia.org/wikipedia/commons/1/1c/Saturn_mark.svg"
+                  require("./logo.svg")
                 }
                 alt="Storefront logo: a line drawing of the planet saturn"
                 style={{ width: "2em" }}
