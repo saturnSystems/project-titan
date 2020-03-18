@@ -11,9 +11,9 @@ import DropdownItem from "react-bootstrap/DropdownItem"
 import {FacebookShareButton, TwitterShareButton, PinterestShareButton} from "react-share"
 import {FacebookIcon,PinterestIcon,TwitterIcon} from "react-share";
 import StarRatings from "react-star-ratings";
-import "./Overview.css"
 import ImageGallery from "react-image-gallery"
 import "react-image-gallery/styles/css/image-gallery.css";
+import "./Overview.css"
 
 class Overview extends React.Component {
   constructor(props) {
@@ -263,6 +263,7 @@ class Overview extends React.Component {
       infinite={false} 
       startIndex={this.state.carouselIndex}
       onSlide={(currentIndex)=>this.setState({carouselIndex:currentIndex})}
+      useBrowserFullscreen={false}
     />
   }
 
