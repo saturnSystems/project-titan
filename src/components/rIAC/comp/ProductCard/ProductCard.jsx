@@ -38,10 +38,6 @@ class ProductCard extends React.Component {
     this.props.setProductId(this.props.relatedProductId);
   }
 
-  scrollToTop () {
-    window.scrollTo(0, 0);
-  }
-
   render() {
     // const currentProduct = this.props.currentProduct; // NOT USED
     // console.log("PC: cP: ", currentProduct);
