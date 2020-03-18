@@ -4,6 +4,7 @@
 
 .ptag {
   margin-right: 5px;
+  margin-top: 5px;
 }
 
 .addReviewBtn {
@@ -12,4 +13,9 @@
 
 .blueBtn {
   background-color: #00b0ff;
+  margin-bottom: 8px;
+}
+
+.noBorder {
+  border: none;
 }

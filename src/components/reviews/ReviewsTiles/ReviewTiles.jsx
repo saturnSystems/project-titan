@@ -54,7 +54,6 @@ class ReviewTiles extends React.Component {
 
   render() {
     const { review } = this.props;
-    // console.log(review);
     const { helpfulness } = this.state;
     const { clicked } = this.state;
     const { date } = this.props;
@@ -64,11 +63,11 @@ class ReviewTiles extends React.Component {
     return (
       <dl>
         <React.Fragment key={review.review_id}>
-          <Row className="layout">
-            <Col className="layout">
-              <Row className="layout">
-                <Col className="layout" sm={2}>
-                  <Row className="layout stars">
+          <Row className="layout noBorder">
+            <Col className="layout noBorder">
+              <Row className="layout noBorder">
+                <Col className="layout noBorder" sm={2}>
+                  <Row className="layout stars noBorder">
                     <StarRatings
                       rating={review.rating}
                       starDimension="1em"
@@ -76,26 +75,26 @@ class ReviewTiles extends React.Component {
                     />{" "}
                   </Row>
                 </Col>
-                <Col className="layout" sm={{ offset: 3 }}>
-                  <Row className="layout floaty">
+                <Col className="layout noBorder" sm={{ offset: 3 }}>
+                  <Row className="layout floaty noBorder">
                     {review.reviewer_name}, {date}
                   </Row>
                 </Col>
               </Row>
-              <Row className="layout">
-                <Col className="layout">
-                  <Row className="layout">
+              <Row className="layout noBorder">
+                <Col className="layout noBorder">
+                  <Row className="layout noBorder">
                     <strong>{review.summary.slice(0, 60)}</strong>
                   </Row>
                   {review.summary.length > 60 ? (
-                    <Row className="layout">
+                    <Row className="layout noBorder summaryRow">
                       {`... ${review.summary.slice(60)}`}
                     </Row>
                   ) : null}
                   {review.body.length >= 250 &&
                   review.body.length <= 1000 &&
                   this.state.showMore === false ? (
-                    <Row className="layout">
+                    <Row className="layout noBorder">
                       {review.body.slice(0, 200) + "..."}
                       <button
                         name="showMore"
@@ -106,12 +105,12 @@ class ReviewTiles extends React.Component {
                       </button>
                     </Row>
                   ) : (
-                    <Row className="layout">{review.body}</Row>
+                    <Row className="layout noBorder">{review.body}</Row>
                   )}
                   {/* {review.body.length <= 1000 ? (
                     <Row className="layout">{review.body}</Row>
                   ) : null} */}
-                  <Row className="layout">
+                  <Row className="layout noBorder">
                     {review.photos.length >= 1
                       ? review.photos.map((photo, i) => (
                           <ImageComponent
@@ -124,27 +123,29 @@ class ReviewTiles extends React.Component {
                         ))
                       : null}
                   </Row>
-                  <Row className="layout">
+                  <Row className="layout noBorder">
                     {review.recommend === 1 ? (
                       <p>&#10004; I recommend this product</p>
                     ) : null}
                   </Row>
                 </Col>
               </Row>
-              <Row className="layout">
-                <Col className="layout response">
+              <Row className="layout noBorder">
+                <Col className="layout response noBorder">
                   {typeof review.response === "string" &&
                   review.response !== "null" ? (
                     <dl>
-                      <Row className="layout response">
+                      <Row className="layout response noBorder">
                         <strong>Response From Seller:</strong>
                       </Row>
-                      <Row className="layout response">{review.response}</Row>
+                      <Row className="layout response noBorder">
+                        {review.response}
+                      </Row>
                     </dl>
                   ) : null}
                 </Col>
               </Row>
-              <Row className="layout">
+              <Row className="layout noBorder imgBorder">
                 Helpful?{" "}
                 {clicked === false ? (
                   // eslint-disable-next-line jsx-a11y/click-events-have-key-events

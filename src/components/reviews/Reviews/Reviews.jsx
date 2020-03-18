@@ -73,11 +73,11 @@ class Reviews extends React.Component {
     const { reviews } = this.state;
     const { itemsToShow } = this.state;
     return (
-      <Container-fluid className="layout container">
-        <Col sm={{ span: 10, offset: 1 }} className="layout container">
-          <Row className="layout">Ratings and Reviews</Row>
-          <Row className="layout">
-            <Col sm={4} className="layout">
+      <Container-fluid className="noBorder layout container">
+        <Col sm={{ span: 10, offset: 1 }} className="layout container noBorder">
+          <Row className="layout noBorder">Ratings and Reviews</Row>
+          <Row className="layout noBorder">
+            <Col sm={3} className="layout noBorder">
               <Row className="layout">3.5*****</Row>
               <br />
               <Row className="layout">100% of reviews recommend</Row>
@@ -107,16 +107,22 @@ class Reviews extends React.Component {
                 </Col>
               </Row>
             </Col>
-            <Col className="layout">
-              <Row className="layout">
-                <span className="ptag">{reviews.length} Reviews, sort on</span>
+            <Col sm={1} className="layout noBorder"></Col>
+            <Col className="layout noBorder">
+              <Row className="layout noBorder">
+                <span className="ptag noBorder">
+                  {reviews.length} Reviews, sort on
+                </span>
                 <DropdownButton title={this.state.sortedBy}>
                   {this.state.options.map(option => (
                     <DropdownItem
                       key={option}
-                      title={option} /////////////////////////I AM WORKING HERE/////////////
-                      // get selection and make
-                      onClick={() => this.setState({ sortedBy: option })} // right now not triggering refresh
+                      title={option}
+                      onClick={() =>
+                        this.setState({
+                          sortedBy: option
+                        })
+                      }
                     >
                       {option}
                     </DropdownItem>
@@ -169,7 +175,7 @@ class Reviews extends React.Component {
               ) : null} */}
 
               {/* <br /> */}
-              <Row className="layout">
+              <Row className="layout noBorder">
                 {!this.state.reviewsBtn &&
                 this.state.itemsToShow < this.state.reviews.length ? (
                   <button
