@@ -22,7 +22,7 @@ class App extends React.Component {
       products: [],
       // productID: window.location.search.substr(1) || 1, //productID = anything after /? in url,, or 1
       // productID: window.location.search.substr(1) || 1, //productID = anything after /? in url,, or 1
-      productID: 3, // set in componentDidMount
+      productID: 3, // set in componentDidMount // componentDidUpdate
       previousProductId: 999,
       currentProduct: [],
       currentReviewRating: 0,
@@ -106,7 +106,13 @@ class App extends React.Component {
     this.setState({
       // previousProductId: this.state.productID
       productID: newProductId
-    })
+    });
+    this.scrollToTop()
+    // this.scrollToMyRef() // nsb: did not work in this context
+  }
+
+  scrollToTop () {
+    window.scrollTo(0, 0);
   }
 
   componentDidUpdate = () => {
