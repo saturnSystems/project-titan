@@ -26,14 +26,14 @@ class Overview extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps !== this.props) {
-      var defaultStyle=[]
+      
       for(let i=0; i<this.props.styles.length; i++){
         if(this.props.styles[i]["default?"]){
-          defaultStyle=this.props.styles[i]
+          var defaultStyle=this.props.styles[i]
         }
       }
       this.setState({
-        currentStyle:defaultStyle
+        currentStyle: defaultStyle||this.props.styles[0]
       });
     }
     
@@ -96,13 +96,13 @@ class Overview extends React.Component {
           {styles.slice(4 * i, 4 * i + 4).map((each, i) => (          
             <Col className="layout" key={i}>
               <FormCheck.Label 
-                htmlFor={each.name} 
+                htmlFor={each.style_id} 
                 onClick={()=>this.setStyle(each)} 
                 >{each.photos&&
                   <Form.Check.Input
-                    ref={each["default?"]?this.defaultRadio:null}                                                    
+                    ref={!this.props.styles[1].style_id?this.defaultRadio:each["default?"]?this.defaultRadio:null}                                                    
                     name="style" type="radio" 
-                    id={each.name} 
+                    id={each.style_id} 
                     style={{position:"absolute", right:"10%", top:0}}
                   >
                   </Form.Check.Input>
@@ -111,7 +111,7 @@ class Overview extends React.Component {
                   <Image
                     style={{position:"relative", zIndex:-1}} 
                     src={`${each.photos[0].thumbnail_url}&h=300`} 
-                    alt={`Thumbnail of ${this.props.product.name} in ${each.name} style`} 
+                    alt={`Thumbnail of ${this.props.product.name} in ${each.name} style`}
                     roundedCircle 
                     fluid
                   >
@@ -185,7 +185,7 @@ class Overview extends React.Component {
       }else{
         return(
         <DropdownButton variant="outline-primary" title={this.state.size?`SIZE: ${this.state.size}`:"SELECT SIZE"} ref={this.sizeSelector}>
-          {sizes.map((size,i)=>(
+          {sizes.length===1&&!sizes[0][1]?<DropdownItem>OUT OF STOCK</DropdownItem>:sizes.map((size,i)=>(
             !!size[1]&&<DropdownItem key={i} onClick={()=>this.setSize(size[0])}>{size[0]}</DropdownItem>
           ))}
         </DropdownButton>
