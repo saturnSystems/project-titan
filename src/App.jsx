@@ -145,6 +145,7 @@ class App extends React.Component {
       });
 
       // to prevent infinite loop!
+      // USE prevProps???
       this.setState({
         previousProductId: this.state.productID
       });
