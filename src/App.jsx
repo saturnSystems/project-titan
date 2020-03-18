@@ -20,64 +20,72 @@ class App extends React.Component {
 
     this.state = {
       products: [],
-      productID: window.location.search.substr(1) || 1, //productID = anything after /? in url,, or 1
+      productId: window.location.search.substr(1) || 1,
       currentProduct: [],
       currentReviewRating: 0,
       styles: [],
-      images: [],
       reviews: [],
       questions: [],
-      answers: [],
       cart: [],
       relatedProducts: []
     };
-    this.myRef = React.createRef();
-    this.scrollToMyRef = this.scrollToMyRef.bind(this);
+
+    this.reviewsRef = React.createRef();
+    this.scrollToReviews = this.scrollToReviews.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.setProductId = this.setProductId.bind(this);
   }
 
-  componentDidMount() {
-    let cart = JSON.parse(localStorage.getItem("cart"));
-    this.setState({
-      cart: cart
-    });
-
-    const { productID } = this.state;
-    let sortedBy = "relevant";
-    helper.getOneProduct(productID, result => {
-      this.setState({
-        currentProduct: result
+  getProductInformation() {
+    if (this.state.previousProductId !== this.state.productId) {
+      helper.getOneProduct(this.state.productId, result => {
+        this.setState({
+          currentProduct: result
+        });
       });
-    });
-    helper.getReviewMetadata(productID, result => {
-      this.setState({
-        currentReviewRating: helper.calculateReviewRating(result.ratings)
+      helper.getReviewMetadata(this.state.productId, result => {
+        this.setState({
+          currentReviewRating: helper.calculateReviewRating(result.ratings)
+        });
       });
-    });
-    helper.getListReviews(productID, sortedBy, result => {
-      this.setState({
-        reviews: result.results
-      }); // add sortedBy
-    });
-    helper.getListQuestions(this.state.productID, result => {
-      // Q&A - Questions
-      this.setState({
-        questions: result.results
+      const sortedBy = "relevant";
+      helper.getListReviews(this.state.productId, sortedBy, result => {
+        this.setState({
+          reviews: result.results
+        });
       });
-    });
-    helper.getOneProductStyle(this.state.productID, result => {
-      this.setState({
-        styles: result.results
+      helper.getListQuestions(this.state.productID, result => {
+        this.setState({
+          questions: result.results
+        });
       });
-    });
-    helper.getRelatedProducts(this.state.productID, result => {
-      this.setState({
-        relatedProducts: result
+      helper.getOneProductStyle(this.state.productId, result => {
+        this.setState({
+          styles: result.results
+        });
       });
-    });
+      helper.getRelatedProducts(this.state.productId, result => {
+        this.setState({
+          relatedProducts: result
+        });
+      });
+      this.setState({
+        previousProductId: this.state.productId
+      });
+    }
   }
 
-  scrollToMyRef = () => window.scrollTo(0, this.myRef.current.offsetTop);
+  setProductId = newProductId => {
+    this.setState(
+      {
+        productID: newProductId
+      },
+      () => this.getProductInformation()
+    );
+    window.scrollTo(0, 0);
+  };
+
+  scrollToReviews = () => window.scrollTo(0, this.reviewsRef.current.offsetTop);
 
   addToCart(item) {
     let cart = this.state.cart || [];
@@ -88,17 +96,27 @@ class App extends React.Component {
     localStorage.setItem("cart", JSON.stringify(cart));
   }
 
+  retrieveCart() {
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    this.setState({
+      cart: cart
+    });
+  }
+
+  componentDidMount() {
+    this.retrieveCart();
+    this.getProductInformation();
+  }
+
   render() {
     const { reviews } = this.state;
     return (
       <Container-fluid className="layout">
-        <Col className="layout">
+        <Col className="layout" style={{ backgroundColor: "#00b0ff" }}>
           <Row className="layout">
             <Col className="layout" sm={2}>
               <img
-                src={
-                  "https://upload.wikimedia.org/wikipedia/commons/1/1c/Saturn_mark.svg"
-                }
+                src={require("./logo.svg")}
                 alt="Storefront logo: a line drawing of the planet saturn"
                 style={{ width: "2em" }}
               />{" "}
@@ -121,17 +139,17 @@ class App extends React.Component {
         <Overview
           reviewRating={this.state.currentReviewRating}
           numReviews={this.state.reviews.length}
-          scroll={this.scrollToMyRef}
+          scroll={this.scrollToReviews}
           product={this.state.currentProduct}
           styles={this.state.styles}
           addToCart={this.addToCart}
         />
         <br />
 
-        {/* {console.log("A: t.s.rPs: ", this.state.relatedProducts)} */}
-
         {this.state.currentProduct.id !== undefined && (
           <RIAC
+            setProductId={this.setProductId}
+            products={this.state.products}
             currentProduct={this.state.currentProduct}
             relatedProductsIds={this.state.relatedProducts}
             reviewRating={this.state.currentReviewRating}
@@ -143,11 +161,11 @@ class App extends React.Component {
         <Qa questions={this.state.questions} />
         <br />
 
-        <div ref={this.myRef}>
+        <div ref={this.reviewsRef}>
           <Reviews
             reviews={reviews}
             product={this.state.currentProduct}
-            productID={this.state.productID}
+            productID={this.state.productId}
           />
         </div>
       </Container-fluid>
