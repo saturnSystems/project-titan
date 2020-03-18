@@ -54,7 +54,7 @@ class App extends React.Component {
           reviews: result.results
         });
       });
-      helper.getListQuestions(this.state.productID, result => {
+      helper.getListQuestions(this.state.productId, result => {
         this.setState({
           questions: result.results
         });

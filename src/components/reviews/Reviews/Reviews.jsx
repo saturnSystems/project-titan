@@ -29,7 +29,6 @@ class Reviews extends React.Component {
 
   componentDidMount = () => {
     const { productID } = this.props;
-    const sortedBy = "relevant";
     helper.getListReviews(productID, this.state.sortedBy, result => {
       this.setState({
         reviews: result.results
