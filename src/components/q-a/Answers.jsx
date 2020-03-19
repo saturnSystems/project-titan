@@ -19,8 +19,8 @@ class Answers extends React.Component {
   }
 
   componentDidMount() {
-    helper.getAnswersList(this.props.questionId,
-      (results) => this.setState({ answers: results.results }));
+    helper.getAnswersList(this.props.questionId, (results) => this.setState({ answers: results.results }));
+    this.setState()
   }
 
   ShowTwoMore = () => {
@@ -28,6 +28,7 @@ class Answers extends React.Component {
   }
 
   render() {
+    console.log(this.props.OneAnswer)
     let sortedAnswers = [...this.state.answers];
 
     function compare(a, b) {
