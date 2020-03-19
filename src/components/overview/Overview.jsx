@@ -12,6 +12,7 @@ import {FacebookShareButton, TwitterShareButton, PinterestShareButton} from "rea
 import {FacebookIcon,PinterestIcon,TwitterIcon} from "react-share";
 import StarRatings from "react-star-ratings";
 import ImageGallery from "react-image-gallery"
+import ReactImageMagnify from 'react-image-magnify';
 import "react-image-gallery/styles/css/image-gallery.css";
 import "./Overview.css"
 
@@ -20,7 +21,8 @@ class Overview extends React.Component {
     super(props);
     this.state = {
       carouselIndex:0,
-      fullscreen: false
+      fullscreen: false,
+      megaZoom: false
     };
     this.defaultRadio = React.createRef()
     this.sizeSelector = React.createRef()
@@ -258,23 +260,49 @@ class Overview extends React.Component {
     this.state.currentStyle&&this.state.currentStyle.photos.forEach((each,i)=>{
       photoArray.push({original:`${each.url}&${i}`, thumbnail:`${each.thumbnail_url}&h=300&${i}`})
     })
-    return <ImageGallery 
-      ref={this.carousel}
-      items={photoArray} 
-      thumbnailPosition="left" 
-      showPlayButton={false} 
-      infinite={false} 
-      startIndex={(photoArray.length-1<this.state.carouselIndex?0:this.state.carouselIndex)}
-      onSlide={(currentIndex)=>this.setState({carouselIndex:currentIndex})}
-      useBrowserFullscreen={false}
-      onScreenChange={()=>this.setState({fullscreen:!this.state.fullscreen})}
-      onClick={()=>this.zoomClick()}
-    />
+    if(photoArray.length-1<this.state.carouselIndex&&this.state.carouselIndex)
+      {this.carousel.current&&this.carousel.current.slideToIndex(photoArray.length-1)}
+    return (
+      this.state.megaZoom?<div onClick={()=>this.zoomClick()} className="magnifier"><ReactImageMagnify 
+      enlargedImagePosition="over" 
+      imageStyle={{objectFit:"cover"}}
+      enlargedImageStyle={{objectFit:"cover"}}
+      {...{
+        smallImage:{
+          src:photoArray[this.state.carouselIndex].original,
+          width: window.innerWidth,
+          height: window.innerHeight*.92
+        },
+        largeImage:{
+          src:photoArray[this.state.carouselIndex].original,
+          width: window.innerWidth*2.5,
+          height: window.innerHeight*.92*2.5
+        }
+      }}/></div>:
+      <ImageGallery 
+        ref={this.carousel}
+        items={photoArray} 
+        thumbnailPosition="left" 
+        showPlayButton={false} 
+        infinite={false} 
+        startIndex={(photoArray.length-1<this.state.carouselIndex?0:this.state.carouselIndex)}
+        onSlide={(currentIndex)=>this.setState({carouselIndex:currentIndex})}
+        useBrowserFullscreen={false}
+        onScreenChange={()=>this.setState({fullscreen:!this.state.fullscreen})}
+        onClick={()=>this.zoomClick()}
+        showBullets={this.state.fullscreen?true:false}
+      />
+    )
   }
 
   zoomClick(){
-    if(!this.state.fullscreen){
+    if(this.state.megaZoom){
+      this.setState({megaZoom:false,
+      fullscreen:false},()=>this.carousel.current.toggleFullScreen())
+    }else if(!this.state.fullscreen){
       this.carousel.current.toggleFullScreen()
+    }else if(this.state.fullscreen){
+      this.setState({megaZoom:true})
     }
   }
 
