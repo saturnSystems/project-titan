@@ -112,7 +112,7 @@ class RIAC extends React.Component{
 
 export default RIAC;
 
-{/* <Col className="layout col-3">
+/* <Col className="layout col-3">
 <Row className="layout">IMAGE</Row>
 <Row className="layout">Accessories</Row>
 <Row className="layout caption">
@@ -138,4 +138,4 @@ export default RIAC;
 </Row>
 <Row className="layout">$65</Row>
 <Row className="layout">*</Row>
-</Col> */}
+</Col> */
