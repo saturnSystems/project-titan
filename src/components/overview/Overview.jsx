@@ -24,6 +24,7 @@ class Overview extends React.Component {
     };
     this.defaultRadio = React.createRef()
     this.sizeSelector = React.createRef()
+    this.carousel = React.createRef()
     this.radioLoaded=false
     this.stockLoaded=false
   }
@@ -254,15 +255,16 @@ class Overview extends React.Component {
 
   conditionalImageGallery(){
     let photoArray=[]
-    this.state.currentStyle&&this.state.currentStyle.photos.forEach(each=>{
-      photoArray.push({original:each.url, thumbnail:each.thumbnail_url+"&h=300"})
+    this.state.currentStyle&&this.state.currentStyle.photos.forEach((each,i)=>{
+      photoArray.push({original:`${each.url}&${i}`, thumbnail:`${each.thumbnail_url}&h=300&${i}`})
     })
     return <ImageGallery 
+      ref={this.carousel}
       items={photoArray} 
       thumbnailPosition="left" 
       showPlayButton={false} 
       infinite={false} 
-      startIndex={this.state.carouselIndex}
+      startIndex={(photoArray.length-1<this.state.carouselIndex?0:this.state.carouselIndex)}
       onSlide={(currentIndex)=>this.setState({carouselIndex:currentIndex})}
       useBrowserFullscreen={false}
       onScreenChange={()=>this.setState({fullscreen:!this.state.fullscreen})}
