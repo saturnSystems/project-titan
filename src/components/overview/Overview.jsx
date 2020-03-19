@@ -1,5 +1,5 @@
 import React from "react";
-  import Row from "react-bootstrap/Row";
+import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "react-bootstrap/Image"
 import Form from "react-bootstrap/Form";
@@ -7,7 +7,6 @@ import FormCheck from "react-bootstrap/FormCheck"
 import Button from "react-bootstrap/Button";
 import DropdownButton from "react-bootstrap/DropdownButton"
 import DropdownItem from "react-bootstrap/DropdownItem"
-// import Carousel from "react-bootstrap/Carousel"
 import {FacebookShareButton, TwitterShareButton, PinterestShareButton} from "react-share"
 import {FacebookIcon,PinterestIcon,TwitterIcon} from "react-share";
 import StarRatings from "react-star-ratings";
@@ -357,14 +356,15 @@ class Overview extends React.Component {
           <br></br>
           <Row className="layout">
             <Col className="layout" sm={{ span: 7, offset: 1 }}>
-              <Row className="layout">{this.props.product.slogan}</Row>
+              <Row className="layout"><b>{this.props.product.slogan}</b></Row>
+              <br/>
               <Row className="layout">{this.props.product.description}</Row>
             </Col>
             <Col className="layout" sm={3}>
               {this.props.product.features &&
                 this.props.product.features.map((each, i) => (
                   <Row className="layout" key={i}>
-                    &#10003; {each.feature}{each.value!=='null'?`: ${each.value}`:null}
+                    <b>&#10003;&nbsp;</b>{each.feature}{each.value!=='null'?`: ${each.value}`:null}
                   </Row>
                 ))
               }
