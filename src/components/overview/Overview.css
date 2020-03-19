@@ -84,3 +84,8 @@
 .overview .image-gallery-image{
   cursor: zoom-in;
 }
+
+.overview .magnifier{
+  position:absolute;
+  z-index:1
+}

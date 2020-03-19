@@ -263,14 +263,14 @@ class Overview extends React.Component {
     if(photoArray.length-1<this.state.carouselIndex&&this.state.carouselIndex)
       {this.carousel.current&&this.carousel.current.slideToIndex(photoArray.length-1)}
     return (
-      this.state.megaZoom?<div onClick={()=>this.zoomClick()}><ReactImageMagnify 
+      this.state.megaZoom?<div onClick={()=>this.zoomClick()} className="magnifier"><ReactImageMagnify 
       enlargedImagePosition="over" 
       imageStyle={{objectFit:"cover"}}
       enlargedImageStyle={{objectFit:"cover"}}
       {...{
         smallImage:{
           src:photoArray[this.state.carouselIndex].original,
-          width: window.innerWidth-17,
+          width: window.innerWidth,
           height: window.innerHeight*.92
         },
         largeImage:{
