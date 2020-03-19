@@ -73,3 +73,10 @@
 .overview .image-gallery-slide-wrapper.left{
   width: 100%;
 }
+
+.overview .image-gallery-left-nav{
+  left: 100px;}
+  @media (max-width: 768px) {
+    .overview .image-gallery-left-nav{
+      left: 81px; }
+  }
