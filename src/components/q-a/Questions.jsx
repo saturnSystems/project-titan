@@ -1,7 +1,10 @@
 import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
+import FormControl from 'react-bootstrap/FormControl';
 import Answers from './Answers';
+
 
 
 class Questions extends React.Component {
@@ -46,7 +49,7 @@ class Questions extends React.Component {
         <Row className="layout" key={i}>
           <Col className="layout">
             <Row className="layout">
-              <b>Q:</b>
+              <b>Q:&nbsp;</b>
               <Col className="layout" sm={9}>
                 <Row className="layout"><b>{question.question_body}</b></Row>
               </Col>
@@ -62,7 +65,7 @@ class Questions extends React.Component {
           </Col>
         </Row>
         {i === sortedQuestions.length - 1 && i !== this.props.questions.length - 1
-          ? <Row className="layout"><button onClick={this.ShowTwoMore}>MORE ANSWERED QUESTIONS</button> | ADD A QUESTION +</Row>
+          ? <Row className="layout"><Button onClick={this.ShowTwoMore}>MORE ANSWERED QUESTIONS</Button> | ADD A QUESTION +</Row>
           : null}
       </div>
 
@@ -70,7 +73,7 @@ class Questions extends React.Component {
 
     return (
       <div>
-        <Row className="layout"><div><form><input type="text" placeholder="Have a question? Search for answers…" onChange={this.SearchBox} /></form></div></Row>
+        <Row className="layout"><div><form><FormControl type="text" placeholder="Have a question? Search for answers…" onChange={this.SearchBox} /></form></div></Row>
         { items }
       </div>
     );

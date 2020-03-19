@@ -3,6 +3,7 @@
 import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 
 const helper = require('../../helper/helper.js');
 
@@ -44,7 +45,7 @@ class Answers extends React.Component {
 
     const items = sortedAnswers.map((answer, i) => (
       <Row className="layout" key={i}>
-        <b>A:</b>
+        <b>A:&nbsp;</b>
 
         <Col className="layout" sm={9}>
           <Row className="layout">
@@ -79,7 +80,7 @@ class Answers extends React.Component {
             </Col>
           </Row>
           {i === sortedAnswers.length - 1 && i !== this.state.answers.length - 1
-            ? <Row><Col><button type="submit" onClick={this.ShowTwoMore}>Load more answers</button></Col></Row>
+            ? <Row><Col><Button type="submit" onClick={this.ShowTwoMore}>Load more answers</Button></Col></Row>
             : null}
         </Col>
       </Row>
