@@ -258,6 +258,7 @@ class Overview extends React.Component {
     this.state.currentStyle&&this.state.currentStyle.photos.forEach((each,i)=>{
       photoArray.push({original:`${each.url}&${i}`, thumbnail:`${each.thumbnail_url}&h=300&${i}`})
     })
+    if(photoArray.length-1<this.state.carouselIndex&&this.state.carouselIndex){this.carousel.current&&this.carousel.current.slideToIndex(photoArray.length-1)}
     return <ImageGallery 
       ref={this.carousel}
       items={photoArray} 
