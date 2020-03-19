@@ -13,15 +13,48 @@ class RIAC extends React.Component{
 }
 
   render() {
-    let currentRelatedProductId = 1;  // HARD CODED
+    let currentRelatedProductId = 0;  // HARD CODED
     let relatedProductId = this.props.relatedProductsIds[currentRelatedProductId];
+    console.log("----- R: rPI: ", relatedProductId)
+    let productCard = null;
+    if (typeof relatedProductId === 'number') {
+      productCard = (<Col className="layout col-3">
+        <ProductCard 
+          setProductId={this.props.setProductId}
+          currentProduct={this.props.currentProduct}
+          relatedProductId={relatedProductId}
+          reviewRating={this.props.reviewRating}
+          styles={this.props.styles}
+        />
+      </Col>);
+    }
+
+      // let productCards = [];
+    // FIX: if (typeof relatedProductId === 'number') {
+    //   FIX: for (let productIdIndex = 0; productIdIndex < relatedProductsIds.length; productIdIndex++ ) {
+    //     let productCard = (<Col className="layout col-3">
+    //       <ProductCard 
+    //         setProductId={this.props.setProductId}
+    //         currentProduct={this.props.currentProduct}
+    //         relatedProductId={relatedProductId} // MAKE dynamic
+    //         reviewRating={this.props.reviewRating} // do not use
+    //         styles={this.props.styles} // do not use
+    //       />
+    //     </Col>);
+    //     productCards.push(productCard);      
+    //   }
+    // } 
 
     return (
       <Container-fluid className="layout container">
         <Col sm={{ span: 10, offset: 1 }} className="layout container">
           <strong><Row className="layout">Related Products</Row></strong>
           <Row className="layout">
-            <Col className="layout col-3">
+            {productCard}
+            {productCard}
+            {productCard}
+            {productCard}
+            {/* <Col className="layout col-3">
               <ProductCard 
                 setProductId={this.props.setProductId}
                 currentProduct={this.props.currentProduct}
@@ -56,7 +89,7 @@ class RIAC extends React.Component{
                 reviewRating={this.props.reviewRating}
                 styles={this.props.styles}
               />
-            </Col>
+            </Col> */}
           </Row>
           <br></br>
 
