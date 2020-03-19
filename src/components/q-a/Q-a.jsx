@@ -9,9 +9,8 @@ const Qa = (props) => (
     <Container-fluid className="layout container">
       <Col sm={{ span: 10, offset: 1 }} className="layout container">
         <Row className="layout">
-        "QUESTIONS & ANSWERS"
+        QUESTIONS & ANSWERS
         </Row>
-        <Row className="layout">Search Bar</Row>
         <List questions={props.questions}/>
 
       </Col>

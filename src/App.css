@@ -39,13 +39,13 @@
 
 .layout {
   /* background-color:#61dafb; */
-  border:1px solid;
-  border-color: black;
+  /* border:1px solid;
+  border-color: black; */
 }
- /* .container{
+/* .container{
   border-color:red;
 } */
-.btn-outline-primary{
+.btn-outline-primary {
   color: #00b0ff;
   border-radius: 0 !important;
 }

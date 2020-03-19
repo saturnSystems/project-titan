@@ -1,5 +1,5 @@
-.overview input {
-  opacity: 0;
+.overview .form-check-input[type="radio"] {
+  display: none;
 }
 .overview .checkmark {
   position: absolute;
@@ -8,7 +8,7 @@
   width: 20%;
 }
 .overview .checkmark:after {
-  position: absolute;
+  /* position: absolute; */
   display: none;
   content: url("./checkmark.svg");
 }
@@ -16,40 +16,87 @@
   display: block;
 }
 .overview .checkmark:after {
-  top: 0;
-  right:0;
+  /* top: 0;
+  right:0; */
   width: 100%;
 }
 
-/* .carousel-indicators {
-  position: absolute;
-  z-index: 15;
-  display: grid;
-  justify-content: left;
-  left:0;
-  top:0;
-  margin:0;
-  right:unset;
-} */
-
-.overview .btn-outline-primary{
-  width:100%;
+.overview .btn-outline-primary {
+  width: 100%;
 }
 
-.overview .image-gallery-fullscreen-button{
-  top: 0;
-  right: 0;
-  padding: 0;
-  bottom: unset!important;
-  padding: 0px!important;
+.overview .image-gallery-fullscreen-button {
+  top: 0.1em;
+  right: 0.1em;
+  bottom: unset;
+  padding: 0px;
 }
 
 .overview .image-gallery-slide .image-gallery-image {
-  width: 100%!important;
-  object-fit: cover !important;
-  height: 92.11vh !important;
+  width: 100%;
+  object-fit: cover;
+  height: 92.11vh;
 }
 
-.overview .image-gallery-left-nav[disabled], .image-gallery-right-nav[disabled] {
-  opacity: 0!important;
+.overview .image-gallery-left-nav[disabled],
+.image-gallery-right-nav[disabled] {
+  display: none;
+}
+
+.overview .image-gallery.fullscreen-modal .image-gallery-left-nav {
+  display: none;
+}
+
+.overview .image-gallery.fullscreen-modal .image-gallery-right-nav {
+  display: none;
+}
+
+.overview .image-gallery.fullscreen-modal {
+  position: absolute;
+  /* width: 100% ; */
+}
+
+.overview .image-gallery.fullscreen-modal .image-gallery-content {
+  /* top: unset; */
+  transform: unset;
+}
+
+.overview
+  .image-gallery.fullscreen-modal
+  .image-gallery-thumbnails-wrapper.left {
+  display: none;
+}
+
+.overview .image-gallery-thumbnails-wrapper.left,
+.image-gallery-thumbnails-wrapper.right {
+  z-index: 1;
+  position: absolute;
+  height: 100% !important;
+}
+
+.overview .image-gallery-slide-wrapper.left {
+  width: 100%;
+}
+
+.overview .image-gallery-left-nav {
+  left: 100px;
+}
+@media (max-width: 768px) {
+  .overview .image-gallery-left-nav {
+    left: 81px;
+  }
+}
+
+.overview .image-gallery-image {
+  cursor: zoom-in;
+}
+
+.overview .magnifier {
+  position: absolute;
+  z-index: 1;
+}
+
+.overview .image-gallery-svg {
+  height: 2.5em;
+  width: 2.5em;
 }
