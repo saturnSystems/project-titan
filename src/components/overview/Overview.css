@@ -1,4 +1,4 @@
-.overview .form-check-input[type=radio] {
+.overview .form-check-input[type="radio"] {
   display: none;
 }
 .overview .checkmark {
@@ -21,76 +21,82 @@
   width: 100%;
 }
 
-.overview .btn-outline-primary{
-  width:100%;
+.overview .btn-outline-primary {
+  width: 100%;
 }
 
-.overview .image-gallery-fullscreen-button{
-  top: .1em;
-  right: .1em;
+.overview .image-gallery-fullscreen-button {
+  top: 0.1em;
+  right: 0.1em;
   bottom: unset;
   padding: 0px;
 }
 
 .overview .image-gallery-slide .image-gallery-image {
   width: 100%;
-  object-fit: cover ;
-  height: 92.11vh ;
+  object-fit: cover;
+  height: 92.11vh;
 }
 
-.overview .image-gallery-left-nav[disabled], .image-gallery-right-nav[disabled] {
+.overview .image-gallery-left-nav[disabled],
+.image-gallery-right-nav[disabled] {
   display: none;
 }
 
-.overview .image-gallery.fullscreen-modal .image-gallery-left-nav{
+.overview .image-gallery.fullscreen-modal .image-gallery-left-nav {
   display: none;
 }
 
-.overview .image-gallery.fullscreen-modal .image-gallery-right-nav{
+.overview .image-gallery.fullscreen-modal .image-gallery-right-nav {
   display: none;
 }
 
 .overview .image-gallery.fullscreen-modal {
-  position: absolute ;
+  position: absolute;
   /* width: 100% ; */
 }
 
 .overview .image-gallery.fullscreen-modal .image-gallery-content {
-   /* top: unset; */
-   transform: unset;
+  /* top: unset; */
+  transform: unset;
 }
 
-.overview .image-gallery.fullscreen-modal .image-gallery-thumbnails-wrapper.left{
+.overview
+  .image-gallery.fullscreen-modal
+  .image-gallery-thumbnails-wrapper.left {
   display: none;
 }
 
-.overview .image-gallery-thumbnails-wrapper.left, .image-gallery-thumbnails-wrapper.right {
+.overview .image-gallery-thumbnails-wrapper.left,
+.image-gallery-thumbnails-wrapper.right {
   z-index: 1;
   position: absolute;
-  height: 100%!important;
+  height: 100% !important;
 }
 
-.overview .image-gallery-slide-wrapper.left{
+.overview .image-gallery-slide-wrapper.left {
   width: 100%;
 }
 
-.overview .image-gallery-left-nav{
-  left: 100px;}
-  @media (max-width: 768px) {
-    .overview .image-gallery-left-nav{
-      left: 81px; }
+.overview .image-gallery-left-nav {
+  left: 100px;
+}
+@media (max-width: 768px) {
+  .overview .image-gallery-left-nav {
+    left: 81px;
   }
+}
 
-.overview .image-gallery-image{
+.overview .image-gallery-image {
   cursor: zoom-in;
 }
 
-.overview .magnifier{
-  position:absolute;
-  z-index:1
+.overview .magnifier {
+  position: absolute;
+  z-index: 1;
 }
 
-.overview .image-gallery-svg{
+.overview .image-gallery-svg {
   height: 2.5em;
   width: 2.5em;
 }
