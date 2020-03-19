@@ -45,8 +45,8 @@ class Questions extends React.Component {
     }
 
     const items = sortedQuestions.map((question, i) => (
-      <div>
-        <Row className="layout" key={i}>
+      <div key={i}>
+        <Row className="layout" >
           <Col className="layout">
             <Row className="layout">
               <b>Q:&nbsp;</b>
