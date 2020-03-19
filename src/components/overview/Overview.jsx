@@ -268,7 +268,14 @@ class Overview extends React.Component {
       onSlide={(currentIndex)=>this.setState({carouselIndex:currentIndex})}
       useBrowserFullscreen={false}
       onScreenChange={()=>this.setState({fullscreen:!this.state.fullscreen})}
+      onClick={()=>this.zoomClick()}
     />
+  }
+
+  zoomClick(){
+    if(!this.state.fullscreen){
+      this.carousel.current.toggleFullScreen()
+    }
   }
 
   render() {
@@ -279,7 +286,7 @@ class Overview extends React.Component {
             <Col sm={this.state.fullscreen?12:8} className="layout" style={{padding:"0"}} id="carousel">
               {this.conditionalImageGallery()}
             </Col>
-            <Col sm={this.state.fullscreen?12:4} className="layout" id="details" style={{height:"92.11vh"}}>
+            <Col sm={4} className="layout" id="details" style={{height:"92.11vh"}}>
               <Row className="layout">
                 <Col className="layout">
                   {this.conditionalReviews()}

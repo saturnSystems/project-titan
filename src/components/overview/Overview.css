@@ -80,3 +80,7 @@
     .overview .image-gallery-left-nav{
       left: 81px; }
   }
+
+.overview .image-gallery-image{
+  cursor: zoom-in;
+}
