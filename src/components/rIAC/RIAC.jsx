@@ -10,11 +10,15 @@ class RIAC extends React.Component{
     super(props)
     this.state={
     }
-}
+  }
 
   render() {
-    let currentRelatedProductId = 1;  // HARD CODED
-    let relatedProductId = this.props.relatedProductsIds[currentRelatedProductId];
+    console.log("R: cP: ", this.props.currentProduct);
+    console.log("R: t.p.rPsIds: ", this.props.relatedProductsIds)
+    let currentRelatedProductIdx = 1;  // HARD CODED
+    console.log("R: cRPIdx: ", currentRelatedProductIdx);
+    let relatedProductId = this.props.relatedProductsIds[currentRelatedProductIdx];
+    console.log("R: cRPId: ", relatedProductId);
 
     return (
       <Container-fluid className="layout container">
