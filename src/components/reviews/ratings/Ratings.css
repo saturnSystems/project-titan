@@ -1,0 +1,14 @@
+.noBorder {
+  border: none;
+}
+
+.ratingAvg {
+  font-size: 5rem;
+  font-weight: bolder;
+}
+
+.stary {
+  font-size: 2rem;
+  margin-left: 5px;
+  margin-top: 5px;
+}

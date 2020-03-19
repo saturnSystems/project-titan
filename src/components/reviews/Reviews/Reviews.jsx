@@ -66,7 +66,10 @@ class Reviews extends React.Component {
           <Row className="layout noBorder">Ratings and Reviews</Row>
           <Row className="layout noBorder">
             <Col sm={3} className="layout noBorder">
-              <Ratings productId={this.state.productId} />
+              <Ratings
+                productId={this.state.productId}
+                reviews={this.state.reviews}
+              />
               {/* <Row className="layout">3.5*****</Row>
               <br />
               <Row className="layout">100% of reviews recommend</Row>
@@ -156,22 +159,11 @@ class Reviews extends React.Component {
                       />
                     );
                   })}
-              {/* {!this.state.reviewsBtn &&
-              this.state.itemsToShow < this.state.reviews.length ? (
-                <button type="button" onClick={e => this.moreReviews()}>
-                  Show more reviews
-                </button>
-              ) : null} */}
 
-              {/* <br /> */}
               <Row className="layout noBorder">
                 {!this.state.reviewsBtn &&
                 this.state.itemsToShow < this.state.reviews.length ? (
-                  <Button
-                    // type="button"
-                    className="blueBtn"
-                    onClick={e => this.moreReviews()}
-                  >
+                  <Button className="blueBtn" onClick={e => this.moreReviews()}>
                     Show more reviews
                   </Button>
                 ) : null}{" "}
