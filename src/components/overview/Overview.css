@@ -1,5 +1,5 @@
-.overview input {
-  opacity: 0;
+.overview .form-check-input[type=radio] {
+  display: none;
 }
 .overview .checkmark {
   position: absolute;
@@ -8,7 +8,7 @@
   width: 20%;
 }
 .overview .checkmark:after {
-  position: absolute;
+  /* position: absolute; */
   display: none;
   content: url("./checkmark.svg");
 }
@@ -16,21 +16,10 @@
   display: block;
 }
 .overview .checkmark:after {
-  top: 0;
-  right:0;
+  /* top: 0;
+  right:0; */
   width: 100%;
 }
-
-/* .carousel-indicators {
-  position: absolute;
-  z-index: 15;
-  display: grid;
-  justify-content: left;
-  left:0;
-  top:0;
-  margin:0;
-  right:unset;
-} */
 
 .overview .btn-outline-primary{
   width:100%;
@@ -62,20 +51,13 @@
 }
 
 .overview .image-gallery.fullscreen-modal {
-   /* top: 0 !important; */
-  /* transform: unset !important; */
   position: absolute ;
-  width: 100% ;
-  background: unset ;
+  /* width: 100% ; */
 }
 
 .overview .image-gallery.fullscreen-modal .image-gallery-content {
-   top: unset;
+   /* top: unset; */
    transform: unset;
-}
-
-.overview .image-gallery-content.fullscreen{
-  background: unset;
 }
 
 .overview .image-gallery.fullscreen-modal .image-gallery-thumbnails-wrapper.left{
@@ -83,9 +65,9 @@
 }
 
 .overview .image-gallery-thumbnails-wrapper.left, .image-gallery-thumbnails-wrapper.right {
-  z-index: 2;
+  z-index: 1;
   position: absolute;
-  height: 100%!important;
+  /* height: 100%!important; */
 }
 
 .overview .image-gallery-slide-wrapper.left{
