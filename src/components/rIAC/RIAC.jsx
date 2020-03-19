@@ -61,16 +61,6 @@ class RIAC extends React.Component{
                 setProductId={this.props.setProductId}
                 currentProduct={this.props.currentProduct}
                 relatedProductId={relatedProductId}
-                // reviewRating={this.props.reviewRating}
-                // styles={this.props.styles}
-              />
-            </Col>
-
-            {/* <Col className="layout col-3">
-              <ProductCard 
-                setProductId={this.props.setProductId}
-                currentProduct={this.props.currentProduct}
-                relatedProductId={relatedProductId}
                 reviewRating={this.props.reviewRating}
                 styles={this.props.styles}
               />
@@ -92,7 +82,16 @@ class RIAC extends React.Component{
                 reviewRating={this.props.reviewRating}
                 styles={this.props.styles}
               />
-            </Col> */} */}
+            </Col>
+            <Col className="layout col-3">
+              <ProductCard 
+                setProductId={this.props.setProductId}
+                currentProduct={this.props.currentProduct}
+                relatedProductId={relatedProductId}
+                reviewRating={this.props.reviewRating}
+                styles={this.props.styles}
+              />
+            </Col>
           </Row>
           <br></br>
 
@@ -143,31 +142,3 @@ class RIAC extends React.Component{
 
 
 export default RIAC;
-
-{/* <Col className="layout col-3">
-<Row className="layout">IMAGE</Row>
-<Row className="layout">Accessories</Row>
-<Row className="layout caption">
-  Bright Future Sunglasses - Black Lenses &amp; Black Frame
-</Row>
-<Row className="layout">$69</Row>
-<Row className="layout">*****</Row>
-</Col>
-<Col className="layout col-3">
-<Row className="layout">IMAGE</Row>
-<Row className="layout">Pants</Row>
-<Row className="layout caption">
-  Morning Joggers - Black <br/>. <br/>.
-</Row>
-<Row className="layout">$40</Row>
-<Row className="layout">***</Row>
-</Col>
-<Col className="layout col-3">
-<Row className="layout">IMAGE</Row>
-<Row className="layout">Pants</Row>
-<Row className="layout caption">
-  Slacker's Slacks - Olive Green  <br/>. <br/>.
-</Row>
-<Row className="layout">$65</Row>
-<Row className="layout">*</Row>
-</Col> */}

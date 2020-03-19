@@ -3,6 +3,7 @@
 import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 
 const helper = require('../../helper/helper.js');
 
@@ -31,7 +32,6 @@ class Answers extends React.Component {
     function compare(a, b) {
       if (a.answerer_name === 'Seller' && b.helpfulness < a.helpfulness) {
         return -1;
-        // eslint-disable-next-line no-else-return
       } else if (a.answerer_name !== 'Seller' && a.helpfulness < b.helpfulness) {
         return 1;
       } else if (b.answerer_name === 'Seller') {
@@ -45,7 +45,7 @@ class Answers extends React.Component {
 
     const items = sortedAnswers.map((answer, i) => (
       <Row className="layout" key={i}>
-        A:
+        <b>A:&nbsp;</b>
 
         <Col className="layout" sm={9}>
           <Row className="layout">
@@ -76,11 +76,11 @@ class Answers extends React.Component {
             <Col className="layout">
               <Row className="layout">Answer to reply?</Row>
               <Row className="layout">IMAGES</Row>
-              <Row className="layout">Date | Helpful | Report</Row>
+              {/* <Row className="layout">Date | Helpful | Report</Row> */}
             </Col>
           </Row>
           {i === sortedAnswers.length - 1 && i !== this.state.answers.length - 1
-            ? <Row><Col><button type="submit" onClick={this.ShowTwoMore}>Load more answers</button></Col></Row>
+            ? <Row><Col><Button type="submit" onClick={this.ShowTwoMore}>Load more answers</Button></Col></Row>
             : null}
         </Col>
       </Row>

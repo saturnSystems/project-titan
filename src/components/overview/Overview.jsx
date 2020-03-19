@@ -11,18 +11,22 @@ import DropdownItem from "react-bootstrap/DropdownItem"
 import {FacebookShareButton, TwitterShareButton, PinterestShareButton} from "react-share"
 import {FacebookIcon,PinterestIcon,TwitterIcon} from "react-share";
 import StarRatings from "react-star-ratings";
-import "./Overview.css"
 import ImageGallery from "react-image-gallery"
+import ReactImageMagnify from 'react-image-magnify';
 import "react-image-gallery/styles/css/image-gallery.css";
+import "./Overview.css"
 
 class Overview extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      carouselIndex:0
+      carouselIndex:0,
+      fullscreen: false,
+      megaZoom: false
     };
     this.defaultRadio = React.createRef()
     this.sizeSelector = React.createRef()
+    this.carousel = React.createRef()
     this.radioLoaded=false
     this.stockLoaded=false
   }
@@ -253,41 +257,64 @@ class Overview extends React.Component {
 
   conditionalImageGallery(){
     let photoArray=[]
-    this.state.currentStyle&&this.state.currentStyle.photos.forEach(each=>{
-      photoArray.push({original:each.url, thumbnail:each.thumbnail_url+"&h=300"})
+    this.state.currentStyle&&this.state.currentStyle.photos.forEach((each,i)=>{
+      photoArray.push({original:`${each.url}&${i}`, thumbnail:`${each.thumbnail_url}&h=300&${i}`})
     })
-    return <ImageGallery 
-      items={photoArray} 
-      thumbnailPosition="left" 
-      showPlayButton={false} 
-      infinite={false} 
-      startIndex={this.state.carouselIndex}
-      onSlide={(currentIndex)=>this.setState({carouselIndex:currentIndex})}
-    />
+    if(photoArray.length-1<this.state.carouselIndex&&this.state.carouselIndex)
+      {this.carousel.current&&this.carousel.current.slideToIndex(photoArray.length-1)}
+    return (
+      this.state.megaZoom?<div onClick={()=>this.zoomClick()} className="magnifier"><ReactImageMagnify 
+      enlargedImagePosition="over" 
+      imageStyle={{objectFit:"cover"}}
+      enlargedImageStyle={{objectFit:"cover"}}
+      {...{
+        smallImage:{
+          src:photoArray[this.state.carouselIndex].original,
+          width: window.innerWidth,
+          height: window.innerHeight*.92
+        },
+        largeImage:{
+          src:photoArray[this.state.carouselIndex].original,
+          width: window.innerWidth*2.5,
+          height: window.innerHeight*.92*2.5
+        }
+      }}/></div>:
+      <ImageGallery 
+        ref={this.carousel}
+        items={photoArray} 
+        thumbnailPosition="left" 
+        showPlayButton={false} 
+        infinite={false} 
+        startIndex={(photoArray.length-1<this.state.carouselIndex?0:this.state.carouselIndex)}
+        onSlide={(currentIndex)=>this.setState({carouselIndex:currentIndex})}
+        useBrowserFullscreen={false}
+        onScreenChange={()=>this.setState({fullscreen:!this.state.fullscreen})}
+        onClick={()=>this.zoomClick()}
+        showBullets={this.state.fullscreen?true:false}
+      />
+    )
+  }
+
+  zoomClick(){
+    if(this.state.megaZoom){
+      this.setState({megaZoom:false,
+      fullscreen:false},()=>this.carousel.current.toggleFullScreen())
+    }else if(!this.state.fullscreen){
+      this.carousel.current.toggleFullScreen()
+    }else if(this.state.fullscreen){
+      this.setState({megaZoom:true})
+    }
   }
 
   render() {
     return (
-      <Container-fluid className="layout container">
-        <Col className="layout container">
+      <Container-fluid>
+        <Col className="layout overview">
           <Row className="layout">
-            <Col className="layout" sm={8} style={{padding:"0"}}>
-              {/* <Col className="layout" sm={2} style={{position:"absolute", top:"0", maxHeight:"90vh"}}>
-                {this.state.currentStyle&&this.state.currentStyle.photos.map((each,i)=>
-                <Row key={i} className="layout" style={{padding:"1vh"}}>
-                  <Image src={`${each.thumbnail_url}&h=300`} style={{maxHeight:"10vh", zIndex:"1"}} onClick={()=>this.setCarousel(i)}/>
-                </Row>)}
-              </Col>               
-              <Carousel interval={null} activeIndex={this.state.carouselIndex}>
-                {this.state.currentStyle&&this.state.currentStyle.photos.map((stylePhoto,i)=>(
-                  <Carousel.Item key={i}>
-                    <Image src={stylePhoto.url} style={{width:"100%", objectFit:"cover", height:"92vh", padding:"0", margin:"0"}}/>
-                  </Carousel.Item>
-                ))}
-              </Carousel>         */}
+            <Col sm={this.state.fullscreen?12:8} className="layout" style={{padding:"0"}} id="carousel">
               {this.conditionalImageGallery()}
             </Col>
-            <Col className="layout">
+            <Col sm={4} className="layout" id="details" style={{height:"92.11vh"}}>
               <Row className="layout">
                 <Col className="layout">
                   {this.conditionalReviews()}
