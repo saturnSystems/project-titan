@@ -11,66 +11,152 @@ class ProductCard extends React.Component {
   constructor(props) {
     super(props)
     this.state={
+      relatedProductId: props.relatedProductId, // USED as "stat"?? 
       relatedProduct: {},
-      relatedStyles: []
-      // relatedProductId: props.relatedProductId // NOT USED
+      relatedStyles: [],
+      relatedReviewRating: 0
     }
   }
+  //   let relatedProductId = props.relatedProductId
+  //   // console.log("+++++PC: cDM: if cRPId: ", relatedProductId)
+  //     helper.getOneProduct(props.relatedProductId, result => { // HARD CODED
+  //       // this.setState({
+  //       //   relatedProduct: result
+  //         this.state.relatedProduct = result
+  //         // });
+  //     });  
+  //     helper.getOneProductStyle(props.relatedProductId, result=>{
+  //       console.log("++--++ PC: constructor: gOPS: result: ", result);
+  //       // this.setState({
+  //       //   relatedStyles: result.results
+  //       // })
+  //       this.state.relatedStyles = result.results;
+  //     });
+  //     helper.getReviewMetadata(this.state.productID, result => {
+  //       // this.setState({
+  //       //   currentReviewRating: helper.calculateReviewRating(result.ratings)
+  //       // });
+  //       this.state.currentReviewRating = helper.calculateReviewRating(result.ratings)
+
+  //     });
+  //     helper.getListReviews(this.state.productID, result => {
+  //       // this.setState({
+  //       //   reviews: result.results
+  //       // });
+  //       this.state.reviews = result.results;
+  //     });    
+  
+  // }
 
   componentDidMount() {
-    let relatedProductId = this.props.relatedProductId
+    // let relatedProductId = this.props.relatedProductId
     // console.log("+++++PC: cDM: if cRPId: ", relatedProductId)
-    if (typeof relatedProductId === 'number') {
-      helper.getOneProduct(this.props.relatedProductId, result => { // HARD CODED
-        this.setState({
-          relatedProduct: result
-        });
-      });  
-      helper.getOneProductStyle(this.props.relatedProductId, result=>{
-        console.log("++--++ PC: cDM: gOPS: result: ", result);
-        this.setState({
-          relatedStyles: result.results
-        })
+    helper.getOneProduct(this.state.relatedProductId, result => {
+      this.setState({
+        relatedProduct: result
       });
-      helper.getReviewMetadata(this.state.productID, result => {
-        this.setState({
-          currentReviewRating: helper.calculateReviewRating(result.ratings)
-        });
-      });
-      helper.getListReviews(this.state.productID, result => {
-        this.setState({
-          reviews: result.results
-        });
-      });    
+    });
+    // this.loadRelatedProductData();
+  }
+
+  componentDidUpdate = (prevProps, prevState) => {
+    // console.log("+++++PC: cDU: rPI: ", relatedProductId);
+    if (prevState.relatedProductID !== this.state.relatedProductID) {
+      this.loadRelatedProductData();
     }
   }
-  
-  componentDidUpdate(prevProps) {
-    let relatedProductId = this.props.relatedProductId
-    if (typeof relatedProductId === 'number' && relatedProductId !== prevProps.relatedProductId) {
-    // console.log("PC: cDU: cRPId: ", relatedProductId)
-      helper.getOneProduct(this.props.relatedProductId, result => { // HARD CODED
-        this.setState({
-          relatedProduct: result
-        });
-      });  
-      helper.getOneProductStyle(this.props.relatedProductId, result=>{
-        this.setState({
-          relatedStyles: result.results
-        })
-      });
-      helper.getReviewMetadata(this.state.productID, result => {
-        this.setState({
-          currentReviewRating: helper.calculateReviewRating(result.ratings)
-        });
-      });
-      helper.getListReviews(this.state.productID, result => {
-        this.setState({
-          reviews: result.results
-        });
-      });
 
-    }
+  //  componentDidMount() {
+  //   let relatedProductId = this.props.relatedProductId
+  //   // console.log("+++++PC: cDM: if cRPId: ", relatedProductId)
+  //   if (typeof relatedProductId === 'number') {
+  //     helper.getOneProduct(this.props.relatedProductId, result => { // HARD CODED
+  //       this.setState({
+  //         relatedProduct: result
+  //       });
+  //     });  
+  //     helper.getOneProductStyle(this.props.relatedProductId, result=>{
+  //       // console.log("++--++ PC: cDM: gOPS: result: ", result);
+  //       this.setState({
+  //         relatedStyles: result.results
+  //       })
+  //     });
+  //     helper.getReviewMetadata(this.props.relatedProductId, result => {
+  //       this.setState({
+  //         currentReviewRating: helper.calculateReviewRating(result.ratings)
+  //       });
+  //     });
+  //     helper.getListReviews(this.props.relatedProductId, result => {
+  //       this.setState({
+  //         reviews: result.results
+  //       });
+  //     });    
+  //   }
+  // }
+  
+  // componentDidUpdate(prevProps) {
+  //   let relatedProductId = this.props.relatedProductId
+  //   if (typeof relatedProductId === 'number' && relatedProductId !== prevProps.relatedProductId) {
+  //   // console.log("PC: cDU: cRPId: ", relatedProductId)
+  //     helper.getOneProduct(this.props.relatedProductId, result => { // HARD CODED
+  //       this.setState({
+  //         relatedProduct: result
+  //       });
+  //     });  
+  //     helper.getOneProductStyle(this.props.relatedProductId, result=>{
+  //       this.setState({
+  //         relatedStyles: result.results
+  //       })
+  //     });
+  //     helper.getReviewMetadata(this.state.productID, result => {
+  //       this.setState({
+  //         currentReviewRating: helper.calculateReviewRating(result.ratings)
+  //       });
+  //     });
+  //     helper.getListReviews(this.state.productID, result => {
+  //       this.setState({
+  //         reviews: result.results
+  //       });
+  //     });
+  //   }
+  // }
+  
+  // loadRelatedProductData = (relatedProductId) => {
+  loadRelatedProductData = () => {
+    // helper.getOneProduct(this.state.relatedProductId, result => {
+    //   this.setState({
+    //     relatedProduct: result
+    //   });
+    // });
+    // console.log("PC: lRPD: t.s.rP: ", this.state.relatedProduct)
+    helper.getReviewMetadata(this.state.relatedProductId, result => {
+      this.setState({
+        relatedReviewRating: helper.calculateReviewRating(result.ratings)
+      });
+    });
+    console.log("PC: lRPD: t.s.rRR: ", this.state.relatedReviewRating)
+    // helper.getListReviews(this.state.productID, result => {
+    //   this.setState({
+    //     reviews: result.results
+    //   });
+    // });
+    // helper.getListQuestions(this.state.productID, result => {
+    //   // Q&A - Questions
+    //   this.setState({
+    //     questions: result.results
+    //   });
+    // });
+    helper.getOneProductStyle(this.state.relatedProductId, result => {
+      this.setState({
+        relatedStyles: result.results
+      });
+    });
+    console.log("PC: lRPD: t.s.rS: ", this.state.relatedStyles)
+    // helper.getRelatedProducts(this.state.productID, result => {
+    //   this.setState({
+    //     relatedProducts: result
+    //   });
+    // });
   }
 
   setProductId = () => { // (event) parameter not actually used
@@ -78,10 +164,16 @@ class ProductCard extends React.Component {
   }
 
   render() {
-    console.log("PC: render: t.s.rS: ", this.state.relatedSyles);   
-    // does it ever log after teh state being set or is it always before
-    // if (this.state.relatedSyles === undefined) return null;
-    console.log("PC: render: t.s.rS: ", this.state.relatedSyles);   
+    // if (this.props.relatedProductId !== undefined) {
+    // }
+
+    console.log("PC-DATE-TIME: render: ", new Date());
+    console.log("PC: render: t.p.rPId: ", this.props.relatedProductId);
+    // console.log("PC: render: t.s.rPId: ", this.state.relatedProductId);    
+    let relatedProductID = this.props.relatedProductId;
+    console.log("PC: render: rPId: ", relatedProductID);
+    
+    // this.loadRelatedProductData();
 
     console.log("PC: render: t.s.cRR: ", this.state.currentReviewRating);   
     let currentRevRating = this.state.currentReviewRating
@@ -104,21 +196,30 @@ class ProductCard extends React.Component {
     
     // const styles = this.state.styles;
     const styles = this.state.relatedSyles;
-    console.log("PC: cDU: s: ", styles);
+    console.log("PC render: s: ", styles);
 
-    // const relatedStyles = this.props.styles;
-    const relatedStyles = this.state.relatedStyles;
-      console.log("PC: rPsSs[0]: ", relatedStyles[0])
+    // console.log("PC: render: t.s.rS: ", this.state.relatedSyles);   
+    // does it ever log after teh state being set or is it always before
+    // if (this.state.relatedSyles === undefined) return null;
+    // console.log("PC: render: t.s.rS: ", this.state.relatedSyles);   
 
-    const relatedStylesIndex = 1; // HARD CODED
-    const relatedStyle = relatedStyles[relatedStylesIndex];
-      console.log("PC: rS: ", relatedStyle);
+
+    // // const relatedStyles = this.props.styles;
+    //   console.log("PC: rPsSs[0]: ", relatedStyles[0])
+    // const relatedStyles = this.state.relatedStyles;
+    // console.log("PC: rSs: ", relatedStyles);
+    // console.log("PC: rSs[0]: ", relatedStyles[0]);
+
+    // const relatedStylesIndex = 1; // HARD CODED
+    // const relatedStyle = relatedStyles[relatedStylesIndex];
+    //   console.log("PC: rS: ", relatedStyle);
   
+    // const relatedTNStylesIndex = 1; // HARD CODED
     let relThumbnail = "(NO IMAGE AVAILABLE)"; // fallback
-    const relatedThumbnailIndex = 0; // HARD CODED
-    if (this.props.styles[relatedStylesIndex] !== undefined) { // needed, but WHY?
-      relThumbnail = relatedStyle.photos[relatedThumbnailIndex].thumbnail_url;
-    }
+    // const relatedThumbnailIndex = 0; // HARD CODED
+    // if (this.state.relatedStyles[relatedStylesIndex] !== undefined) { // needed, but WHY?
+    //   relThumbnail = relatedStyle.photos[relatedThumbnailIndex].thumbnail_url;
+    // }
 
     // let reviewRating = this.props.reviewRating; // NOT USED
 

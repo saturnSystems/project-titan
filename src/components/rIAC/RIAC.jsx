@@ -13,8 +13,10 @@ class RIAC extends React.Component{
 }
 
   render() {
-    let currentRelatedProductId = 0;  // HARD CODED
-    let relatedProductId = this.props.relatedProductsIds[currentRelatedProductId];
+    console.log("RIAC-DATE-TIME: render: ", new Date());
+
+    let currentRelatedProductIndex = 0;  // HARD CODED
+    let relatedProductId = this.props.relatedProductsIds[currentRelatedProductIndex];
     console.log("----- R: rPI: ", relatedProductId)
     let productCard = null;
     if (typeof relatedProductId === 'number') {
@@ -23,8 +25,8 @@ class RIAC extends React.Component{
           setProductId={this.props.setProductId}
           currentProduct={this.props.currentProduct}
           relatedProductId={relatedProductId}
-          reviewRating={this.props.reviewRating}
-          styles={this.props.styles}
+          // reviewRating={this.props.reviewRating}
+          // styles={this.props.styles}
         />
       </Col>);
     }
@@ -50,10 +52,20 @@ class RIAC extends React.Component{
         <Col sm={{ span: 10, offset: 1 }} className="layout container">
           <strong><Row className="layout">Related Products</Row></strong>
           <Row className="layout">
+            {/* {productCard}
             {productCard}
             {productCard}
-            {productCard}
-            {productCard}
+            {productCard} */}
+            <Col className="layout col-3">
+              <ProductCard 
+                setProductId={this.props.setProductId}
+                currentProduct={this.props.currentProduct}
+                relatedProductId={relatedProductId}
+                // reviewRating={this.props.reviewRating}
+                // styles={this.props.styles}
+              />
+            </Col>
+
             {/* <Col className="layout col-3">
               <ProductCard 
                 setProductId={this.props.setProductId}
@@ -80,16 +92,7 @@ class RIAC extends React.Component{
                 reviewRating={this.props.reviewRating}
                 styles={this.props.styles}
               />
-            </Col>
-            <Col className="layout col-3">
-              <ProductCard 
-                setProductId={this.props.setProductId}
-                currentProduct={this.props.currentProduct}
-                relatedProductId={relatedProductId}
-                reviewRating={this.props.reviewRating}
-                styles={this.props.styles}
-              />
-            </Col> */}
+            </Col> */} */}
           </Row>
           <br></br>
 
