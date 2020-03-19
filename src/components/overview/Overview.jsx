@@ -277,7 +277,7 @@ class Overview extends React.Component {
             <Col sm={this.state.fullscreen?12:8} className="layout" style={{padding:"0"}} id="carousel">
               {this.conditionalImageGallery()}
             </Col>
-            <Col sm={4} className="layout" id="details">
+            <Col sm={this.state.fullscreen?12:4} className="layout" id="details" style={{height:"92.11vh"}}>
               <Row className="layout">
                 <Col className="layout">
                   {this.conditionalReviews()}
