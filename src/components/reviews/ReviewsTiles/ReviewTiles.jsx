@@ -96,13 +96,13 @@ class ReviewTiles extends React.Component {
                   this.state.showMore === false ? (
                     <Row className="layout noBorder">
                       {review.body.slice(0, 200) + "..."}
-                      <button
+                      <Button
                         name="showMore"
                         className="showBtn"
                         onClick={this.showMore} //////////////////////HERE!!!!!!!!!!!!!!!!!
                       >
                         Show more
-                      </button>
+                      </Button>
                     </Row>
                   ) : (
                     <Row className="layout noBorder">{review.body}</Row>
