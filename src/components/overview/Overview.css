@@ -67,7 +67,7 @@
 .overview .image-gallery-thumbnails-wrapper.left, .image-gallery-thumbnails-wrapper.right {
   z-index: 1;
   position: absolute;
-  /* height: 100%!important; */
+  height: 100%!important;
 }
 
 .overview .image-gallery-slide-wrapper.left{
