@@ -78,9 +78,8 @@ class App extends React.Component {
   setProductId = newProductId => {
     this.setState(
       {
-        productID: newProductId
-      },
-      () => this.getProductInformation()
+        productId: newProductId
+      },() => this.getProductInformation()
     );
     window.scrollTo(0, 0);
   };
