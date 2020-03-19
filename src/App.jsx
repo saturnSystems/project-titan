@@ -21,8 +21,8 @@ class App extends React.Component {
     this.state = {
       products: [],
       // productID: window.location.search.substr(1) || 1, //productID = anything after /? in url,, or 1
-      // productID: window.location.search.substr(1) || 1, //productID = anything after /? in url,, or 1
-      productID: 3, // set in componentDidMount // componentDidUpdate
+      productID: window.location.search.substr(1) || 1, //productID = anything after /? in url,, or 1
+      // productID: 3, // set in componentDidMount // componentDidUpdate
       previousProductId: 999,
       currentProduct: [],
       currentReviewRating: 0,
@@ -40,121 +40,63 @@ class App extends React.Component {
     this.setProductId = this.setProductId.bind(this);
   }
 
+  loadProductIdData = () => {
+    helper.getOneProduct(this.state.productID, result => {
+      this.setState({
+        currentProduct: result
+      });
+    });
+    helper.getReviewMetadata(this.state.productID, result => {
+      this.setState({
+        currentReviewRating: helper.calculateReviewRating(result.ratings)
+      });
+    });
+    helper.getListReviews(this.state.productID, result => {
+      this.setState({
+        reviews: result.results
+      });
+    });
+    helper.getListQuestions(this.state.productID, result => {
+      // Q&A - Questions
+      this.setState({
+        questions: result.results
+      });
+    });
+    helper.getOneProductStyle(this.state.productID, result => {
+      this.setState({
+        styles: result.results
+      });
+    });
+    helper.getRelatedProducts(this.state.productID, result => {
+      this.setState({
+        relatedProducts: result
+      });
+    });
+  }
+
   componentDidMount() {
     let cart = JSON.parse(localStorage.getItem("cart"));
     this.setState({
       cart: cart
     });
-
-    // instead of setting productID in this.state
-    this.setState({
-      previousProductId: 999
-    });
-    this.setState({
-      productID: window.location.search.substr(1) || 1 // productID = number after /? in url, OR 1
-    });
-
-    // const { productID } = this.state;
-
-    // helper.getOneProduct(productID, result => {
-    //   this.setState({
-    //     currentProduct: result
-    //   });
-    // });
-    // helper.getReviewMetadata(productID, result => {
-    //   this.setState({
-    //     currentReviewRating: helper.calculateReviewRating(result.ratings)
-    //   });
-    // });
-    // helper.getListReviews(productID, result => {
-    //   this.setState({
-    //     reviews: result.results
-    //   });
-    // });
-    // helper.getListQuestions(this.state.productID, result => {
-    //   // Q&A - Questions
-    //   this.setState({
-    //     questions: result.results
-    //   });
-    // });
-    // helper.getOneProductStyle(this.state.productID, result => {
-    //   this.setState({
-    //     styles: result.results
-    //   });
-    // });
-    // helper.getRelatedProducts(this.state.productID, result => {
-    //   this.setState({
-    //     relatedProducts: result
-    //   });
-    // });
+    this.loadProductIdData();
   }
-
-  // // A change in productID will trigger componentDidUpdate
-  // setProductId = (productID) => {
-  //   // console.log("A: sPI: pID:", productID);
-  //   this.setState({
-  //     productID: productID
-  //   }, () => this.componentDidMount());
-  // }
 
   setProductId = (newProductId) => {
     // console.log("A: sPI: pID:", productID);
-    // this.setState({ // nsb: PROBABLY NOT NEEDED
-    //   previousProductId: this.state.productID
-    //   // productID: newProductId
-    // });
     this.setState({
-      // previousProductId: this.state.productID
       productID: newProductId
     });
     this.scrollToTop()
-    // this.scrollToMyRef() // nsb: did not work in this context
   }
 
   scrollToTop () {
     window.scrollTo(0, 0);
   }
 
-  componentDidUpdate = () => {
-    if (this.state.previousProductId !== this.state.productID) {
-
-      helper.getOneProduct(this.state.productID, result => {
-        this.setState({
-          currentProduct: result
-        });
-      });
-      helper.getReviewMetadata(this.state.productID, result => {
-        this.setState({
-          currentReviewRating: helper.calculateReviewRating(result.ratings)
-        });
-      });
-      helper.getListReviews(this.state.productID, result => {
-        this.setState({
-          reviews: result.results
-        });
-      });
-      helper.getListQuestions(this.state.productID, result => {
-        // Q&A - Questions
-        this.setState({
-          questions: result.results
-        });
-      });
-      helper.getOneProductStyle(this.state.productID, result => {
-        this.setState({
-          styles: result.results
-        });
-      });
-      helper.getRelatedProducts(this.state.productID, result => {
-        this.setState({
-          relatedProducts: result
-        });
-      });
-
-      // to prevent infinite loop!
-      // USE prevProps???
-      this.setState({
-        previousProductId: this.state.productID
-      });
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevState.productID !== this.state.productID) {
+      this.loadProductIdData();
     }
   }
 
