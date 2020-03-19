@@ -78,8 +78,9 @@ class App extends React.Component {
   setProductId = newProductId => {
     this.setState(
       {
-        productId: newProductId
-      },() => this.getProductInformation()
+        productID: newProductId
+      },
+      () => this.getProductInformation()
     );
     window.scrollTo(0, 0);
   };
@@ -113,7 +114,7 @@ class App extends React.Component {
       <Container-fluid className="layout">
         <Col className="layout" style={{ backgroundColor: "#00b0ff" }}>
           <Row className="layout">
-            <Col className="layout" sm={2} style={{fontWeight:"bold"}}>
+            <Col className="layout" sm={2} style={{ fontWeight: "bold" }}>
               <img
                 src={require("./logo.svg")}
                 alt="Storefront logo: a line drawing of the planet saturn"
@@ -130,8 +131,10 @@ class App extends React.Component {
             </Col>
           </Row>
           <Row className="layout">
-            <Col className="layout" style={{textAlign:"center"}}>
-              <i>DON'T CATCH CORONAVIRUS!</i> &mdash; <b>100% OFF FOR ALL DEVELOPERS OF THIS SITE</b> &mdash;	<u>CAMO IS BACK</u>
+            <Col className="layout" style={{ textAlign: "center" }}>
+              <i>DON'T CATCH CORONAVIRUS!</i> &mdash;{" "}
+              <b>100% OFF FOR ALL DEVELOPERS OF THIS SITE</b> &mdash;{" "}
+              <u>CAMO IS BACK</u>
             </Col>
           </Row>
         </Col>
