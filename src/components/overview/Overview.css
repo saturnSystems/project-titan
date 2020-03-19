@@ -67,7 +67,7 @@
 .overview .image-gallery-thumbnails-wrapper.left, .image-gallery-thumbnails-wrapper.right {
   z-index: 1;
   position: absolute;
-  /* height: 100%!important; */
+  height: 100%!important;
 }
 
 .overview .image-gallery-slide-wrapper.left{
@@ -80,3 +80,12 @@
     .overview .image-gallery-left-nav{
       left: 81px; }
   }
+
+.overview .image-gallery-image{
+  cursor: zoom-in;
+}
+
+.overview .magnifier{
+  position:absolute;
+  z-index:1
+}
