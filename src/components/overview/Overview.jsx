@@ -24,6 +24,7 @@ class Overview extends React.Component {
     };
     this.defaultRadio = React.createRef()
     this.sizeSelector = React.createRef()
+    this.carousel = React.createRef()
     this.radioLoaded=false
     this.stockLoaded=false
   }
@@ -254,19 +255,27 @@ class Overview extends React.Component {
 
   conditionalImageGallery(){
     let photoArray=[]
-    this.state.currentStyle&&this.state.currentStyle.photos.forEach(each=>{
-      photoArray.push({original:each.url, thumbnail:each.thumbnail_url+"&h=300"})
+    this.state.currentStyle&&this.state.currentStyle.photos.forEach((each,i)=>{
+      photoArray.push({original:`${each.url}&${i}`, thumbnail:`${each.thumbnail_url}&h=300&${i}`})
     })
     return <ImageGallery 
+      ref={this.carousel}
       items={photoArray} 
       thumbnailPosition="left" 
       showPlayButton={false} 
       infinite={false} 
-      startIndex={this.state.carouselIndex}
+      startIndex={(photoArray.length-1<this.state.carouselIndex?0:this.state.carouselIndex)}
       onSlide={(currentIndex)=>this.setState({carouselIndex:currentIndex})}
       useBrowserFullscreen={false}
       onScreenChange={()=>this.setState({fullscreen:!this.state.fullscreen})}
+      onClick={()=>this.zoomClick()}
     />
+  }
+
+  zoomClick(){
+    if(!this.state.fullscreen){
+      this.carousel.current.toggleFullScreen()
+    }
   }
 
   render() {
@@ -277,7 +286,7 @@ class Overview extends React.Component {
             <Col sm={this.state.fullscreen?12:8} className="layout" style={{padding:"0"}} id="carousel">
               {this.conditionalImageGallery()}
             </Col>
-            <Col sm={this.state.fullscreen?12:4} className="layout" id="details" style={{height:"92.11vh"}}>
+            <Col sm={4} className="layout" id="details" style={{height:"92.11vh"}}>
               <Row className="layout">
                 <Col className="layout">
                   {this.conditionalReviews()}
