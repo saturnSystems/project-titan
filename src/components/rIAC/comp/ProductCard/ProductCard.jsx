@@ -46,17 +46,22 @@ class ProductCard extends React.Component {
   render() {
     // const currentProduct = this.props.currentProduct; // NOT USED
     // console.log("PC: cP: ", currentProduct);
-    // const relatedProductId = this.props.relatedProductId; // NOT USED
+    const relatedProductId = this.props.relatedProductId; // NOT USED
     console.log("PC: rPId: ", relatedProductId);
 
     const relatedProduct = this.state.relatedProduct;
+    // const relatedProduct = relatedProduct;
+    // console.log("PC: rP1: ", relatedProduct);
     const relatedCategory = relatedProduct.category;
+    // console.log("PC: rCat: ", relatedCategory);
     const relatedCaption = relatedProduct.name + ' - ' + relatedProduct.slogan;
+    // console.log("PC: rCap: ", relatedCaption);
     const relatedDefPrice = relatedProduct.default_price;
+    console.log("PC: rDP: ", relatedDefPrice);
     // const relatedRating = "***"; // NOT USED. Superceded by actual star rating
     
     const relatedStyles = this.state.styles;
-      console.log("PC: rSs: ", relatedStyles)
+      // console.log("PC: rSs: ", relatedStyles)
 
     // const relatedStylesIndex = 1; // HARD CODED
     // const defaultStyleIndex = styles.indexOffilter(style => style["default?"] === 1));
@@ -68,7 +73,7 @@ class ProductCard extends React.Component {
     let relImg = "(NO IMAGE AVAILABLE)"; // fallback
     const relatedUrlIndex = 0; // HARD CODED
     // if (relatedStyles[relatedStylesIndex] !== undefined) { // needed, but WHY?
-      relImg = relatedStyle.photos[relatedUrlIndex].url;
+      // relImg = relatedStyle.photos[relatedUrlIndex].url;
   // }
 
     // let reviewRating = this.props.reviewRating; // NOT USED
@@ -78,7 +83,7 @@ class ProductCard extends React.Component {
         <div id="product-card-div" onClick={() =>this.setProductId()}>
           <div onClick={this.scrollToTop}>
             <div className="card mb-3">
-              <img className="card-img-top" src={relThumbnail}  alt=""/>
+              {/* <img className="card-img-top" src={relThumbnail}  alt=""/> */}
               <div className="card-img-overlay">
                 <small><p className="btn btn-primary">*</p></small>
               </div>

@@ -10,9 +10,11 @@ class RIAC extends React.Component{
     super(props)
     this.state={
     }
+    // console.log("R: t.p.rPsIds: ", this.props.relatedProductsIds)
   }
 
   render() {
+    console.log(new Date());
     console.log("R: cP: ", this.props.currentProduct);
     console.log("R: t.p.rPsIds: ", this.props.relatedProductsIds)
     let currentRelatedProductIdx = 1;  // HARD CODED
