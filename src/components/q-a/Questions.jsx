@@ -5,31 +5,34 @@ import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
 import Answers from './Answers';
 
-
-
 class Questions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       renderQuestions: 4,
       SearchText: '',
+      hasVoted: false,
     };
-    this.ShowTwoMore = this.ShowTwoMore.bind(this);
-    this.SearchBox = this.SearchBox.bind(this);
   }
 
-  ShowTwoMore() {
+  ShowTwoMore = e => {
     this.setState((prevState) => ({ renderQuestions: prevState.renderQuestions + 2 }));
   }
 
-  SearchBox(event) {
+  SearchBox = event => {
     this.setState({
       SearchText: event.target.value.toUpperCase(),
     });
   }
 
+  Helpfulness = () => {
+    this.setState({
+      hasVoted: true,
+    });
+  }
+
   render() {
-    let sortedQuestions = [...this.props.questions];
+    let { questions } = this.props
 
     function compare(a, b) {
       if (a.question_helpfulness < b.question_helpfulness) {
@@ -38,13 +41,13 @@ class Questions extends React.Component {
       return -1;
     }
 
-    sortedQuestions = sortedQuestions.sort(compare).slice(0, this.state.renderQuestions);
+    questions = questions.sort(compare).slice(0, this.state.renderQuestions);
     if (this.state.SearchText.length >= 3) {
-      sortedQuestions = sortedQuestions.filter(question => question.question_body
+      questions = questions.filter(question => question.question_body
         .toUpperCase().includes(this.state.SearchText));
     }
 
-    const items = sortedQuestions.map((question, i) => (
+    const items = questions.map((question, i) => (
       <div>
         <Row className="layout" key={i}>
           <Col className="layout">
@@ -55,16 +58,16 @@ class Questions extends React.Component {
               </Col>
               <Col className="layout">
                 <Row className="layout">
-                Helpful?
-                  {' Yes (' + question.question_helpfulness + ') '}
-                | Add answer
+                Helpful?&nbsp;
+                  <div onClick={this.Helpfulness}>{' Yes (' + question.question_helpfulness + ') '}</div>
+                  &nbsp;| Add answer
                 </Row>
               </Col>
             </Row>
             <Answers questionId={question.question_id} />
           </Col>
         </Row>
-        {i === sortedQuestions.length - 1 && i !== this.props.questions.length - 1
+        {i === questions.length - 1 && i !== this.props.questions.length - 1
           ? <Row className="layout"><Button onClick={this.ShowTwoMore}>MORE ANSWERED QUESTIONS</Button> | ADD A QUESTION +</Row>
           : null}
       </div>

@@ -13,8 +13,9 @@ class Answers extends React.Component {
     this.state = {
       answers: [],
       renderAnswers: 2,
+      helpfulness: 0,
+      hasVoted: false,
     };
-    this.ShowTwoMore = this.ShowTwoMore.bind(this);
   }
 
   componentDidMount() {
@@ -22,7 +23,7 @@ class Answers extends React.Component {
       (results) => this.setState({ answers: results.results }));
   }
 
-  ShowTwoMore() {
+  ShowTwoMore = () => {
     this.setState((prevState) => ({ renderAnswers: prevState.renderAnswers + 2 }));
   }
 
