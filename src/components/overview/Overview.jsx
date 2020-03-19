@@ -11,7 +11,7 @@ import {FacebookShareButton, TwitterShareButton, PinterestShareButton} from "rea
 import {FacebookIcon,PinterestIcon,TwitterIcon} from "react-share";
 import StarRatings from "react-star-ratings";
 import ImageGallery from "react-image-gallery"
-import ReactImageMagnify from 'react-image-magnify';
+import ReactImageMagnify from "react-image-magnify";
 import "react-image-gallery/styles/css/image-gallery.css";
 import "./Overview.css"
 
