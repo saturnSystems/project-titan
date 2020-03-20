@@ -24,15 +24,23 @@ class Reviews extends React.Component {
       itemsToShow: 2,
       options: ["newest", "helpful", "relevant"],
       option: "",
-      sortedBy: "relevant"
+      sortedBy: "relevant",
+      starSort: 0,
+      practiceSort: []
     };
   }
+
+  handleStarSort = star => {
+    // console.log(star);
+    this.setState({ starSort: star });
+  };
 
   componentDidMount = () => {
     const { productID } = this.props;
     helper.getListReviews(productID, this.state.sortedBy, result => {
       this.setState({
-        reviews: result.results
+        reviews: result.results,
+        practiceSort: result.results.filter(item => item.rating === 4)
       });
     });
   };
@@ -46,6 +54,15 @@ class Reviews extends React.Component {
         });
       });
     }
+    if (prevState.starSort !== this.state.starSort) {
+      helper.getListReviews(productID, this.state.sortedBy, result => {
+        this.setState({
+          reviews: result.results.filter(
+            item => item.rating === this.state.starSort
+          )
+        });
+      });
+    }
   }
 
   moreReviews = () => {
@@ -53,7 +70,6 @@ class Reviews extends React.Component {
   };
 
   setOption = option => {
-    //// Do a helper call with sortedBy state? //////
     this.setState({ sortedBy: option });
   };
 
@@ -69,6 +85,7 @@ class Reviews extends React.Component {
               <Ratings
                 productId={this.state.productId}
                 reviews={this.state.reviews}
+                handleStarSort={this.handleStarSort}
               />
             </Col>
             <Col sm={1} className="layout noBorder"></Col>

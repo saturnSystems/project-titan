@@ -50,7 +50,7 @@ export default class Ratings extends Component {
         theSum: Object.keys(results.ratings)
           .map((item, i) => {
             const valys = Object.values(results.ratings);
-            return parseInt(item, 10) * valys[i]; // .reduce((a, b) => a + b);
+            return parseInt(item, 10) * valys[i];
           })
           .reduce((a, b) => a + b),
         ratingSum: Object.values(results.ratings)
@@ -70,10 +70,13 @@ export default class Ratings extends Component {
           Object.values(results.ratings).reduce(
             (previous, current) => (current += previous)
           )
-      }));
+      })
+    );
   }
 
+  // bring in handleStarSort somehow??????
   render() {
+    const { handleStarSort } = this.props;
     return (
       <dl>
         <Row className="layout noBorder ratingAvg">
@@ -90,11 +93,21 @@ export default class Ratings extends Component {
         <Row className="layout">100% of reviews recommend</Row>
         <Row className="layout">
           <Col sm={2}>
-            <Row className="">5 Star</Row>
-            <Row>4 Star </Row>
-            <Row>3 Star</Row>
-            <Row>2 Star</Row>
-            <Row>1 Star</Row>
+            <Row onClick={() => handleStarSort(5)} className="underline">
+              5 Star
+            </Row>
+            <Row onClick={() => handleStarSort(4)} className="underline">
+              4 Star{" "}
+            </Row>
+            <Row onClick={() => handleStarSort(3)} className="underline">
+              3 Star
+            </Row>
+            <Row onClick={() => handleStarSort(2)} className="underline">
+              2 Star
+            </Row>
+            <Row onClick={() => handleStarSort(1)} className="underline">
+              1 Star
+            </Row>
           </Col>
           <Col sm={8} className="noPaddy">
             <ProgressBar
@@ -157,11 +170,31 @@ export default class Ratings extends Component {
             />
           </Col>
           <Col sm={1}>
-            <Row>{this.state.ratingVals[4]}</Row>
-            <Row>{this.state.ratingVals[3]}</Row>
-            <Row>{this.state.ratingVals[2]}</Row>
-            <Row>{this.state.ratingVals[1]}</Row>
-            <Row>{this.state.ratingVals[0]}</Row>
+            <Row>
+              {this.state.ratingStars.includes("5")
+                ? this.state.ratingVals[this.state.ratingVals.length - 1]
+                : 0}
+            </Row>
+            <Row>
+              {this.state.ratingStars.includes("4")
+                ? this.state.ratingVals[this.state.ratingStars.indexOf("4")]
+                : 0}
+            </Row>
+            <Row>
+              {this.state.ratingStars.includes("3")
+                ? this.state.ratingVals[this.state.ratingStars.indexOf("3")]
+                : 0}
+            </Row>
+            <Row>
+              {this.state.ratingStars.includes("2")
+                ? this.state.ratingVals[this.state.ratingStars.indexOf("2")]
+                : 0}
+            </Row>
+            <Row>
+              {this.state.ratingStars.includes("1")
+                ? this.state.ratingVals[this.state.ratingStars.indexOf("1")]
+                : 0}
+            </Row>
           </Col>
         </Row>
         <br />
