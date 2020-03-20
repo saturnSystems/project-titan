@@ -32,7 +32,7 @@ const getOneProductStyle = (productId, callback) => {
   // returns object with style_id, name, prices, photos,...
 };
 
-const getRelatedProducts = (productId, callback) => {
+const getRelatedProductsIds = (productId, callback) => {
   fetch(`http://3.134.102.30/products/${productId}/related`)
     .then(response => response.json())
     .then(data => callback(data)) // CHANGE: to do what you want with it
@@ -271,7 +271,7 @@ module.exports = {
   getAllProducts,
   getOneProduct,
   getOneProductStyle,
-  getRelatedProducts,
+  getRelatedProductsIds,
   getListQuestions,
   getAnswersList,
   postAQuestion,
