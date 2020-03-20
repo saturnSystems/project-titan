@@ -29,7 +29,9 @@ export default class Ratings extends Component {
       ratingSum: 0,
       ratingsAvg: 0,
       reviews: [],
-      ratingsLength: 0
+      ratingsLength: 0,
+      starArr: ["1", "2", "3", "4", "5"],
+      realAvg: 0
     };
   }
 
@@ -45,6 +47,12 @@ export default class Ratings extends Component {
         ratingsValsSum: Object.values(results.ratings).map(
           (item, i) => item * (i + 1)
         ),
+        // //////// MAYBE SOMETHING LIKE THIS ////////////////////
+        // ratingsValsSum: Object.values(results.ratings).map((item, i) => {
+        //   return
+        //   if (this.state.starArr.includes(`${item}`)) {
+        //      item * (i + 1)
+        //   }})
         ratingSum: Object.values(results.ratings) // not adding properly, may not have 1 star...
           .map((item, i) => item * (i + 1))
           .reduce((a, b) => a + b),
@@ -52,7 +60,7 @@ export default class Ratings extends Component {
         ratingsLength: Object.values(results.ratings).reduce(
           (previous, current) => (current += previous)
         ),
-
+        theAvg: Object.values(results.ratings).forEach(rating => rating * 2),
         ratingsAvg:
           Object.values(results.ratings)
             .map((item, i) => item * (i + 1))
@@ -65,11 +73,18 @@ export default class Ratings extends Component {
   }
 
   render() {
+    let sum = 0;
+
+    for (const key in this.state.meta.ratings) {
+      sum += key * this.state.meta.ratings[key];
+    }
+
+    const realAvg = sum / this.state.ratingsLength;
+    const otherAvg = realAvg;
     return (
       <dl>
         <Row className="layout noBorder ratingAvg">
-          {this.state.ratingsAvg.toFixed(1)}
-
+          {realAvg.toFixed(1)}
           <span className="stary">
             <StarRatings
               rating={this.state.ratingsAvg}
@@ -85,8 +100,9 @@ export default class Ratings extends Component {
             <div>
               <ProgressBar
                 className="ratingBars"
-                max={this.state.ratingSum}
+                max={sum}
                 label="5 Star"
+                onClick={() => console.log("5 Star Bar Clicked!")}
                 now={
                   this.state.ratingStars.includes("5")
                     ? this.state.ratingVals[
@@ -94,10 +110,10 @@ export default class Ratings extends Component {
                       ] * 5
                     : 0
                 }
-              />
+              />{" "}
               <ProgressBar
                 className="ratingBars"
-                max={this.state.ratingSum}
+                max={sum}
                 label="4 Star"
                 now={
                   this.state.ratingStars.includes("4")
@@ -109,7 +125,7 @@ export default class Ratings extends Component {
               />
               <ProgressBar
                 className="ratingBars"
-                max={this.state.ratingSum}
+                max={sum}
                 label="3 Star"
                 now={
                   this.state.ratingStars.includes("3")
@@ -121,7 +137,7 @@ export default class Ratings extends Component {
               />
               <ProgressBar
                 className="ratingBars"
-                max={this.state.ratingSum}
+                max={sum}
                 label="2 Star"
                 now={
                   this.state.ratingStars.includes("2")
@@ -133,7 +149,7 @@ export default class Ratings extends Component {
               />
               <ProgressBar
                 className="ratingBars"
-                max={this.state.ratingSum}
+                max={sum}
                 label="1 Star"
                 now={
                   this.state.ratingStars.includes("1")
@@ -142,11 +158,6 @@ export default class Ratings extends Component {
                 }
               />
             </div>
-            {/* <Row>5 Stars ||||||||</Row>
-            <Row>4 Stars ||||||</Row>
-            <Row>3 Stars |||||||||||</Row>
-            <Row>2 Stars ||||||</Row>
-            <Row>1 Stars ||||</Row> */}
           </Col>
         </Row>
         <br />

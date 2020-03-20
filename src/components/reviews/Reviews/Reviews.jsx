@@ -65,7 +65,7 @@ class Reviews extends React.Component {
         <Col sm={{ span: 10, offset: 1 }} className="layout container noBorder">
           <Row className="layout noBorder">Ratings and Reviews</Row>
           <Row className="layout noBorder">
-            <Col sm={3} className="layout noBorder">
+            <Col sm={2} className="layout noBorder">
               <Ratings
                 productId={this.state.productId}
                 reviews={this.state.reviews}
