@@ -152,7 +152,7 @@ class ReviewTiles extends React.Component {
                   // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
                   <p
                     name="helpfulness"
-                    className="buffer"
+                    className="buffer pointer"
                     onClick={() => this.handleHelpfulness()}
                     type="disabled"
                   >
