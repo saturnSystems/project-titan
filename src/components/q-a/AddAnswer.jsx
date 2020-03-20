@@ -4,6 +4,7 @@ import ModalHeader from 'react-bootstrap/ModalHeader';
 import ModalTitle from 'react-bootstrap/ModalTitle';
 import ModalBody from 'react-bootstrap/ModalBody';
 import ModalFooter from 'react-bootstrap/ModalFooter';
+import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 
 
@@ -12,28 +13,40 @@ class AddAnswer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ShowModal: true
+      ShowModal: true,
+      FormText: ''
     };
   }
 
-  ShowModal = () => {
+  CloseModal = () => {
       this.setState({
           ShowModal: false
       })
   }
 
+  FormText = (e) => {
+      this.setState({FormText: e.target.value});
+  }
+
+// const postAnAnswer = (questionId, body, name, email, photos, callback)
+// Will add postAnAnswer helper function on submit here
+
   render() {
     return (
       <Modal size="lg" show={this.state.ShowModal}>
-          <ModalHeader>Add Answer</ModalHeader>
-          <ModalTitle>Put your thoughts in</ModalTitle>
+          <ModalHeader><h2>Submit your Answer</h2></ModalHeader>
+          <ModalTitle></ModalTitle>
           <Form>
-          <Form.Label></Form.Label>
-          <Form.Control></Form.Control>
-          <Form.Control></Form.Control>
+          <Form.Label><b>Your Answer*</b></Form.Label>
+          <Form.Control placeholder={`1000 characters`} onChange={this.FormText}></Form.Control>
+          <Form.Label><b>What is your nickname*</b></Form.Label>
+          <Form.Control placeholder={"Example: jack543!"}></Form.Control>
+          <p><i>For privacy reasons, do not use your full name or email address</i></p>
+          <Form.Label><b>Your email</b></Form.Label>
+          <Form.Control placeholder={`Example: jack@email.com`}></Form.Control>
           </Form>
-          <ModalBody>Yes, yes, yes! You get a car, as do I!</ModalBody>
-          <ModalFooter><button onClick={this.ShowModal}>Close</button></ModalFooter>
+          <ModalBody>BODY</ModalBody>
+          <ModalFooter><Button onClick={this.CloseModal}>Close</Button></ModalFooter>
       </Modal>
     );
   }

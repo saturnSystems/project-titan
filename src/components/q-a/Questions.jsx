@@ -12,12 +12,17 @@ class Questions extends React.Component {
     this.state = {
       hasVoted: false,
       helpfulness: 0,
-      renderTwoAnswers: true
+      renderTwoAnswers: true,
+      ShowModal: false,
     };
   }
 
   ShowAllAnswers = () => {
     this.setState({ renderTwoAnswers: !this.state.renderTwoAnswers });
+  }
+
+  ShowModal = () => {
+    this.setState({ShowModal: true})
   }
 
   Helpfulness = () => {
@@ -62,7 +67,7 @@ class Questions extends React.Component {
 
     return (
       <div>
-      <AddAnswer />
+      {this.state.ShowModal ? <AddAnswer /> : null}
         <Row className="layout" key={this.props.OneQuestion.question_id}>
           <Col className="layout">
             <Row className="layout">
@@ -74,12 +79,13 @@ class Questions extends React.Component {
                 <Row className="layout">
                 Helpful?&nbsp;
                   <div onClick={this.Helpfulness}><u>Yes</u>{' (' + this.state.helpfulness + ') '}</div>
-                  &nbsp;| Add answer
+                  &nbsp;| &nbsp;
+                  <p onClick={this.ShowModal}><u>Add Answer</u></p>
                 </Row>
               </Col>
             </Row>
             {answerListArray.map(answer => <Answers OneAnswer={answer} key={answer.id}/>)}
-            {Object.keys(this.props.OneQuestion.answers).length > 2 ? this.state.renderTwoAnswers ? <Row><Col><Button size="sm" type="submit" onClick={this.ShowAllAnswers}>Load more answers</Button></Col></Row> 
+            {Object.keys(this.props.OneQuestion.answers).length > 2 ? this.state.renderTwoAnswers ? <Row style={{padding: "0px 10px 20px 5px"}}><Col><Button size="sm" type="submit" onClick={this.ShowAllAnswers}>Load more answers</Button></Col></Row> 
             : <Row><Col><Button size="sm" type="submit" onClick={this.ShowAllAnswers}>Collapse answers</Button></Col></Row> : null}
           </Col>
         </Row>

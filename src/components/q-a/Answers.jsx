@@ -1,6 +1,7 @@
 import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import './QA.css'
 
 const helper = require('../../helper/helper.js');
 
@@ -32,14 +33,14 @@ class Answers extends React.Component {
   render() {
   return (
     <Row className="layout" key={this.props.OneAnswer.id}>
-      <b>A:&nbsp;</b>
+      <b>A:&nbsp;&nbsp;</b>
 
       <Col className="layout" sm={9}>
         <Row className="layout">
           <Col className="layout">
-            <Row className="layout">{ this.props.OneAnswer.body }</Row>
+            <Row className="layout" style={{padding: "0px 10px 10px 5px"}}>{ this.props.OneAnswer.body }</Row>
 
-            <Row className="layout">
+            <Row className="layout" style={{padding: "0px 10px 10px 5px"}}>
             By&nbsp;
               {this.props.OneAnswer.answerer_name === 'Seller' ? <strong>{this.props.OneAnswer.answerer_name}</strong>
                 : this.props.OneAnswer.answerer_name}
@@ -60,8 +61,8 @@ class Answers extends React.Component {
         </Row>
         <Row className="layout">
           <Col className="layout">
-            <Row className="layout">Answer to reply?</Row>
-            <Row className="layout">IMAGES</Row>
+            <Row className="layout" style={{padding: "0px 10px 10px 5px"}}>Answer to reply?</Row>
+            <Row className="layout" style={{padding: "0px 10px 10px 5px"}}>IMAGES</Row>
             {/* <Row className="layout">Date | Helpful | Report</Row> */}
           </Col>
         </Row>
