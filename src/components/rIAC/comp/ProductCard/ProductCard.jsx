@@ -19,14 +19,20 @@ class ProductCard extends React.Component {
     this.state={
       // relatedProductId: props.relatedProductId, // USED as "stat"?? 
       relatedProduct: {}, // change over time, requiring re-render
-      relatedStyles: [], // change over time, requiring re-render
-      relatedReviewRating: null // change over time, requiring re-render
+      relatedStyle: null, // change over time, requiring re-render
+      relatedReviewRating: null, // change over time, requiring re-render
+      relatedStyleOriginalPrice: null,
+      relatedStyleSalePrice: null
+
     }
+
+    this.scrollToTop = this.scrollToTop.bind(this);
+
   }
   
   componentDidMount() {
     let relatedProductId = this.props.relatedProductId
-    console.log("+++++PC: cDM: if cRPId: ", relatedProductId)
+    console.log("+PC: cDM: if cRPId: ", relatedProductId)
     this.loadRelatedProductData();
   }
 
@@ -40,7 +46,7 @@ class ProductCard extends React.Component {
   loadRelatedProductData = (relatedProductId) => {
   // loadRelatedProductData = () => {
     // console.log("PC: lRPD: t.s.rP: ", this.state.relatedProduct)
-    console.log("+++++PC: lRPD: t.p.rPI: ", this.props.relatedProductId)
+    console.log("++PC: lRPD: t.p.rPI: ", this.props.relatedProductId)
     helper.getOneProduct(this.props.relatedProductId, result => {
       this.setState({
         relatedProduct: result
@@ -51,7 +57,7 @@ class ProductCard extends React.Component {
         relatedStyles: result.results
       });
     });
-    console.log("PC: lRPD: t.s.rSs: ", this.state.relatedStyles)
+    console.log("+++PC: lRPD: t.s.rSs: ", this.state.relatedStyles)
 
     helper.getReviewMetadata(this.props.relatedProductId, result => {
       this.setState({
@@ -59,23 +65,6 @@ class ProductCard extends React.Component {
       });
     });
     console.log("PC: lRPD: t.s.rRR: ", this.state.relatedReviewRating)
-    // helper.getListReviews(this.state.productID, result => {
-    //   this.setState({
-    //     reviews: result.results
-    //   });
-    // });
-    // helper.getListQuestions(this.state.productID, result => {
-    //   // Q&A - Questions
-    //   this.setState({
-    //     questions: result.results
-    //   });
-    // });
-
-    // helper.getRelatedProducts(this.state.productID, result => {
-    //   this.setState({
-    //     relatedProducts: result
-    //   });
-    // });
   }
   
   setRelatedProductId = (newRelatedProductId) => { // (event) parameter not actually used
@@ -84,6 +73,10 @@ class ProductCard extends React.Component {
 
   setProductId = () => { // (event) parameter not actually used
     this.props.setProductId(this.props.relatedProductId);
+  }
+
+  scrollToTop () {
+    window.scrollTo(0, 0);
   }
 
   render() {
@@ -96,7 +89,6 @@ class ProductCard extends React.Component {
     let relatedProductId = this.props.relatedProductId;
     if (relatedProductId !== undefined) { // FURTHER ACTION REQUIRED
 
-      console.log("-\n-\n-\n-\n");
       console.log("PC: render: rPId: ", relatedProductId);
       
       // this.loadRelatedProductData();
@@ -105,17 +97,13 @@ class ProductCard extends React.Component {
       // console.log("PC: cP: ", currentProduct);
       // let relatedProductId = this.props.relatedProductId; // NOT USED
       // console.log("PC: rPId: ", relatedProductId);
-      console.log(1)
       let relatedProduct = this.state.relatedProduct;
-      console.log(2)
       if (relatedProduct.id === undefined) {
         // relatedProduct = null;
         return null;
       } // FURTHER ACTION REQUIRED
-      console.log(3);
       console.log("PC: rP: ", relatedProduct);
 
-      console.log(4);
       let relatedCategory = relatedProduct.category;
       if (relatedProduct.category === undefined) relatedCategory = null; // FURTHER ACTION REQUIRED
       console.log("PC: rCat: ", relatedCategory);
@@ -126,14 +114,14 @@ class ProductCard extends React.Component {
 
       let relatedDefPrice = relatedProduct.default_price;
       if (relatedDefPrice === undefined) relatedDefPrice = null; // FURTHER ACTION REQUIRED
-      console.log("PC: rDF: ", relatedDefPrice);
+      console.log("PC: rDP: ", relatedDefPrice);
 
       // let relatedRating = "***"; // NOT USED. Superceded by actual star rating
       
       // let styles = this.state.styles;
       // console.log("PC: render: t.s.rS: ", this.state.relatedStyles);   
       let relatedStyles = this.state.relatedStyles;
-      //if (relatedStyles === undefined) return null; // FURTHER ACTION REQUIRED
+      if (relatedStyles === undefined) return null; // FURTHER ACTION REQUIRED
       if (relatedStyles.length <= 0) return null; // FURTHER ACTION REQUIRED
       console.log("PC render: rSs: ", relatedStyles);
 
@@ -142,25 +130,55 @@ class ProductCard extends React.Component {
 
       console.log("PC: rSs[0]: ", relatedStyles[0]);
 
-      // let defaultStyleIndex = relatedStyles.indexOf(filter(style => relatedStyles.results[index]["default?"] === 1));
+      // // names = searchWords.filter(x => students.indexOf(x) !== -1);
+      // let defaultStyle = null;
+      // for(let i = 0; i < this.props.styles.length; i++) {
+      //   if(this.props.styles[i]["default?"]) {
+      //     let defaultStyle = this.props.styles[i]
+      //   }
+      // }
+      // this.setState({
+      //   relatedStyle: defaultStyle || this.props.styles[0]
+      // });
+
+
+      // let temp = relatedStyles.filter(index => relatedStyles.indexOf(relatedStyles.results[index]["default?"] === 1));
+      // console.log(temp);
+
+      // let defaultStyleIndex = relatedStyles.indexOf(relatedStyles.filter(style => style.results[index]["default?"] === 1));
       // if (defaultStyleIndex === undefined) defaultStyleIndex = null; // FURTHER ACTION REQUIRED
+      
       // console.log("PC: dSIx: ", defaultStyleIndex);
 
       let relatedStylesIndex = 2; // HARD CODED
       // let relatedStylesIndex = defaultStyleIndex;
+      // let relatedStyle = this.state.relatedStyle;
       let relatedStyle = relatedStyles[relatedStylesIndex];
       if (relatedStyle === undefined) relatedStyle = null; // FURTHER ACTION REQUIRED
       console.log("PC: rS: ", relatedStyle);
 
       let relatedStyleOriginalPrice = relatedStyle.original_price || null;
+
+      // this.setState({
+      //   relatedStyleOriginalPrice: relatedStyle.original_price || null
+      // });
+
       if (relatedStyle === undefined) relatedStyle = null; // FURTHER ACTION REQUIRED
       console.log("PC: rS: ", relatedStyle);
       let relatedStyleSalePrice = relatedStyle.sale_price || null;
-      if (relatedStyle === undefined) relatedStyle = null; // FURTHER ACTION REQUIRED
-      console.log("PC: rStyle: ", relatedStyle);
+      if (relatedStyleSalePrice === undefined) relatedStyle = null; // FURTHER ACTION REQUIRED
+      console.log("PC: rStyle: ", relatedStyleSalePrice);
+
+      // this.setState({
+      //   relatedStyleSalePrice: relatedStyle.relatedStyleSalePrice || null
+      // });
+
+
+      console.log("PC: rS.p: ", relatedStyle.photos);
+
       let relatedStyleImage = relatedStyle.photos[0].url || null;
-      if (relatedStyle === undefined) relatedStyle = null; // FURTHER ACTION REQUIRED
-      console.log("PC: rS: ", relatedStyle);
+      if (relatedStyleImage === undefined) relatedStyle = null; // FURTHER ACTION REQUIRED
+      console.log("PC: rSI: ", relatedStyleImage);
 
       // let relatedStyles[i].relatedProductId = relatedProductId || null;
       // let relatedStyles[i].index = defaultStyleIndex || null;
@@ -173,9 +191,9 @@ class ProductCard extends React.Component {
 
       // let relatedTNStylesIndex = 1; // HARD CODED
       // let relThumbnail = "./NoImageOnFile.jps"; // fallback
-      // let relatedThumbnailIndex = 0; // HARD CODED
+      let relatedThumbnailIndex = 0; // HARD CODED
       // if (this.state.relatedStyles[relatedStylesIndex] !== undefined) { // needed, but WHY?
-      //   relThumbnail = relatedStyle.photos[relatedThumbnailIndex].thumbnail_url;
+        // relThumbnail = relatedStyle.photos[relatedThumbnailIndex].thumbnail_url;
       // }
 
       // let relatedReviewRating = this.props.reviewRating; // NOT USED
@@ -195,7 +213,9 @@ class ProductCard extends React.Component {
         <div id="product-card-div" onClick={() =>this.setProductId()}>
           <div onClick={this.scrollToTop}>
             <div className="card mb-3">
-              <img className="card-img-top" src={relatedStyleImage}  alt=""/>
+            
+              {/* <img className="card-img-top" src={"relatedStyleImage"}  alt=""/> */}
+              <img className="card-img-top" src={"https://images.unsplash.com/photo-1473396413399-6717ef7c4093?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"}  alt=""/>
               <div className="card-img-overlay">
                 <p className="btn btn-primary">&#2605;</p>
               </div>
@@ -204,10 +224,14 @@ class ProductCard extends React.Component {
         </div>
         <div className="card">
           <div className="card-body">
-          <p className="card-text category">{relatedCategory}</p>
-            <h5 className="card-title caption">{relatedCaption}</h5>
-            <small><p className="card-text text-muted price">{relatedDefPrice}</p></small>
-            <small><p className="card-text text-muted price">{relatedStyleOriginalPrice} &nbps; &nbsp; {relatedStyleSalePrice}</p></small>
+          
+          {/* <p className="card-text category">{relatedCategory}</p> */}
+          <p className="card-text category">{this.state.relatedProduct.category}</p>
+            <h5 className="card-title caption">{this.state.relatedProduct.relatedCaption}</h5>
+            {/* <small><p className="card-text text-muted price">{this.state.relatedProduct.relatedDefPrice}</p></small>
+            <small><p className="card-text text-muted price">{this.state.relatedStyleOriginalPrice} &nbps; &nbsp; {this.state.relatedStyleSalePrice}</p></small> */}
+            <small><p className="card-text text-muted price">{"$999999"}</p></small>
+            <small><p className="card-text text-muted price">{"OriginalPrice"} &nbps; &nbsp; {"SalePrice"}</p></small>
             {/* Placeholder. Superceded by star ratings, below. */}
             {/* <p className="card-text">{relatedRating}</p> */}
             <Row>              
