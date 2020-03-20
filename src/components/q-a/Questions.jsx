@@ -3,6 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Answers from './Answers';
 import Button from 'react-bootstrap/Button';
+import AddAnswer from '.././q-a/AddAnswer.jsx'
 const helper = require("./../../helper/helper.js");
 
 class Questions extends React.Component {
@@ -60,6 +61,8 @@ class Questions extends React.Component {
     }
 
     return (
+      <div>
+      <AddAnswer />
         <Row className="layout" key={this.props.OneQuestion.question_id}>
           <Col className="layout">
             <Row className="layout">
@@ -76,10 +79,11 @@ class Questions extends React.Component {
               </Col>
             </Row>
             {answerListArray.map(answer => <Answers OneAnswer={answer} key={answer.id}/>)}
-            {Object.keys(this.props.OneQuestion.answers).length > 2 ? this.state.renderTwoAnswers ? <Row><Col><Button type="submit" onClick={this.ShowAllAnswers}>Load more answers</Button></Col></Row> 
-            : <Row><Col><Button type="submit" onClick={this.ShowAllAnswers}>Collapse answers</Button></Col></Row> : null}
+            {Object.keys(this.props.OneQuestion.answers).length > 2 ? this.state.renderTwoAnswers ? <Row><Col><Button size="sm" type="submit" onClick={this.ShowAllAnswers}>Load more answers</Button></Col></Row> 
+            : <Row><Col><Button size="sm" type="submit" onClick={this.ShowAllAnswers}>Collapse answers</Button></Col></Row> : null}
           </Col>
         </Row>
+        </div>
 
     );
   }

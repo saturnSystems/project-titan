@@ -42,10 +42,10 @@ class List extends React.Component {
 		
 		return (
 			<div key={this.props.product_id}>
-			<Row className="layout"><div><form><FormControl type="text" placeholder="Have a question? Search for answers…" onChange={this.SearchBox} /></form></div></Row>
+			<Row className="layout"><div><form><FormControl size="sm" type="text" placeholder="Have a question? Search for answers…" onChange={this.SearchBox} /></form></div></Row>
 			{questions.map(question => <Questions OneQuestion={question} key={question.question_id}/>)}
 			{this.state.renderQuestions < this.props.questions.length && this.props.questions.length > 2
-			? <Row className="layout"><Button onClick={this.ShowTwoMore}>MORE ANSWERED QUESTIONS</Button> | ADD A QUESTION +</Row> 
+			? <Row className="layout"><Button size="sm" onClick={this.ShowTwoMore}>MORE ANSWERED QUESTIONS</Button> | ADD A QUESTION +</Row> 
 			: null}
 		</div>
 		)
