@@ -1,7 +1,5 @@
-// this component will go in Q-a.jsx
 import React from 'react';
 import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
 import Questions from '../q-a/Questions';
@@ -43,9 +41,9 @@ class List extends React.Component {
 		}
 		
 		return (
-			<div>
+			<div key={this.props.product_id}>
 			<Row className="layout"><div><form><FormControl type="text" placeholder="Have a question? Search for answers…" onChange={this.SearchBox} /></form></div></Row>
-			{questions.map(question => <Questions OneQuestion={question} />)}
+			{questions.map(question => <Questions OneQuestion={question} key={question.question_id}/>)}
 			{this.state.renderQuestions < this.props.questions.length && this.props.questions.length > 2
 			? <Row className="layout"><Button onClick={this.ShowTwoMore}>MORE ANSWERED QUESTIONS</Button> | ADD A QUESTION +</Row> 
 			: null}

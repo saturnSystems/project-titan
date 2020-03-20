@@ -60,7 +60,6 @@ class Questions extends React.Component {
     }
 
     return (
-      <div>
         <Row className="layout" key={this.props.OneQuestion.question_id}>
           <Col className="layout">
             <Row className="layout">
@@ -76,12 +75,11 @@ class Questions extends React.Component {
                 </Row>
               </Col>
             </Row>
-            {answerListArray.map(answer => <Answers OneAnswer={answer} />)}
+            {answerListArray.map(answer => <Answers OneAnswer={answer} key={answer.id}/>)}
             {Object.keys(this.props.OneQuestion.answers).length > 2 ? this.state.renderTwoAnswers ? <Row><Col><Button type="submit" onClick={this.ShowAllAnswers}>Load more answers</Button></Col></Row> 
             : <Row><Col><Button type="submit" onClick={this.ShowAllAnswers}>Collapse answers</Button></Col></Row> : null}
           </Col>
         </Row>
-      </div>
 
     );
   }
