@@ -19,7 +19,6 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      products: [],
       productId: window.location.search.substr(1) || 1,
       currentProduct: [],
       currentReviewRating: 0,
@@ -27,7 +26,7 @@ class App extends React.Component {
       reviews: [],
       questions: [],
       cart: [],
-      relatedProducts: []
+      relatedProductsIds: []
     };
 
     this.reviewsRef = React.createRef();
@@ -66,7 +65,7 @@ class App extends React.Component {
       });
       helper.getRelatedProducts(this.state.productId, result => {
         this.setState({
-          relatedProducts: result
+          relatedProductsIds: result
         });
       });
       this.setState({
@@ -148,12 +147,9 @@ class App extends React.Component {
 
         {this.state.currentProduct.id !== undefined && (
           <RIAC
-            setProductId={this.setProductId}
-            products={this.state.products}
+            setProductId={this.setProductId}            
             currentProduct={this.state.currentProduct}
-            relatedProductsIds={this.state.relatedProducts}
-            reviewRating={this.state.currentReviewRating}
-            styles={this.state.styles}
+            relatedProductsIds={this.state.relatedProductsIds}
           />
         )}
         <br></br>
