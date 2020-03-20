@@ -63,7 +63,7 @@ class App extends React.Component {
           styles: result.results
         });
       });
-      helper.getRelatedProducts(this.state.productId, result => {
+      helper.getRelatedProductsIds(this.state.productId, result => {
         this.setState({
           relatedProductsIds: result
         });
