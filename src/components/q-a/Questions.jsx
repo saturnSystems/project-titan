@@ -11,12 +11,12 @@ class Questions extends React.Component {
     this.state = {
       hasVoted: false,
       helpfulness: 0,
-      renderAnswers: 2
+      renderTwoAnswers: true
     };
   }
 
-  ShowTwoMore = () => {
-    this.setState((prevState) => ({ renderAnswers: prevState.renderAnswers + 2 }));
+  ShowAllAnswers = () => {
+    this.setState({ renderTwoAnswers: !this.state.renderTwoAnswers });
   }
 
   Helpfulness = () => {
@@ -53,7 +53,11 @@ class Questions extends React.Component {
       }
     }
 
-    answerListArray = answerListArray.sort(compare).slice(0, this.state.renderAnswers);
+    if (this.state.renderTwoAnswers) {
+    answerListArray = answerListArray.sort(compare).slice(0, 2);
+    } else {
+      answerListArray = answerListArray.sort(compare)
+    }
 
     return (
       <div>
@@ -73,7 +77,8 @@ class Questions extends React.Component {
               </Col>
             </Row>
             {answerListArray.map(answer => <Answers OneAnswer={answer} />)}
-            {this.state.renderAnswers < Object.keys(this.props.OneQuestion.answers).length ? <Row><Col><Button type="submit" onClick={this.ShowTwoMore}>Load more answers</Button></Col></Row> : null }
+            {Object.keys(this.props.OneQuestion.answers).length > 2 ? this.state.renderTwoAnswers ? <Row><Col><Button type="submit" onClick={this.ShowAllAnswers}>Load more answers</Button></Col></Row> 
+            : <Row><Col><Button type="submit" onClick={this.ShowAllAnswers}>Collapse answers</Button></Col></Row> : null}
           </Col>
         </Row>
       </div>
