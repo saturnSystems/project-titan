@@ -4,11 +4,12 @@ import "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "./Reviews.css";
-// import Button from "react-bootstrap/Button";
+import Button from "react-bootstrap/Button";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import DropdownItem from "react-bootstrap/DropdownItem";
 
 import ReviewTiles from "../ReviewsTiles/ReviewTiles";
+import Ratings from "../ratings/Ratings.jsx";
 
 const helper = require("../../../helper/helper.js");
 
@@ -55,18 +56,6 @@ class Reviews extends React.Component {
     //// Do a helper call with sortedBy state? //////
     this.setState({ sortedBy: option });
   };
-  // onChange = newOptions => {
-  //   // take original options and remove selected options
-  //   const stateOptions = options.filter(
-  //     option => !newOptions.find(op => op === option)
-  //   );
-  //   // sort the selected options
-  //   const orderedNewOptions = newOptions.sort(compare);
-  //   this.setState({
-  //     // concat the two arrays
-  //     options: orderedNewOptions.concat(stateOptions)
-  //   });
-  // };
 
   render() {
     const { reviews } = this.state;
@@ -77,7 +66,11 @@ class Reviews extends React.Component {
           <Row className="layout noBorder">Ratings and Reviews</Row>
           <Row className="layout noBorder">
             <Col sm={3} className="layout noBorder">
-              <Row className="layout">3.5*****</Row>
+              <Ratings
+                productId={this.state.productId}
+                reviews={this.state.reviews}
+              />
+              {/* <Row className="layout">3.5*****</Row>
               <br />
               <Row className="layout">100% of reviews recommend</Row>
               <Row className="layout">
@@ -104,7 +97,7 @@ class Reviews extends React.Component {
                   <Row>||||||||||||||||||</Row>
                   <Row>Poor | Perfect</Row>
                 </Col>
-              </Row>
+              </Row> */}
             </Col>
             <Col sm={1} className="layout noBorder"></Col>
             <Col className="layout noBorder">
@@ -166,24 +159,13 @@ class Reviews extends React.Component {
                       />
                     );
                   })}
-              {/* {!this.state.reviewsBtn &&
-              this.state.itemsToShow < this.state.reviews.length ? (
-                <button type="button" onClick={e => this.moreReviews()}>
-                  Show more reviews
-                </button>
-              ) : null} */}
 
-              {/* <br /> */}
               <Row className="layout noBorder">
                 {!this.state.reviewsBtn &&
                 this.state.itemsToShow < this.state.reviews.length ? (
-                  <button
-                    type="button"
-                    className="blueBtn"
-                    onClick={e => this.moreReviews()}
-                  >
+                  <Button className="blueBtn" onClick={e => this.moreReviews()}>
                     Show more reviews
-                  </button>
+                  </Button>
                 ) : null}{" "}
                 <span className="addReviewBtn">| ADD A REVIEW </span>
               </Row>
