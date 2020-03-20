@@ -5,31 +5,51 @@ import Col from 'react-bootstrap/Col'
 import ProductCard from './comp/ProductCard/ProductCard'
 import "./RIAC.css";
 
+// props:
+//   setProductId   ={this.setProductId}
+//   currentProduct   ={this.state.currentProduct}
+//   relatedProductsIds   ={this.state.relatedProductsIds}
+
+
 class RIAC extends React.Component{
   constructor(props){
     super(props)
     this.state={
+      relatedProductId: null
     }
-}
+  }
+
+  setRelatedProductId = (newRelatedProductId) => { // (event) parameter not actually used
+    this.props.setProductId(this.props.relatedProductId);
+  }
 
   render() {
-    console.log("RIAC-DATE-TIME: render: ", new Date());
+    // console.log("RIAC-DATE-TIME: render: ", new Date());
 
-    let currentRelatedProductIndex = 0;  // HARD CODED
+    let relatedProductsIds = this.props.relatedProductsIds;
+    // console.log("RIAC: constr: rPIds: ", relatedProductsIds)
+    
+    let currentRelatedProductIndex = 2;  // HARD CODED
     let relatedProductId = this.props.relatedProductsIds[currentRelatedProductIndex];
-    console.log("----- R: rPI: ", relatedProductId)
-    let productCard = null;
-    if (typeof relatedProductId === 'number') {
-      productCard = (<Col className="layout col-3">
-        <ProductCard 
-          setProductId={this.props.setProductId}
-          currentProduct={this.props.currentProduct}
-          relatedProductId={relatedProductId}
-          // reviewRating={this.props.reviewRating}
-          // styles={this.props.styles}
-        />
-      </Col>);
-    }
+    
+    if (!relatedProductId) return null;
+    // if (relatedProductId === undefined) relatedProductId = null;
+    // if (relatedProductId === undefined) return;
+    // console.log("RIAC: rPId: ", relatedProductId)
+
+    // let productCard = null;
+    // if (typeof relatedProductId === 'number') {
+    //   console.log("RIAC***** pc; rPId: ", relatedProductId);
+    //   productCard = (<Col className="layout col-3">
+    //     <ProductCard 
+    //       setProductId={this.props.setProductId}
+    //       currentProduct={this.props.currentProduct}
+    //       relatedProductId={relatedProductId}
+    //       // reviewRating={this.props.reviewRating}
+    //       // styles={this.props.styles}
+    //     />
+    //   </Col>);
+    // }
 
       // let productCards = [];
     // FIX: if (typeof relatedProductId === 'number') {
@@ -47,6 +67,7 @@ class RIAC extends React.Component{
     //   }
     // } 
 
+
     return (
       <Container-fluid className="layout container">
         <Col sm={{ span: 10, offset: 1 }} className="layout container">
@@ -61,8 +82,6 @@ class RIAC extends React.Component{
                 setProductId={this.props.setProductId}
                 currentProduct={this.props.currentProduct}
                 relatedProductId={relatedProductId}
-                reviewRating={this.props.reviewRating}
-                styles={this.props.styles}
               />
             </Col>
             <Col className="layout col-3">
@@ -70,8 +89,6 @@ class RIAC extends React.Component{
                 setProductId={this.props.setProductId}
                 currentProduct={this.props.currentProduct}
                 relatedProductId={relatedProductId}
-                reviewRating={this.props.reviewRating}
-                styles={this.props.styles}
               />
             </Col>
             <Col className="layout col-3">
@@ -79,8 +96,6 @@ class RIAC extends React.Component{
                 setProductId={this.props.setProductId}
                 currentProduct={this.props.currentProduct}
                 relatedProductId={relatedProductId}
-                reviewRating={this.props.reviewRating}
-                styles={this.props.styles}
               />
             </Col>
             <Col className="layout col-3">
@@ -88,8 +103,6 @@ class RIAC extends React.Component{
                 setProductId={this.props.setProductId}
                 currentProduct={this.props.currentProduct}
                 relatedProductId={relatedProductId}
-                reviewRating={this.props.reviewRating}
-                styles={this.props.styles}
               />
             </Col>
           </Row>
