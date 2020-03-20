@@ -5,6 +5,7 @@
 .ratingAvg {
   font-size: 5rem;
   font-weight: bolder;
+  margin-bottom: -2rem;
 }
 
 .stary {
@@ -15,8 +16,8 @@
 
 .ratingBars {
   /* background-color: #0277bd; */
-  margin: 3px;
-  padding: 0px;
+  margin: 7px;
+  padding: auto;
 }
 
 .noPaddy {

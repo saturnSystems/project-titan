@@ -70,8 +70,7 @@ export default class Ratings extends Component {
           Object.values(results.ratings).reduce(
             (previous, current) => (current += previous)
           )
-      })
-    );
+      }));
   }
 
   render() {
@@ -90,68 +89,79 @@ export default class Ratings extends Component {
         <br />
         <Row className="layout">100% of reviews recommend</Row>
         <Row className="layout">
-          <Col className="noPaddy">
-            <div>
-              <ProgressBar
-                className="ratingBars"
-                max={this.state.theSum}
-                label="5 Star"
-                onClick={() => console.log("5 Star Bar Clicked!")}
-                now={
-                  this.state.ratingStars.includes("5")
-                    ? this.state.ratingVals[
-                        this.state.ratingStars.indexOf("5")
-                      ] * 5
-                    : 0
-                }
-              />{" "}
-              <ProgressBar
-                className="ratingBars"
-                max={this.state.theSum}
-                label="4 Star"
-                now={
-                  this.state.ratingStars.includes("4")
-                    ? this.state.ratingVals[
-                        this.state.ratingStars.indexOf("4")
-                      ] * 4
-                    : 0
-                }
-              />
-              <ProgressBar
-                className="ratingBars"
-                max={this.state.theSum}
-                label="3 Star"
-                now={
-                  this.state.ratingStars.includes("3")
-                    ? this.state.ratingVals[
-                        this.state.ratingStars.indexOf("3")
-                      ] * 3
-                    : 0
-                }
-              />
-              <ProgressBar
-                className="ratingBars"
-                max={this.state.theSum}
-                label="2 Star"
-                now={
-                  this.state.ratingStars.includes("2")
-                    ? this.state.ratingVals[
-                        this.state.ratingStars.indexOf("2")
-                      ] * 2
-                    : 0
-                }
-              />
-              <ProgressBar
-                className="ratingBars"
-                max={this.state.theSum}
-                label="1 Star"
-                now={
-                  this.state.ratingStars.includes("1")
-                    ? this.state.ratingVals[this.state.ratingStars.indexOf("1")]
-                    : 0
-                }
-              />
-            </div>
+          <Col sm={2}>
+            <Row className="">5 Star</Row>
+            <Row>4 Star </Row>
+            <Row>3 Star</Row>
+            <Row>2 Star</Row>
+            <Row>1 Star</Row>
+          </Col>
+          <Col sm={8} className="noPaddy">
+            <ProgressBar
+              className="ratingBars"
+              variant="success"
+              max={this.state.theSum}
+              now={
+                this.state.ratingStars.includes("5")
+                  ? this.state.ratingVals[this.state.ratingStars.indexOf("5")] *
+                    5
+                  : 0
+              }
+            />
+
+            <ProgressBar
+              className="ratingBars"
+              variant="success"
+              max={this.state.theSum}
+              now={
+                this.state.ratingStars.includes("4")
+                  ? this.state.ratingVals[this.state.ratingStars.indexOf("4")] *
+                    4
+                  : 0
+              }
+            />
+
+            <ProgressBar
+              className="ratingBars"
+              variant="success"
+              max={this.state.theSum}
+              now={
+                this.state.ratingStars.includes("3")
+                  ? this.state.ratingVals[this.state.ratingStars.indexOf("3")] *
+                    3
+                  : 0
+              }
+            />
+
+            <ProgressBar
+              className="ratingBars"
+              variant="success"
+              max={this.state.theSum}
+              now={
+                this.state.ratingStars.includes("2")
+                  ? this.state.ratingVals[this.state.ratingStars.indexOf("2")] *
+                    2
+                  : 0
+              }
+            />
+
+            <ProgressBar
+              className="ratingBars"
+              variant="success"
+              max={this.state.theSum}
+              now={
+                this.state.ratingStars.includes("1")
+                  ? this.state.ratingVals[this.state.ratingStars.indexOf("1")]
+                  : 0
+              }
+            />
+          </Col>
+          <Col sm={1}>
+            <Row>{this.state.ratingVals[4]}</Row>
+            <Row>{this.state.ratingVals[3]}</Row>
+            <Row>{this.state.ratingVals[2]}</Row>
+            <Row>{this.state.ratingVals[1]}</Row>
+            <Row>{this.state.ratingVals[0]}</Row>
           </Col>
         </Row>
         <br />
