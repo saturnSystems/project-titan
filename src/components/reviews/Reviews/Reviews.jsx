@@ -25,7 +25,7 @@ class Reviews extends React.Component {
       options: ["newest", "helpful", "relevant"],
       option: "",
       sortedBy: "relevant",
-      starSort: 0,
+      starSort: null,
       practiceSort: []
     };
   }
@@ -39,8 +39,7 @@ class Reviews extends React.Component {
     const { productID } = this.props;
     helper.getListReviews(productID, this.state.sortedBy, result => {
       this.setState({
-        reviews: result.results,
-        practiceSort: result.results.filter(item => item.rating === 4)
+        reviews: result.results
       });
     });
   };

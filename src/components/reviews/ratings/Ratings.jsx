@@ -25,7 +25,7 @@ export default class Ratings extends Component {
       meta: [],
       ratingStars: [],
       ratingVals: [],
-      ratingValsSum: 0,
+      ratingsValsSum: 0,
       ratingSum: 0,
       ratingsAvg: 0,
       reviews: [],
@@ -44,9 +44,7 @@ export default class Ratings extends Component {
         meta: results,
         ratingStars: Object.keys(results.ratings),
         ratingVals: Object.values(results.ratings),
-        ratingsValsSum: Object.values(results.ratings).map(
-          (item, i) => item * (i + 1)
-        ),
+        ratingsValsSum: Object.values(results.ratings).reduce((a, b) => a + b),
         theSum: Object.keys(results.ratings)
           .map((item, i) => {
             const valys = Object.values(results.ratings);
@@ -113,11 +111,10 @@ export default class Ratings extends Component {
             <ProgressBar
               className="ratingBars"
               variant="success"
-              max={this.state.theSum}
+              max={this.state.ratingsValsSum}
               now={
                 this.state.ratingStars.includes("5")
-                  ? this.state.ratingVals[this.state.ratingStars.indexOf("5")] *
-                    5
+                  ? this.state.ratingVals[this.state.ratingStars.indexOf("5")]
                   : 0
               }
             />
@@ -125,11 +122,10 @@ export default class Ratings extends Component {
             <ProgressBar
               className="ratingBars"
               variant="success"
-              max={this.state.theSum}
+              max={this.state.ratingsValsSum}
               now={
                 this.state.ratingStars.includes("4")
-                  ? this.state.ratingVals[this.state.ratingStars.indexOf("4")] *
-                    4
+                  ? this.state.ratingVals[this.state.ratingStars.indexOf("4")]
                   : 0
               }
             />
@@ -137,11 +133,10 @@ export default class Ratings extends Component {
             <ProgressBar
               className="ratingBars"
               variant="success"
-              max={this.state.theSum}
+              max={this.state.ratingsValsSum}
               now={
                 this.state.ratingStars.includes("3")
-                  ? this.state.ratingVals[this.state.ratingStars.indexOf("3")] *
-                    3
+                  ? this.state.ratingVals[this.state.ratingStars.indexOf("3")]
                   : 0
               }
             />
@@ -149,11 +144,10 @@ export default class Ratings extends Component {
             <ProgressBar
               className="ratingBars"
               variant="success"
-              max={this.state.theSum}
+              max={this.state.ratingsValsSum}
               now={
                 this.state.ratingStars.includes("2")
-                  ? this.state.ratingVals[this.state.ratingStars.indexOf("2")] *
-                    2
+                  ? this.state.ratingVals[this.state.ratingStars.indexOf("2")]
                   : 0
               }
             />
@@ -161,7 +155,7 @@ export default class Ratings extends Component {
             <ProgressBar
               className="ratingBars"
               variant="success"
-              max={this.state.theSum}
+              max={this.state.ratingsValsSum}
               now={
                 this.state.ratingStars.includes("1")
                   ? this.state.ratingVals[this.state.ratingStars.indexOf("1")]
