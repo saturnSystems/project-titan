@@ -20,25 +20,35 @@ class ProductCard extends React.Component {
       relatedStyles: null, // change over time, requiring re-render
       relatedReviewRating: null // change over time, requiring re-render
     }
+    this.loadRelatedProductData = this.loadRelatedProductData.bind(this);
+    this.loadRelatedStylesData = this.loadRelatedStylesData.bind(this);
+    this.loadRelatedReviewRatingData = this.loadRelatedReviewRatingData.bind(this);
+    this.setProductId = this.setProductId.bind(this);
+    // this.componentDidMount = this.componentDidMount.bind(this);
+    // this.componentDidUpdate = this.componentDidUpdate.bind(this);
   }
   
   componentDidMount() {
     let relatedProductId = this.props.relatedProductId
-    console.log("+++++PC: cDM: if cRPId: ", relatedProductId)
+    // console.log("+++++PC: cDM: if cRPId: ", relatedProductId)
     this.loadRelatedProductData();
   };
   
   componentDidUpdate = (prevProps, prevState) => {
     // console.log("+++++PC: cDU: rPI: ", relatedProductId);
-    if (prevState.relatedStyles !== this.state.relatedStyles ||
-        prevState.relatedReviewRating !== this.state.relatedReviewRating) {
+    if (prevState.relatedProductData !== this.state.relatrelatedProductDataedStyles) {
+      this.loadRelatedProductData();
+    }
+    if (prevState.relatedStyles !== this.state.relatedStyles) {
       this.loadRelatedStylesData();
+    }
+    if (prevState.relatedReviewRating !== this.state.relatedReviewRating) {
       this.loadRelatedReviewRatingData();
     }
   }
   
   loadRelatedProductData = (relatedProductId) => {
-    console.log("+++++PC: lRPD: t.p.rPI: ", this.props.relatedProductId)
+    // console.log("+++++PC: lRPD: t.p.rPI: ", this.props.relatedProductId)
     helper.getOneProduct(relatedProductId, result => {
         this.setState({
         relatedProduct: result
@@ -69,8 +79,8 @@ class ProductCard extends React.Component {
   //   this.props.setRelatedProductId(this.props.relatedProductId);
   // }
 
-  setProductId = () => { // (event) parameter not actually used
-    this.props.setProductId(this.props.relatedProductId);
+  setProductId = (newProductId) => { // (event) parameter not actually used
+    this.props.setProductId(newProductId);
   }
 
   render() {
@@ -87,6 +97,7 @@ class ProductCard extends React.Component {
     // this.loadRelatedProductData();
     let relatedProduct = this.state.relatedProduct;
     if (relatedProduct === null) return null; // FURTHER ACTION REQUIRED
+    // if (relatedProduct.id === undefined) return null; // FURTHER ACTION REQUIRED
     // if (relatedProduct === null) this.loadRelatedProductData; // FURTHER ACTION REQUIRED
     // if (relatedProduct === null) componentDidUpdate; // FURTHER ACTION REQUIRED
     console.log("PC: rP: ", relatedProduct);
@@ -156,7 +167,7 @@ class ProductCard extends React.Component {
 
     return (
       <Container-fluid className="layout product-card-layout align-left">
-        <div id="product-card-div" onClick={() =>this.setProductId()}>
+        <div id="product-card-div" onClick={() =>this.setProductId(relatedProductId)}>
           <div onClick={this.scrollToTop}>
             <div className="card mb-3">
               <img className="card-img-top" src={relatedStyleImage}  alt=""/>

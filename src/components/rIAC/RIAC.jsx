@@ -17,17 +17,20 @@ class RIAC extends React.Component{
     this.state={
       relatedProductId: null
     }
+    this.setProductId = this.setProductId.bind(this);
+ 
   }
 
-  setRelatedProductId = (newRelatedProductId) => { // (event) parameter not actually used
-    this.props.setProductId(this.props.relatedProductId);
+  setProductId = (newProductId) => { // (event) parameter not actually used
+    this.props.setProductId(newProductId);
   }
 
   render() {
     // console.log("RIAC-DATE-TIME: render: ", new Date());
 
     let relatedProductsIds = this.props.relatedProductsIds;
-    // console.log("RIAC: constr: rPIds: ", relatedProductsIds)
+    if (relatedProductsIds.length === 0) return null;
+    console.log("RIAC: constr: rPIds: ", relatedProductsIds)
     
     let currentRelatedProductIndex = 2;  // HARD CODED
     let relatedProductId = this.props.relatedProductsIds[currentRelatedProductIndex];
