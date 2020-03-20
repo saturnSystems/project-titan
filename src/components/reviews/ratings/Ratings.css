@@ -12,3 +12,13 @@
   margin-left: 5px;
   margin-top: 5px;
 }
+
+.ratingBars {
+  /* background-color: #0277bd; */
+  margin: 3px;
+  padding: 0px;
+}
+
+.noPaddy {
+  padding: 0px;
+}

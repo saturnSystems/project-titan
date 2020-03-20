@@ -145,7 +145,7 @@ class ReviewTiles extends React.Component {
                   ) : null}
                 </Col>
               </Row>
-              <Row className="layout noBorder imgBorder">
+              <Row className="layout imgBorder">
                 Helpful?{" "}
                 {clicked === false ? (
                   // eslint-disable-next-line jsx-a11y/click-events-have-key-events

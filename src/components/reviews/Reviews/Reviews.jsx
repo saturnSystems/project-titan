@@ -70,34 +70,6 @@ class Reviews extends React.Component {
                 productId={this.state.productId}
                 reviews={this.state.reviews}
               />
-              {/* <Row className="layout">3.5*****</Row>
-              <br />
-              <Row className="layout">100% of reviews recommend</Row>
-              <Row className="layout">
-                <Col>
-                  <Row>5 Stars ||||||||</Row>
-                  <Row>4 Stars ||||||</Row>
-                  <Row>3 Stars |||||||||||</Row>
-                  <Row>2 Stars ||||||</Row>
-                  <Row>1 Stars ||||</Row>
-                </Col>
-              </Row>
-              <br />
-              <Row className="layout">
-                <Col>
-                  <Row>Size</Row>
-                  <Row>||||||||||||||||||</Row>
-                  <Row>Too small | Perfect | Too Large</Row>
-                </Col>
-              </Row>
-              <br />
-              <Row className="layout">
-                <Col>
-                  <Row>Comfort</Row>
-                  <Row>||||||||||||||||||</Row>
-                  <Row>Poor | Perfect</Row>
-                </Col>
-              </Row> */}
             </Col>
             <Col sm={1} className="layout noBorder"></Col>
             <Col className="layout noBorder">
