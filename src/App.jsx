@@ -78,7 +78,7 @@ class App extends React.Component {
   setProductId = newProductId => {
     this.setState(
       {
-        productID: newProductId
+        productId: newProductId
       },
       () => this.getProductInformation()
     );
