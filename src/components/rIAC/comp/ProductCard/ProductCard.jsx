@@ -68,7 +68,7 @@ class ProductCard extends React.Component {
   
   setProductId = () => { // QQQQ (event) or (rPI) parameter used?
     this.props.setProductId(this.props.relatedProductId);
-    window.scrollTo(0, 0);
+    // console.log("PC: sPId: t.p.rPId: ", this.props.relatedProductId);
   }
 
   render() {
