@@ -3,7 +3,7 @@ import React from 'react';
 import Row from 'react-bootstrap/Row'
 // import Col from 'react-bootstrap/Col' // NOT USED
 import StarRatings from "react-star-ratings";
-import "./NoImageOnFile.jpg";
+import noImage from "./NoImageOnFile.jpg";
 // props
 //   setProductId={this.props.setProductId}
 //   currentProduct={this.props.currentProduct} // QQQQ USED ONLY FOR DEBUGGING
@@ -77,7 +77,7 @@ class ProductCard extends React.Component {
     // console.log("PC-DATE-TIME: render: ", new Date());
     // console.log("PC: render: t.p.rPId: ", this.props.relatedProductId);
     // console.log("PC: render: t.s.rPId: ", this.props.relatedProductId);    
-    let relatedProductId = this.props.relatedProductId;
+    let relatedProductId = this.props.relatedProductId; // ASSUME rPId EXISTS
     if (relatedProductId === undefined) {
       const noRelatedProductId = "noRelatedProductId"; // QQQQ
       // return (<div>{noRelatedProductId}</div>);
@@ -87,7 +87,7 @@ class ProductCard extends React.Component {
       // console.log("PC: render: rPId: ", relatedProductId);
       
       // console.log("PC: cP: ", currentProduct); // used only for debugging
-      let relatedProduct = this.state.relatedProduct;
+      let relatedProduct = this.state.relatedProduct; // ASSUME rP EXISTS
       if (relatedProduct.id === undefined) { // QQQQ
         // relatedProduct = null;
         return null;
@@ -139,11 +139,9 @@ class ProductCard extends React.Component {
       if (relatedStyleSalePrice === undefined) relatedStyle = null; // FURTHER ACTION REQUIRED
       // console.log("PC: rStyleSPrice: ", relatedStyleSalePrice);
 
-      let relatedStyleImage = relatedStyle.photos[0].url || null;
-      if (relatedStyleImage === undefined) relatedStyle = null; // FURTHER ACTION REQUIRED
+      let relatedStyleImage = relatedStyle.photos[0].url || noImage;
       // console.log("PC: rSI: ", relatedStyleImage);
 
-      // let relThumbnail = "./NoImageOnFile.jps"; // QQQQ FALLBACK
       // let relatedThumbnailIndex = 0; // HARD CODED FALLBACK
 
       let relatedReviewRating = this.state.relatedReviewRating
