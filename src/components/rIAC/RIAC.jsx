@@ -23,11 +23,11 @@ class RIAC extends React.Component{
 
     let relatedProductsIds = this.props.relatedProductsIds;
     if (relatedProductsIds.length === 0) { console.log("RIAC: no rPIds: ", relatedProductsIds); return null};
-    console.log("RIAC: constr: rPIds: ", relatedProductsIds)
+    // console.log("RIAC: constr: rPIds: ", relatedProductsIds)
     // console.log("RIAC: rPI: ", relatedProductId) // PROBABLY DOES NOT EXIST
 
     let relatedProductIndexes = relatedProductsIds.map(id => relatedProductsIds.indexOf(id));
-    console.log("RIAC: rPIxs: ", relatedProductIndexes);
+    // console.log("RIAC: rPIdxs: ", relatedProductIndexes);
     // pass index, compute Id at ProductCard
 
     // if (!relatedProductId) return null; // PROBABLY DOES NOT EXIST
@@ -37,9 +37,11 @@ class RIAC extends React.Component{
         <Col sm={{ span: 10, offset: 1 }} className="layout container">
           <strong><Row className="layout">Related Products</Row></strong>
           <Row className="layout"> {
-              relatedProductsIds.map(relatedProductId => { 
-                return (
-                  <Col className="layout col-3" key={relatedProductId}>
+              // relatedProductsIds.map(relatedProductId => { 
+              relatedProductsIds.map((relatedProductId, index) => { 
+                  return (
+                    // <Col className="layout col-3" key={relatedProductId}>
+                    <Col className="layout col-3" key={index}>
                     <ProductCard
                       currentProduct = {this.props.currentProduct}
                       setProductId={this.props.setProductId}
