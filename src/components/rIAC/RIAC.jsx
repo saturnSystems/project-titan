@@ -57,9 +57,10 @@ class RIAC extends React.Component{
       // let productCards = [];
     // FIX: if (typeof relatedProductId === 'number') {
     //   FIX: for (let productIdIndex = 0; productIdIndex < relatedProductsIds.length; productIdIndex++ ) {
-    //     let productCard = (<Col className="layout col-3">
-    //       <ProductCard 
-    //         setProductId={this.props.setProductId}
+    //     let productCard = (
+    //       <Col className="layout col-3">
+    // //       <ProductCard 
+    // //         setProductId={this.props.setProductId}
     //         currentProduct={this.props.currentProduct}
     //         relatedProductId={relatedProductId} // MAKE dynamic
     //         reviewRating={this.props.reviewRating} // do not use
@@ -69,18 +70,34 @@ class RIAC extends React.Component{
     //     productCards.push(productCard);      
     //   }
     // } 
-
+      // relatedProductsIds.map(relatedProductId => { 
+      //   return (
+      //     <Col className="layout col-3" key={relatedProductId}>
+      //       <ProductCard              
+      //         setProductId={this.props.setProductId}
+      //         relatedProductId={relatedProductId}
+      //       />
+      //     </Col>
+      //   )
+      // });
 
     return (
       <Container-fluid className="layout container">
         <Col sm={{ span: 10, offset: 1 }} className="layout container">
           <strong><Row className="layout">Related Products</Row></strong>
-          <Row className="layout">
-            {/* {productCard}
-            {productCard}
-            {productCard}
-            {productCard} */}
-            <Col className="layout col-3">
+          <Row className="layout"> {
+            relatedProductsIds.map(relatedProductId => { 
+              return (
+                <Col className="layout col-3" key={relatedProductId}>
+                  <ProductCard              
+                    setProductId={this.props.setProductId}
+                    relatedProductId={relatedProductId}
+                  />
+                </Col>
+              )
+            })
+          }
+            {/* <Col className="layout col-3">
               <ProductCard 
                 setProductId={this.props.setProductId}
                 currentProduct={this.props.currentProduct}
@@ -100,14 +117,7 @@ class RIAC extends React.Component{
                 currentProduct={this.props.currentProduct}
                 relatedProductId={relatedProductId}
               />
-            </Col>
-            <Col className="layout col-3">
-              <ProductCard 
-                setProductId={this.props.setProductId}
-                currentProduct={this.props.currentProduct}
-                relatedProductId={relatedProductId}
-              />
-            </Col>
+            </Col> */}
           </Row>
           <br></br>
 
