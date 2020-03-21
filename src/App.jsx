@@ -35,8 +35,11 @@ class App extends React.Component {
   }
 
   getProductInformation() {
+    // console.log("App: gPI: t.s.productId: ", this.state.productId)
+    // console.log("App: gPI: t.s: ", this.state)
     if (this.state.previousProductId !== this.state.productId) {
       helper.getOneProduct(this.state.productId, result => {
+        // console.log("App: gPI: gOP: result: ", result)
         this.setState({
           currentProduct: result
         });
@@ -74,9 +77,10 @@ class App extends React.Component {
   }
 
   setProductId = newProductId => {
+    // console.log("App: sPI: newProductId: ", newProductId)
     this.setState(
       {
-        productID: newProductId
+        productId: newProductId
       },
       () => this.getProductInformation()
     );
