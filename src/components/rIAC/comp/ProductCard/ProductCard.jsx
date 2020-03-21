@@ -26,12 +26,11 @@ class ProductCard extends React.Component {
     // QQQQ do we need this?
     this.loadRelatedProductData = this.loadRelatedProductData.bind(this);
     this.setProductId = this.setProductId.bind(this);
-    this.scrollToTop = this.scrollToTop.bind(this);
   }
   
   componentDidMount() {
     let relatedProductId = this.props.relatedProductId
-    console.log("+PC: cDM: if cRPId: ", relatedProductId)
+    // console.log("+PC: cDM: if cRPId: ", relatedProductId)
     this.loadRelatedProductData();
   }
 
@@ -46,7 +45,7 @@ class ProductCard extends React.Component {
   
   loadRelatedProductData = (relatedProductId) => {
     // console.log("PC: lRPD: t.s.rP: ", this.state.relatedProduct)
-    console.log("++PC: lRPD: t.p.rPI: ", this.props.relatedProductId)
+    // console.log("++PC: lRPD: t.p.rPI: ", this.props.relatedProductId)
     helper.getOneProduct(this.props.relatedProductId, result => {
       this.setState({
         relatedProduct: result
@@ -57,29 +56,26 @@ class ProductCard extends React.Component {
         relatedStyles: result.results
       });
     });
-    console.log("+++PC: lRPD: t.s.rSs: ", this.state.relatedStyles)
+    // console.log("+++PC: lRPD: t.s.rSs: ", this.state.relatedStyles)
 
     helper.getReviewMetadata(this.props.relatedProductId, result => {
       this.setState({
         relatedReviewRating: helper.calculateReviewRating(result.ratings)
       });
     });
-    console.log("PC: lRPD: t.s.rRR: ", this.state.relatedReviewRating)
+    // console.log("PC: lRPD: t.s.rRR: ", this.state.relatedReviewRating)
   }
   
-  setProductId = (relatedProductId) => { // QQQQ (event) or (rPI) parameter used?
-    this.props.setProductId(relatedProductId);
-  }
-
-  scrollToTop () {
+  setProductId = () => { // QQQQ (event) or (rPI) parameter used?
+    this.props.setProductId(this.props.relatedProductId);
     window.scrollTo(0, 0);
   }
 
   render() {
     // if (this.props.relatedProductId !== undefined) return null;
 
-    console.log("PC-DATE-TIME: render: ", new Date());
-    console.log("PC: render: t.p.rPId: ", this.props.relatedProductId);
+    // console.log("PC-DATE-TIME: render: ", new Date());
+    // console.log("PC: render: t.p.rPId: ", this.props.relatedProductId);
     // console.log("PC: render: t.s.rPId: ", this.props.relatedProductId);    
     let relatedProductId = this.props.relatedProductId;
     if (relatedProductId === undefined) {
@@ -88,7 +84,7 @@ class ProductCard extends React.Component {
       return (null);
     }
 
-      console.log("PC: render: rPId: ", relatedProductId);
+      // console.log("PC: render: rPId: ", relatedProductId);
       
       // console.log("PC: cP: ", currentProduct); // used only for debugging
       let relatedProduct = this.state.relatedProduct;
@@ -113,11 +109,11 @@ class ProductCard extends React.Component {
       let relatedStyles = this.state.relatedStyles;
       if (relatedStyles === null) return null; // FURTHER ACTION REQUIRED
       // if (relatedStyles.length <= 0) return null; // FURTHER ACTION REQUIRED
-      console.log("PC render: rSs: ", relatedStyles);
+      // console.log("PC render: rSs: ", relatedStyles);
 
       // does it ever log after teh state being set or is it always before
 
-      console.log("PC: rSs[0]: ", relatedStyles[0]);
+      // console.log("PC: rSs[0]: ", relatedStyles[0]);
 
       // // names = searchWords.filter(x => students.indexOf(x) !== -1);
       // let defaultStyle = null;
@@ -133,7 +129,7 @@ class ProductCard extends React.Component {
       let relatedStyle = relatedStyles.find(style => style["default?"] === 1) || relatedStyles[0];
       // if (defaultStyleIndex === undefined) defaultStyleIndex = null; // FURTHER ACTION REQUIRED
       
-      console.log("PC: rS: ", relatedStyle);
+      // console.log("PC: rS: ", relatedStyle);
 
       // let relatedStylesIndex = 2; // HARD CODED
       let relatedStyleOriginalPrice = relatedStyle.original_price || null;
@@ -158,10 +154,8 @@ class ProductCard extends React.Component {
 
     return (
       <Container-fluid className="layout product-card-layout align-left">
-        <div id="product-card-div" onClick={() => 
-          this.setProductId(relatedProductId)
-        }>
-          <div onClick={this.scrollToTop}>
+        <div id="product-card-div" onClick={this.setProductId}>
+          <div>
           {/* <div id="product-card-div" onClick={
             () => 
             this.scrollToTop();

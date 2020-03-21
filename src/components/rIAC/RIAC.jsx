@@ -32,7 +32,7 @@ class RIAC extends React.Component{
     
     let currentRelatedProductIndex = 2;  // HARD CODED
     let relatedProductId = this.props.relatedProductsIds[currentRelatedProductIndex];
-    console.log("RIAC: rPI: ", relatedProductId)
+    // console.log("RIAC: rPI: ", relatedProductId)
 
     // if (!relatedProductId) return null;
 
