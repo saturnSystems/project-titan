@@ -29,17 +29,14 @@ class AddAnswer extends React.Component {
 
   Answer = (e) => {
       this.setState({Answer: e.target.value});
-      console.log(this.state.Answer)
   }
 
   Nickname = (e) => {
     this.setState({Nickname: e.target.value});
-    console.log(this.state.Nickname)
   }
 
   Email = (e) => {
     this.setState({Email: e.target.value});
-    console.log(this.state.Email)
   }
 
 // const postAnAnswer = (questionId, body, name, email, photos, callback)
