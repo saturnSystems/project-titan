@@ -32,7 +32,6 @@ class App extends React.Component {
     this.reviewsRef = React.createRef();
     this.scrollToReviews = this.scrollToReviews.bind(this);
     this.addToCart = this.addToCart.bind(this);
-    this.setProductId = this.setProductId.bind(this);
   }
 
   getProductInformation() {

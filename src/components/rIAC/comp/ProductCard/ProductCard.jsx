@@ -4,10 +4,11 @@ import Row from 'react-bootstrap/Row'
 // import Col from 'react-bootstrap/Col' // NOT USED
 import StarRatings from "react-star-ratings";
 import noImage from "./NoImageOnFile.jpg";
-// props
-//   setProductId={this.props.setProductId}
-//   currentProduct={this.props.currentProduct} // QQQQ USED ONLY FOR DEBUGGING
-//   relatedProductId={relatedProductId}
+
+// props as defined in calling parent
+//   setProductId  ={this.props.setProductId}
+//   currentProduct  ={this.props.currentProduct} // QQQQ USED ONLY FOR DEBUGGING
+//   relatedProductId  ={relatedProductId}
 
 
 const helper = require("../../../../helper/helper.js");
@@ -24,8 +25,10 @@ class ProductCard extends React.Component {
     }
 
     // QQQQ do we need this?
-    this.loadRelatedProductData = this.loadRelatedProductData.bind(this);
-    this.setProductId = this.setProductId.bind(this);
+    // NEED TO BIND WHEN I DON'T HAVE <this>
+    // can't use arrow function; override current this
+    // this.loadRelatedProductData = this.loadRelatedProductData.bind(this); // not needed because arrow function
+    // this.setProductId = this.setProductId.bind(this); // not needed because arrow function
   }
   
   componentDidMount() {
@@ -141,8 +144,6 @@ class ProductCard extends React.Component {
 
       let relatedStyleImage = relatedStyle.photos[0].url || noImage;
       // console.log("PC: rSI: ", relatedStyleImage);
-
-      // let relatedThumbnailIndex = 0; // HARD CODED FALLBACK
 
       let relatedReviewRating = this.state.relatedReviewRating
       // console.log("PC: render: rRR: ", relatedReviewRating);

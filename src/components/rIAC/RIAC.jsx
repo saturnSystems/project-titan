@@ -16,11 +16,6 @@ class RIAC extends React.Component{
     this.state={
       relatedProductId: null
     }
-    this.setProductId = this.setProductId.bind(this);
-  }
-
-  setProductId = (newProductId) => { // (event) parameter not actually used
-    this.props.setProductId(newProductId);
   }
 
   render() {
@@ -29,12 +24,9 @@ class RIAC extends React.Component{
     let relatedProductsIds = this.props.relatedProductsIds;
     if (relatedProductsIds.length === 0) return null;
     // console.log("RIAC: constr: rPIds: ", relatedProductsIds)
-    
-    let currentRelatedProductIndex = 2;  // HARD CODED
-    let relatedProductId = this.props.relatedProductsIds[currentRelatedProductIndex];
-    // console.log("RIAC: rPI: ", relatedProductId)
+    // console.log("RIAC: rPI: ", relatedProductId) // PROBABLY DOES NOT EXIST
 
-    // if (!relatedProductId) return null;
+    // if (!relatedProductId) return null; // PROBABLY DOES NOT EXIST
 
     return (
       <Container-fluid className="layout container">
