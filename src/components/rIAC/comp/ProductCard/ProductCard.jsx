@@ -77,8 +77,9 @@ class ProductCard extends React.Component {
   render() {
     // if (this.props.relatedProductId !== undefined) return null;
 
+    // console.log("PC: render: t.s.cP: ", this.props.currentProduct);    
+
     // console.log("PC-DATE-TIME: render: ", new Date());
-    // console.log("PC: render: t.p.rPId: ", this.props.relatedProductId);
     // console.log("PC: render: t.s.rPId: ", this.props.relatedProductId);    
     let relatedProductId = this.props.relatedProductId; // ASSUME rPId EXISTS
     if (relatedProductId === undefined) {
@@ -112,7 +113,7 @@ class ProductCard extends React.Component {
       let relatedStyles = this.state.relatedStyles;
       if (relatedStyles === null) return null; // FURTHER ACTION REQUIRED
       // if (relatedStyles.length <= 0) return null; // FURTHER ACTION REQUIRED
-      // console.log("PC render: rSs: ", relatedStyles);
+      console.log("PC render: rSs: ", relatedStyles);
 
       // does it ever log after teh state being set or is it always before
 
@@ -155,8 +156,7 @@ class ProductCard extends React.Component {
       <Container-fluid className="layout product-card-layout align-left">
         <div id="product-card-div" onClick={this.setProductId}>
           <div>
-            <div className="card mb-3">
-            
+            <div className="card mb-3">            
               <img className="card-img-top style-image" src={relatedStyleImage}  alt="Related Style (No image available)"/>
               {/* <img className="card-img-top" src={"https://images.unsplash.com/photo-1473396413399-6717ef7c4093?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"}  alt=""/> */}
               <div className="card-img-overlay">
