@@ -170,7 +170,7 @@ class ProductCard extends React.Component {
             <div onClick={this.scrollToTop}> */}
             <div className="card mb-3">
             
-              <img className="card-img-top" src={relatedStyleImage}  alt="Related Style (No image available)"/>
+              <img className="card-img-top style-image" src={relatedStyleImage}  alt="Related Style (No image available)"/>
               {/* <img className="card-img-top" src={"https://images.unsplash.com/photo-1473396413399-6717ef7c4093?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"}  alt=""/> */}
               <div className="card-img-overlay">
                 <small><p className="btn btn-primary btn-star">&#x2605;</p></small>
