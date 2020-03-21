@@ -36,3 +36,7 @@
 .summaryRow {
   color: lightslategray;
 }
+
+.pointer:hover {
+  cursor: pointer;
+}
