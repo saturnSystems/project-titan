@@ -1,13 +1,13 @@
 // this component is for use in RIAC.jsx
 import React from 'react';
 import Row from 'react-bootstrap/Row'
-// import Col from 'react-bootstrap/Col' // NOT USED
+// import Col from 'react-bootstrap/Col' // NOT YET USED
 import StarRatings from "react-star-ratings";
 import noImage from "./NoImageOnFile.jpg";
 
 // props as defined in calling parent
 //   setProductId  ={this.props.setProductId}
-//   currentProduct  ={this.props.currentProduct} // QQQQ USED ONLY FOR DEBUGGING
+//   currentProduct  ={this.props.currentProduct} USED ONLY FOR DEBUGGING
 //   relatedProductId  ={relatedProductId}
 
 
@@ -17,18 +17,15 @@ class ProductCard extends React.Component {
   constructor(props) {
     super(props)
     this.state={
-      relatedProduct: {}, // change over time, requiring re-render
+      relatedProduct: null, // change over time, requiring re-render
       relatedStyles: null, // change over time, requiring re-render
       relatedReviewRating: null, // change over time, requiring re-render
-      relatedStyleOriginalPrice: null,
-      relatedStyleSalePrice: null
+      relatedStyleOriginalPrice: null, // QQQQ NEEDED?
+      relatedStyleSalePrice: null// QQQQ NEEDED?
     }
 
-    // QQQQ do we need this?
-    // NEED TO BIND WHEN I DON'T HAVE <this>
-    // can't use arrow function; override current this
-    // this.loadRelatedProductData = this.loadRelatedProductData.bind(this); // not needed because arrow function
-    // this.setProductId = this.setProductId.bind(this); // not needed because arrow function
+    // NO NEED TO BIND WHEN I HAVE <this>
+    // arrow function; current this (that does not need to be overriden)
   }
   
   componentDidMount() {
@@ -38,7 +35,6 @@ class ProductCard extends React.Component {
   }
 
   // QQQQ needed??
-
   componentDidUpdate = (prevProps, prevState) => {
     // console.log("PC: cDU: rPI: ", relatedProductId);
     if (prevState.relatedProductId !== this.state.relatedProductId) {
@@ -46,9 +42,7 @@ class ProductCard extends React.Component {
     }
   }
   
-  loadRelatedProductData = (relatedProductId) => {
-    // console.log("PC: lRPD: t.s.rP: ", this.state.relatedProduct)
-    // console.log("++PC: lRPD: t.p.rPI: ", this.props.relatedProductId)
+  loadRelatedProductData = () => {
     helper.getOneProduct(this.props.relatedProductId, result => {
       this.setState({
         relatedProduct: result
@@ -59,98 +53,73 @@ class ProductCard extends React.Component {
         relatedStyles: result.results
       });
     });
-    // console.log("+++PC: lRPD: t.s.rSs: ", this.state.relatedStyles)
 
     helper.getReviewMetadata(this.props.relatedProductId, result => {
       this.setState({
         relatedReviewRating: helper.calculateReviewRating(result.ratings)
       });
     });
-    // console.log("PC: lRPD: t.s.rRR: ", this.state.relatedReviewRating)
   }
   
-  setProductId = () => { // QQQQ (event) or (rPI) parameter used?
+  setProductId = () => { 
     this.props.setProductId(this.props.relatedProductId);
-    // console.log("PC: sPId: t.p.rPId: ", this.props.relatedProductId);
+  }
+
+    // Pre-method check if ready to render or null
+    // function method
+    isReadytoRender = () => {
+    return (
+      this.state.relatedProduct !== null &&
+      this.state.relatedStyles !== null &&
+      this.state.relatedReviewRating !== null
+    );
   }
 
   render() {
-    // if (this.props.relatedProductId !== undefined) return null;
-
-    // console.log("PC: render: t.s.cP: ", this.props.currentProduct);    
-
     // console.log("PC-DATE-TIME: render: ", new Date());
-    // console.log("PC: render: t.s.rPId: ", this.props.relatedProductId);    
-    let relatedProductId = this.props.relatedProductId; // ASSUME rPId EXISTS
-    if (relatedProductId === undefined) {
-      const noRelatedProductId = "noRelatedProductId"; // QQQQ
-      // return (<div>{noRelatedProductId}</div>);
-      return (null);
-    }
 
-      // console.log("PC: render: rPId: ", relatedProductId);
-      
-      // console.log("PC: cP: ", currentProduct); // used only for debugging
-      let relatedProduct = this.state.relatedProduct; // ASSUME rP EXISTS
-      if (relatedProduct.id === undefined) { // QQQQ
-        // relatedProduct = null;
-        return null;
-      } // FURTHER ACTION REQUIRED
-      // console.log("PC: rP: ", relatedProduct);
+    // Pre-method check if ready to render or null
 
-      let relatedCategory = relatedProduct.category;
-      if (relatedProduct.category === undefined) relatedCategory = null; // FURTHER ACTION REQUIRED
-      // console.log("PC: rCat: ", relatedCategory);
+    // Explicit method
+    // if (this.state.relatedProduct === null) return null;
+    // if (this.state.relatedStyles === null) return null;
+    // if (this.state.relatedReviewRating === null) return null;
 
-      let relatedCaption = relatedProduct.name + ' - ' + relatedProduct.slogan;
-      if (relatedProduct.name === undefined || relatedProduct.slogan === undefined) relatedCaption = null; // FURTHER ACTION REQUIRED
-      // console.log("PC: rCap: ", relatedCaption);
+    // function method
+    if (!this.isReadytoRender()) return null;
 
-      let relatedDefPrice = relatedProduct.default_price;
-      if (relatedDefPrice === undefined) relatedDefPrice = null; // FURTHER ACTION REQUIRED
-      // console.log("PC: rDP: ", relatedDefPrice);
+    let { relatedProduct, relatedStyles, relatedReviewRating } = this.state;
 
-      let relatedStyles = this.state.relatedStyles;
-      if (relatedStyles === null) return null; // FURTHER ACTION REQUIRED
-      // if (relatedStyles.length <= 0) return null; // FURTHER ACTION REQUIRED
-      console.log("PC render: rSs: ", relatedStyles);
+    // console.logs for DEBUGGING
 
-      // does it ever log after teh state being set or is it always before
+    // console.log("PC: cP: ", currentProduct); // used only for debugging
+    // console.log("PC: rPId: ", relatedProductId);
+    // console.log("PC: rP: ", relatedProduct);
+    // console.log("PC: rSs: ", relatedStyles);
 
-      // console.log("PC: rSs[0]: ", relatedStyles[0]);
+    let relatedCategory = relatedProduct.category || null;
+    // console.log("PC: rCat: ", relatedCategory);
 
-      // // names = searchWords.filter(x => students.indexOf(x) !== -1);
-      // let defaultStyle = null;
-      // for(let i = 0; i < this.props.styles.length; i++) {
-      //   if(this.props.styles[i]["default?"]) {
-      //     let defaultStyle = this.props.styles[i]
-      //   }
-      // }
-      // this.setState({
-      //   relatedStyle: defaultStyle || this.props.styles[0]
-      // });
+    let relatedCaption = (relatedProduct.name === undefined || relatedProduct.slogan === undefined) ? null : relatedProduct.name + ' - ' + relatedProduct.slogan;
+    // console.log("PC: rCap: ", relatedCaption);
 
-      let relatedStyle = relatedStyles.find(style => style["default?"] === 1) || relatedStyles[0];
-      // if (defaultStyleIndex === undefined) defaultStyleIndex = null; // FURTHER ACTION REQUIRED
-      
-      // console.log("PC: rS: ", relatedStyle);
+    let relatedDefPrice = relatedProduct.default_price || null; // SUPERCEDED BY style data
+    // console.log("PC: rDP: ", relatedDefPrice);
 
-      // let relatedStylesIndex = 2; // HARD CODED
-      let relatedStyleOriginalPrice = relatedStyle.original_price || null;
-      // console.log("PC: rStyleOPrice: ", relatedStyleOriginalPrice);
+    let relatedStyle = relatedStyles.find(style => style["default?"] === 1) || relatedStyles[0];
+        // console.log("PC: rS: ", relatedStyle);
 
-      let relatedStyleSalePrice = relatedStyle.sale_price || null;
-      if (relatedStyleSalePrice === undefined) relatedStyle = null; // FURTHER ACTION REQUIRED
-      // console.log("PC: rStyleSPrice: ", relatedStyleSalePrice);
+    // let relatedStylesIndex = 2; // HARD CODED - FALLBAK
+    let relatedStyleOriginalPrice = relatedStyle.original_price || null;
+    // console.log("PC: rStyleOPrice: ", relatedStyleOriginalPrice);
 
-      let relatedStyleImage = relatedStyle.photos[0].url || noImage;
-      // console.log("PC: rSI: ", relatedStyleImage);
+    let relatedStyleSalePrice = relatedStyle.sale_price || null;
+    // console.log("PC: rStyleSPrice: ", relatedStyleSalePrice);
 
-      let relatedReviewRating = this.state.relatedReviewRating
-      // console.log("PC: render: rRR: ", relatedReviewRating);
-      // if (relatedReviewRating === undefined) relatedReviewRating = null; // FURTHER ACTION REQUIRED
-      if (relatedReviewRating === null) return null; // FURTHER ACTION REQUIRED
-      // console.log("PC: render: rRR: ", relatedReviewRating);
+    let relatedStyleImage = relatedStyle.photos[0].url || noImage;
+    // console.log("PC: rSI: ", relatedStyleImage);
+
+    // console.log("PC: render: rRR: ", relatedReviewRating);
 
     return (
       <Container-fluid className="layout product-card-layout align-left">
@@ -166,14 +135,13 @@ class ProductCard extends React.Component {
           </div>
         </div>
         <div className="card">
-          <div className="card-body">
-          
+          <div className="card-body">          
           <p className="card-text category">{relatedCategory}</p>
           <h5 className="card-title caption">{relatedCaption}</h5>
           <small><p className="card-text text-muted price">${relatedStyleOriginalPrice} &nbsp; &nbsp; ${relatedStyleSalePrice}</p></small>
             <Row>              
               <StarRatings
-                rating={this.state.relatedReviewRating}
+                rating={relatedReviewRating}
                 starDimension="1em"
                 starSpacing={"0"}
               />

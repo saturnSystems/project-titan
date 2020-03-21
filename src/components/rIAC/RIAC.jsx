@@ -18,21 +18,26 @@ class RIAC extends React.Component{
     }
   }
 
+  isReadytoRender = () => {
+    return (
+      this.props.setProductId !== null &&
+      this.props.currentProduct !== null &&
+      this.props.relatedProductsIds !== null
+    );
+  }
+
   render() {
     // console.log("RIAC-DATE-TIME: render: ", new Date());
 
+    if (!this.isReadytoRender()) return null;
+
     let relatedProductsIds = this.props.relatedProductsIds;
-    if (relatedProductsIds.length === 0) { console.log("RIAC: no rPIds: ", relatedProductsIds); return null};
+    // if (relatedProductsIds.length === 0) { 
+    //   console.log("RIAC: no rPIds: ", relatedProductsIds); return null
+    // };
     // console.log("RIAC: constr: rPIds: ", relatedProductsIds)
-    // console.log("RIAC: rPI: ", relatedProductId) // PROBABLY DOES NOT EXIST
 
-    let relatedProductIndexes = relatedProductsIds.map(id => relatedProductsIds.indexOf(id));
-    // console.log("RIAC: rPIdxs: ", relatedProductIndexes);
-    // pass index, compute Id at ProductCard
-
-    // if (!relatedProductId) return null; // PROBABLY DOES NOT EXIST
-
-    return (
+     return (
       <Container-fluid className="layout container">
         <Col sm={{ span: 10, offset: 1 }} className="layout container">
           <strong><Row className="layout">Related Products</Row></strong>
