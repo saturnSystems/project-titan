@@ -32,3 +32,12 @@
   background-color: #00b0ff;
   cursor: pointer;
 }
+
+.paddy {
+  padding: 0px 15px;
+}
+
+.smallerText {
+  font-size: 0.9rem;
+  text-align: center;
+}
