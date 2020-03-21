@@ -26,8 +26,10 @@ class ProductCard extends React.Component {
 
     }
 
+    // QQQQ do we need this?
+    this.loadRelatedProductData = this.loadRelatedProductData.bind(this);
+    this.setProductId = this.setProductId.bind(this);
     this.scrollToTop = this.scrollToTop.bind(this);
-
   }
   
   componentDidMount() {
@@ -71,8 +73,9 @@ class ProductCard extends React.Component {
   //   this.props.setProductId(this.props.relatedProductId);
   // }
 
-  setProductId = () => { // (event) parameter not actually used
-    this.props.setProductId(this.props.relatedProductId);
+  setProductId = (relatedProductId) => { // (event) parameter not actually used
+    // this.props.setProductId(this.props.relatedProductId);
+    this.props.setProductId(relatedProductId);
   }
 
   scrollToTop () {
@@ -182,7 +185,6 @@ class ProductCard extends React.Component {
       //   relatedStyleSalePrice: relatedStyle.relatedStyleSalePrice || null
       // });
 
-
       console.log("PC: rS.p: ", relatedStyle.photos);
 
       let relatedStyleImage = relatedStyle.photos[0].url || null;
@@ -214,14 +216,22 @@ class ProductCard extends React.Component {
 
     return (
       <Container-fluid className="layout product-card-layout align-left">
-        <div id="product-card-div" onClick={() =>this.setProductId()}>
+        <div id="product-card-div" onClick={() => 
+          this.setProductId(relatedProductId)
+        }>
           <div onClick={this.scrollToTop}>
+          {/* <div id="product-card-div" onClick={
+            () => 
+            this.scrollToTop();
+            this.setProductId(relatedProductId)
+          }>
+            <div onClick={this.scrollToTop}> */}
             <div className="card mb-3">
             
-              {/* <img className="card-img-top" src={"relatedStyleImage"}  alt=""/> */}
-              <img className="card-img-top" src={"https://images.unsplash.com/photo-1473396413399-6717ef7c4093?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"}  alt=""/>
+              <img className="card-img-top" src={relatedStyleImage}  alt="Related Style (No image available)"/>
+              {/* <img className="card-img-top" src={"https://images.unsplash.com/photo-1473396413399-6717ef7c4093?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"}  alt=""/> */}
               <div className="card-img-overlay">
-                <p className="btn btn-primary">&#2605;</p>
+                <small><p className="btn btn-primary btn-star">&#x2605;</p></small>
               </div>
             </div>
           </div>
@@ -235,15 +245,15 @@ class ProductCard extends React.Component {
           <h5 className="card-title caption">{relatedCaption}</h5>
           {/* <small><p className="card-text text-muted price">{this.state.relatedProduct.relatedDefPrice}</p></small>
           <small><p className="card-text text-muted price">{this.state.relatedStyleOriginalPrice} &nbps; &nbsp; {this.state.relatedStyleSalePrice}</p></small> */}
-          <small><p className="card-text text-muted price">{relatedDefPrice}</p></small>
-          <small><p className="card-text text-muted price">{relatedStyleOriginalPrice} &nbsp; &nbsp; {relatedStyleSalePrice}</p></small>
+          {/* <small><p className="card-text text-muted price">{relatedDefPrice}</p></small> */}
+          <small><p className="card-text text-muted price">${relatedStyleOriginalPrice} &nbsp; &nbsp; ${relatedStyleSalePrice}</p></small>
           {/* <small><p className="card-text text-muted price">{"$999999"}</p></small>
           <small><p className="card-text text-muted price">{"OriginalPrice"} &nbps; &nbsp; {"SalePrice"}</p></small> */}
           {/* Placeholder. Superceded by star ratings, below. */}
           {/* <p className="card-text">{relatedRating}</p> */}
             <Row>              
               <StarRatings
-                rating={this.props.reviewRating}
+                rating={this.state.relatedReviewRating}
                 starDimension="1em"
                 starSpacing={"0"}
               />
