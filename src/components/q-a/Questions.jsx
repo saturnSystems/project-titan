@@ -66,9 +66,9 @@ class Questions extends React.Component {
     }
 
     return (
-      <div>
+      <div style={{height: "50vh", width: "100%", overflow: "visible"}}>
       {this.state.ShowModal ? <AddAnswer /> : null}
-        <Row className="layout" key={this.props.OneQuestion.question_id}>
+        <Row className="layout" key={this.props.OneQuestion.question_id} >
           <Col className="layout">
             <Row className="layout">
               <b>Q:&nbsp;</b>

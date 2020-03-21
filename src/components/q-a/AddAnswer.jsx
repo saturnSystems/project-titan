@@ -6,6 +6,7 @@ import ModalBody from 'react-bootstrap/ModalBody';
 import ModalFooter from 'react-bootstrap/ModalFooter';
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+const helper = require('../../helper/helper.js')
 
 
 
@@ -30,6 +31,9 @@ class AddAnswer extends React.Component {
 
 // const postAnAnswer = (questionId, body, name, email, photos, callback)
 // Will add postAnAnswer helper function on submit here
+  PostAnswer = () => {
+    // helper.postAnAnswer
+  }
 
   render() {
     return (
@@ -43,9 +47,9 @@ class AddAnswer extends React.Component {
           <Form.Control placeholder={"Example: jack543!"}></Form.Control>
           <p><i>For privacy reasons, do not use your full name or email address</i></p>
           <Form.Label><b>Your email</b></Form.Label>
-          <Form.Control placeholder={`Example: jack@email.com`}></Form.Control>
+          <Form.Control type={`email`} placeholder={`Example: jack@email.com`}></Form.Control>
           </Form>
-          <ModalBody>BODY</ModalBody>
+          <ModalBody></ModalBody>
           <ModalFooter><Button onClick={this.CloseModal}>Close</Button></ModalFooter>
       </Modal>
     );
