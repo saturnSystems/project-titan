@@ -155,12 +155,6 @@ class ProductCard extends React.Component {
       <Container-fluid className="layout product-card-layout align-left">
         <div id="product-card-div" onClick={this.setProductId}>
           <div>
-          {/* <div id="product-card-div" onClick={
-            () => 
-            this.scrollToTop();
-            this.setProductId(relatedProductId)
-          }>
-            <div onClick={this.scrollToTop}> */}
             <div className="card mb-3">
             
               <img className="card-img-top style-image" src={relatedStyleImage}  alt="Related Style (No image available)"/>
