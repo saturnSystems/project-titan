@@ -67,8 +67,8 @@ class Questions extends React.Component {
 
     return (
       <div>
-      {this.state.ShowModal ? <AddAnswer /> : null}
-        <Row className="layout" key={this.props.OneQuestion.question_id} style={{height: "50vh", width: "100%", overflowWrap: "anywhere", overflowY: "scroll"}}>
+      {this.state.ShowModal ? <AddAnswer id={this.props.OneQuestion.question_id}/> : null}
+        <Row className="layout" key={this.props.OneQuestion.question_id} style={{height: "45vh", width: "100%", padding: "2%", overflowWrap: "anywhere", overflowY: "scroll"}}>
           <Col className="layout">
             <Row className="layout">
               <b>Q:&nbsp;</b>
@@ -85,7 +85,7 @@ class Questions extends React.Component {
               </Col>
             </Row>
             {answerListArray.map(answer => <Answers OneAnswer={answer} key={answer.id}/>)}
-            {Object.keys(this.props.OneQuestion.answers).length > 2 ? this.state.renderTwoAnswers ? <Row style={{padding: "0px 10px 20px 5px"}}><Col><Button size="sm" type="submit" onClick={this.ShowAllAnswers}>Load more answers</Button></Col></Row> 
+            {Object.keys(this.props.OneQuestion.answers).length > 2 ? this.state.renderTwoAnswers ? <Row style={{padding: "10px 10px 20px 5px"}}><Col><Button size="sm" type="submit" onClick={this.ShowAllAnswers}>Load more answers</Button></Col></Row> 
             : <Row><Col><Button size="sm" type="submit" onClick={this.ShowAllAnswers}>Collapse answers</Button></Col></Row> : null}
           </Col>
         </Row>

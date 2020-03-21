@@ -15,7 +15,9 @@ class AddAnswer extends React.Component {
     super(props);
     this.state = {
       ShowModal: true,
-      FormText: ''
+      Answer: '',
+      Nickname: '',
+      Email: '',
     };
   }
 
@@ -25,14 +27,26 @@ class AddAnswer extends React.Component {
       })
   }
 
-  FormText = (e) => {
-      this.setState({FormText: e.target.value});
+  Answer = (e) => {
+      this.setState({Answer: e.target.value});
+      console.log(this.state.Answer)
+  }
+
+  Nickname = (e) => {
+    this.setState({Nickname: e.target.value});
+    console.log(this.state.Nickname)
+  }
+
+  Email = (e) => {
+    this.setState({Email: e.target.value});
+    console.log(this.state.Email)
   }
 
 // const postAnAnswer = (questionId, body, name, email, photos, callback)
-// Will add postAnAnswer helper function on submit here
+// added question id in props
   PostAnswer = () => {
-    // helper.postAnAnswer
+    helper.postAnAnswer(this.props.id, this.state.Answer, this.state.Nickname, this.state.Email, null, () => true);
+    this.setState({ShowModal: false})
   }
 
   render() {
@@ -42,15 +56,15 @@ class AddAnswer extends React.Component {
           <ModalTitle></ModalTitle>
           <Form>
           <Form.Label><b>Your Answer*</b></Form.Label>
-          <Form.Control placeholder={`1000 characters`} onChange={this.FormText}></Form.Control>
+          <Form.Control placeholder={`1000 characters`} onChange={this.Answer}></Form.Control>
           <Form.Label><b>What is your nickname*</b></Form.Label>
-          <Form.Control placeholder={"Example: jack543!"}></Form.Control>
+          <Form.Control placeholder={"Example: jack543!"} onChange={this.Nickname}></Form.Control>
           <p><i>For privacy reasons, do not use your full name or email address</i></p>
-          <Form.Label><b>Your email</b></Form.Label>
-          <Form.Control type={`email`} placeholder={`Example: jack@email.com`}></Form.Control>
+          <Form.Label><b>Your email*</b></Form.Label>
+          <Form.Control type={`email`} placeholder={`Example: jack@email.com`} onChange={this.Email}></Form.Control>
           </Form>
           <ModalBody></ModalBody>
-          <ModalFooter><Button onClick={this.CloseModal}>Close</Button></ModalFooter>
+          <ModalFooter><Button onClick={this.PostAnswer}>Submit</Button><Button onClick={this.CloseModal}>Close</Button></ModalFooter>
       </Modal>
     );
   }
