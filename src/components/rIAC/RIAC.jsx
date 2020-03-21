@@ -10,7 +10,6 @@ import "./RIAC.css";
 //   currentProduct   ={this.state.currentProduct}
 //   relatedProductsIds   ={this.state.relatedProductsIds}
 
-
 class RIAC extends React.Component{
   constructor(props){
     super(props)
@@ -18,7 +17,6 @@ class RIAC extends React.Component{
       relatedProductId: null
     }
     this.setProductId = this.setProductId.bind(this);
- 
   }
 
   setProductId = (newProductId) => { // (event) parameter not actually used
@@ -30,94 +28,30 @@ class RIAC extends React.Component{
 
     let relatedProductsIds = this.props.relatedProductsIds;
     if (relatedProductsIds.length === 0) return null;
-    console.log("RIAC: constr: rPIds: ", relatedProductsIds)
+    // console.log("RIAC: constr: rPIds: ", relatedProductsIds)
     
     let currentRelatedProductIndex = 2;  // HARD CODED
     let relatedProductId = this.props.relatedProductsIds[currentRelatedProductIndex];
-    
-    if (!relatedProductId) return null;
-    // if (relatedProductId === undefined) relatedProductId = null;
-    // if (relatedProductId === undefined) return;
-    // console.log("RIAC: rPId: ", relatedProductId)
+    console.log("RIAC: rPI: ", relatedProductId)
 
-    // let productCard = null;
-    // if (typeof relatedProductId === 'number') {
-    //   console.log("RIAC***** pc; rPId: ", relatedProductId);
-    //   productCard = (<Col className="layout col-3">
-    //     <ProductCard 
-    //       setProductId={this.props.setProductId}
-    //       currentProduct={this.props.currentProduct}
-    //       relatedProductId={relatedProductId}
-    //       // reviewRating={this.props.reviewRating}
-    //       // styles={this.props.styles}
-    //     />
-    //   </Col>);
-    // }
-
-      // let productCards = [];
-    // FIX: if (typeof relatedProductId === 'number') {
-    //   FIX: for (let productIdIndex = 0; productIdIndex < relatedProductsIds.length; productIdIndex++ ) {
-    //     let productCard = (
-    //       <Col className="layout col-3">
-    // //       <ProductCard 
-    // //         setProductId={this.props.setProductId}
-    //         currentProduct={this.props.currentProduct}
-    //         relatedProductId={relatedProductId} // MAKE dynamic
-    //         reviewRating={this.props.reviewRating} // do not use
-    //         styles={this.props.styles} // do not use
-    //       />
-    //     </Col>);
-    //     productCards.push(productCard);      
-    //   }
-    // } 
-      // relatedProductsIds.map(relatedProductId => { 
-      //   return (
-      //     <Col className="layout col-3" key={relatedProductId}>
-      //       <ProductCard              
-      //         setProductId={this.props.setProductId}
-      //         relatedProductId={relatedProductId}
-      //       />
-      //     </Col>
-      //   )
-      // });
+    // if (!relatedProductId) return null;
 
     return (
       <Container-fluid className="layout container">
         <Col sm={{ span: 10, offset: 1 }} className="layout container">
           <strong><Row className="layout">Related Products</Row></strong>
           <Row className="layout"> {
-            relatedProductsIds.map(relatedProductId => { 
-              return (
-                <Col className="layout col-3" key={relatedProductId}>
-                  <ProductCard              
-                    setProductId={this.props.setProductId}
-                    relatedProductId={relatedProductId}
-                  />
-                </Col>
-              )
-            })
-          }
-            {/* <Col className="layout col-3">
-              <ProductCard 
-                setProductId={this.props.setProductId}
-                currentProduct={this.props.currentProduct}
-                relatedProductId={relatedProductId}
-              />
-            </Col>
-            <Col className="layout col-3">
-              <ProductCard 
-                setProductId={this.props.setProductId}
-                currentProduct={this.props.currentProduct}
-                relatedProductId={relatedProductId}
-              />
-            </Col>
-            <Col className="layout col-3">
-              <ProductCard 
-                setProductId={this.props.setProductId}
-                currentProduct={this.props.currentProduct}
-                relatedProductId={relatedProductId}
-              />
-            </Col> */}
+              relatedProductsIds.map(relatedProductId => { 
+                return (
+                  <Col className="layout col-3" key={relatedProductId}>
+                    <ProductCard              
+                      setProductId={this.props.setProductId}
+                      relatedProductId={relatedProductId}
+                    />
+                  </Col>
+                )
+              })
+            }
           </Row>
           <br></br>
 
@@ -165,6 +99,5 @@ class RIAC extends React.Component{
     )
   }
 }
-
 
 export default RIAC;
