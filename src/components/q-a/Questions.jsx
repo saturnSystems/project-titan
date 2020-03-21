@@ -1,81 +1,86 @@
 import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
-import FormControl from 'react-bootstrap/FormControl';
 import Answers from './Answers';
-
-
+import Button from 'react-bootstrap/Button';
+const helper = require("./../../helper/helper.js");
 
 class Questions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      renderQuestions: 4,
-      SearchText: '',
+      hasVoted: false,
+      helpfulness: 0,
+      renderTwoAnswers: true
     };
-    this.ShowTwoMore = this.ShowTwoMore.bind(this);
-    this.SearchBox = this.SearchBox.bind(this);
   }
 
-  ShowTwoMore() {
-    this.setState((prevState) => ({ renderQuestions: prevState.renderQuestions + 2 }));
+  ShowAllAnswers = () => {
+    this.setState({ renderTwoAnswers: !this.state.renderTwoAnswers });
   }
 
-  SearchBox(event) {
+  Helpfulness = () => {
+    if (!this.state.hasVoted) {
+    this.setState({ hasVoted: true, helpfulness: this.state.helpfulness + 1 });
+    helper.putHelpfulQuestion(this.props.OneQuestion.question_id, () => true)
+   }
+  }
+
+  componentDidMount() {
     this.setState({
-      SearchText: event.target.value.toUpperCase(),
-    });
+      helpfulness: this.props.OneQuestion.question_helpfulness
+    })
   }
 
   render() {
-    let sortedQuestions = [...this.props.questions];
+  
+    let answerList = this.props.OneQuestion.answers;
+    let answerListArray = [];
+
+    for (let key in answerList) {
+      answerListArray.push(answerList[key])
+    }
 
     function compare(a, b) {
-      if (a.question_helpfulness < b.question_helpfulness) {
+      if (a.answerer_name === 'Seller' && b.helpfulness < a.helpfulness) {
+        return -1;
+      } else if (a.answerer_name !== 'Seller' && a.helpfulness < b.helpfulness) {
         return 1;
+      } else if (b.answerer_name === 'Seller') {
+        return 1;
+      } else {
+        return -1;
       }
-      return -1;
     }
 
-    sortedQuestions = sortedQuestions.sort(compare).slice(0, this.state.renderQuestions);
-    if (this.state.SearchText.length >= 3) {
-      sortedQuestions = sortedQuestions.filter(question => question.question_body
-        .toUpperCase().includes(this.state.SearchText));
+    if (this.state.renderTwoAnswers) {
+    answerListArray = answerListArray.sort(compare).slice(0, 2);
+    } else {
+      answerListArray = answerListArray.sort(compare)
     }
 
-    const items = sortedQuestions.map((question, i) => (
-      <div key={i}>
-        <Row className="layout" >
+    return (
+        <Row className="layout" key={this.props.OneQuestion.question_id}>
           <Col className="layout">
             <Row className="layout">
               <b>Q:&nbsp;</b>
               <Col className="layout" sm={9}>
-                <Row className="layout"><b>{question.question_body}</b></Row>
+                <Row className="layout"><b>{this.props.OneQuestion.question_body}</b></Row>
               </Col>
               <Col className="layout">
                 <Row className="layout">
-                Helpful?
-                  {' Yes (' + question.question_helpfulness + ') '}
-                | Add answer
+                Helpful?&nbsp;
+                  <div onClick={this.Helpfulness}><u>Yes</u>{' (' + this.state.helpfulness + ') '}</div>
+                  &nbsp;| Add answer
                 </Row>
               </Col>
             </Row>
-            <Answers questionId={question.question_id} />
+            {answerListArray.map(answer => <Answers OneAnswer={answer} key={answer.id}/>)}
+            {Object.keys(this.props.OneQuestion.answers).length > 2 ? this.state.renderTwoAnswers ? <Row><Col><Button type="submit" onClick={this.ShowAllAnswers}>Load more answers</Button></Col></Row> 
+            : <Row><Col><Button type="submit" onClick={this.ShowAllAnswers}>Collapse answers</Button></Col></Row> : null}
           </Col>
         </Row>
-        {i === sortedQuestions.length - 1 && i !== this.props.questions.length - 1
-          ? <Row className="layout"><Button onClick={this.ShowTwoMore}>MORE ANSWERED QUESTIONS</Button> | ADD A QUESTION +</Row>
-          : null}
-      </div>
 
-    ));
-
-    return (
-      <div>
-        <Row className="layout"><div><form><FormControl type="text" placeholder="Have a question? Search for answers…" onChange={this.SearchBox} /></form></div></Row>
-        { items }
-      </div>
     );
   }
 }

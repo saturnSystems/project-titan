@@ -1,0 +1,34 @@
+.noBorder {
+  border: none;
+}
+
+.ratingAvg {
+  font-size: 5rem;
+  font-weight: bolder;
+  margin-bottom: -2rem;
+}
+
+.stary {
+  font-size: 1.5rem;
+  margin-left: 5px;
+  margin-top: 5px;
+}
+
+.ratingBars {
+  /* background-color: #0277bd; */
+  margin: 7px;
+  padding: auto;
+}
+
+.noPaddy {
+  padding: 0px;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.underline:hover {
+  background-color: #00b0ff;
+  cursor: pointer;
+}

@@ -1,2 +1,5 @@
 serviceWorker.js
 index.js
+build
+node_modules
+public

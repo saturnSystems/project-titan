@@ -7,7 +7,7 @@ import "./ReviewsTiles.css";
 import StarRatings from "react-star-ratings";
 import PropTypes from "prop-types";
 import ImageComponent from "../Image/ImageComponent";
-// import Button from "react-bootstrap/Button";
+import Button from "react-bootstrap/Button";
 
 class ReviewTiles extends React.Component {
   constructor(props) {
@@ -96,13 +96,13 @@ class ReviewTiles extends React.Component {
                   this.state.showMore === false ? (
                     <Row className="layout noBorder">
                       {review.body.slice(0, 200) + "..."}
-                      <button
+                      <Button
                         name="showMore"
                         className="showBtn"
                         onClick={this.showMore} //////////////////////HERE!!!!!!!!!!!!!!!!!
                       >
                         Show more
-                      </button>
+                      </Button>
                     </Row>
                   ) : (
                     <Row className="layout noBorder">{review.body}</Row>
@@ -145,14 +145,14 @@ class ReviewTiles extends React.Component {
                   ) : null}
                 </Col>
               </Row>
-              <Row className="layout noBorder imgBorder">
+              <Row className="layout imgBorder">
                 Helpful?{" "}
                 {clicked === false ? (
                   // eslint-disable-next-line jsx-a11y/click-events-have-key-events
                   // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
                   <p
                     name="helpfulness"
-                    className="buffer"
+                    className="buffer pointer"
                     onClick={() => this.handleHelpfulness()}
                     type="disabled"
                   >
