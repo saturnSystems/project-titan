@@ -30,7 +30,9 @@
 }
 
 .btn-star {
-  background: transparent
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
 }
 
 .style-image {
