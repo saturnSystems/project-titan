@@ -10,6 +10,7 @@ import DropdownItem from "react-bootstrap/DropdownItem";
 
 import ReviewTiles from "../ReviewsTiles/ReviewTiles";
 import Ratings from "../ratings/Ratings.jsx";
+import AddReview from "../AddReview/AddReview.jsx";
 
 const helper = require("../../../helper/helper.js");
 
@@ -26,12 +27,15 @@ class Reviews extends React.Component {
       option: "",
       sortedBy: "relevant",
       starSort: null,
-      practiceSort: []
+      ShowModal: false
     };
   }
 
+  ShowModal = () => {
+    this.setState({ ShowModal: !this.state.ShowModal });
+  };
+
   handleStarSort = star => {
-    // console.log(star);
     this.setState({ starSort: star });
   };
 
@@ -157,6 +161,7 @@ class Reviews extends React.Component {
                       );
                     })}
               </Row>
+              <br />
               <Row className="layout noBorder">
                 {!this.state.reviewsBtn &&
                 this.state.itemsToShow < this.state.reviews.length ? (
@@ -164,7 +169,19 @@ class Reviews extends React.Component {
                     Show more reviews
                   </Button>
                 ) : null}{" "}
-                <span className="addReviewBtn">| ADD A REVIEW </span>
+                <Button
+                  className="addReviewBtn"
+                  onClick={() => this.ShowModal()}
+                >
+                  ADD A REVIEW
+                </Button>
+                {this.state.ShowModal ? (
+                  <AddReview
+                    productID={this.props.productID}
+                    productName={this.props.product.name}
+                    ShowModal={this.ShowModal}
+                  />
+                ) : null}
               </Row>
             </Col>
           </Row>
