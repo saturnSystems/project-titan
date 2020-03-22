@@ -46,10 +46,11 @@ class AddAnswer extends React.Component {
   }
 
   render() {
+    // questionBody={this.props.OneQuestion.question_body}
     return (
       <Modal size="lg" show={this.state.ShowModal}>
           <ModalHeader><h2>Submit your Answer</h2></ModalHeader>
-          <ModalTitle>{this.props.currentProduct.name}</ModalTitle>
+          <ModalTitle>{this.props.currentProduct.name}: {this.props.questionBody}</ModalTitle>
           <Form>
           <Form.Label><b>Your Answer*</b></Form.Label>
           <Form.Control placeholder={`1000 characters`} onChange={this.Answer}></Form.Control>

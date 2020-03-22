@@ -54,8 +54,7 @@ class AddQuestion extends React.Component {
     console.log(this.props.currentProduct.id)
     return (
       <Modal size="lg" show={this.state.ShowModal}>
-          <ModalHeader><h2>Ask Your Question</h2></ModalHeader>
-          <ModalTitle>About the {this.props.currentProduct.name}</ModalTitle>
+          <ModalHeader><h2>Ask Your Question</h2><ModalTitle>About the {this.props.currentProduct.name}</ModalTitle></ModalHeader>
           <Form>
           <Form.Label><b>Your Question*</b></Form.Label>
           <Form.Control placeholder={`1000 characters`} onChange={this.Question}></Form.Control>

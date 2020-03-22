@@ -21,6 +21,7 @@
 
 .price {
   font-size: 0.5em;
+  color: red;
 }
 
 .stars {
@@ -28,3 +29,13 @@
   border: none; */
 }
 
+.btn-star {
+  background: transparent
+}
+
+.style-image {
+  padding-bottom: 50%;
+  height: 500px;
+  padding-bottom: 75%;
+
+}
