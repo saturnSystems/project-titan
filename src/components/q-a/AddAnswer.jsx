@@ -4,10 +4,9 @@ import ModalHeader from 'react-bootstrap/ModalHeader';
 import ModalTitle from 'react-bootstrap/ModalTitle';
 import ModalBody from 'react-bootstrap/ModalBody';
 import ModalFooter from 'react-bootstrap/ModalFooter';
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
-const helper = require('../../helper/helper.js')
-
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+const helper = require('../../helper/helper.js');
 
 
 class AddAnswer extends React.Component {
@@ -50,7 +49,7 @@ class AddAnswer extends React.Component {
     return (
       <Modal size="lg" show={this.state.ShowModal}>
           <ModalHeader><h2>Submit your Answer</h2></ModalHeader>
-          <ModalTitle></ModalTitle>
+          <ModalTitle>{this.props.currentProduct.name}</ModalTitle>
           <Form>
           <Form.Label><b>Your Answer*</b></Form.Label>
           <Form.Control placeholder={`1000 characters`} onChange={this.Answer}></Form.Control>
