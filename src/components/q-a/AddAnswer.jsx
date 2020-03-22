@@ -46,7 +46,6 @@ class AddAnswer extends React.Component {
   }
 
   render() {
-    // questionBody={this.props.OneQuestion.question_body}
     return (
       <Modal size="lg" show={this.state.ShowModal}>
           <ModalHeader><h2>Submit your Answer</h2></ModalHeader>
