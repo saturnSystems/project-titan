@@ -3,6 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
 import Questions from '../q-a/Questions';
+import AddQuestion from '../q-a/AddQuestion.jsx';
 
 
 class List extends React.Component {
@@ -11,6 +12,7 @@ class List extends React.Component {
     this.state = {
 			SearchText: '',
 			renderQuestions: 2,
+			ShowModal: false,
     };
 	}
 	
@@ -19,12 +21,16 @@ class List extends React.Component {
 	}
 	
 	SearchBox = event => {
-    this.setState({
-      SearchText: event.target.value.toUpperCase(),
-    });
-  }
+    this.setState({SearchText: event.target.value.toUpperCase()});
+	}
+	
+	ShowModal = () => {
+		this.setState({ ShowModal: true });
+		console.log(this.state.ShowModal)
+	}
 
   render() {
+		console.log(this.props.currentProduct)
     let questions = this.props.questions;
 
     function compare(a, b) {
@@ -42,12 +48,13 @@ class List extends React.Component {
 		
 		return (
 			<div key={this.props.product_id}>
+			{this.state.ShowModal === true ? <AddQuestion currentProduct={this.props.currentProduct}/> : null}
 			<Row className="layout">
 			<FormControl size="lg" type="text" placeholder="Have a question? Search for answers…" onChange={this.SearchBox} style={{margin: "15px"}} /></Row>
-			{questions.map(question => <Questions OneQuestion={question} key={question.question_id}/>)}
+			{questions.map(question => <Questions currentProduct={this.props.currentProduct} OneQuestion={question} key={question.question_id}/>)}
 			{this.state.renderQuestions < this.props.questions.length && this.props.questions.length > 2
-			? <Row className="layout"><Button size="sm" onClick={this.ShowTwoMore} style={{margin: "5px", padding: "5px"}}>MORE ANSWERED QUESTIONS</Button><Button style={{margin: "5px", padding: "5px"}}>ADD A QUESTION +</Button></Row> 
-			: <Row className="layout" style={{padding: "20px 0px 0px 0px"}}><Button>ADD A QUESTION +</Button></Row>}
+			? <Row className="layout"><Button size="sm" onClick={this.ShowTwoMore} style={{margin: "5px", padding: "5px"}}>MORE ANSWERED QUESTIONS</Button><Button style={{margin: "5px", padding: "5px"}} onClick={this.ShowModal}>ADD A QUESTION +</Button></Row> 
+			: <Row className="layout" style={{padding: "20px 0px 0px 0px"}}><Button onClick={this.ShowModal}>ADD A QUESTION +</Button></Row>}
 		</div>
 		)
 	}
