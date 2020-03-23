@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row'
 // import Col from 'react-bootstrap/Col' // NOT YET USED
 import StarRatings from "react-star-ratings";
 import noImage from "./NoImageOnFile.jpg";
+import noStyles from "./NoStylesOnFile.jpg";
 import "./ProductCard.css";
 
 // props as defined in calling parent
