@@ -45,7 +45,7 @@ class AddAnswer extends React.Component {
   CheckForErrors = () => {
     let errors = false;
 
-    if (!this.state.Answer) {
+    if (!this.state.Answer || this.state.Answer.length > 1000) {
       errors = true;
       this.setState({AnswerError: 'Invalid Answer', ErrorMessage: `You must enter the following:`})
     } else {
@@ -61,7 +61,7 @@ class AddAnswer extends React.Component {
 
     if (!this.state.Email || !this.state.Email.includes('@')) {
       errors = true;
-      this.setState({EmailError: 'Invalid Answer', ErrorMessage: `You must enter the following:`})
+      this.setState({EmailError: 'Invalid Email', ErrorMessage: `You must enter the following:`})
     } else {
       this.setState({EmailError: ''})
     }
