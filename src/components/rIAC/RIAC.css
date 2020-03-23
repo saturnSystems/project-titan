@@ -1,3 +1,16 @@
+/* .RIAC {
+
+} */
+/* <RIAC className="RIAC">
+...
+<div className="card-title">
+...
+</RIAC> */
+
+.RIAC .card-title {
+ background: white;
+}
+
 .module-header {
   font-size: 1.3em;
   float: left;
@@ -14,3 +27,6 @@
   font-weight: 800;
 }
 
+.short-image {
+  height: 150%;
+}

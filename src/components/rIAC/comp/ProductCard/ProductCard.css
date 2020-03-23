@@ -5,6 +5,14 @@
   border-color: gray;
 }
 
+.card-body {
+  padding: 5px;
+}
+
+/* .RIAC .card-title {
+  background: blue;
+} */
+
 .align-left {
   float: left;
   border: none;
@@ -14,9 +22,10 @@
   font-size: 0.8em;
 }
 
-.caption {
+.pc-caption {
   font-size: 0.8em;
   font-weight: 800;
+  height: 67%;
 }
 
 .price {
@@ -24,18 +33,27 @@
   color: red;
 }
 
-.stars {
-  /* float: left;
-  border: none; */
+del {
+  color: red;
+}
+
+.rating-stars {
+  float: left;
+  margin-left: 0;
+  color: black;
 }
 
 .btn-star {
-  background: transparent
+  background-color: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  color: black;
+  float: right;
+  padding: 0;
+  margin: 0;
 }
 
 .style-image {
-  padding-bottom: 50%;
-  height: 500px;
-  padding-bottom: 75%;
-
+  height: 150%;
 }
+
