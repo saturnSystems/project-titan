@@ -1,8 +1,8 @@
 // this component is for use in RIAC.jsx
 import React from 'react';
-import 'react-bootstrap/Container';
-import 'react-bootstrap/Card';
-// import 'react-bootstrap/CardDeck';
+import Container from 'react-bootstrap/Container';
+import Card from 'react-bootstrap/Card';
+import CardDeck from 'react-bootstrap/CardDeck';
 
 import Row from 'react-bootstrap/Row'
 // import Col from 'react-bootstrap/Col' // NOT YET USED
@@ -133,6 +133,8 @@ class ProductCard extends React.Component {
 
     return (
       <Container-fluid class="layout product-card-layout align-left">
+
+
         <div id="product-card-div" onClick={this.setProductId}>
           <div>
             <div className="card mb-3 style-image">            
@@ -158,7 +160,11 @@ class ProductCard extends React.Component {
             </Row>
           </div>
         </div>
+
+
+
       </Container-fluid>
+
     )
   }
 }

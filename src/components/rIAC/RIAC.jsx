@@ -1,13 +1,21 @@
-import React from 'react'
-import 'react-bootstrap/Container'
-import 'react-bootstrap/Card';
-import 'react-bootstrap/CardDeck';
+import React from 'react';
+import "bootstrap/dist/css/bootstrap.min.css";
+
+// import Container from "react-bootstrap/Container";
+import "react-bootstrap/Container";
+import Card from "react-bootstrap/Card";
+import CardDeck from "react-bootstrap/CardDeck";
+
 
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 import ProductCard from './comp/ProductCard/ProductCard'
 import "./RIAC.css";
+
+import noImage from "./NoImageOnFile.jpg";
+import noStyles from "./NoStylesOnFile.jpg";
+
 
 // props:
 //   setProductId   ={this.setProductId}
@@ -43,8 +51,6 @@ class RIAC extends React.Component{
 
      return (
       <Container-fluid class="layout container RIAC">
-
-{/*  */}
 
         <Col sm={{ span: 10, offset: 1 }} className="layout container">
           <strong><Row className="layout">Related Products</Row></strong>
