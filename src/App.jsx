@@ -155,7 +155,7 @@ class App extends React.Component {
         )}
         <br></br>
 
-        <Qa questions={this.state.questions} />
+        <Qa questions={this.state.questions} currentProduct={this.state.currentProduct}/>
         <br />
 
         <div ref={this.reviewsRef}>
