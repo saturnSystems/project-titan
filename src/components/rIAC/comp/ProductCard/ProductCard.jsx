@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row'
 // import Col from 'react-bootstrap/Col' // NOT YET USED
 import StarRatings from "react-star-ratings";
 import noImage from "./NoImageOnFile.jpg";
+import "./ProductCard.css";
 
 // props as defined in calling parent
 //   setProductId  ={this.props.setProductId}
@@ -20,8 +21,8 @@ class ProductCard extends React.Component {
       relatedProduct: null, // change over time, requiring re-render
       relatedStyles: null, // change over time, requiring re-render
       relatedReviewRating: null, // change over time, requiring re-render
-      relatedStyleOriginalPrice: null, // QQQQ NEEDED?
-      relatedStyleSalePrice: null// QQQQ NEEDED?
+      // relatedStyleOriginalPrice: null, // QQQQ NEEDED?
+      // relatedStyleSalePrice: null// QQQQ NEEDED?
     }
 
     // NO NEED TO BIND WHEN I HAVE <this>
@@ -138,7 +139,7 @@ class ProductCard extends React.Component {
           <div className="card-body">          
           <p className="card-text category">{relatedCategory}</p>
           <h5 className="card-title caption">{relatedCaption}</h5>
-          <small><p className="card-text text-muted price">${relatedStyleOriginalPrice} &nbsp; &nbsp; ${relatedStyleSalePrice}</p></small>
+          <small><p className="card-text price">${relatedStyleOriginalPrice} &nbsp; &nbsp; ${relatedStyleSalePrice}</p></small>
             <Row>              
               <StarRatings
                 rating={relatedReviewRating}

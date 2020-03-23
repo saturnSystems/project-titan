@@ -33,11 +33,9 @@
   background-color: transparent;
   border-color: transparent;
   box-shadow: none;
+  color: black;
 }
 
 .style-image {
-  padding-bottom: 50%;
-  height: 500px;
-  padding-bottom: 75%;
-
+  height: 150%;
 }
