@@ -1,7 +1,11 @@
 import React from 'react'
 import 'react-bootstrap/Container'
+import 'react-bootstrap/Card';
+import 'react-bootstrap/CardDeck';
+
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+
 import ProductCard from './comp/ProductCard/ProductCard'
 import "./RIAC.css";
 
@@ -39,6 +43,9 @@ class RIAC extends React.Component{
 
      return (
       <Container-fluid class="layout container RIAC">
+
+{/*  */}
+
         <Col sm={{ span: 10, offset: 1 }} className="layout container">
           <strong><Row className="layout">Related Products</Row></strong>
           <Row className="layout"> {
