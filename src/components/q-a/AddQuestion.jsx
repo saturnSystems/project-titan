@@ -85,14 +85,14 @@ class AddQuestion extends React.Component {
             <Form>
             <p style={{color: 'red'}}><i>{this.state.ErrorMessage}</i></p>
             <Form.Label><b>Your Question*</b></Form.Label>
-              <Form.Control placeholder={`1000 characters`} onChange={this.Question} size="lg"></Form.Control>
+              <Form.Control maxlength={"1000"} placeholder={`1000 characters`} onChange={this.Question} size="sm" style={{height: "10em"}}></Form.Control>
               <p style={{color: 'red'}}><i>{this.state.QuestionError}</i></p>
             <Form.Label><b>What is your nickname*</b></Form.Label>
-              <Form.Control placeholder={"Example: jackson11!"} onChange={this.Nickname}></Form.Control>
+              <Form.Control maxlength={"60"} placeholder={"Example: jackson11!"} onChange={this.Nickname}></Form.Control>
               <p style={{color: 'red'}}><i>{this.state.NicknameError}</i></p>
               <p><i>For privacy reasons, do not use your full name or email address</i></p>
             <Form.Label><b>Your email*</b></Form.Label>
-              <Form.Control type={`email`} placeholder={`Why did you like the product or not?`} onChange={this.Email}></Form.Control>
+              <Form.Control maxlength={"60"} type={`email`} placeholder={`Why did you like the product or not?`} onChange={this.Email}></Form.Control>
               <p style={{color: 'red'}}><i>{this.state.EmailError}</i></p>
               <p><i>For authentication reasons, you will not be emailed</i></p>
             </Form>
