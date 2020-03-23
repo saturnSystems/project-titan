@@ -49,3 +49,19 @@
   color: #00b0ff;
   border-radius: 0 !important;
 }
+
+.header {
+  background-color: #00b0ff;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+#logo {
+  width: 2em;
+}
+
+#announcements {
+  text-align: center;
+}

@@ -100,3 +100,30 @@
   height: 2.5em;
   width: 2.5em;
 }
+
+.radio-styles {
+  position: absolute;
+  right: 10%;
+  top: 0;
+}
+
+.style-thumbs {
+  position: relative;
+  z-index: -1;
+}
+
+.sale-price {
+  color: red;
+}
+
+#carousel {
+  padding: 0;
+}
+
+#details {
+  height: 92.11vh;
+}
+
+#social-media-buttons {
+  margin: auto;
+}
