@@ -30,7 +30,7 @@ class List extends React.Component {
 	}
 
   render() {
-		console.log(this.props.currentProduct)
+		// console.log(this.props.currentProduct)
     let questions = this.props.questions;
 
     function compare(a, b) {

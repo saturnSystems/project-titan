@@ -3,8 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 // import Container from "react-bootstrap/Container";
 import "react-bootstrap/Container";
-import Card from "react-bootstrap/Card";
-import CardDeck from "react-bootstrap/CardDeck";
+// import Card from "react-bootstrap/Card";
+// import CardDeck from "react-bootstrap/CardDeck";
 
 
 import Row from 'react-bootstrap/Row'
@@ -13,8 +13,8 @@ import Col from 'react-bootstrap/Col'
 import ProductCard from './comp/ProductCard/ProductCard'
 import "./RIAC.css";
 
-import noImage from "./NoImageOnFile.jpg";
-import noStyles from "./NoStylesOnFile.jpg";
+// import noImage from "./NoImageOnFile.jpg";
+// import noStyles from "./NoStylesOnFile.jpg";
 
 
 // props:

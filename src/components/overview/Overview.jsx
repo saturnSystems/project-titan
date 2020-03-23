@@ -131,7 +131,11 @@ class Overview extends React.Component {
                 {each.photos && (
                   <Image
                     className="style-thumbs"
-                    src={each.photos[0].thumbnail_url?`${each.photos[0].thumbnail_url}&h=300`:require('../../noImg.svg')}
+                    src={
+                      each.photos[0].thumbnail_url
+                        ? `${each.photos[0].thumbnail_url}&h=300`
+                        : require("../../noImg.svg")
+                    }
                     alt={`Thumbnail of ${this.props.product.name} in ${each.name} style`}
                     roundedCircle
                     fluid
@@ -187,14 +191,15 @@ class Overview extends React.Component {
   }
 
   conditionalPinterest() {
-    if (
-      this.state.currentStyle &&
-      this.state.currentStyle.photos
-    ) {
+    if (this.state.currentStyle && this.state.currentStyle.photos) {
       return (
         <PinterestShareButton
           url={window.location.href}
-          media={this.state.currentStyle.photos[0].url?this.state.currentStyle.photos[0].url:require('../../noImg.svg')}
+          media={
+            this.state.currentStyle.photos[0].url
+              ? this.state.currentStyle.photos[0].url
+              : require("../../noImg.svg")
+          }
         >
           <PinterestIcon size="1.5em" />
         </PinterestShareButton>
@@ -309,8 +314,14 @@ class Overview extends React.Component {
     this.state.currentStyle &&
       this.state.currentStyle.photos.forEach((each, i) => {
         photoArray.push({
-          original: each.url?`${each.url}&${i}`:require('../../noImg.svg'),
-          thumbnail: each.thumbnail_url?`${each.thumbnail_url}&h=300&${i}`:require('../../noImg.svg'),
+          original: each.url
+            ? `${each.url.substring(0, each.url.indexOf("&w="))}&w=${
+                Math.round(window.innerWidth*.66)
+              }&q=80&${i}`
+            : require("../../noImg.svg"),
+          thumbnail: each.thumbnail_url
+            ? `${each.thumbnail_url}&h=300&${i}`
+            : require("../../noImg.svg"),
           originalAlt: `Image ${i + 1} of ${this.props.product.name} in ${
             this.state.currentStyle.name
           } style`,
