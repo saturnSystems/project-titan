@@ -39,7 +39,7 @@ class RIAC extends React.Component{
     // if (relatedProductsIds.length === 0) { 
     //   console.log("RIAC: no rPIds: ", relatedProductsIds); return null
     // };
-    console.log("RIAC: rPIds: ", relatedProductsIds)
+    // console.log("RIAC: rPIds: ", relatedProductsIds)
 
      return (
       <Container-fluid class="layout container RIAC">
