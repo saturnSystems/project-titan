@@ -71,12 +71,6 @@ class AddAnswer extends React.Component {
       this.setState({ShowModal: false})
     }
   }
-// const postAnAnswer = (questionId, body, name, email, photos, callback)
-// added question id in props
-  // PostAnswer = () => {
-  //   helper.postAnAnswer(this.props.id, this.state.Answer, this.state.Nickname, this.state.Email, null, () => true);
-  //   this.setState({ShowModal: false})
-  // }
 
   render() {
     return (
