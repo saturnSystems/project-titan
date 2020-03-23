@@ -124,13 +124,13 @@ class Overview extends React.Component {
                     name="style"
                     type="radio"
                     id={each.style_id}
-                    style={{ position: "absolute", right: "10%", top: 0 }}
+                    className="radio-styles"
                   ></Form.Check.Input>
                 )}
                 <span className="checkmark"></span>
                 {each.photos && (
                   <Image
-                    style={{ position: "relative", zIndex: -1 }}
+                    className="style-thumbs"
                     src={`${each.photos[0].thumbnail_url}&h=300`}
                     alt={`Thumbnail of ${this.props.product.name} in ${each.name} style`}
                     roundedCircle
@@ -166,7 +166,7 @@ class Overview extends React.Component {
           </Row>
           <Row className="layout">
             <Col className="layout">
-              <del style={{ color: "red" }}>
+              <del className="sale-price">
                 $
                 {this.state.currentStyle &&
                   this.state.currentStyle.original_price}
@@ -397,17 +397,11 @@ class Overview extends React.Component {
             <Col
               sm={this.state.fullscreen ? 12 : 8}
               className="layout"
-              style={{ padding: "0" }}
               id="carousel"
             >
               {this.conditionalImageGallery()}
             </Col>
-            <Col
-              sm={4}
-              className="layout"
-              id="details"
-              style={{ height: "92.11vh" }}
-            >
+            <Col sm={4} className="layout" id="details">
               <Row className="layout">
                 <Col className="layout">{this.conditionalReviews()}</Col>
               </Row>
@@ -457,7 +451,7 @@ class Overview extends React.Component {
                     </Button>
                   )}
                 </Col>
-                <Col className="layout" style={{ margin: "auto" }}>
+                <Col className="layout" id="social-media-buttons">
                   <FacebookShareButton url={window.location.href}>
                     <FacebookIcon size="1.5em" />
                   </FacebookShareButton>
