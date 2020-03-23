@@ -54,7 +54,7 @@ class List extends React.Component {
 			{questions.map(question => <Questions currentProduct={this.props.currentProduct} OneQuestion={question} key={question.question_id}/>)}
 			{this.state.renderQuestions < this.props.questions.length && this.props.questions.length > 2
 			? <Row className="layout"><Button size="sm" onClick={this.ShowTwoMore} style={{margin: "5px", padding: "5px"}} variant="outline-primary">MORE ANSWERED QUESTIONS</Button><Button style={{margin: "5px", padding: "5px"}} onClick={this.ShowModal} variant="outline-primary">ADD A QUESTION +</Button></Row> 
-			: <Row className="layout" style={{padding: "20px 0px 0px 0px"}} variant="outline-primary"><Button onClick={this.ShowModal}>ADD A QUESTION +</Button></Row>}
+			: <Row className="layout" style={{padding: "20px 0px 0px 0px"}} variant="outline-primary"><Button onClick={this.ShowModal}  variant="outline-primary">ADD A QUESTION +</Button></Row>}
 		</div>
 		)
 	}

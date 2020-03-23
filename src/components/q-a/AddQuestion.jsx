@@ -81,7 +81,8 @@ class AddQuestion extends React.Component {
     console.log(this.props.currentProduct.id) // remove this when add question is pulled in on page reload
     return (
       <Modal size="lg" show={this.state.ShowModal}>
-          <ModalHeader><h2>Ask Your Question</h2><ModalTitle>About the {this.props.currentProduct.name}</ModalTitle></ModalHeader>
+          <ModalHeader><h2>Ask Your Question</h2></ModalHeader>
+          <ModalTitle>About the {this.props.currentProduct.name}</ModalTitle>
             <Form>
             <p style={{color: 'red'}}><i>{this.state.ErrorMessage}</i></p>
             <Form.Label><b>Your Question*</b></Form.Label>

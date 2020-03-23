@@ -85,8 +85,8 @@ class Questions extends React.Component {
               </Col>
             </Row>
             {answerListArray.map(answer => <Answers OneAnswer={answer} key={answer.id}/>)}
-            {Object.keys(this.props.OneQuestion.answers).length > 2 ? this.state.renderTwoAnswers ? <Row style={{padding: "10px 10px 20px 5px"}}><Col><Button size="sm" type="submit" onClick={this.ShowAllAnswers}>Load more answers</Button></Col></Row> 
-            : <Row><Col><Button size="sm" type="submit" onClick={this.ShowAllAnswers}>Collapse answers</Button></Col></Row> : null}
+            {Object.keys(this.props.OneQuestion.answers).length > 2 ? this.state.renderTwoAnswers ? <Row style={{padding: "10px 10px 20px 5px"}}><Col><Button size="sm" type="submit" onClick={this.ShowAllAnswers}  variant="outline-primary">Load more answers</Button></Col></Row> 
+            : <Row><Col><Button size="sm" type="submit" onClick={this.ShowAllAnswers}  variant="outline-primary">Collapse answers</Button></Col></Row> : null}
           </Col>
         </Row>
         </div>
