@@ -17,6 +17,10 @@ class AddAnswer extends React.Component {
       Answer: '',
       Nickname: '',
       Email: '',
+      ErrorMessage: '',
+      AnswerError: '',
+      NicknameError: '',
+      EmailError: '',
     };
   }
 
@@ -38,12 +42,41 @@ class AddAnswer extends React.Component {
     this.setState({Email: e.target.value});
   }
 
+  CheckForErrors = () => {
+    let errors = false;
+
+    if (!this.state.Answer) {
+      errors = true;
+      this.setState({AnswerError: 'Invalid Answer', ErrorMessage: `You must enter the following:`})
+    } else {
+      this.setState({AnswerError: ''})
+    }
+
+    if (!this.state.Nickname) {
+      errors = true;
+      this.setState({NicknameError: 'Invalid Nickname', ErrorMessage: `You must enter the following:`})
+    } else {
+      this.setState({NicknameError: ''})
+    }
+
+    if (!this.state.Email || !this.state.Email.includes('@')) {
+      errors = true;
+      this.setState({EmailError: 'Invalid Answer', ErrorMessage: `You must enter the following:`})
+    } else {
+      this.setState({EmailError: ''})
+    }
+
+    if (!errors) {
+      helper.postAnAnswer(this.props.id, this.state.Answer, this.state.Nickname, this.state.Email, null, () => true);
+      this.setState({ShowModal: false})
+    }
+  }
 // const postAnAnswer = (questionId, body, name, email, photos, callback)
 // added question id in props
-  PostAnswer = () => {
-    helper.postAnAnswer(this.props.id, this.state.Answer, this.state.Nickname, this.state.Email, null, () => true);
-    this.setState({ShowModal: false})
-  }
+  // PostAnswer = () => {
+  //   helper.postAnAnswer(this.props.id, this.state.Answer, this.state.Nickname, this.state.Email, null, () => true);
+  //   this.setState({ShowModal: false})
+  // }
 
   render() {
     return (
@@ -51,16 +84,20 @@ class AddAnswer extends React.Component {
           <ModalHeader><h2>Submit your Answer</h2></ModalHeader>
           <ModalTitle>{this.props.currentProduct.name}: {this.props.questionBody}</ModalTitle>
           <Form>
+          <p style={{color: 'red'}}><i>{this.state.ErrorMessage}</i></p>
           <Form.Label><b>Your Answer*</b></Form.Label>
           <Form.Control placeholder={`1000 characters`} onChange={this.Answer}></Form.Control>
+          <p style={{color: 'red'}}><i>{this.state.AnswerError}</i></p>
           <Form.Label><b>What is your nickname*</b></Form.Label>
           <Form.Control placeholder={"Example: jack543!"} onChange={this.Nickname}></Form.Control>
+          <p style={{color: 'red'}}><i>{this.state.NicknameError}</i></p>
           <p><i>For privacy reasons, do not use your full name or email address</i></p>
           <Form.Label><b>Your email*</b></Form.Label>
           <Form.Control type={`email`} placeholder={`Example: jack@email.com`} onChange={this.Email}></Form.Control>
+          <p style={{color: 'red'}}><i>{this.state.EmailError}</i></p>
           </Form>
           <ModalBody></ModalBody>
-          <ModalFooter><Button onClick={this.PostAnswer}>Submit</Button><Button onClick={this.CloseModal}>Close</Button></ModalFooter>
+          <ModalFooter><Button onClick={this.CheckForErrors}>Submit</Button><Button onClick={this.CloseModal}>Close</Button></ModalFooter>
       </Modal>
     );
   }
