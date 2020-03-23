@@ -312,8 +312,12 @@ class Overview extends React.Component {
         photoArray.push({
           original: `${each.url}&${i}`,
           thumbnail: `${each.thumbnail_url}&h=300&${i}`,
-          originalAlt: `Image ${i+1} of ${this.props.product.name} in ${this.state.currentStyle.name} style`,
-          thumbnailAlt: `Thumbnail ${i+1} of ${this.props.product.name} in ${this.state.currentStyle.name} style`
+          originalAlt: `Image ${i + 1} of ${this.props.product.name} in ${
+            this.state.currentStyle.name
+          } style`,
+          thumbnailAlt: `Thumbnail ${i + 1} of ${this.props.product.name} in ${
+            this.state.currentStyle.name
+          } style`
         });
       });
     if (
@@ -334,13 +338,18 @@ class Overview extends React.Component {
               src: photoArray[this.state.carouselIndex].original,
               width: window.innerWidth,
               height: window.innerHeight * 0.92,
-              alt: `Unmagnified image ${this.state.carouselIndex+1} of ${this.props.product.name} in ${this.state.currentStyle.name} style`
+              alt: `Unmagnified image ${this.state.carouselIndex + 1} of ${
+                this.props.product.name
+              } in ${this.state.currentStyle.name} style`
             },
             largeImage: {
               src: photoArray[this.state.carouselIndex].original,
               width: window.innerWidth * 2.5,
               height: window.innerHeight * 0.92 * 2.5,
-              alt: `Magnified overlay of image ${this.state.carouselIndex+1} of ${this.props.product.name} in ${this.state.currentStyle.name} style `
+              alt: `Magnified overlay of image ${this.state.carouselIndex +
+                1} of ${this.props.product.name} in ${
+                this.state.currentStyle.name
+              } style `
             }
           }}
         />
