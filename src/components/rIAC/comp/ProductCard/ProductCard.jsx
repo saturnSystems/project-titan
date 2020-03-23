@@ -69,7 +69,7 @@ class ProductCard extends React.Component {
 
     // Pre-method check if ready to render or null
     // function method
-    isReadytoRender = () => {
+  isReadytoRender = () => {
     return (
       this.state.relatedProduct !== null &&
       this.state.relatedStyles !== null &&
@@ -102,12 +102,16 @@ class ProductCard extends React.Component {
     let relatedCategory = relatedProduct.category || null;
     // console.log("PC: rCat: ", relatedCategory);
 
-    let relatedCaption = (relatedProduct.name === undefined || relatedProduct.slogan === undefined) ? null : relatedProduct.name + ' - ' + relatedProduct.slogan;
+    let relatedCaption = relatedProduct.name ? relatedProduct.name : null;
+    // let relatedCaption = (relatedProduct.name === undefined || relatedProduct.slogan === undefined) ? null : relatedProduct.name + ' - ' + relatedProduct.slogan;
     // console.log("PC: rCap: ", relatedCaption);
 
     let relatedDefPrice = relatedProduct.default_price || null; // SUPERCEDED BY style data
     // console.log("PC: rDP: ", relatedDefPrice);
 
+    // QQQQ is this appropriate: noDefault => 0;
+
+    // let relatedStyle = relatedStyles.find(style => style["default?"] === 1) || relatedStyles[0];
     let relatedStyle = relatedStyles.find(style => style["default?"] === 1) || relatedStyles[0];
         // console.log("PC: rS: ", relatedStyle);
 
@@ -115,7 +119,7 @@ class ProductCard extends React.Component {
     let relatedStyleOriginalPrice = relatedStyle.original_price || null;
     // console.log("PC: rStyleOPrice: ", relatedStyleOriginalPrice);
 
-    let relatedStyleSalePrice = relatedStyle.sale_price || null;
+    let relatedStyleSalePrice = relatedStyle.sale_price || relatedDefPrice;
     // console.log("PC: rStyleSPrice: ", relatedStyleSalePrice);
 
     let relatedStyleImage = relatedStyle.photos[0].url || noImage;
@@ -128,7 +132,7 @@ class ProductCard extends React.Component {
         <div id="product-card-div" onClick={this.setProductId}>
           <div>
             <div className="card mb-3">            
-              <img className="card-img-top style-image" src={relatedStyleImage}  alt="Related Style (No image available)"/>
+              <img className="card-img-top style-image" src={relatedStyleImage}  alt="Display this style"/>
               {/* <img className="card-img-top" src={"https://images.unsplash.com/photo-1473396413399-6717ef7c4093?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"}  alt=""/> */}
               <div className="card-img-overlay">
                 <small><p className="btn btn-primary btn-star">&#x2605;</p></small>
@@ -140,8 +144,8 @@ class ProductCard extends React.Component {
           <div className="card-body">          
           <p className="card-text category">{relatedCategory}</p>
           <h5 className="card-title caption">{relatedCaption}</h5>
-          <small><p className="card-text text-muted price">${relatedStyleOriginalPrice} &nbsp; &nbsp; ${relatedStyleSalePrice}</p></small>
-            <Row>              
+          <small><p className="card-text text-muted price">${relatedStyleSalePrice} &nbsp; &nbsp; ${relatedStyleOriginalPrice}</p></small>
+            <Row className="stars">              
               <StarRatings
                 rating={relatedReviewRating}
                 starDimension="1em"

@@ -17,6 +17,7 @@
 .caption {
   font-size: 0.8em;
   font-weight: 800;
+  height: 67%;
 }
 
 .price {
@@ -25,8 +26,7 @@
 }
 
 .stars {
-  /* float: left;
-  border: none; */
+  float: left;
 }
 
 .btn-star {
@@ -34,6 +34,9 @@
   border-color: transparent;
   box-shadow: none;
   color: black;
+  float: right;
+  padding: 0;
+  margin: 0;
 }
 
 .style-image {
