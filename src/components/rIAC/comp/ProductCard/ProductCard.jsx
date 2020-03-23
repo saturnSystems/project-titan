@@ -139,7 +139,7 @@ class ProductCard extends React.Component {
           <div className="card-body">          
           <p className="card-text category">{relatedCategory}</p>
           <h5 className="card-title caption">{relatedCaption}</h5>
-          <small><p className="card-text price">${relatedStyleOriginalPrice} &nbsp; &nbsp; ${relatedStyleSalePrice}</p></small>
+          <small><p className="card-text text-muted price">${relatedStyleOriginalPrice} &nbsp; &nbsp; ${relatedStyleSalePrice}</p></small>
             <Row>              
               <StarRatings
                 rating={relatedReviewRating}
