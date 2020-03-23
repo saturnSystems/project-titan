@@ -110,44 +110,53 @@ class Reviews extends React.Component {
                 </DropdownButton>
               </Row>
               <br />
-              {reviews.length >= 2
-                ? reviews.slice(0, itemsToShow).map(review => {
-                    const date = new Date(review.date).toLocaleDateString(
-                      "en-US",
-                      {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric"
-                      }
-                    );
-                    return (
-                      <ReviewTiles
-                        review={review}
-                        date={`${date}`}
-                        key={review.review_id}
-                        helper={helper}
-                      />
-                    );
-                  })
-                : reviews.map(review => {
-                    const date = new Date(review.date).toLocaleDateString(
-                      "en-US",
-                      {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric"
-                      }
-                    );
-                    return (
-                      <ReviewTiles
-                        review={review}
-                        date={`${date}`}
-                        key={review.review_id}
-                        helper={helper}
-                      />
-                    );
-                  })}
-
+              <Row
+                style={{
+                  height: "80vh",
+                  width: "100%",
+                  padding: "2%",
+                  overflowWrap: "anywhere",
+                  overflowY: "scroll"
+                }}
+              >
+                {reviews.length >= 2
+                  ? reviews.slice(0, itemsToShow).map(review => {
+                      const date = new Date(review.date).toLocaleDateString(
+                        "en-US",
+                        {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric"
+                        }
+                      );
+                      return (
+                        <ReviewTiles
+                          review={review}
+                          date={`${date}`}
+                          key={review.review_id}
+                          helper={helper}
+                        />
+                      );
+                    })
+                  : reviews.map(review => {
+                      const date = new Date(review.date).toLocaleDateString(
+                        "en-US",
+                        {
+                          day: "numeric",
+                          month: "short",
+                          year: "numeric"
+                        }
+                      );
+                      return (
+                        <ReviewTiles
+                          review={review}
+                          date={`${date}`}
+                          key={review.review_id}
+                          helper={helper}
+                        />
+                      );
+                    })}
+              </Row>
               <Row className="layout noBorder">
                 {!this.state.reviewsBtn &&
                 this.state.itemsToShow < this.state.reviews.length ? (
