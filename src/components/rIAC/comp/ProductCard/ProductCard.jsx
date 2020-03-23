@@ -128,11 +128,11 @@ class ProductCard extends React.Component {
     // console.log("PC: render: rRR: ", relatedReviewRating);
 
     return (
-      <Container-fluid className="layout product-card-layout align-left">
+      <Container-fluid class="layout product-card-layout align-left">
         <div id="product-card-div" onClick={this.setProductId}>
           <div>
-            <div className="card mb-3">            
-              <img className="card-img-top style-image" src={relatedStyleImage}  alt="Display this style"/>
+            <div className="card mb-3 style-image">            
+              <img className="card-img-top" src={relatedStyleImage}  alt="Display this style"/>
               {/* <img className="card-img-top" src={"https://images.unsplash.com/photo-1473396413399-6717ef7c4093?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"}  alt=""/> */}
               <div className="card-img-overlay">
                 <small><p className="btn btn-primary btn-star">&#x2605;</p></small>
@@ -143,9 +143,9 @@ class ProductCard extends React.Component {
         <div className="card">
           <div className="card-body">          
           <p className="card-text category">{relatedCategory}</p>
-          <h5 className="card-title caption">{relatedCaption}</h5>
-          <small><p className="card-text text-muted price">${relatedStyleSalePrice} &nbsp; &nbsp; ${relatedStyleOriginalPrice}</p></small>
-            <Row className="stars">              
+          <h5 className="card-title pc-caption">{relatedCaption}</h5>
+          <small><p className="card-text text-muted price">${relatedStyleSalePrice} &nbsp; &nbsp; <del>${relatedStyleOriginalPrice}</del></p></small>
+            <Row className="rating-stars">              
               <StarRatings
                 rating={relatedReviewRating}
                 starDimension="1em"

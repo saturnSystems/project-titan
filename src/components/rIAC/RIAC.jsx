@@ -38,7 +38,7 @@ class RIAC extends React.Component{
     console.log("RIAC: rPIds: ", relatedProductsIds)
 
      return (
-      <Container-fluid className="layout container">
+      <Container-fluid class="layout container RIAC">
         <Col sm={{ span: 10, offset: 1 }} className="layout container">
           <strong><Row className="layout">Related Products</Row></strong>
           <Row className="layout"> {
