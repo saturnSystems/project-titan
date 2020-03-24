@@ -10,9 +10,9 @@ class List extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-			SearchText: '',
-			renderQuestions: 2,
-			ShowModal: false,
+	  SearchText: '',
+	  renderQuestions: 2,
+	  ShowModal: false,
     };
 	}
 	
@@ -25,12 +25,16 @@ class List extends React.Component {
 	}
 	
 	ShowModal = () => {
-		this.setState({ ShowModal: true });
+		this.setState({ ShowModal: !this.state.ShowModal });
 		console.log(this.state.ShowModal)
 	}
 
   render() {
-		console.log(this.props.currentProduct)
+
+	window.onclick = function(event) {
+		console.log('hello there')
+	  }
+
     let questions = this.props.questions;
 
     function compare(a, b) {
@@ -48,7 +52,7 @@ class List extends React.Component {
 		
 		return (
 			<div key={this.props.product_id}>
-			{this.state.ShowModal === true ? <AddQuestion currentProduct={this.props.currentProduct}/> : null}
+			{this.state.ShowModal === true ? <AddQuestion currentProduct={this.props.currentProduct} ShowModal={this.ShowModal} Show={this.state.ShowModal}/> : null}
 			<Row className="layout">
 			<FormControl size="lg" type="text" placeholder="Have a question? Search for answers…" onChange={this.SearchBox} style={{margin: "15px"}} /></Row>
 			{questions.map(question => <Questions currentProduct={this.props.currentProduct} OneQuestion={question} key={question.question_id}/>)}

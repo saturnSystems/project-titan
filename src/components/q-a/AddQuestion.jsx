@@ -12,7 +12,6 @@ class AddQuestion extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ShowModal: true,
       Question: '',
       Nickname: '',
       Email: '',
@@ -20,15 +19,10 @@ class AddQuestion extends React.Component {
       QuestionError: '',
       NicknameError: '',
       EmailError: '',
+      SuccessMessage: false
     };
   }
-
-  CloseModal = () => {
-      this.setState({
-          ShowModal: false
-      })
-  }
-
+  
   Question = (e) => {
       this.setState({Question: e.target.value});
       console.log(this.state.Question)
@@ -40,10 +34,6 @@ class AddQuestion extends React.Component {
 
   Email = (e) => {
     this.setState({Email: e.target.value});
-  }
-
-  testFunc = (e) => {
-    console.log('well hello there')
   }
 
   // const postAQuestion = (productId, body, name, email, callback)
@@ -76,15 +66,15 @@ class AddQuestion extends React.Component {
 
     if (!errors) {
       helper.postAQuestion(this.props.currentProduct.id, this.state.Question, this.state.Nickname, this.state.Email, () => true);
-      this.setState({ShowModal: false})
+      this.setState({SuccessMessage: true})
     }
 
   }
 
   render() {
-    console.log(this.props.currentProduct.id) // remove this when add question is pulled in on page reload
+ 
     return (
-      <Modal size="lg" show={this.state.ShowModal} onClick={this.testFunc}>
+      <Modal size="lg" show={this.props.Show}>
           <ModalHeader><h2>Ask Your Question</h2></ModalHeader>
           <ModalTitle>About the {this.props.currentProduct.name}</ModalTitle>
             <Form>
@@ -102,7 +92,7 @@ class AddQuestion extends React.Component {
               <p><i>For authentication reasons, you will not be emailed</i></p>
             </Form>
             <ModalBody></ModalBody>
-          <ModalFooter><Button onClick={this.CheckForErrors}>Submit</Button><Button onClick={this.CloseModal}>Close</Button></ModalFooter>
+          <ModalFooter><Button onClick={this.CheckForErrors}>Submit</Button><Button onClick={this.props.ShowModal}>Close</Button></ModalFooter>
       </Modal>
     );
   }
