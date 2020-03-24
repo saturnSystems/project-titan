@@ -113,7 +113,6 @@ export default class AddReview extends Component {
   };
 
   render() {
-    // console.log(this.state.characteristics[0].Fit);
     const { Characteristics } = this.state;
     return (
       <Modal size="lg" show={this.state.ShowModal}>
