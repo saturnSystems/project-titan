@@ -77,8 +77,8 @@ class AddQuestion extends React.Component {
       {!this.state.SuccessMessage ? 
       <Modal size="lg" show={this.props.Show}>
         <ModalHeader><h2>Ask Your Question</h2></ModalHeader>
-          <ModalTitle>About the {this.props.currentProduct.name}</ModalTitle>
           <ModalBody>
+            <ModalTitle>About the {this.props.currentProduct.name}</ModalTitle>
             <Form>
             <p style={{color: 'red'}}><i>{this.state.ErrorMessage}</i></p>
             <Form.Label><b>Your Question*</b></Form.Label>

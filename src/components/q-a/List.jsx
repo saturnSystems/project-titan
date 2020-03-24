@@ -51,16 +51,17 @@ class List extends React.Component {
 			<AddQuestion currentProduct={this.props.currentProduct} ShowModal={this.ShowModal} Show={this.state.ShowModal}/> 
 			: null}
 			<Row className="layout">
-			<FormControl size="lg" type="text" placeholder="Have a question? Search for answers…" onChange={this.SearchBox} style={{margin: "15px"}} /></Row>
+			<FormControl size="lg" type="text" placeholder="Have a question? Search for answers…" onChange={this.SearchBox} style={{margin: "10px", padding: "1.5em", borderRadius: "0px", border: "2px black solid"}} />
+			</Row>
 			{questions.map(question => <Questions currentProduct={this.props.currentProduct} OneQuestion={question} key={question.question_id}/>)}
 			{this.state.renderQuestions < this.props.questions.length && this.props.questions.length > 2
 			? <Row className="layout">
-			<Button size="sm" onClick={this.ShowTwoMore} style={{margin: "5px", padding: "5px"}} variant="outline-primary">MORE ANSWERED QUESTIONS</Button>
-			<Button size="sm" style={{margin: "5px", padding: "5px"}} onClick={this.ShowModal} variant="outline-primary">ADD A QUESTION +</Button>
+			<Button size="sm" onClick={this.ShowTwoMore} style={{padding: "1em", margin: "0.50em"}} variant="outline-primary">MORE ANSWERED QUESTIONS</Button>
+			<Button size="sm" style={{padding: "1em", margin: "0.50em"}} onClick={this.ShowModal} variant="outline-primary">ADD A QUESTION +</Button>
 			</Row> 
 			: 
 			<Row className="layout" style={{padding: "20px 0px 0px 0px"}} variant="outline-primary">
-			<Button onClick={this.ShowModal}  variant="outline-primary">ADD A QUESTION +</Button>
+			<Button onClick={this.ShowModal} variant="outline-primary" style={{padding: "1em"}}>ADD A QUESTION +</Button>
 			</Row>}
 		</div>
 		)
