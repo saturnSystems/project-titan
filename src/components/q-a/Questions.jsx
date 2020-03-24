@@ -22,7 +22,7 @@ class Questions extends React.Component {
   }
 
   ShowModal = () => {
-    this.setState({ShowModal: true})
+    this.setState({ShowModal: !this.state.ShowModal})
   }
 
   Helpfulness = () => {
@@ -66,7 +66,7 @@ class Questions extends React.Component {
 
     return (
       <div>
-      {this.state.ShowModal ? <AddAnswer id={this.props.OneQuestion.question_id} currentProduct={this.props.currentProduct} questionBody={this.props.OneQuestion.question_body}/> : null}
+      {this.state.ShowModal ? <AddAnswer id={this.props.OneQuestion.question_id} currentProduct={this.props.currentProduct} questionBody={this.props.OneQuestion.question_body} button={this.ShowModal}/> : null}
         <Row className="layout" key={this.props.OneQuestion.question_id} style={{height: "45vh", width: "100%", padding: "2%", overflowWrap: "anywhere", overflowY: "scroll"}}>
           <Col className="layout">
             <Row className="layout">

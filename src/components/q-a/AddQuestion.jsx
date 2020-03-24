@@ -74,6 +74,8 @@ class AddQuestion extends React.Component {
   render() {
  
     return (
+      <div>
+      {!this.state.SuccessMessage ? 
       <Modal size="lg" show={this.props.Show}>
           <ModalHeader><h2>Ask Your Question</h2></ModalHeader>
           <ModalTitle>About the {this.props.currentProduct.name}</ModalTitle>
@@ -94,6 +96,13 @@ class AddQuestion extends React.Component {
             <ModalBody></ModalBody>
           <ModalFooter><Button onClick={this.CheckForErrors}>Submit</Button><Button onClick={this.props.ShowModal}>Close</Button></ModalFooter>
       </Modal>
+       :
+        <Modal show={this.props.Show}>
+          <h1>Success!</h1>
+          <Button onClick={this.props.ShowModal}>Close</Button>
+        </Modal>
+      }
+      </div>
     );
   }
 }

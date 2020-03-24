@@ -13,7 +13,6 @@ class AddAnswer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      ShowModal: true,
       Answer: '',
       Nickname: '',
       Email: '',
@@ -22,12 +21,6 @@ class AddAnswer extends React.Component {
       NicknameError: '',
       EmailError: '',
     };
-  }
-
-  CloseModal = () => {
-      this.setState({
-          ShowModal: false
-      })
   }
 
   Answer = (e) => {
@@ -74,7 +67,7 @@ class AddAnswer extends React.Component {
 
   render() {
     return (
-      <Modal size="lg" show={this.state.ShowModal}>
+      <Modal size="lg" show={true}>
           <ModalHeader><h2>Submit your Answer</h2></ModalHeader>
           <ModalTitle>{this.props.currentProduct.name}: {this.props.questionBody}</ModalTitle>
           <Form>
@@ -91,7 +84,7 @@ class AddAnswer extends React.Component {
           <p style={{color: 'red'}}><i>{this.state.EmailError}</i></p>
           </Form>
           <ModalBody></ModalBody>
-          <ModalFooter><Button onClick={this.CheckForErrors}>Submit</Button><Button onClick={this.CloseModal}>Close</Button></ModalFooter>
+          <ModalFooter><Button onClick={this.CheckForErrors}>Submit</Button><Button onClick={this.props.button}>Close</Button></ModalFooter>
       </Modal>
     );
   }
