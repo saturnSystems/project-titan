@@ -1,62 +1,74 @@
-import React from 'react'
-import 'react-bootstrap/Container'
+import React from 'react';
+import "bootstrap/dist/css/bootstrap.min.css";
+
+// import Container from "react-bootstrap/Container";
+import "react-bootstrap/Container";
+import Card from "react-bootstrap/Card";
+import CardDeck from "react-bootstrap/CardDeck";
+
+
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+
 import ProductCard from './comp/ProductCard/ProductCard'
 import "./RIAC.css";
+
+import noImage from "./NoImageOnFile.jpg";
+import noStyles from "./NoStylesOnFile.jpg";
+
+
+// props:
+//   setProductId   ={this.setProductId}
+//   currentProduct   ={this.state.currentProduct}
+//   relatedProductsIds   ={this.state.relatedProductsIds}
 
 class RIAC extends React.Component{
   constructor(props){
     super(props)
     this.state={
+      relatedProductId: null
     }
-}
+  }
+
+  isReadytoRender = () => {
+    return (
+      this.props.setProductId !== null &&
+      this.props.currentProduct !== null &&
+      this.props.relatedProductsIds !== null
+    );
+  }
 
   render() {
-    let currentRelatedProductId = 1;  // HARD CODED
-    let relatedProductId = this.props.relatedProductsIds[currentRelatedProductId];
+    // console.log("RIAC-DATE-TIME: render: ", new Date());
 
-    return (
-      <Container-fluid className="layout container">
+    if (!this.isReadytoRender()) return null;
+
+    let relatedProductsIds = this.props.relatedProductsIds;
+    // if (relatedProductsIds.length === 0) { 
+    //   console.log("RIAC: no rPIds: ", relatedProductsIds); return null
+    // };
+    // console.log("RIAC: rPIds: ", relatedProductsIds)
+
+     return (
+      <Container-fluid class="layout container RIAC">
+
         <Col sm={{ span: 10, offset: 1 }} className="layout container">
           <strong><Row className="layout">Related Products</Row></strong>
-          <Row className="layout">
-            <Col className="layout col-3">
-              <ProductCard 
-                setProductId={this.props.setProductId}
-                currentProduct={this.props.currentProduct}
-                relatedProductId={relatedProductId}
-                reviewRating={this.props.reviewRating}
-                styles={this.props.styles}
-              />
-            </Col>
-            <Col className="layout col-3">
-              <ProductCard 
-                setProductId={this.props.setProductId}
-                currentProduct={this.props.currentProduct}
-                relatedProductId={relatedProductId}
-                reviewRating={this.props.reviewRating}
-                styles={this.props.styles}
-              />
-            </Col>
-            <Col className="layout col-3">
-              <ProductCard 
-                setProductId={this.props.setProductId}
-                currentProduct={this.props.currentProduct}
-                relatedProductId={relatedProductId}
-                reviewRating={this.props.reviewRating}
-                styles={this.props.styles}
-              />
-            </Col>
-            <Col className="layout col-3">
-              <ProductCard 
-                setProductId={this.props.setProductId}
-                currentProduct={this.props.currentProduct}
-                relatedProductId={relatedProductId}
-                reviewRating={this.props.reviewRating}
-                styles={this.props.styles}
-              />
-            </Col>
+          <Row className="layout"> {
+              // relatedProductsIds.map(relatedProductId => { 
+              relatedProductsIds.map((relatedProductId, index) => { 
+                  return (
+                    // <Col className="layout col-3" key={relatedProductId}>
+                    <Col className="layout col-3" key={index}>
+                    <ProductCard
+                      currentProduct = {this.props.currentProduct}
+                      setProductId={this.props.setProductId}
+                      relatedProductId={relatedProductId}
+                    />
+                  </Col>
+                )
+              })
+            }
           </Row>
           <br></br>
 
@@ -105,33 +117,4 @@ class RIAC extends React.Component{
   }
 }
 
-
 export default RIAC;
-
-/* <Col className="layout col-3">
-<Row className="layout">IMAGE</Row>
-<Row className="layout">Accessories</Row>
-<Row className="layout caption">
-  Bright Future Sunglasses - Black Lenses &amp; Black Frame
-</Row>
-<Row className="layout">$69</Row>
-<Row className="layout">*****</Row>
-</Col>
-<Col className="layout col-3">
-<Row className="layout">IMAGE</Row>
-<Row className="layout">Pants</Row>
-<Row className="layout caption">
-  Morning Joggers - Black <br/>. <br/>.
-</Row>
-<Row className="layout">$40</Row>
-<Row className="layout">***</Row>
-</Col>
-<Col className="layout col-3">
-<Row className="layout">IMAGE</Row>
-<Row className="layout">Pants</Row>
-<Row className="layout caption">
-  Slacker's Slacks - Olive Green  <br/>. <br/>.
-</Row>
-<Row className="layout">$65</Row>
-<Row className="layout">*</Row>
-</Col> */

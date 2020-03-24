@@ -19,7 +19,7 @@ import "./ProductCard.css";
 
 const helper = require("../../../../helper/helper.js");
 
-class ProductCard extends React.Component {
+class ProductCardCD extends React.Component {
   constructor(props) {
     super(props)
     this.state={
@@ -162,6 +162,52 @@ class ProductCard extends React.Component {
         </div>
 
 
+        <CardDeck className="card-deck product-card">
+          <Card>
+            <Card.Img variant="top" src={noImage}/>
+            <Card.Body>
+              {/* <Card.Title>Card title</Card.Title> */}
+              <Card.Title>Card title</Card.Title>
+              <Card.Text>
+                This is a wider card with supporting text below as a natural lead-in to
+                additional content. This content is a little bit longer.
+              </Card.Text>
+            </Card.Body>
+            <Card.Footer>
+              <small className="text-muted">Last updated 3 mins ago</small>
+            </Card.Footer>
+          </Card>
+          <Card>
+            {/* <Card.Img variant="top" src="holder.js/100px160" /> */}
+            <Card.Img variant="top" src={noStyles} />
+            <Card.Body>
+              <Card.Title>Card title</Card.Title>
+              <Card.Text>
+                This card has supporting text below as a natural lead-in to additional
+                content.{' '}
+              </Card.Text>
+            </Card.Body>
+            <Card.Footer>
+              <small className="text-muted">Last updated 3 mins ago</small>
+            </Card.Footer>
+          </Card>
+          <Card>
+            <Card.Img variant="top" src="https://images.unsplash.com/photo-1505248254168-1de4e1abfa78?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1649&q=80" />
+            {/* <Card.Img className="short-image" variant="top" src="https://images.unsplash.com/photo-1505248254168-1de4e1abfa78?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1649&q=80" /> */}
+            <Card.Body>
+              <Card.Title>Card title</Card.Title>
+              <Card.Text>
+                This is a wider card with supporting text below as a natural lead-in to
+                additional content. This card has even longer content than the first to
+                show that equal height action.
+              </Card.Text>
+            </Card.Body>
+            <Card.Footer>
+              <small className="text-muted">Last updated 3 mins ago</small>
+            </Card.Footer>
+          </Card>
+        </CardDeck>
+
 
       </Container-fluid>
 
@@ -169,4 +215,4 @@ class ProductCard extends React.Component {
   }
 }
 
-export default ProductCard;
+export default ProductCardCD;

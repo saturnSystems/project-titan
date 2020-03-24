@@ -124,14 +124,14 @@ class Overview extends React.Component {
                     name="style"
                     type="radio"
                     id={each.style_id}
-                    style={{ position: "absolute", right: "10%", top: 0 }}
+                    className="radio-styles"
                   ></Form.Check.Input>
                 )}
                 <span className="checkmark"></span>
                 {each.photos && (
                   <Image
-                    style={{ position: "relative", zIndex: -1 }}
-                    src={`${each.photos[0].thumbnail_url}&h=300`}
+                    className="style-thumbs"
+                    src={each.photos[0].thumbnail_url?`${each.photos[0].thumbnail_url}&h=300`:require('../../noImg.svg')}
                     alt={`Thumbnail of ${this.props.product.name} in ${each.name} style`}
                     roundedCircle
                     fluid
@@ -166,7 +166,7 @@ class Overview extends React.Component {
           </Row>
           <Row className="layout">
             <Col className="layout">
-              <del style={{ color: "red" }}>
+              <del className="sale-price">
                 $
                 {this.state.currentStyle &&
                   this.state.currentStyle.original_price}
@@ -189,13 +189,12 @@ class Overview extends React.Component {
   conditionalPinterest() {
     if (
       this.state.currentStyle &&
-      this.state.currentStyle.photos &&
-      this.state.currentStyle.photos[0].url !== null
+      this.state.currentStyle.photos
     ) {
       return (
         <PinterestShareButton
           url={window.location.href}
-          media={this.state.currentStyle.photos[0].url}
+          media={this.state.currentStyle.photos[0].url?this.state.currentStyle.photos[0].url:require('../../noImg.svg')}
         >
           <PinterestIcon size="1.5em" />
         </PinterestShareButton>
@@ -310,8 +309,14 @@ class Overview extends React.Component {
     this.state.currentStyle &&
       this.state.currentStyle.photos.forEach((each, i) => {
         photoArray.push({
-          original: `${each.url}&${i}`,
-          thumbnail: `${each.thumbnail_url}&h=300&${i}`
+          original: each.url?`${each.url}&${i}`:require('../../noImg.svg'),
+          thumbnail: each.thumbnail_url?`${each.thumbnail_url}&h=300&${i}`:require('../../noImg.svg'),
+          originalAlt: `Image ${i + 1} of ${this.props.product.name} in ${
+            this.state.currentStyle.name
+          } style`,
+          thumbnailAlt: `Thumbnail ${i + 1} of ${this.props.product.name} in ${
+            this.state.currentStyle.name
+          } style`
         });
       });
     if (
@@ -331,12 +336,19 @@ class Overview extends React.Component {
             smallImage: {
               src: photoArray[this.state.carouselIndex].original,
               width: window.innerWidth,
-              height: window.innerHeight * 0.92
+              height: window.innerHeight * 0.92,
+              alt: `Unmagnified image ${this.state.carouselIndex + 1} of ${
+                this.props.product.name
+              } in ${this.state.currentStyle.name} style`
             },
             largeImage: {
               src: photoArray[this.state.carouselIndex].original,
               width: window.innerWidth * 2.5,
-              height: window.innerHeight * 0.92 * 2.5
+              height: window.innerHeight * 0.92 * 2.5,
+              alt: `Magnified overlay of image ${this.state.carouselIndex +
+                1} of ${this.props.product.name} in ${
+                this.state.currentStyle.name
+              } style `
             }
           }}
         />
@@ -384,17 +396,11 @@ class Overview extends React.Component {
             <Col
               sm={this.state.fullscreen ? 12 : 8}
               className="layout"
-              style={{ padding: "0" }}
               id="carousel"
             >
               {this.conditionalImageGallery()}
             </Col>
-            <Col
-              sm={4}
-              className="layout"
-              id="details"
-              style={{ height: "92.11vh" }}
-            >
+            <Col sm={4} className="layout" id="details">
               <Row className="layout">
                 <Col className="layout">{this.conditionalReviews()}</Col>
               </Row>
@@ -444,7 +450,7 @@ class Overview extends React.Component {
                     </Button>
                   )}
                 </Col>
-                <Col className="layout" style={{ margin: "auto" }}>
+                <Col className="layout" id="social-media-buttons">
                   <FacebookShareButton url={window.location.href}>
                     <FacebookIcon size="1.5em" />
                   </FacebookShareButton>

@@ -11,7 +11,7 @@ const Qa = (props) => (
         <Row className="layout">
         QUESTIONS & ANSWERS
         </Row>
-        <List questions={props.questions}/>
+        <List questions={props.questions} currentProduct={props.currentProduct}/>
 
       </Col>
     </Container-fluid>

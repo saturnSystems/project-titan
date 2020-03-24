@@ -19,7 +19,6 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      products: [],
       productId: window.location.search.substr(1) || 1,
       currentProduct: [],
       currentReviewRating: 0,
@@ -27,13 +26,12 @@ class App extends React.Component {
       reviews: [],
       questions: [],
       cart: [],
-      relatedProducts: []
+      relatedProductsIds: []
     };
 
     this.reviewsRef = React.createRef();
     this.scrollToReviews = this.scrollToReviews.bind(this);
     this.addToCart = this.addToCart.bind(this);
-    this.setProductId = this.setProductId.bind(this);
   }
 
   getProductInformation() {
@@ -64,9 +62,9 @@ class App extends React.Component {
           styles: result.results
         });
       });
-      helper.getRelatedProducts(this.state.productId, result => {
+      helper.getRelatedProductsIds(this.state.productId, result => {
         this.setState({
-          relatedProducts: result
+          relatedProductsIds: result
         });
       });
       this.setState({
@@ -78,7 +76,7 @@ class App extends React.Component {
   setProductId = newProductId => {
     this.setState(
       {
-        productID: newProductId
+        productId: newProductId
       },
       () => this.getProductInformation()
     );
@@ -112,13 +110,13 @@ class App extends React.Component {
     const { reviews } = this.state;
     return (
       <Container-fluid className="layout">
-        <Col className="layout" style={{ backgroundColor: "#00b0ff" }}>
+        <Col className="layout header">
           <Row className="layout">
-            <Col className="layout" sm={2} style={{ fontWeight: "bold" }}>
+            <Col className="layout bold" sm={2}>
               <img
                 src={require("./logo.svg")}
                 alt="Storefront logo: a line drawing of the planet saturn"
-                style={{ width: "2em" }}
+                id="logo"
               />{" "}
               Saturn Storefronts
             </Col>
@@ -131,7 +129,7 @@ class App extends React.Component {
             </Col>
           </Row>
           <Row className="layout">
-            <Col className="layout" style={{ textAlign: "center" }}>
+            <Col className="layout" id="announcements">
               <i>DON'T CATCH CORONAVIRUS!</i> &mdash;{" "}
               <b>100% OFF FOR ALL DEVELOPERS OF THIS SITE</b> &mdash;{" "}
               <u>CAMO IS BACK</u>
@@ -151,16 +149,16 @@ class App extends React.Component {
         {this.state.currentProduct.id !== undefined && (
           <RIAC
             setProductId={this.setProductId}
-            products={this.state.products}
             currentProduct={this.state.currentProduct}
-            relatedProductsIds={this.state.relatedProducts}
-            reviewRating={this.state.currentReviewRating}
-            styles={this.state.styles}
+            relatedProductsIds={this.state.relatedProductsIds}
           />
         )}
         <br></br>
 
-        <Qa questions={this.state.questions} />
+        <Qa
+          questions={this.state.questions}
+          currentProduct={this.state.currentProduct}
+        />
         <br />
 
         <div ref={this.reviewsRef}>
