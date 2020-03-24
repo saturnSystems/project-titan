@@ -57,9 +57,10 @@ class RIAC extends React.Component{
           <Row className="layout"> {
               // relatedProductsIds.map(relatedProductId => { 
               relatedProductsIds.map((relatedProductId, index) => { 
-                  return (
-                    // <Col className="layout col-3" key={relatedProductId}>
-                    <Col className="layout col-3" key={index}>
+                let indexProdIdStr = index.toString() + '-' + relatedProductId.toString();
+                return (
+                  // <Col className="layout col-3" key={relatedProductId}>
+                  <Col className="layout col-3" key={indexProdIdStr}>
                     <ProductCard
                       currentProduct = {this.props.currentProduct}
                       setProductId={this.props.setProductId}
