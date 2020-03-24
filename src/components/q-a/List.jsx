@@ -26,14 +26,9 @@ class List extends React.Component {
 	
 	ShowModal = () => {
 		this.setState({ ShowModal: !this.state.ShowModal });
-		console.log(this.state.ShowModal)
 	}
 
   render() {
-
-	window.onclick = function(event) {
-		console.log('hello there')
-	  }
 
     let questions = this.props.questions;
 

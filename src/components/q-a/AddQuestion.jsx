@@ -25,7 +25,6 @@ class AddQuestion extends React.Component {
   
   Question = (e) => {
       this.setState({Question: e.target.value});
-      console.log(this.state.Question)
   }
 
   Nickname = (e) => {

@@ -62,7 +62,6 @@ class Answers extends React.Component {
           <Col className="layout">
             <Row className="layout" style={{padding: "0px 10px 10px 5px"}}>Answer to reply?</Row>
             <Row className="layout" style={{padding: "0px 10px 10px 5px"}}>IMAGES</Row>
-            {/* <Row className="layout">Date | Helpful | Report</Row> */}
           </Col>
         </Row>
       </Col>
