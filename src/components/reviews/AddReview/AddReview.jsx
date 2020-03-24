@@ -57,6 +57,41 @@ export default class AddReview extends Component {
     );
   }
 
+  handleSubmit = () => {
+    const { productId } = this.state;
+    const { summary } = this.state;
+    const { overalRating } = this.state;
+    const { recommend } = this.state;
+    const { nickname } = this.state;
+    const { body } = this.state;
+    const { email } = this.state;
+    const { Fit } = this.state;
+    const { Size } = this.state;
+    const { Length } = this.state;
+    const { Width } = this.state;
+    const { Comfort } = this.state;
+    const { Quality } = this.state;
+
+    let review = {
+      rating: parseInt(overalRating),
+      summary: summary,
+      body: body,
+      recommend: recommend.toLowerCase() == "true" ? true : false, // make a boolean
+      name: nickname,
+      email: email,
+      photos: [],
+      characteristics: {
+        Fit: parseInt(Fit),
+        Size: parseInt(Size),
+        Length: parseInt(Length),
+        Width: parseInt(Width),
+        Comfort: parseInt(Comfort),
+        Quality: parseInt(Quality)
+      }
+    };
+    helper.postReview(productId, review, () => console.log("Sent!", review));
+  };
+
   handleRating = e => {
     // console.log(e.target.value);
     this.setState({ overalRating: e.target.name });
@@ -252,7 +287,7 @@ export default class AddReview extends Component {
         </Form>
         <ModalBody />
         <ModalFooter>
-          <Button>Submit</Button>
+          <Button onClick={this.handleSubmit}>Submit</Button>
           <Button onClick={this.props.ShowModal}>Close</Button>
         </ModalFooter>
       </Modal>

@@ -165,7 +165,7 @@ class Reviews extends React.Component {
               <Row className="layout noBorder">
                 {!this.state.reviewsBtn &&
                 this.state.itemsToShow < this.state.reviews.length ? (
-                  <Button className="blueBtn" onClick={e => this.moreReviews()}>
+                  <Button onClick={e => this.moreReviews()}>
                     Show more reviews
                   </Button>
                 ) : null}{" "}
@@ -186,6 +186,7 @@ class Reviews extends React.Component {
             </Col>
           </Row>
         </Col>
+        <br />
       </Container-fluid>
     );
   }
