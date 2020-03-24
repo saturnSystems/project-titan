@@ -42,6 +42,10 @@ class AddQuestion extends React.Component {
     this.setState({Email: e.target.value});
   }
 
+  testFunc = (e) => {
+    console.log('well hello there')
+  }
+
   // const postAQuestion = (productId, body, name, email, callback)
 // This function successfully sends data to the server, but the question is not retrieved on page refresh. 
 // After extensive troubleshooting, I believe this to be an issue on the server side.
@@ -80,20 +84,20 @@ class AddQuestion extends React.Component {
   render() {
     console.log(this.props.currentProduct.id) // remove this when add question is pulled in on page reload
     return (
-      <Modal size="lg" show={this.state.ShowModal}>
+      <Modal size="lg" show={this.state.ShowModal} onClick={this.testFunc}>
           <ModalHeader><h2>Ask Your Question</h2></ModalHeader>
           <ModalTitle>About the {this.props.currentProduct.name}</ModalTitle>
             <Form>
             <p style={{color: 'red'}}><i>{this.state.ErrorMessage}</i></p>
             <Form.Label><b>Your Question*</b></Form.Label>
-              <Form.Control maxlength={"1000"} placeholder={`1000 characters`} onChange={this.Question} size="sm" style={{height: "10em"}}></Form.Control>
+              <Form.Control maxLength={"1000"} placeholder={`1000 characters`} onChange={this.Question} size="sm" style={{height: "10em"}}></Form.Control>
               <p style={{color: 'red'}}><i>{this.state.QuestionError}</i></p>
             <Form.Label><b>What is your nickname*</b></Form.Label>
-              <Form.Control maxlength={"60"} placeholder={"Example: jackson11!"} onChange={this.Nickname}></Form.Control>
+              <Form.Control maxLength={"60"} placeholder={"Example: jackson11!"} onChange={this.Nickname}></Form.Control>
               <p style={{color: 'red'}}><i>{this.state.NicknameError}</i></p>
               <p><i>For privacy reasons, do not use your full name or email address</i></p>
             <Form.Label><b>Your email*</b></Form.Label>
-              <Form.Control maxlength={"60"} type={`email`} placeholder={`Why did you like the product or not?`} onChange={this.Email}></Form.Control>
+              <Form.Control maxLength={"60"} type={`email`} placeholder={`Why did you like the product or not?`} onChange={this.Email}></Form.Control>
               <p style={{color: 'red'}}><i>{this.state.EmailError}</i></p>
               <p><i>For authentication reasons, you will not be emailed</i></p>
             </Form>

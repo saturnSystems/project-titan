@@ -80,14 +80,14 @@ class AddAnswer extends React.Component {
           <Form>
           <p style={{color: 'red'}}><i>{this.state.ErrorMessage}</i></p>
           <Form.Label><b>Your Answer*</b></Form.Label>
-          <Form.Control maxlength={"1000"} onChange={this.Answer}></Form.Control>
+          <Form.Control maxLength={"1000"} onChange={this.Answer}></Form.Control>
           <p style={{color: 'red'}}><i>{this.state.AnswerError}</i></p>
           <Form.Label><b>What is your nickname*</b></Form.Label>
-          <Form.Control maxlength={"60"} placeholder={"Example: jack543!"} onChange={this.Nickname}></Form.Control>
+          <Form.Control maxLength={"60"} placeholder={"Example: jack543!"} onChange={this.Nickname}></Form.Control>
           <p style={{color: 'red'}}><i>{this.state.NicknameError}</i></p>
           <p><i>For privacy reasons, do not use your full name or email address</i></p>
           <Form.Label><b>Your email*</b></Form.Label>
-          <Form.Control maxlength={"60"} type={`email`} placeholder={`Example: jack@email.com`} onChange={this.Email}></Form.Control>
+          <Form.Control maxLength={"60"} type={`email`} placeholder={`Example: jack@email.com`} onChange={this.Email}></Form.Control>
           <p style={{color: 'red'}}><i>{this.state.EmailError}</i></p>
           </Form>
           <ModalBody></ModalBody>

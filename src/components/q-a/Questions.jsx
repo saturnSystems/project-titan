@@ -39,7 +39,6 @@ class Questions extends React.Component {
   }
 
   render() {
-    // console.log(this.props.OneQuestion.question_body)
     let answerList = this.props.OneQuestion.answers;
     let answerListArray = [];
 
