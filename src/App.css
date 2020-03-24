@@ -37,15 +37,28 @@
   }
 }
 
-.layout {
-  /* background-color:#61dafb; */
-  /* border:1px solid;
-  border-color: black; */
-}
-/* .container{
-  border-color:red;
+/* .layout {
+  border: 1px solid;
+  border-color: black;
 } */
+
 .btn-outline-primary {
   color: #00b0ff;
   border-radius: 0 !important;
+}
+
+.header {
+  background-color: #00b0ff;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+#logo {
+  width: 2em;
+}
+
+#announcements {
+  text-align: center;
 }
