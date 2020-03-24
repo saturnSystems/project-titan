@@ -22,7 +22,7 @@ class Questions extends React.Component {
   }
 
   ShowModal = () => {
-    this.setState({ShowModal: true})
+    this.setState({ShowModal: !this.state.ShowModal})
   }
 
   Helpfulness = () => {
@@ -39,7 +39,6 @@ class Questions extends React.Component {
   }
 
   render() {
-    // console.log(this.props.OneQuestion.question_body)
     let answerList = this.props.OneQuestion.answers;
     let answerListArray = [];
 
@@ -67,8 +66,8 @@ class Questions extends React.Component {
 
     return (
       <div>
-      {this.state.ShowModal ? <AddAnswer id={this.props.OneQuestion.question_id} currentProduct={this.props.currentProduct} questionBody={this.props.OneQuestion.question_body}/> : null}
-        <Row className="layout" key={this.props.OneQuestion.question_id} style={{height: "45vh", width: "100%", padding: "2%", overflowWrap: "anywhere", overflowY: "scroll"}}>
+      {this.state.ShowModal ? <AddAnswer id={this.props.OneQuestion.question_id} currentProduct={this.props.currentProduct} questionBody={this.props.OneQuestion.question_body} button={this.ShowModal}/> : null}
+        <Row className="layout" key={this.props.OneQuestion.question_id} style={{height: "45vh", width: "100%", padding: "2%", overflowWrap: "anywhere", overflowY: "auto"}}>
           <Col className="layout">
             <Row className="layout">
               <b>Q:&nbsp;</b>
@@ -84,9 +83,9 @@ class Questions extends React.Component {
                 </Row>
               </Col>
             </Row>
-            {answerListArray.map(answer => <Answers OneAnswer={answer} key={answer.id}/>)}
-            {Object.keys(this.props.OneQuestion.answers).length > 2 ? this.state.renderTwoAnswers ? <Row style={{padding: "10px 10px 20px 5px"}}><Col><Button size="sm" type="submit" onClick={this.ShowAllAnswers}>Load more answers</Button></Col></Row> 
-            : <Row><Col><Button size="sm" type="submit" onClick={this.ShowAllAnswers}>Collapse answers</Button></Col></Row> : null}
+            {answerListArray.map((answer, index) => <Answers OneAnswer={answer} index={index} key={answer.id}/>)}
+            {Object.keys(this.props.OneQuestion.answers).length > 2 ? this.state.renderTwoAnswers ? <Row style={{padding: "10px 10px 20px 5px"}}><Col><p onClick={this.ShowAllAnswers}><b>LOAD MORE ANSWERS</b></p></Col></Row> 
+            : <Row><Col><p onClick={this.ShowAllAnswers}><b>COLLAPSE ANSWERS</b></p></Col></Row> : null}
           </Col>
         </Row>
         </div>
