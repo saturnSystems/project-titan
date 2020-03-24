@@ -38,13 +38,13 @@ class ProductCard extends React.Component {
     this.loadRelatedProductData();
   }
 
-  // QQQQ needed? NOT YET, but maybe later
-  // componentDidUpdate = (prevProps, prevState) => {
-  //   // console.log("PC: cDU: rPI: ", this.props.relatedProductId);
-  //   if (prevProps.relatedProductId !== this.props.relatedProductId) {
-  //     this.loadRelatedProductData();
-  //   }
-  // }
+  // Strictly speaking, not needed. KEEPT FOR DEBUGGING OR IF NEEDED
+  componentDidUpdate = (prevProps, prevState) => {
+    // console.log("PC: cDU: rPI: ", this.props.relatedProductId);
+    if (prevProps.relatedProductId !== this.props.relatedProductId) {
+      this.loadRelatedProductData();
+    }
+  }
   
   loadRelatedProductData = () => {
     helper.getOneProduct(this.props.relatedProductId, result => {
