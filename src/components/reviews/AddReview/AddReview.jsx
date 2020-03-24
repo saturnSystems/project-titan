@@ -122,167 +122,393 @@ export default class AddReview extends Component {
         </ModalHeader>
         <ModalTitle />
         <Form>
-          <Form.Label>
-            <b>Overall Rating:</b>
+          <dl className="paddy">
+            <Form.Label>
+              <b>Overall Rating:</b>
 
-            {["checkbox"].map(type => (
-              <div key={`inline-${type}`} className="mb-3">
-                <Form.Check
-                  inline
-                  name="1"
-                  onClick={this.handleRating}
-                  label="1 Star - Poor"
-                  type={type}
-                  id={`inline-${type}-1`}
-                />
-                <Form.Check
-                  inline
-                  name="2"
-                  onClick={this.handleRating}
-                  label="2 Star - Fair"
-                  type={type}
-                  id={`inline-${type}-2`}
-                />
-                <Form.Check
-                  inline
-                  name="3"
-                  onClick={this.handleRating}
-                  label="3 Star - Average"
-                  type={type}
-                  id={`inline-${type}-3`}
-                />
-                <Form.Check
-                  inline
-                  name="4"
-                  onClick={this.handleRating}
-                  label="4 Star - Good"
-                  type={type}
-                  id={`inline-${type}-4`}
-                />
-                <Form.Check
-                  inline
-                  name="5"
-                  onClick={this.handleRating}
-                  label="5 Star - Great"
-                  type={type}
-                  id={`inline-${type}-5`}
-                />
+              {["checkbox"].map(type => (
+                <div key={`inline-${type}`} className="mb-3">
+                  <Form.Check
+                    inline
+                    name="1"
+                    onClick={this.handleRating}
+                    label="1 Star - Poor"
+                    type={type}
+                    id={`inline-${type}-1`}
+                  />
+                  <Form.Check
+                    inline
+                    name="2"
+                    onClick={this.handleRating}
+                    label="2 Star - Fair"
+                    type={type}
+                    id={`inline-${type}-2`}
+                  />
+                  <Form.Check
+                    inline
+                    name="3"
+                    onClick={this.handleRating}
+                    label="3 Star - Average"
+                    type={type}
+                    id={`inline-${type}-3`}
+                  />
+                  <Form.Check
+                    inline
+                    name="4"
+                    onClick={this.handleRating}
+                    label="4 Star - Good"
+                    type={type}
+                    id={`inline-${type}-4`}
+                  />
+                  <Form.Check
+                    inline
+                    name="5"
+                    onClick={this.handleRating}
+                    label="5 Star - Great"
+                    type={type}
+                    id={`inline-${type}-5`}
+                  />
+                </div>
+              ))}
+
+              <b>Do You Recommend This Product?:</b>
+              {["checkbox"].map(type => (
+                <div key={`inline-${type}`} className="mb-3">
+                  <Form.Check
+                    inline
+                    onClick={this.handleRecommend}
+                    name="Yes"
+                    label="Yes"
+                    type={type}
+                    id={`inline-${type}-1`}
+                  />
+                  <Form.Check
+                    inline
+                    onClick={this.handleRecommend}
+                    name="No"
+                    label="No"
+                    type={type}
+                    id={`inline-${type}-2`}
+                  />
+                </div>
+              ))}
+              <b>Characteristics:</b>
+            </Form.Label>
+            {Characteristics.map(item => (
+              <div key={`inline-${item}`} className="mb-3">
+                <Form.Label>
+                  <b>{item}</b>
+                </Form.Label>
+                <br />
+                {item === "Fit" ? (
+                  <dl>
+                    <Form.Check
+                      inline
+                      name="1"
+                      onClick={this.handleCharacteristics}
+                      label="1 - Runs tight"
+                      type="checkbox"
+                      id={item}
+                    />
+                    <Form.Check
+                      inline
+                      name="2"
+                      onClick={this.handleCharacteristics}
+                      label="2 - Rus slightly light"
+                      type="checkbox"
+                      id={item}
+                    />
+                    <Form.Check
+                      inline
+                      name="3"
+                      onClick={this.handleCharacteristics}
+                      label="3 - Perfect"
+                      type="checkbox"
+                      id={item}
+                    />
+                    <Form.Check
+                      inline
+                      name="4"
+                      onClick={this.handleCharacteristics}
+                      label="4 - Rus slightly long"
+                      type="checkbox"
+                      id={item}
+                    />
+                    <Form.Check
+                      inline
+                      name="5"
+                      onClick={this.handleCharacteristics}
+                      label="5 - Runs long"
+                      type="checkbox"
+                      id={item}
+                    />
+                  </dl>
+                ) : null}
+                {item === "Length" ? (
+                  <dl>
+                    <Form.Check
+                      inline
+                      name="1"
+                      onClick={this.handleCharacteristics}
+                      label="1 - Runs short"
+                      type="checkbox"
+                      id={item}
+                    />
+                    <Form.Check
+                      inline
+                      name="2"
+                      onClick={this.handleCharacteristics}
+                      label="2 - Runs slightly short"
+                      type="checkbox"
+                      id={item}
+                    />
+                    <Form.Check
+                      inline
+                      name="3"
+                      onClick={this.handleCharacteristics}
+                      label="3 - Perfect"
+                      type="checkbox"
+                      id={item}
+                    />
+                    <Form.Check
+                      inline
+                      name="4"
+                      onClick={this.handleCharacteristics}
+                      label="4 - Runs slightly long"
+                      type="checkbox"
+                      id={item}
+                    />
+                    <Form.Check
+                      inline
+                      name="5"
+                      onClick={this.handleCharacteristics}
+                      label="5 - Runs long"
+                      type="checkbox"
+                      id={item}
+                    />
+                  </dl>
+                ) : null}
+                {item === "Comfort" ? (
+                  <dl>
+                    <Form.Check
+                      inline
+                      name="1"
+                      onClick={this.handleCharacteristics}
+                      label="1 - Uncomfortable"
+                      type="checkbox"
+                      id={item}
+                    />
+                    <Form.Check
+                      inline
+                      name="2"
+                      onClick={this.handleCharacteristics}
+                      label="2 - slightly uncomfortable"
+                      type="checkbox"
+                      id={item}
+                    />
+                    <Form.Check
+                      inline
+                      name="3"
+                      onClick={this.handleCharacteristics}
+                      label="3 - Ok"
+                      type="checkbox"
+                      id={item}
+                    />
+                    <Form.Check
+                      inline
+                      name="4"
+                      onClick={this.handleCharacteristics}
+                      label="4 - Comfortable"
+                      type="checkbox"
+                      id={item}
+                    />
+                    <Form.Check
+                      inline
+                      name="5"
+                      onClick={this.handleCharacteristics}
+                      label="5 - Perfect"
+                      type="checkbox"
+                      id={item}
+                    />
+                  </dl>
+                ) : null}
+                {item === "Quality" ? (
+                  <dl>
+                    <Form.Check
+                      inline
+                      name="1"
+                      onClick={this.handleCharacteristics}
+                      label="1 - Poor"
+                      type="checkbox"
+                      id={item}
+                    />
+                    <Form.Check
+                      inline
+                      name="2"
+                      onClick={this.handleCharacteristics}
+                      label="2 - Below average"
+                      type="checkbox"
+                      id={item}
+                    />
+                    <Form.Check
+                      inline
+                      name="3"
+                      onClick={this.handleCharacteristics}
+                      label="3 - What I expected"
+                      type="checkbox"
+                      id={item}
+                    />
+                    <Form.Check
+                      inline
+                      name="4"
+                      onClick={this.handleCharacteristics}
+                      label="4 - Pretty great"
+                      type="checkbox"
+                      id={item}
+                    />
+                    <Form.Check
+                      inline
+                      name="5"
+                      onClick={this.handleCharacteristics}
+                      label="5 - Perfect"
+                      type="checkbox"
+                      id={item}
+                    />
+                  </dl>
+                ) : null}
+                {item === "Size" ? (
+                  <dl>
+                    <Form.Check
+                      inline
+                      name="1"
+                      onClick={this.handleCharacteristics}
+                      label="1 - A size too small"
+                      type="checkbox"
+                      id={item}
+                    />
+                    <Form.Check
+                      inline
+                      name="2"
+                      onClick={this.handleCharacteristics}
+                      label="2 - half a size too small"
+                      type="checkbox"
+                      id={item}
+                    />
+                    <Form.Check
+                      inline
+                      name="3"
+                      onClick={this.handleCharacteristics}
+                      label="3 - Perfect"
+                      type="checkbox"
+                      id={item}
+                    />
+                    <Form.Check
+                      inline
+                      name="4"
+                      onClick={this.handleCharacteristics}
+                      label="4 - half a size too big"
+                      type="checkbox"
+                      id={item}
+                    />
+                    <Form.Check
+                      inline
+                      name="5"
+                      onClick={this.handleCharacteristics}
+                      label="5 - A size too wide"
+                      type="checkbox"
+                      id={item}
+                    />
+                  </dl>
+                ) : null}
+                {item === "Width" ? (
+                  <dl>
+                    <Form.Check
+                      inline
+                      name="1"
+                      onClick={this.handleCharacteristics}
+                      label="1 - Too narrow"
+                      type="checkbox"
+                      id={item}
+                    />
+                    <Form.Check
+                      inline
+                      name="2"
+                      onClick={this.handleCharacteristics}
+                      label="2 - Slightly narrow"
+                      type="checkbox"
+                      id={item}
+                    />
+                    <Form.Check
+                      inline
+                      name="3"
+                      onClick={this.handleCharacteristics}
+                      label="3 - Perfect"
+                      type="checkbox"
+                      id={item}
+                    />
+                    <Form.Check
+                      inline
+                      name="4"
+                      onClick={this.handleCharacteristics}
+                      label="4 - Slightly wide"
+                      type="checkbox"
+                      id={item}
+                    />
+                    <Form.Check
+                      inline
+                      name="5"
+                      onClick={this.handleCharacteristics}
+                      label="5 - Too wide"
+                      type="checkbox"
+                      id={item}
+                    />
+                  </dl>
+                ) : null}
               </div>
             ))}
-
-            <b>Do You Recommend This Product?:</b>
-            {["checkbox"].map(type => (
-              <div key={`inline-${type}`} className="mb-3">
-                <Form.Check
-                  inline
-                  onClick={this.handleRecommend}
-                  name="Yes"
-                  label="Yes"
-                  type={type}
-                  id={`inline-${type}-1`}
-                />
-                <Form.Check
-                  inline
-                  onClick={this.handleRecommend}
-                  name="No"
-                  label="No"
-                  type={type}
-                  id={`inline-${type}-2`}
-                />
-              </div>
-            ))}
-            <b>Characteristics:</b>
-          </Form.Label>
-          {Characteristics.map(item => (
-            <div key={`inline-${item}`} className="mb-3">
-              <Form.Label>
-                <b>{item}</b>
-              </Form.Label>
-              <br />
-              <Form.Check
-                inline
-                name="1"
-                onClick={this.handleCharacteristics}
-                label="1 Star - Poor"
-                type="checkbox"
-                id={item}
-              />
-              <Form.Check
-                inline
-                name="2"
-                onClick={this.handleCharacteristics}
-                label="2 Star - Fair"
-                type="checkbox"
-                id={item}
-              />
-              <Form.Check
-                inline
-                name="3"
-                onClick={this.handleCharacteristics}
-                label="3 Star - Average"
-                type="checkbox"
-                id={item}
-              />
-              <Form.Check
-                inline
-                name="4"
-                onClick={this.handleCharacteristics}
-                label="4 Star - Good"
-                type="checkbox"
-                id={item}
-              />
-              <Form.Check
-                inline
-                name="5"
-                onClick={this.handleCharacteristics}
-                label="5 Star - Great"
-                type="checkbox"
-                id={item}
-              />
-            </div>
-          ))}
-          <Form.Label>
-            <b>Review Summary:</b>
-          </Form.Label>
-          <Form.Control
-            name="summary"
-            onChange={this.handleInput}
-            placeholder="Title of your Review"
-          />
-          <Form.Label>
-            <b>Review Body:</b>
-          </Form.Label>
-          <Form.Control
-            name="body"
-            onChange={this.handleInput}
-            placeholder="Tell your Review"
-          />
-          <Form.Label>
-            <b>Photos:</b>
-          </Form.Label>
-          <Form.Control placeholder="Upload them if you can mwha ha ha ha!" />
-          <Form.Label>
-            <b>Nickname:</b>
-          </Form.Label>
-          <Form.Control
-            name="nickname"
-            onChange={this.handleInput}
-            placeholder="Give us a name"
-          />
-          <p>
-            <i>
-              For privacy reasons, do not use your full name or email address
-            </i>
-          </p>
-          <Form.Label>
-            <b>Email:</b>
-          </Form.Label>
-          <Form.Control
-            name="email"
-            type="email"
-            onChange={this.handleInput}
-            placeholder="Example: jack@email.com"
-          />
+            <Form.Label>
+              <b>Review Summary:</b>
+            </Form.Label>
+            <Form.Control
+              name="summary"
+              onChange={this.handleInput}
+              placeholder="Title of your Review"
+            />
+            <Form.Label>
+              <b>Review Body:</b>
+            </Form.Label>
+            <Form.Control
+              name="body"
+              onChange={this.handleInput}
+              placeholder="Tell your Review"
+            />
+            <Form.Label>
+              <b>Photos:</b>
+            </Form.Label>
+            <Form.Control placeholder="Upload them if you can mwha ha ha ha!" />
+            <Form.Label>
+              <b>Nickname:</b>
+            </Form.Label>
+            <Form.Control
+              name="nickname"
+              onChange={this.handleInput}
+              placeholder="Give us a name"
+            />
+            <p>
+              <i>
+                For privacy reasons, do not use your full name or email address
+              </i>
+            </p>
+            <Form.Label>
+              <b>Email:</b>
+            </Form.Label>
+            <Form.Control
+              name="email"
+              type="email"
+              onChange={this.handleInput}
+              placeholder="Example: jack@email.com"
+            />
+          </dl>
         </Form>
         <ModalBody />
         <ModalFooter>
