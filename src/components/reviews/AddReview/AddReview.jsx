@@ -76,7 +76,7 @@ export default class AddReview extends Component {
       rating: parseInt(overalRating),
       summary: summary,
       body: body,
-      recommend: recommend.toLowerCase() == "true" ? true : false, // make a boolean
+      recommend: recommend.toLowerCase() === "true" ? true : false, // make a boolean
       name: nickname,
       email: email,
       photos: [],
