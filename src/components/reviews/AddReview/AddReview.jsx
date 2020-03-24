@@ -112,8 +112,24 @@ export default class AddReview extends Component {
     this.setState({ recommend: e.target.name }); // Boolean.parseBoolean
   };
 
+  // ErrorValidationLabel = ({ txtLbl }) => (
+  //   <label htmlFor="" style={{ color: "red" }}>
+  //     {txtLbl}
+  //   </label>
+  // );
   render() {
     const { Characteristics } = this.state;
+    const { email } = this.state;
+    const { body } = this.state;
+    const { summary } = this.state;
+    const { nickname } = this.state;
+
+    const isEnabled =
+      email.length > 5 &&
+      body.length > 50 &&
+      summary.length < 60 &&
+      nickname.length < 60 &&
+      body.length < 1000;
     return (
       <Modal size="lg" show={this.state.ShowModal}>
         <ModalHeader>
@@ -127,7 +143,7 @@ export default class AddReview extends Component {
               <b>Overall Rating:</b>
 
               {["checkbox"].map(type => (
-                <div key={`inline-${type}`} className="mb-3">
+                <div key={`inline-${type}`} required className="mb-3">
                   <Form.Check
                     inline
                     name="1"
@@ -173,7 +189,7 @@ export default class AddReview extends Component {
 
               <b>Do You Recommend This Product?:</b>
               {["checkbox"].map(type => (
-                <div key={`inline-${type}`} className="mb-3">
+                <div key={`inline-${type}`} required className="mb-3">
                   <Form.Check
                     inline
                     onClick={this.handleRecommend}
@@ -195,7 +211,7 @@ export default class AddReview extends Component {
               <b>Characteristics:</b>
             </Form.Label>
             {Characteristics.map(item => (
-              <div key={`inline-${item}`} className="mb-3">
+              <div key={`inline-${item}`} required className="mb-3">
                 <Form.Label>
                   <b>{item}</b>
                 </Form.Label>
@@ -470,17 +486,23 @@ export default class AddReview extends Component {
               <b>Review Summary:</b>
             </Form.Label>
             <Form.Control
+              type="text"
               name="summary"
+              maxLength="60"
               onChange={this.handleInput}
-              placeholder="Title of your Review"
+              placeholder="Example: Best purchase ever!"
             />
             <Form.Label>
               <b>Review Body:</b>
             </Form.Label>
             <Form.Control
+              required
+              type="text"
               name="body"
+              minLength="50"
+              maxLength="1000"
               onChange={this.handleInput}
-              placeholder="Tell your Review"
+              placeholder="Why did you like the product or not?"
             />
             <Form.Label>
               <b>Photos:</b>
@@ -490,9 +512,12 @@ export default class AddReview extends Component {
               <b>Nickname:</b>
             </Form.Label>
             <Form.Control
+              required
+              type="text"
               name="nickname"
+              maxLength="60"
               onChange={this.handleInput}
-              placeholder="Give us a name"
+              placeholder="Example: jackson11!"
             />
             <p>
               <i>
@@ -503,16 +528,20 @@ export default class AddReview extends Component {
               <b>Email:</b>
             </Form.Label>
             <Form.Control
+              required
               name="email"
               type="email"
+              maxLength="60"
               onChange={this.handleInput}
-              placeholder="Example: jack@email.com"
+              placeholder="Example: jackson11@email.com"
             />
           </dl>
         </Form>
         <ModalBody />
         <ModalFooter>
-          <Button onClick={this.handleSubmit}>Submit</Button>
+          <Button disabled={!isEnabled} onClick={this.handleSubmit}>
+            Submit
+          </Button>
           <Button onClick={this.props.ShowModal}>Close</Button>
         </ModalFooter>
       </Modal>
