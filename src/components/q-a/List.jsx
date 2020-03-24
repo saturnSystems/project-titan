@@ -26,11 +26,11 @@ class List extends React.Component {
 	
 	ShowModal = () => {
 		this.setState({ ShowModal: true });
-		console.log(this.state.ShowModal)
+		// console.log(this.state.ShowModal)
 	}
 
   render() {
-		console.log(this.props.currentProduct)
+		// console.log(this.props.currentProduct)
     let questions = this.props.questions;
 
     function compare(a, b) {
