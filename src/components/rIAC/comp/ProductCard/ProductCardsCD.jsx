@@ -1,8 +1,8 @@
 // this component is for use in RIAC.jsx
 import React from 'react';
 import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
-import CardDeck from 'react-bootstrap/CardDeck';
+// import Card from 'react-bootstrap/Card';
+// import CardDeck from 'react-bootstrap/CardDeck';
 
 import Row from 'react-bootstrap/Row'
 // import Col from 'react-bootstrap/Col' // NOT YET USED
