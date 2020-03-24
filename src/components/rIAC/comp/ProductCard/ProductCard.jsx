@@ -26,8 +26,6 @@ class ProductCard extends React.Component {
       relatedProduct: null, // change over time, requiring re-render
       relatedStyles: null, // change over time, requiring re-render
       relatedReviewRating: null, // change over time, requiring re-render
-      // relatedStyleOriginalPrice: null, // QQQQ NEEDED?
-      // relatedStyleSalePrice: null// QQQQ NEEDED?
     }
 
     // NO NEED TO BIND WHEN I HAVE <this>
@@ -40,7 +38,7 @@ class ProductCard extends React.Component {
     this.loadRelatedProductData();
   }
 
-  // QQQQ needed??
+  // QQQQ needed? NOT YET, but maybe later
   // componentDidUpdate = (prevProps, prevState) => {
   //   // console.log("PC: cDU: rPI: ", this.props.relatedProductId);
   //   if (prevProps.relatedProductId !== this.props.relatedProductId) {
