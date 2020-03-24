@@ -41,15 +41,16 @@ class ProductCard extends React.Component {
   }
 
   // QQQQ needed??
-  componentDidUpdate = (prevProps, prevState) => {
-    // console.log("PC: cDU: rPI: ", relatedProductId);
-    if (prevState.relatedProductId !== this.state.relatedProductId) {
-      this.loadRelatedProductData();
-    }
-  }
+  // componentDidUpdate = (prevProps, prevState) => {
+  //   // console.log("PC: cDU: rPI: ", this.props.relatedProductId);
+  //   if (prevProps.relatedProductId !== this.props.relatedProductId) {
+  //     this.loadRelatedProductData();
+  //   }
+  // }
   
   loadRelatedProductData = () => {
     helper.getOneProduct(this.props.relatedProductId, result => {
+      // console.log("PC: lRPD: gOP: result: " , result)
       this.setState({
         relatedProduct: result
       });
@@ -99,7 +100,7 @@ class ProductCard extends React.Component {
     // console.logs for DEBUGGING
 
     // console.log("PC: cP: ", currentProduct); // used only for debugging
-    // console.log("PC: rPId: ", relatedProductId);
+    // console.log("PC: rPId: ", this.props.relatedProductId);
     // console.log("PC: rP: ", relatedProduct);
     // console.log("PC: rSs: ", relatedStyles);
 
@@ -133,8 +134,6 @@ class ProductCard extends React.Component {
 
     return (
       <Container-fluid class="layout product-card-layout align-left">
-
-
         <div id="product-card-div" onClick={this.setProductId}>
           <div>
             <div className="card mb-3 style-image">            
