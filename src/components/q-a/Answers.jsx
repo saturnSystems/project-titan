@@ -32,7 +32,7 @@ class Answers extends React.Component {
   render() {
   return (
     <Row className="layout" key={this.props.OneAnswer.id}>
-      <b>A:&nbsp;&nbsp;</b>
+      {this.props.index === 0 ? <b>A:&nbsp;&nbsp;</b> : <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>}
 
       <Col className="layout" sm={9}>
         <Row className="layout">
@@ -61,7 +61,7 @@ class Answers extends React.Component {
         <Row className="layout">
           <Col className="layout">
             <Row className="layout" style={{padding: "0px 10px 10px 5px"}}>Answer to reply?</Row>
-            <Row className="layout" style={{padding: "0px 10px 10px 5px"}}>IMAGES</Row>
+            <Row className="layout" style={{padding: "0px 10px 20px 5px"}}>IMAGES</Row>
           </Col>
         </Row>
       </Col>

@@ -76,24 +76,25 @@ class AddQuestion extends React.Component {
       <div>
       {!this.state.SuccessMessage ? 
       <Modal size="lg" show={this.props.Show}>
-          <ModalHeader><h2>Ask Your Question</h2></ModalHeader>
+        <ModalHeader><h2>Ask Your Question</h2></ModalHeader>
           <ModalTitle>About the {this.props.currentProduct.name}</ModalTitle>
+          <ModalBody>
             <Form>
             <p style={{color: 'red'}}><i>{this.state.ErrorMessage}</i></p>
             <Form.Label><b>Your Question*</b></Form.Label>
               <Form.Control maxLength={"1000"} placeholder={`1000 characters`} onChange={this.Question} size="sm" style={{height: "10em"}}></Form.Control>
-              <p style={{color: 'red'}}><i>{this.state.QuestionError}</i></p>
+                <p style={{color: 'red'}}><i>{this.state.QuestionError}</i></p>
             <Form.Label><b>What is your nickname*</b></Form.Label>
               <Form.Control maxLength={"60"} placeholder={"Example: jackson11!"} onChange={this.Nickname}></Form.Control>
-              <p style={{color: 'red'}}><i>{this.state.NicknameError}</i></p>
-              <p><i>For privacy reasons, do not use your full name or email address</i></p>
+                <p style={{color: 'red'}}><i>{this.state.NicknameError}</i></p>
+                <p><i>For privacy reasons, do not use your full name or email address</i></p>
             <Form.Label><b>Your email*</b></Form.Label>
               <Form.Control maxLength={"60"} type={`email`} placeholder={`Why did you like the product or not?`} onChange={this.Email}></Form.Control>
-              <p style={{color: 'red'}}><i>{this.state.EmailError}</i></p>
-              <p><i>For authentication reasons, you will not be emailed</i></p>
+                <p style={{color: 'red'}}><i>{this.state.EmailError}</i></p>
+                <p><i>For authentication reasons, you will not be emailed</i></p>
             </Form>
-            <ModalBody></ModalBody>
-          <ModalFooter><Button onClick={this.CheckForErrors}>Submit</Button><Button onClick={this.props.ShowModal}>Close</Button></ModalFooter>
+            </ModalBody>
+        <ModalFooter><Button onClick={this.CheckForErrors} variant="outline-primary">Submit</Button><Button onClick={this.props.ShowModal} variant="outline-primary">Close</Button></ModalFooter>
       </Modal>
        :
         <Modal show={this.props.Show}>

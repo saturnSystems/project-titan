@@ -83,7 +83,7 @@ class Questions extends React.Component {
                 </Row>
               </Col>
             </Row>
-            {answerListArray.map(answer => <Answers OneAnswer={answer} key={answer.id}/>)}
+            {answerListArray.map((answer, index) => <Answers OneAnswer={answer} index={index} key={answer.id}/>)}
             {Object.keys(this.props.OneQuestion.answers).length > 2 ? this.state.renderTwoAnswers ? <Row style={{padding: "10px 10px 20px 5px"}}><Col><Button size="sm" type="submit" onClick={this.ShowAllAnswers}  variant="outline-primary">Load more answers</Button></Col></Row> 
             : <Row><Col><Button size="sm" type="submit" onClick={this.ShowAllAnswers}  variant="outline-primary">Collapse answers</Button></Col></Row> : null}
           </Col>

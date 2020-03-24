@@ -70,6 +70,7 @@ class AddAnswer extends React.Component {
       <Modal size="lg" show={true}>
           <ModalHeader><h2>Submit your Answer</h2></ModalHeader>
           <ModalTitle>{this.props.currentProduct.name}: {this.props.questionBody}</ModalTitle>
+          <ModalBody>
           <Form>
           <p style={{color: 'red'}}><i>{this.state.ErrorMessage}</i></p>
           <Form.Label><b>Your Answer*</b></Form.Label>
@@ -83,8 +84,8 @@ class AddAnswer extends React.Component {
           <Form.Control maxLength={"60"} type={`email`} placeholder={`Example: jack@email.com`} onChange={this.Email}></Form.Control>
           <p style={{color: 'red'}}><i>{this.state.EmailError}</i></p>
           </Form>
-          <ModalBody></ModalBody>
-          <ModalFooter><Button onClick={this.CheckForErrors}>Submit</Button><Button onClick={this.props.button}>Close</Button></ModalFooter>
+          </ModalBody>
+          <ModalFooter><Button onClick={this.CheckForErrors} variant="outline-primary">Submit</Button><Button onClick={this.props.button} variant="outline-primary">Close</Button></ModalFooter>
       </Modal>
     );
   }
