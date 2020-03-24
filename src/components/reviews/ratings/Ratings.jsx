@@ -48,7 +48,7 @@ export default class Ratings extends Component {
       this.setState({
         meta: results,
         characteristics: !!results.characteristics.Size,
-        size: results.characteristics.Size // productId 6,11,12,72 has problem of null
+        size: results.characteristics.Size // productId 6,11,12,52,72 has problem of null
           ? parseFloat(results.characteristics.Size.value.slice(0, 3))
           : 0,
         width: results.characteristics.Width
