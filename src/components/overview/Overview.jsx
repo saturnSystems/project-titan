@@ -133,7 +133,12 @@ class Overview extends React.Component {
                     className="style-thumbs"
                     src={
                       each.photos[0].thumbnail_url
-                        ? `${each.photos[0].thumbnail_url}&h=300`
+                        ? `${each.photos[0].thumbnail_url.substring(
+                            0,
+                            each.photos[0].thumbnail_url.indexOf("&w=")
+                          )}&w=${Math.round(window.innerWidth / 12) -
+                            30}&h=${Math.round(window.innerWidth / 12) -
+                            30}&q=80`
                         : require("../../noImg.svg")
                     }
                     alt={`Thumbnail of ${this.props.product.name} in ${each.name} style`}
@@ -315,12 +320,17 @@ class Overview extends React.Component {
       this.state.currentStyle.photos.forEach((each, i) => {
         photoArray.push({
           original: each.url
-            ? `${each.url.substring(0, each.url.indexOf("&w="))}&w=${
-                Math.round(window.innerWidth*.66)
-              }&q=80&${i}`
+            ? `${each.url.substring(0, each.url.indexOf("&w="))}&w=${Math.round(
+                window.innerWidth * (2 / 3)
+              )}&h=${Math.round(window.innerHeight * 0.922)}&q=80&${i}`
             : require("../../noImg.svg"),
           thumbnail: each.thumbnail_url
-            ? `${each.thumbnail_url}&h=300&${i}`
+            ? `${each.thumbnail_url.substring(
+                0,
+                each.thumbnail_url.indexOf("&w=")
+              )}&w=${window.innerWidth <= 768 ? 75 : 92}&h=${
+                window.innerWidth <= 768 ? 75 : 92
+              }&q=80&${i}`
             : require("../../noImg.svg"),
           originalAlt: `Image ${i + 1} of ${this.props.product.name} in ${
             this.state.currentStyle.name
