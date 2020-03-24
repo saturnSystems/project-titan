@@ -26,7 +26,7 @@ class RIAC extends React.Component{
   constructor(props){
     super(props)
     this.state={
-      relatedProductId: null
+      // relatedProductId: null // So far, not needed
     }
   }
 
