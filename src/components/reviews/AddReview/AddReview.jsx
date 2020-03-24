@@ -18,7 +18,21 @@ export default class AddReview extends Component {
     super(props);
 
     this.state = {
-      input: "",
+      productId: this.props.productID,
+      meta: [],
+      overalRating: 0,
+      recommend: null,
+      Characteristics: [],
+      Fit: "",
+      Size: "",
+      Length: "",
+      Comfort: "",
+      Quality: "",
+      Width: "",
+      summary: "",
+      body: "",
+      nickname: "",
+      email: "",
       ShowModal: true
     };
   }
@@ -29,7 +43,43 @@ export default class AddReview extends Component {
     });
   };
 
+  componentDidMount() {
+    const { productId } = this.state;
+
+    helper.getReviewMetadata(productId, results =>
+      // eslint-disable-next-line implicit-arrow-linebreak
+      this.setState({
+        meta: results,
+        Characteristics: Object.keys(results.characteristics),
+        // fit: results.characteristics.Fit,
+        size: results.characteristics.Size ? results.characteristics.Size : 0
+      })
+    );
+  }
+
+  handleRating = e => {
+    // console.log(e.target.value);
+    this.setState({ overalRating: e.target.name });
+  };
+
+  handleCharacteristics = e => {
+    console.log();
+    this.setState({ [e.target.id]: e.target.name });
+  };
+
+  handleInput = e => {
+    // console.log(e.target.value);
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  handleRecommend = e => {
+    // console.log(e.target.name);
+    this.setState({ recommend: e.target.name }); // Boolean.parseBoolean
+  };
+
   render() {
+    // console.log(this.state.characteristics[0].Fit);
+    const { Characteristics } = this.state;
     return (
       <Modal size="lg" show={this.state.ShowModal}>
         <ModalHeader>
@@ -45,30 +95,40 @@ export default class AddReview extends Component {
               <div key={`inline-${type}`} className="mb-3">
                 <Form.Check
                   inline
+                  name="1"
+                  onClick={this.handleRating}
                   label="1 Star - Poor"
                   type={type}
                   id={`inline-${type}-1`}
                 />
                 <Form.Check
                   inline
+                  name="2"
+                  onClick={this.handleRating}
                   label="2 Star - Fair"
                   type={type}
                   id={`inline-${type}-2`}
                 />
                 <Form.Check
                   inline
+                  name="3"
+                  onClick={this.handleRating}
                   label="3 Star - Average"
                   type={type}
                   id={`inline-${type}-3`}
                 />
                 <Form.Check
                   inline
+                  name="4"
+                  onClick={this.handleRating}
                   label="4 Star - Good"
                   type={type}
                   id={`inline-${type}-4`}
                 />
                 <Form.Check
                   inline
+                  name="5"
+                  onClick={this.handleRating}
                   label="5 Star - Great"
                   type={type}
                   id={`inline-${type}-5`}
@@ -81,12 +141,16 @@ export default class AddReview extends Component {
               <div key={`inline-${type}`} className="mb-3">
                 <Form.Check
                   inline
+                  onClick={this.handleRecommend}
+                  name="Yes"
                   label="Yes"
                   type={type}
                   id={`inline-${type}-1`}
                 />
                 <Form.Check
                   inline
+                  onClick={this.handleRecommend}
+                  name="No"
                   label="No"
                   type={type}
                   id={`inline-${type}-2`}
@@ -95,23 +159,82 @@ export default class AddReview extends Component {
             ))}
             <b>Characteristics:</b>
           </Form.Label>
-          <Form.Control placeholder="Size, Comfort, ..." />
+          {Characteristics.map(item => (
+            <div key={`inline-${item}`} className="mb-3">
+              <Form.Label>
+                <b>{item}</b>
+              </Form.Label>
+              <br />
+              <Form.Check
+                inline
+                name="1"
+                onClick={this.handleCharacteristics}
+                label="1 Star - Poor"
+                type="checkbox"
+                id={item}
+              />
+              <Form.Check
+                inline
+                name="2"
+                onClick={this.handleCharacteristics}
+                label="2 Star - Fair"
+                type="checkbox"
+                id={item}
+              />
+              <Form.Check
+                inline
+                name="3"
+                onClick={this.handleCharacteristics}
+                label="3 Star - Average"
+                type="checkbox"
+                id={item}
+              />
+              <Form.Check
+                inline
+                name="4"
+                onClick={this.handleCharacteristics}
+                label="4 Star - Good"
+                type="checkbox"
+                id={item}
+              />
+              <Form.Check
+                inline
+                name="5"
+                onClick={this.handleCharacteristics}
+                label="5 Star - Great"
+                type="checkbox"
+                id={item}
+              />
+            </div>
+          ))}
           <Form.Label>
             <b>Review Summary:</b>
           </Form.Label>
-          <Form.Control placeholder="Title of your Review" />
+          <Form.Control
+            name="summary"
+            onChange={this.handleInput}
+            placeholder="Title of your Review"
+          />
           <Form.Label>
             <b>Review Body:</b>
           </Form.Label>
-          <Form.Control placeholder="Tell your Review" />
+          <Form.Control
+            name="body"
+            onChange={this.handleInput}
+            placeholder="Tell your Review"
+          />
           <Form.Label>
             <b>Photos:</b>
           </Form.Label>
-          <Form.Control placeholder="Upload them if you can" />
+          <Form.Control placeholder="Upload them if you can mwha ha ha ha!" />
           <Form.Label>
             <b>Nickname:</b>
           </Form.Label>
-          <Form.Control placeholder="Give us a name" />
+          <Form.Control
+            name="nickname"
+            onChange={this.handleInput}
+            placeholder="Give us a name"
+          />
           <p>
             <i>
               For privacy reasons, do not use your full name or email address
@@ -120,7 +243,12 @@ export default class AddReview extends Component {
           <Form.Label>
             <b>Email:</b>
           </Form.Label>
-          <Form.Control type="email" placeholder="Example: jack@email.com" />
+          <Form.Control
+            name="email"
+            type="email"
+            onChange={this.handleInput}
+            placeholder="Example: jack@email.com"
+          />
         </Form>
         <ModalBody />
         <ModalFooter>
