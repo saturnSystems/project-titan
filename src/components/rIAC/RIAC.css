@@ -11,6 +11,12 @@
  background: white;
 }
 
+.RIAC .cd-title {
+  background: white;
+  height: 2em;
+ }
+ 
+ 
 .module-header {
   font-size: 1.3em;
   float: left;
