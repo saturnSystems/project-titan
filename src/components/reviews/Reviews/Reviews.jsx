@@ -133,7 +133,7 @@ class Reviews extends React.Component {
               <br />
               <Row
                 style={{
-                  height: "80vh",
+                  height: "60vh",
                   width: "100%",
                   padding: "2%",
                   overflowWrap: "anywhere",
