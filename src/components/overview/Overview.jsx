@@ -71,20 +71,23 @@ class Overview extends React.Component {
     if (
       this.state.currentStyle &&
       this.state.currentStyle.skus &&
-      !this.stockLoaded
+      typeof this.state.currentStyle.outOfStock ==='undefined'
     ) {
-      let sizes = Object.entries(this.state.currentStyle.skus);
-      if (sizes.length <= 1 && !sizes[0][1]) {
+      let sizes = Object.values(this.state.currentStyle.skus);
+      let stock = 0;
+      sizes.forEach(size=>stock+=size)
+      console.log(stock)
+      if (stock===0) {
+        let tempStyle = this.state.currentStyle
+        tempStyle.outOfStock=true
         this.setState({
-          outOfStock: true
+          currentStyle: tempStyle
         });
         this.stockLoaded = true;
-      } else {
-        this.setState({
-          outOfStock: false
-        });
-        this.stockLoaded = true;
-      }
+      } 
+      // else {
+      //   this.stockLoaded = true;
+      // }
     }
   }
 
@@ -257,9 +260,9 @@ class Overview extends React.Component {
   }
 
   conditionalSizeSelector() {
-    if (this.stockLoaded) {
+    if (this.state.currentStyle) {
       let sizes = Object.entries(this.state.currentStyle.skus);
-      if (this.state.outOfStock) {
+      if (this.state.currentStyle.outOfStock) {
         return <Button variant="outline-primary">OUT OF STOCK</Button>;
       } else {
         return (
@@ -509,7 +512,7 @@ class Overview extends React.Component {
               <br />
               <Row className="layout">
                 <Col className="layout" sm={9}>
-                  {!this.state.outOfStock && (
+                  {this.state.currentStyle&&!this.state.currentStyle.outOfStock && (
                     <Button
                       variant="outline-primary"
                       onClick={() => this.bagger()}
