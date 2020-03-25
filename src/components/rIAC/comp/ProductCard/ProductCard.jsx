@@ -10,6 +10,8 @@ import StarRatings from "react-star-ratings";
 import noImage from "./NoImageOnFile.jpg";
 import noStyles from "./NoStylesOnFile.jpg";
 import "./ProductCard.css";
+import ProductComparison from '../ProductComparison/ProductComparison';
+
 
 // props as defined in calling parent
 //   setProductId  ={this.props.setProductId}
@@ -26,8 +28,7 @@ class ProductCard extends React.Component {
       relatedProduct: null, // change over time, requiring re-render
       relatedStyles: null, // change over time, requiring re-render
       relatedReviewRating: null, // change over time, requiring re-render
-      // relatedStyleOriginalPrice: null, // QQQQ NEEDED?
-      // relatedStyleSalePrice: null// QQQQ NEEDED?
+      compareProductsNow: false
     }
 
     // NO NEED TO BIND WHEN I HAVE <this>
@@ -40,16 +41,17 @@ class ProductCard extends React.Component {
     this.loadRelatedProductData();
   }
 
-  // QQQQ needed??
+  // Strictly speaking, not needed. KEEPT FOR DEBUGGING OR IF NEEDED
   componentDidUpdate = (prevProps, prevState) => {
-    // console.log("PC: cDU: rPI: ", relatedProductId);
-    if (prevState.relatedProductId !== this.state.relatedProductId) {
+    // console.log("PC: cDU: rPI: ", this.props.relatedProductId);
+    if (prevProps.relatedProductId !== this.props.relatedProductId) {
       this.loadRelatedProductData();
     }
   }
   
   loadRelatedProductData = () => {
     helper.getOneProduct(this.props.relatedProductId, result => {
+      // console.log("PC: lRPD: gOP: result: " , result)
       this.setState({
         relatedProduct: result
       });
@@ -69,6 +71,21 @@ class ProductCard extends React.Component {
   
   setProductId = () => { 
     this.props.setProductId(this.props.relatedProductId);
+  }
+
+  closeComparison = (event) => { 
+    event.stopPropagation();
+    this.setState({
+      compareProductsNow: false
+    });
+  }
+
+  // compareProducts = (event, currentProductId, relatedProductId) => { // React won't use Arg1, Arg2
+  compareProducts = (event) => {
+    event.stopPropagation();
+    this.setState({
+      compareProductsNow: true
+    });
   }
 
     // Pre-method check if ready to render or null
@@ -94,12 +111,12 @@ class ProductCard extends React.Component {
     // function method
     if (!this.isReadytoRender()) return null;
 
-    let { relatedProduct, relatedStyles, relatedReviewRating } = this.state;
+    const { relatedProduct, relatedStyles, relatedReviewRating } = this.state;
 
     // console.logs for DEBUGGING
 
     // console.log("PC: cP: ", currentProduct); // used only for debugging
-    // console.log("PC: rPId: ", relatedProductId);
+    // console.log("PC: rPId: ", this.props.relatedProductId);
     // console.log("PC: rP: ", relatedProduct);
     // console.log("PC: rSs: ", relatedStyles);
 
@@ -133,15 +150,22 @@ class ProductCard extends React.Component {
 
     return (
       <Container-fluid class="layout product-card-layout align-left">
-
-
         <div id="product-card-div" onClick={this.setProductId}>
           <div>
             <div className="card mb-3 style-image">            
               <img className="card-img-top" src={relatedStyleImage}  alt="Display this style"/>
               {/* <img className="card-img-top" src={"https://images.unsplash.com/photo-1473396413399-6717ef7c4093?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"}  alt=""/> */}
-              <div className="card-img-overlay">
+              <div className="card-img-overlay" onClick={this.compareProducts}>
                 <small><p className="btn btn-primary btn-star">&#x2605;</p></small>
+                {/* {this.state.compareProductsNow ? "Some text" : "No text"} */}
+                {this.state.compareProductsNow && (
+                    <ProductComparison 
+                      currentProductId={this.props.currentProduct.id}
+                      relatedProductId={this.props.relatedProductId} 
+                      closeComparison={this.closeComparison}                  
+                    />  
+                  )
+                }
               </div>
             </div>
           </div>
