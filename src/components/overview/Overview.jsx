@@ -234,7 +234,7 @@ class Overview extends React.Component {
               : require("../../noImg.svg")
           }
         >
-          <PinterestIcon size="1.5em" />
+          <PinterestIcon size="2em" />
         </PinterestShareButton>
       );
     } else {
@@ -464,7 +464,12 @@ class Overview extends React.Component {
             >
               {this.conditionalImageGallery()}
             </Col>
-            <Col sm={4} className="layout" id="details">
+            <Col
+              sm={4}
+              className="layout"
+              id="details"
+              style={this.state.fullscreen ? { opacity: 0 } : null}
+            >
               <Row className="layout">
                 <Col className="layout">{this.conditionalReviews()}</Col>
               </Row>
@@ -519,11 +524,11 @@ class Overview extends React.Component {
                 </Col>
                 <Col className="layout" id="social-media-buttons">
                   <FacebookShareButton url={window.location.href}>
-                    <FacebookIcon size="1.5em" />
+                    <FacebookIcon size="2em" />
                   </FacebookShareButton>
                   {this.conditionalPinterest()}
                   <TwitterShareButton url={window.location.href}>
-                    <TwitterIcon size="1.5em" />
+                    <TwitterIcon size="2em" />
                   </TwitterShareButton>
                 </Col>
               </Row>
