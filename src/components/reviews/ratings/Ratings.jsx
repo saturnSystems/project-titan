@@ -122,6 +122,9 @@ export default class Ratings extends Component {
     // if (this.state.ratingsAvg === 0) {
     //   return null;
     // }
+    if (this.state.recommendedYes === undefined) {
+      this.state.recommendedYes = null;
+    }
     return (
       <dl>
         <Row className="layout noBorder ratingAvg">
