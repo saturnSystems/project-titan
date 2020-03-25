@@ -2,9 +2,7 @@ import React from 'react';
 import Image from 'react-bootstrap/Image';
 import Modal from 'react-bootstrap/Modal';
 import ModalHeader from 'react-bootstrap/ModalHeader';
-import ModalTitle from 'react-bootstrap/ModalTitle';
 import ModalBody from 'react-bootstrap/ModalBody';
-import ModalFooter from 'react-bootstrap/ModalFooter';
 
 class AnswerImages extends React.Component {
 
@@ -17,7 +15,6 @@ class AnswerImages extends React.Component {
 
   ShowModal = () => {
       this.setState({showModal: !this.state.showModal})
-    console.log('Hello!!!!!')
   }
 
   render() {
@@ -26,7 +23,14 @@ class AnswerImages extends React.Component {
       {this.state.showModal ? 
       <div>
       <Image src={this.props.photo} thumbnail style={{width: "25%", height: "auto"}} onClick={this.ShowModal}/>
-      <Modal show={true}><ModalHeader style={{textAlign: "right"}}><button onClick={this.ShowModal}>&#x274C;</button></ModalHeader><ModalBody style={{textAlign: 'center'}}><Image src={this.props.photo} rounded style={{width: "100%", height: "auto"}}/></ModalBody></Modal>
+      <Modal show={true}>
+        <ModalHeader style={{textAlign: "right"}}>
+          <button onClick={this.ShowModal}>&#x274C;</button>
+        </ModalHeader>
+        <ModalBody style={{textAlign: 'center'}}>
+          <Image src={this.props.photo} rounded style={{width: "100%", height: "auto"}}/>
+        </ModalBody>
+      </Modal>
       </div>
       : <Image src={this.props.photo} thumbnail style={{width: "25%", height: "auto"}} onClick={this.ShowModal}/>}
       </div>
