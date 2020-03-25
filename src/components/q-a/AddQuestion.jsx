@@ -86,8 +86,8 @@ class AddQuestion extends React.Component {
                 <p style={{color: 'red'}}><i>{this.state.QuestionError}</i></p>
             <Form.Label><b>What is your nickname*</b></Form.Label>
               <Form.Control maxLength={"60"} placeholder={"Example: jackson11!"} onChange={this.Nickname}></Form.Control>
-                <p style={{color: 'red'}}><i>{this.state.NicknameError}</i></p>
                 <p><i>For privacy reasons, do not use your full name or email address</i></p>
+                <p style={{color: 'red'}}><i>{this.state.NicknameError}</i></p>
             <Form.Label><b>Your email*</b></Form.Label>
               <Form.Control maxLength={"60"} type={`email`} placeholder={`Why did you like the product or not?`} onChange={this.Email}></Form.Control>
                 <p style={{color: 'red'}}><i>{this.state.EmailError}</i></p>

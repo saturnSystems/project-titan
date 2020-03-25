@@ -59,7 +59,7 @@ class List extends React.Component {
 			<Button size="sm" style={{padding: "1em", margin: "0.50em"}} onClick={this.ShowModal} variant="outline-primary">ADD A QUESTION +</Button>
 			</Row> 
 			: 
-			<Row className="layout" style={{padding: "20px 0px 0px 0px"}} variant="outline-primary">
+			<Row className="layout">
 			<Button onClick={this.ShowModal} variant="outline-primary" style={{padding: "1em"}}>ADD A QUESTION +</Button>
 			</Row>}
 		</div>
