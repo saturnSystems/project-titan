@@ -31,7 +31,6 @@ class Overview extends React.Component {
     this.sizeSelector = React.createRef();
     this.carousel = React.createRef();
     this.radioLoaded = false;
-    this.stockLoaded = false;
 
     this.dummyStyle = {
       style_id: null,
@@ -71,23 +70,18 @@ class Overview extends React.Component {
     if (
       this.state.currentStyle &&
       this.state.currentStyle.skus &&
-      typeof this.state.currentStyle.outOfStock ==='undefined'
+      typeof this.state.currentStyle.outOfStock === "undefined"
     ) {
       let sizes = Object.values(this.state.currentStyle.skus);
       let stock = 0;
-      sizes.forEach(size=>stock+=size)
-      console.log(stock)
-      if (stock===0) {
-        let tempStyle = this.state.currentStyle
-        tempStyle.outOfStock=true
+      sizes.forEach(size => (stock += size));
+      if (stock === 0) {
+        let tempStyle = this.state.currentStyle;
+        tempStyle.outOfStock = true;
         this.setState({
           currentStyle: tempStyle
         });
-        this.stockLoaded = true;
-      } 
-      // else {
-      //   this.stockLoaded = true;
-      // }
+      }
     }
   }
 
@@ -479,7 +473,7 @@ class Overview extends React.Component {
               </Row>
               <Row className="layout">
                 <Col className="layout">
-                  <h1>{this.props.product.name||"No product available"}</h1>
+                  <h1>{this.props.product.name || "No product available"}</h1>
                 </Col>
               </Row>
               <br />
@@ -488,7 +482,8 @@ class Overview extends React.Component {
               <Row className="layout">
                 <Col className="layout">
                   <b>STYLE ></b>{" "}
-                  {(this.state.currentStyle && this.state.currentStyle.name)||"No styles available"}
+                  {(this.state.currentStyle && this.state.currentStyle.name) ||
+                    "No styles available"}
                 </Col>
               </Row>
               <br />
@@ -512,14 +507,15 @@ class Overview extends React.Component {
               <br />
               <Row className="layout">
                 <Col className="layout" sm={9}>
-                  {this.state.currentStyle&&!this.state.currentStyle.outOfStock && (
-                    <Button
-                      variant="outline-primary"
-                      onClick={() => this.bagger()}
-                    >
-                      ADD TO BAG
-                    </Button>
-                  )}
+                  {this.state.currentStyle &&
+                    !this.state.currentStyle.outOfStock && (
+                      <Button
+                        variant="outline-primary"
+                        onClick={() => this.bagger()}
+                      >
+                        ADD TO BAG
+                      </Button>
+                    )}
                 </Col>
                 <Col className="layout" id="social-media-buttons">
                   <FacebookShareButton url={window.location.href}>
