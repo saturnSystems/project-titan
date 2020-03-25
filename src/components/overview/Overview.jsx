@@ -32,6 +32,23 @@ class Overview extends React.Component {
     this.carousel = React.createRef();
     this.radioLoaded = false;
     this.stockLoaded = false;
+
+    this.dummyStyle = {
+      style_id: null,
+      name: null,
+      original_price: null,
+      sale_price: null,
+      "default?": null,
+      photos: [
+        {
+          thumbnail_url: null,
+          url: null
+        }
+      ],
+      skus: {
+        null: null
+      }
+    };
   }
 
   componentDidUpdate(prevProps) {
@@ -42,7 +59,7 @@ class Overview extends React.Component {
         }
       }
       this.setState({
-        currentStyle: defaultStyle || this.props.styles[0]
+        currentStyle: defaultStyle || this.props.styles[0] || this.dummyStyle
       });
     }
 
@@ -189,12 +206,21 @@ class Overview extends React.Component {
           </Row>
         </div>
       );
-    } else {
+    } else if (
+      this.state.currentStyle &&
+      this.state.currentStyle.original_price > 0
+    ) {
       return (
         <Row className="layout">
           <Col className="layout">
             ${this.state.currentStyle && this.state.currentStyle.original_price}
           </Col>
+        </Row>
+      );
+    } else {
+      return (
+        <Row className="layout">
+          <Col className="layout">No pricing available</Col>
         </Row>
       );
     }
@@ -450,7 +476,7 @@ class Overview extends React.Component {
               </Row>
               <Row className="layout">
                 <Col className="layout">
-                  <h1>{this.props.product.name}</h1>
+                  <h1>{this.props.product.name||"No product available"}</h1>
                 </Col>
               </Row>
               <br />
@@ -459,7 +485,7 @@ class Overview extends React.Component {
               <Row className="layout">
                 <Col className="layout">
                   <b>STYLE ></b>{" "}
-                  {this.state.currentStyle && this.state.currentStyle.name}
+                  {(this.state.currentStyle && this.state.currentStyle.name)||"No styles available"}
                 </Col>
               </Row>
               <br />

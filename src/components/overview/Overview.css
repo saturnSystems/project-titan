@@ -86,6 +86,7 @@
 
 .overview .image-gallery-thumbnail .image-gallery-thumbnail-image {
   object-fit: cover;
+  height: 100%;
 }
 
 .overview .image-gallery-thumbnail {
@@ -159,4 +160,12 @@
 
 .overview .dropdown-toggle {
   min-width: fit-content;
+}
+
+.overview .magnifier{
+  background: black;
+}
+
+.overview .image-gallery-thumbnail-inner{
+  height: 100%;
 }
