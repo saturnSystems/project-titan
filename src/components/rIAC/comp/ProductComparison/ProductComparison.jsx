@@ -104,6 +104,7 @@ class ProductComparison extends React.Component {
     
     for (let i = 0; i < currentFeaturesArr.length; i++) {
       // allFeaturesArr.push(currentFeaturesArr[i]);
+      if (currentFeaturesArr[i].value === "null") currentFeaturesArr[i].value = null
       allFeaturesArr.push( 
         {
           feature: currentFeaturesArr[i].feature,
@@ -112,21 +113,23 @@ class ProductComparison extends React.Component {
       )
       for (let j = 0; j < relatedFeaturesTempArr.length; j++) {
         if (allFeaturesArr[i].feature === relatedFeaturesTempArr[j].feature) {
+          if (relatedFeaturesTempArr[i].value === "null") relatedFeaturesTempArr[i].value = null
           allFeaturesArr[i].relatedValue = relatedFeaturesTempArr[j].value;
           relatedFeaturesTempArr.splice(j, 1);
           j--;
         } else {
           // allFeaturesArr[i].relatedValue = null;
-          allFeaturesArr[i].relatedValue = "-----";
+          allFeaturesArr[i].relatedValue = null;
         }
       }
     }
     for (let j = currentFeaturesArrLen - 1; j < relatedFeaturesTempArr.length; j++) {
+      if (relatedFeaturesTempArr[j].value === "null") relatedFeaturesTempArr[j].value = null
       allFeaturesArr.push( 
         {
           feature: relatedFeaturesTempArr[j].feature,
           // currentValue: null,
-          currentValue: "-----",
+          currentValue: null,
           relatedValue: relatedFeaturesTempArr[j].value
         }
       )
@@ -159,7 +162,7 @@ class ProductComparison extends React.Component {
 
     return (
       // <Container-fluid class="layout product-card-layout align-left">
-        <Modal className="comparison-body modal-90w" size="lg" dialogClassName="modal-90w" show={show} onHide={handleClose} >
+        <Modal className="comparison-body" show={show} onHide={handleClose} >
           <Modal.Header closeButton onClick={this.props.closeComparison}>
             <Modal.Title>Product Comparison</Modal.Title>
           </Modal.Header>
@@ -175,19 +178,19 @@ class ProductComparison extends React.Component {
               <tbody className="comparison-body"> 
                 {/* <tr className="cols">
                   <Row className="layout comparison-body"> { */}
-                <tr className="cols layout comparison-body"> {
+                {
                     allFeaturesArr.map((feature, index) => {
+                      console.log(feature)
                       return (
-                        <div className="rows" key={index}>
+                        <tr className="cols layout comparison-body rows" key={index}>
                           <td>{allFeaturesArr[index].currentValue}</td>
                           <td>{allFeaturesArr[index].feature}</td>
                           <td>{allFeaturesArr[index].relatedValue}</td>
-                        </div>
+                        </tr>
                       )
                     })
                   }
                   {/* </Row> */}                
-                </tr>
                 {/* <tr>
                   <td>Table cell</td>
                   <td>Table cell</td>

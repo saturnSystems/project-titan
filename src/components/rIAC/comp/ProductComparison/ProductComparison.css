@@ -1,15 +1,10 @@
 .comparison-body {
   width: 100%;
-  border: 1px black;
   text-align: center;
 }
 
-.cols {
-  border: 1px black;
-}
-
-.rows {
-  
+.comparison-body .table td , .comparison-body .table th  {
+  border: 1px solid black;
 }
 
 .modal-90w {
