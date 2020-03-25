@@ -168,7 +168,7 @@ const getListReviews = (productId, sortedBy, callback) => {
     // You can sort by /?sort="helpful" or "newest" or ...
     .then(response => response.json())
     .then(data => callback(data))
-    .catch(err => callback(err));
+    .catch(err => true);
 };
 // example:
 // getListReviews(3, data => console.log(data));

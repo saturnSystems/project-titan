@@ -39,7 +39,8 @@ export default class Ratings extends Component {
       comfort: 0,
       quality: 0,
       Length: 0,
-      fit: 0
+      fit: 0,
+      backupSum: 0
     };
   }
 
@@ -118,20 +119,15 @@ export default class Ratings extends Component {
 
   render() {
     const { handleStarSort } = this.props;
-    // const { backupRatings } = this.props;
     // if (this.state.ratingsAvg === 0) {
     //   return null;
     // }
-    // backupRatings.reduce((a, b) => a + b);
-
     return (
       <dl>
         <Row className="layout noBorder ratingAvg">
           {this.state.ratingsAvg !== 0
             ? this.state.ratingsAvg.toFixed(1)
-            : (
-                this.props.backupRatings / this.props.backupRatingsLength
-              ).toFixed(1)}
+            : this.props.backupAvg.toFixed(1)}
 
           <span className="stary">
             <StarRatings
@@ -143,10 +139,12 @@ export default class Ratings extends Component {
         </Row>
         <br />
         <Row className="layout">
-          {(
-            (this.state.recommendedYes / this.state.recommendedSum) *
-            100
-          ).toFixed(0)}
+          {this.state.recommendedYes || this.state.recommendedSum
+            ? (
+                (this.state.recommendedYes / this.state.recommendedSum) *
+                100
+              ).toFixed(0)
+            : 0}
           % of reviews recommend
         </Row>
         <Row className="layout lessSpace">
