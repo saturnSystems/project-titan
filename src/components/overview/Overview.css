@@ -15,9 +15,20 @@
 .overview input:checked ~ .checkmark:after {
   display: block;
 }
-.overview .checkmark:after {
-  /* top: 0;
-  right:0; */
+
+.overview .thumb-col {
+  height: calc(100vw / 12);
+  padding-right: 0.5vw;
+  padding-left: 0.5vw;
+}
+@media (max-width: 575px) {
+  .overview .thumb-col {
+    height: 25vw;
+  }
+}
+
+.overview .form-check-label {
+  height: calc(100% - 1vw);
   width: 100%;
 }
 
@@ -47,17 +58,11 @@
   display: none;
 }
 
-.overview .image-gallery.fullscreen-modal .image-gallery-right-nav {
-  display: none;
-}
-
 .overview .image-gallery.fullscreen-modal {
   position: absolute;
-  /* width: 100% ; */
 }
 
 .overview .image-gallery.fullscreen-modal .image-gallery-content {
-  /* top: unset; */
   transform: unset;
 }
 
@@ -67,25 +72,45 @@
   display: none;
 }
 
-.overview .image-gallery-thumbnails-wrapper.left,
-.image-gallery-thumbnails-wrapper.right {
+.overview .image-gallery-thumbnails-wrapper.left {
   z-index: 1;
   position: absolute;
   height: 100% !important;
+  width: calc(92.2vh / 7.2);
 }
+/* @media (max-width: 575px) {
+  .overview .image-gallery-thumbnails-wrapper.left {
+    width: 25vw;
+  }
+} */
+
+.overview .image-gallery-thumbnail .image-gallery-thumbnail-image {
+  object-fit: cover;
+}
+
+.overview .image-gallery-thumbnail {
+  width: calc(92.2vh / 7.2);
+  height: calc(92.2vh / 7.2);
+}
+/* @media (max-width: 575px) {
+  .overview .image-gallery-thumbnail {
+    width: 25vw;
+    height: 25vw;
+  }
+} */
 
 .overview .image-gallery-slide-wrapper.left {
   width: 100%;
 }
 
 .overview .image-gallery-left-nav {
-  left: 100px;
+  left: calc(92.2vh / 7.2);
 }
-@media (max-width: 768px) {
+/* @media (max-width: 575px) {
   .overview .image-gallery-left-nav {
-    left: 81px;
+    left: 25vw;
   }
-}
+} */
 
 .overview .image-gallery-image {
   cursor: zoom-in;
@@ -101,29 +126,37 @@
   width: 2.5em;
 }
 
-.radio-styles {
+.overview .radio-styles {
   position: absolute;
   right: 10%;
   top: 0;
 }
 
-.style-thumbs {
+.overview .style-thumbs {
   position: relative;
   z-index: -1;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
 
-.sale-price {
+.overview .sale-price {
   color: red;
 }
 
-#carousel {
+.overview #carousel {
   padding: 0;
 }
 
-#details {
+.overview #details {
   height: 92.11vh;
+  display: table;
 }
 
-#social-media-buttons {
+.overview #social-media-buttons {
   margin: auto;
+}
+
+.overview .dropdown-toggle {
+  min-width: fit-content;
 }
