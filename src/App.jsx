@@ -20,7 +20,7 @@ class App extends React.Component {
 
     this.state = {
       productId: window.location.search.substr(1) || 1,
-      currentProduct: [],
+      currentProduct: {},
       currentReviewRating: 0,
       styles: [],
       reviews: [],
