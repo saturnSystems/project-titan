@@ -62,7 +62,9 @@ class Answers extends React.Component {
         <Row className="layout">
           <Col className="layout">
             <Row className="layout" style={{padding: "0px 10px 10px 5px"}}>Answer to reply?</Row>
-            <Row className="layout" style={{padding: "0.5em"}}>IMAGES</Row> 
+            <Row className="layout" style={{padding: "0.5em"}}>
+            {this.props.OneAnswer.photos.map(image => <AnswerImages photo={image} key={image}/>)}
+            </Row> 
           </Col>
         </Row>
       </Col>
