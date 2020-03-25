@@ -234,7 +234,7 @@ class Overview extends React.Component {
               : require("../../noImg.svg")
           }
         >
-          <PinterestIcon size="2em" />
+          <PinterestIcon size={window.innerWidth>575?"2em":48} />
         </PinterestShareButton>
       );
     } else {
@@ -521,14 +521,14 @@ class Overview extends React.Component {
                         ADD TO BAG
                       </Button>
                     )}
-                </Col>
+                </Col>                
                 <Col className="layout" id="social-media-buttons">
                   <FacebookShareButton url={window.location.href}>
-                    <FacebookIcon size="2em" />
+                    <FacebookIcon size={window.innerWidth>575?"2em":48} />
                   </FacebookShareButton>
                   {this.conditionalPinterest()}
                   <TwitterShareButton url={window.location.href}>
-                    <TwitterIcon size="2em" />
+                    <TwitterIcon size={window.innerWidth>575?"2em":48} />
                   </TwitterShareButton>
                 </Col>
               </Row>
