@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import FormControl from 'react-bootstrap/FormControl';
 import Questions from '../q-a/Questions';
 import AddQuestion from '../q-a/AddQuestion.jsx';
+import '../q-a/QA.css'
 
 
 class List extends React.Component {
@@ -50,7 +51,7 @@ class List extends React.Component {
 			<AddQuestion currentProduct={this.props.currentProduct} ShowModal={this.ShowModal} Show={this.state.ShowModal}/> 
 			: null}
 			<Row className="layout">
-			<FormControl size="lg" type="text" placeholder="Have a question? Search for answers…" onChange={this.SearchBox} style={{margin: "10px", padding: "1.5em", borderRadius: "0px", border: "2px black solid"}} />
+			<FormControl size="lg" type="text" placeholder="Have a question? Search for answers…" onChange={this.SearchBox}  id="Search"/>
 			</Row>
 			{questions.map(question => <Questions currentProduct={this.props.currentProduct} OneQuestion={question} key={question.question_id}/>)}
 			{this.state.renderQuestions < this.props.questions.length && this.props.questions.length > 2

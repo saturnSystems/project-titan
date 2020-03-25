@@ -6,7 +6,8 @@ import ModalBody from 'react-bootstrap/ModalBody';
 import ModalFooter from 'react-bootstrap/ModalFooter';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
+// import FormControl from 'react-bootstrap/FormControl';
+import AnswerImages from '../q-a/AnswerImages.jsx'
 const helper = require('../../helper/helper.js');
 
 
@@ -38,10 +39,11 @@ class AddAnswer extends React.Component {
   }
 
   Photos = (e) => {
-    console.log(e.target.value)
+    if (this.state.Photos.length < 5) {
     let morePhotos = this.state.Photos;
     morePhotos.push(e.target.value);
-    this.setState({Photos: morePhotos}, () => console.log(this.state.Photos));
+    this.setState({Photos: morePhotos});
+    }
   }
 
   CheckForErrors = () => {
@@ -94,6 +96,7 @@ class AddAnswer extends React.Component {
                 <p style={{color: 'red'}}><i>{this.state.EmailError}</i></p>
                 <Form.Label><b>Upload Pictures (5 max.)</b></Form.Label>
                 <div><input type="file" onChange={this.Photos} /></div>
+                <div>{this.state.Photos.map(picture => <AnswerImages photo={picture} key={picture}/>)}</div>
               </Form>
             </ModalBody>
         <ModalFooter>

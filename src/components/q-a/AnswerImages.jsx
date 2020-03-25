@@ -25,7 +25,7 @@ class AnswerImages extends React.Component {
       <Image src={this.props.photo} thumbnail style={{width: "25%", height: "auto"}} onClick={this.ShowModal}/>
       <Modal show={true}>
         <ModalHeader style={{textAlign: "right"}}>
-          <button onClick={this.ShowModal}>&#x274C;</button>
+          <button onClick={this.ShowModal}><span role="img" aria-label="close button">&#x274C;</span></button>
         </ModalHeader>
         <ModalBody style={{textAlign: 'center'}}>
           <Image src={this.props.photo} rounded style={{width: "100%", height: "auto"}}/>
