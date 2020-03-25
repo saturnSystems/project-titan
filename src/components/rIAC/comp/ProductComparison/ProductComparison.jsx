@@ -142,22 +142,21 @@ class ProductComparison extends React.Component {
       
     return (
       // <Container-fluid class="layout product-card-layout align-left">
-        <Modal show={show} onHide={handleClose}>
+        <Modal className="comparison-body" show={show} onHide={handleClose} >
           <Modal.Header closeButton onClick={this.props.closeComparison}>
             <Modal.Title>Product Comparison</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Table responsive>
-              <thead>
+              <thead className="comparison-body">
                 <tr>
                   <th>{currentProductName}</th>
                   <th>Feature</th>
                   <th>{relatedProductName}</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
-                  <td></td>
+              <tbody className="comparison-body">
+                <tr className="cols">
                   <td>{allFeaturesArr[0].currentValue}</td>
                   <td>{allFeaturesArr[0].feature}</td>
                   <td>{allFeaturesArr[0].relatedValue}</td>
