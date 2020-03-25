@@ -116,7 +116,8 @@ class ProductComparison extends React.Component {
           relatedFeaturesTempArr.splice(j, 1);
           j--;
         } else {
-          allFeaturesArr[i].relatedValue = null;
+          // allFeaturesArr[i].relatedValue = null;
+          allFeaturesArr[i].relatedValue = "-----";
         }
       }
     }
@@ -124,7 +125,8 @@ class ProductComparison extends React.Component {
       allFeaturesArr.push( 
         {
           feature: relatedFeaturesTempArr[j].feature,
-          currentValue: null,
+          // currentValue: null,
+          currentValue: "-----",
           relatedValue: relatedFeaturesTempArr[j].value
         }
       )
@@ -140,9 +142,24 @@ class ProductComparison extends React.Component {
     const handleClose = () => setShow(false);
     // const handleShow = () => setShow(true);
       
+
+    // allFeaturesArr.map((feature, index) => { 
+    //   <Row className="layout comparison-body" key={feature}> {
+    //         return (
+    //           <Table
+    //         allFeaturesArr = {this.props.currentProduct}
+    //         setProductId={this.props.setProductId}
+    //         relatedProductId={relatedProductId}
+    //       />
+    //     }
+    //     </Row>
+    //   )
+    // })
+
+
     return (
       // <Container-fluid class="layout product-card-layout align-left">
-        <Modal className="comparison-body" show={show} onHide={handleClose} >
+        <Modal className="comparison-body modal-90w" size="lg" dialogClassName="modal-90w" show={show} onHide={handleClose} >
           <Modal.Header closeButton onClick={this.props.closeComparison}>
             <Modal.Title>Product Comparison</Modal.Title>
           </Modal.Header>
@@ -155,17 +172,27 @@ class ProductComparison extends React.Component {
                   <th>{relatedProductName}</th>
                 </tr>
               </thead>
-              <tbody className="comparison-body">
-                <tr className="cols">
-                  <td>{allFeaturesArr[0].currentValue}</td>
-                  <td>{allFeaturesArr[0].feature}</td>
-                  <td>{allFeaturesArr[0].relatedValue}</td>
+              <tbody className="comparison-body"> 
+                {/* <tr className="cols">
+                  <Row className="layout comparison-body"> { */}
+                <tr className="cols layout comparison-body"> {
+                    allFeaturesArr.map((feature, index) => {
+                      return (
+                        <div className="rows" key={index}>
+                          <td>{allFeaturesArr[index].currentValue}</td>
+                          <td>{allFeaturesArr[index].feature}</td>
+                          <td>{allFeaturesArr[index].relatedValue}</td>
+                        </div>
+                      )
+                    })
+                  }
+                  {/* </Row> */}                
                 </tr>
-                <tr>
+                {/* <tr>
                   <td>Table cell</td>
                   <td>Table cell</td>
                   <td>Table cell</td>
-                </tr>
+                </tr> */}
               </tbody>
             </Table>
           </Modal.Body>
