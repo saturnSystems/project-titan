@@ -38,9 +38,11 @@ class Answers extends React.Component {
       <Col className="layout" sm={9}>
         <Row className="layout">
           <Col className="layout">
-            <Row className="layout" style={{padding: "0px 10px 10px 5px"}}>{ this.props.OneAnswer.body }</Row>
-
-            <Row className="layout" style={{padding: "0px 10px 10px 5px"}}>
+            <Row className="layout"><p>{ this.props.OneAnswer.body }</p></Row>
+            <Row className="layout">
+            {this.props.OneAnswer.photos.map(image => <AnswerImages photo={image} key={image}/>)}
+            </Row> 
+            <Row className="layout" style={{padding: "2em, 0em, 0em, 0em"}}>
             By&nbsp;
               {this.props.OneAnswer.answerer_name === 'Seller' ? <strong>{this.props.OneAnswer.answerer_name}</strong>
                 : this.props.OneAnswer.answerer_name}
@@ -61,10 +63,7 @@ class Answers extends React.Component {
         </Row>
         <Row className="layout">
           <Col className="layout">
-            <Row className="layout" style={{padding: "0px 10px 10px 5px"}}>Answer to reply?</Row>
-            <Row className="layout" style={{padding: "0.5em"}}>
-            {this.props.OneAnswer.photos.map(image => <AnswerImages photo={image} key={image}/>)}
-            </Row> 
+            <Row className="layout" style={{padding: "5%"}}></Row>
           </Col>
         </Row>
       </Col>
