@@ -24,7 +24,7 @@ class AnswerImages extends React.Component {
     return (
         <div>
       {this.state.showModal ? 
-      <Modal><ModalBody><h1 onClick={this.ShowModal}>Yes, yes yes</h1></ModalBody></Modal>
+      <Modal show={true}><ModalBody style={{textAlign: 'center'}}><Image src={this.props.photo} rounded style={{width: "100%", height: "auto"}} onClick={this.ShowModal}/></ModalBody></Modal>
       : <div><Image src={this.props.photo} thumbnail style={{width: "25%", height: "auto"}} onClick={this.ShowModal}/></div>}
       </div>
     );
