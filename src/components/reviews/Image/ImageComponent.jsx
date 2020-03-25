@@ -3,6 +3,10 @@
 import React, { Component } from "react";
 import "./ImageComponent.css";
 import PropTypes from "prop-types";
+import Image from "react-bootstrap/Image";
+import Modal from "react-bootstrap/Modal";
+import ModalHeader from "react-bootstrap/ModalHeader";
+import ModalBody from "react-bootstrap/ModalBody";
 
 export default class ImageComponent extends Component {
   constructor(props) {
@@ -13,11 +17,6 @@ export default class ImageComponent extends Component {
       tempPhoto: ""
     };
   }
-
-  // /////////// TOFIX ///////////////////
-  // When user clicks on multiple images it opens it up as well and you have to click
-  // the photo modal the same number of times to close it.
-  // /////////////////////////////////////
 
   componentDidMount = () => {
     const { photo } = this.props;
@@ -31,36 +30,38 @@ export default class ImageComponent extends Component {
   render() {
     const { photo, id } = this.props;
     const { isOpen } = this.state;
-    // if (photo === this.state.tempPhoto) {
-    //   return null;
-    // }
 
     return (
       <div>
-        <React.Fragment key={id}>
-          <img
-            className="small-image"
-            src={photo}
-            // onerror="this.style.display='none'"
-            onClick={this.handleShowImage}
-            alt=""
-          />
-          {isOpen && (
-            <dialog
-              className="dialog"
-              style={{ position: "absolute" }}
-              open
+        {isOpen ? (
+          <div>
+            <Image
+              src={photo}
+              thumbnail
+              style={{ width: "8rem", height: "8rem" }}
               onClick={this.handleShowImage}
-            >
-              <img
-                className="big-image"
-                src={photo || null}
-                onClick={this.handleShowImage}
-                alt="You found me!!"
-              />
-            </dialog>
-          )}
-        </React.Fragment>
+            />
+            <Modal show={true}>
+              <ModalHeader style={{ textAlign: "right" }}>
+                <button onClick={this.handleShowImage}>&#x274C;</button>
+              </ModalHeader>
+              <ModalBody style={{ textAlign: "center" }}>
+                <Image
+                  src={photo}
+                  rounded
+                  style={{ width: "100%", height: "auto" }}
+                />
+              </ModalBody>
+            </Modal>
+          </div>
+        ) : (
+          <Image
+            src={photo}
+            thumbnail
+            style={{ width: "9rem", height: "8rem" }}
+            onClick={this.handleShowImage}
+          />
+        )}
       </div>
     );
   }
