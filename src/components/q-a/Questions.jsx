@@ -2,7 +2,7 @@ import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Answers from './Answers';
-import Button from 'react-bootstrap/Button';
+// import Button from 'react-bootstrap/Button';
 import AddAnswer from '.././q-a/AddAnswer.jsx'
 const helper = require("./../../helper/helper.js");
 

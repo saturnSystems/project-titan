@@ -107,10 +107,10 @@ class Overview extends React.Component {
       storage.push(
         <Row className="layout" key={i}>
           {styles.slice(4 * i, 4 * i + 4).map((each, i) => (
-            <Col className="layout" key={i}>
+            <Col className="layout thumb-col" key={i}>
               <FormCheck.Label
                 htmlFor={each.style_id}
-                onClick={() => this.setStyle(each)}
+                onClick={() => each.style_id && this.setStyle(each)}
               >
                 {each.photos && (
                   <Form.Check.Input
@@ -131,7 +131,24 @@ class Overview extends React.Component {
                 {each.photos && (
                   <Image
                     className="style-thumbs"
-                    src={each.photos[0].thumbnail_url?`${each.photos[0].thumbnail_url}&h=300`:require('../../noImg.svg')}
+                    src={
+                      each.photos[0].thumbnail_url
+                        ? each.photos[0].thumbnail_url.includes("unsplash")
+                          ? `${each.photos[0].thumbnail_url.substring(
+                              0,
+                              each.photos[0].thumbnail_url.indexOf("&w=")
+                            )}&w=${Math.round(
+                              window.innerWidth <= 768
+                                ? window.innerWidth / 4
+                                : window.innerWidth / 15
+                            )}&h=${Math.round(
+                              window.innerWidth <= 768
+                                ? window.innerWidth / 4
+                                : window.innerWidth / 15
+                            )}&q=80`
+                          : each.photos[0].thumbnail_url
+                        : require("../../noImg.svg")
+                    }
                     alt={`Thumbnail of ${this.props.product.name} in ${each.name} style`}
                     roundedCircle
                     fluid
@@ -146,10 +163,7 @@ class Overview extends React.Component {
     return (
       <Form>
         {storage.map((each, i) => (
-          <div key={i}>
-            {each}
-            <br />
-          </div>
+          <div key={i}>{each}</div>
         ))}
       </Form>
     );
@@ -187,14 +201,15 @@ class Overview extends React.Component {
   }
 
   conditionalPinterest() {
-    if (
-      this.state.currentStyle &&
-      this.state.currentStyle.photos
-    ) {
+    if (this.state.currentStyle && this.state.currentStyle.photos) {
       return (
         <PinterestShareButton
           url={window.location.href}
-          media={this.state.currentStyle.photos[0].url?this.state.currentStyle.photos[0].url:require('../../noImg.svg')}
+          media={
+            this.state.currentStyle.photos[0].url
+              ? this.state.currentStyle.photos[0].url
+              : require("../../noImg.svg")
+          }
         >
           <PinterestIcon size="1.5em" />
         </PinterestShareButton>
@@ -309,8 +324,29 @@ class Overview extends React.Component {
     this.state.currentStyle &&
       this.state.currentStyle.photos.forEach((each, i) => {
         photoArray.push({
-          original: each.url?`${each.url}&${i}`:require('../../noImg.svg'),
-          thumbnail: each.thumbnail_url?`${each.thumbnail_url}&h=300&${i}`:require('../../noImg.svg'),
+          original: each.url
+            ? each.url.includes("unsplash")
+              ? `${each.url.substring(0, each.url.indexOf("&w="))}&w=${
+                  window.innerWidth
+                }&h=${Math.round(window.innerHeight * 0.922)}&q=80&${i}`
+              : each.url
+            : require("../../noImg.svg"),
+          thumbnail: each.thumbnail_url
+            ? each.thumbnail_url.includes("unsplash")
+              ? `${each.thumbnail_url.substring(
+                  0,
+                  each.thumbnail_url.indexOf("&w=")
+                )}&w=${Math.round(
+                  window.innerWidth <= 768
+                    ? window.innerWidth / 4
+                    : window.innerWidth / 15
+                )}&h=${Math.round(
+                  window.innerWidth <= 768
+                    ? window.innerWidth / 4
+                    : window.innerWidth / 15
+                )}&q=80&${i}`
+              : each.thumbnail_url
+            : require("../../noImg.svg"),
           originalAlt: `Image ${i + 1} of ${this.props.product.name} in ${
             this.state.currentStyle.name
           } style`,
@@ -336,15 +372,20 @@ class Overview extends React.Component {
             smallImage: {
               src: photoArray[this.state.carouselIndex].original,
               width: window.innerWidth,
-              height: window.innerHeight * 0.92,
+              height: window.innerHeight * 0.922,
               alt: `Unmagnified image ${this.state.carouselIndex + 1} of ${
                 this.props.product.name
               } in ${this.state.currentStyle.name} style`
             },
             largeImage: {
-              src: photoArray[this.state.carouselIndex].original,
+              src: `${photoArray[this.state.carouselIndex].original.substring(
+                0,
+                photoArray[this.state.carouselIndex].original.indexOf("&w=")
+              )}&w=${window.innerWidth * 2.5}&h=${Math.round(
+                window.innerHeight * 2.5 * 0.922
+              )}&q=80&${this.state.carouselIndex}`,
               width: window.innerWidth * 2.5,
-              height: window.innerHeight * 0.92 * 2.5,
+              height: window.innerHeight * 0.922 * 2.5,
               alt: `Magnified overlay of image ${this.state.carouselIndex +
                 1} of ${this.props.product.name} in ${
                 this.state.currentStyle.name
@@ -430,6 +471,7 @@ class Overview extends React.Component {
                   <Col className="layout">Please select size</Col>
                 </Row>
               )}
+              <br />
               <Row className="layout">
                 <Col className="layout" sm={8}>
                   {this.conditionalSizeSelector()}

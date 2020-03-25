@@ -29,7 +29,6 @@ class List extends React.Component {
 	}
 
   render() {
-
     let questions = this.props.questions;
 
     function compare(a, b) {
