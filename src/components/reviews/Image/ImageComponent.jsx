@@ -38,7 +38,7 @@ export default class ImageComponent extends Component {
             <Image
               src={photo}
               thumbnail
-              style={{ width: "8rem", height: "8rem" }}
+              style={{ width: "9rem", height: "8rem" }}
               onClick={this.handleShowImage}
             />
             <Modal show={true}>
