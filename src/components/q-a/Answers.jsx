@@ -1,6 +1,7 @@
 import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import AnswerImages from '../q-a/AnswerImages.jsx'
 
 const helper = require('../../helper/helper.js');
 
@@ -61,7 +62,7 @@ class Answers extends React.Component {
         <Row className="layout">
           <Col className="layout">
             <Row className="layout" style={{padding: "0px 10px 10px 5px"}}>Answer to reply?</Row>
-            <Row className="layout" style={{padding: "0px 10px 20px 5px"}}>IMAGES</Row>
+            <Row className="layout" style={{padding: "0.5em"}}>IMAGES</Row> 
           </Col>
         </Row>
       </Col>
