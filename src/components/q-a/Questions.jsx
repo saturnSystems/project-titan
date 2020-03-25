@@ -2,7 +2,6 @@ import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Answers from './Answers';
-// import Button from 'react-bootstrap/Button';
 import AddAnswer from '.././q-a/AddAnswer.jsx'
 const helper = require("./../../helper/helper.js");
 
@@ -67,7 +66,7 @@ class Questions extends React.Component {
     return (
       <div>
       {this.state.ShowModal ? <AddAnswer id={this.props.OneQuestion.question_id} currentProduct={this.props.currentProduct} questionBody={this.props.OneQuestion.question_body} button={this.ShowModal}/> : null}
-        <Row className="layout" key={this.props.OneQuestion.question_id} style={{height: "45vh", width: "100%", padding: "2%", overflowWrap: "anywhere", overflowY: "auto"}}>
+        <Row className="layout" key={this.props.OneQuestion.question_id} style={{height: "50vh", width: "100%", padding: "2%", overflowWrap: "anywhere", overflowY: "auto"}}>
           <Col className="layout">
             <Row className="layout">
               <b>Q:&nbsp;</b>
