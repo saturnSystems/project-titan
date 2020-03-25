@@ -37,8 +37,8 @@
 }
 
 .overview .image-gallery-fullscreen-button {
-  top: 0.1em;
-  right: 0.1em;
+  top: 0.15em;
+  right: 0.15em;
   bottom: unset;
   padding: 0px;
 }
@@ -55,6 +55,10 @@
 }
 
 .overview .image-gallery.fullscreen-modal .image-gallery-left-nav {
+  display: none;
+}
+
+.overview .image-gallery.fullscreen-modal .image-gallery-right-nav {
   display: none;
 }
 
@@ -120,6 +124,15 @@
 .overview .magnifier {
   position: absolute;
   z-index: 1;
+  background: black;
+}
+
+.overview .magnifier > *{
+  width: 100%!important;
+}
+
+.overview .magnifier > * >*{
+  width: 100%!important;
 }
 
 .overview .image-gallery-svg {
@@ -160,10 +173,6 @@
 
 .overview .dropdown-toggle {
   min-width: fit-content;
-}
-
-.overview .magnifier{
-  background: black;
 }
 
 .overview .image-gallery-thumbnail-inner{
