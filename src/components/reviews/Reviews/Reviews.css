@@ -19,3 +19,7 @@
 .noBorder {
   border: none;
 }
+
+.spreadOut {
+  margin-right: 10rem;
+}

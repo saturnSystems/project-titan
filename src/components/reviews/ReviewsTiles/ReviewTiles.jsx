@@ -61,7 +61,7 @@ class ReviewTiles extends React.Component {
       return null;
     }
     return (
-      <dl>
+      <dl className="spreadOut">
         <React.Fragment key={review.review_id}>
           <Row className="layout noBorder">
             <Col className="layout noBorder">
