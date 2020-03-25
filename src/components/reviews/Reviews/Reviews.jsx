@@ -27,7 +27,9 @@ class Reviews extends React.Component {
       option: "",
       sortedBy: "relevant",
       starSort: null,
-      ShowModal: false
+      ShowModal: false,
+      backupRatings: 0,
+      backupRatingsLength: 0
     };
   }
 
@@ -43,7 +45,11 @@ class Reviews extends React.Component {
     const { productID } = this.props;
     helper.getListReviews(productID, this.state.sortedBy, result => {
       this.setState({
-        reviews: result.results
+        reviews: result.results,
+        backupRatings: result.results
+          .map(item => item.rating)
+          .reduce((a, b) => a + b),
+        backupRatingsLength: result.results.map(item => item.rating).length
       });
     });
   };
@@ -89,6 +95,8 @@ class Reviews extends React.Component {
                 productId={this.state.productId}
                 reviews={this.state.reviews}
                 handleStarSort={this.handleStarSort}
+                backupRatings={this.state.backupRatings}
+                backupRatingsLength={this.state.backupRatingsLength}
               />
             </Col>
             <Col sm={1} className="layout noBorder"></Col>
