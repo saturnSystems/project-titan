@@ -110,7 +110,7 @@ class Overview extends React.Component {
             <Col className="layout thumb-col" key={i}>
               <FormCheck.Label
                 htmlFor={each.style_id}
-                onClick={() => this.setStyle(each)}
+                onClick={() => each.style_id && this.setStyle(each)}
               >
                 {each.photos && (
                   <Form.Check.Input
