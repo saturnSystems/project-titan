@@ -6,7 +6,7 @@ import Table from 'react-bootstrap/Table';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col' // NOT YET USED
 
-// import "./ProductComparison.css";
+import "./ProductComparison.css";
 
 // props as defined in calling parent
 //   currentProductId  ={this.props.currentProductId}
