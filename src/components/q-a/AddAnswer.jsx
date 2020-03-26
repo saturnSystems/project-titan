@@ -6,7 +6,6 @@ import ModalBody from 'react-bootstrap/ModalBody';
 import ModalFooter from 'react-bootstrap/ModalFooter';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-// import FormControl from 'react-bootstrap/FormControl';
 import AnswerImages from '../q-a/AnswerImages.jsx'
 const helper = require('../../helper/helper.js');
 
