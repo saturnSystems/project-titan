@@ -6,6 +6,8 @@ import ModalBody from 'react-bootstrap/ModalBody';
 import ModalFooter from 'react-bootstrap/ModalFooter';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+// import FormControl from 'react-bootstrap/FormControl';
+import AnswerImages from '../q-a/AnswerImages.jsx'
 const helper = require('../../helper/helper.js');
 
 
@@ -16,6 +18,7 @@ class AddAnswer extends React.Component {
       Answer: '',
       Nickname: '',
       Email: '',
+      Photos: [],
       ErrorMessage: '',
       AnswerError: '',
       NicknameError: '',
@@ -33,6 +36,14 @@ class AddAnswer extends React.Component {
 
   Email = (e) => {
     this.setState({Email: e.target.value});
+  }
+
+  Photos = (e) => {
+    if (this.state.Photos.length < 5) {
+    let morePhotos = this.state.Photos;
+    morePhotos.push(e.target.value);
+    this.setState({Photos: morePhotos});
+    }
   }
 
   CheckForErrors = () => {
@@ -69,8 +80,8 @@ class AddAnswer extends React.Component {
     return (
       <Modal size="lg" show={true}>
         <ModalHeader><h2>Submit your Answer</h2></ModalHeader>
-          <ModalTitle>{this.props.currentProduct.name}: {this.props.questionBody}</ModalTitle>
             <ModalBody>
+            <ModalTitle>{this.props.currentProduct.name}: {this.props.questionBody}</ModalTitle>
               <Form>
               <p style={{color: 'red'}}><i>{this.state.ErrorMessage}</i></p>
                 <Form.Label><b>Your Answer*</b></Form.Label>
@@ -83,6 +94,9 @@ class AddAnswer extends React.Component {
                 <Form.Label><b>Your email*</b></Form.Label>
                 <Form.Control maxLength={"60"} type={`email`} placeholder={`Example: jack@email.com`} onChange={this.Email}></Form.Control>
                 <p style={{color: 'red'}}><i>{this.state.EmailError}</i></p>
+                <Form.Label><b>Upload Pictures (5 max.)</b></Form.Label>
+                <div><input type="file" onChange={this.Photos} /></div>
+                <div>{this.state.Photos.map(picture => <AnswerImages photo={picture} key={picture}/>)}</div>
               </Form>
             </ModalBody>
         <ModalFooter>
