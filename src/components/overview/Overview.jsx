@@ -31,7 +31,23 @@ class Overview extends React.Component {
     this.sizeSelector = React.createRef();
     this.carousel = React.createRef();
     this.radioLoaded = false;
-    this.stockLoaded = false;
+
+    this.dummyStyle = {
+      style_id: null,
+      name: null,
+      original_price: null,
+      sale_price: null,
+      "default?": null,
+      photos: [
+        {
+          thumbnail_url: null,
+          url: null
+        }
+      ],
+      skus: {
+        null: null
+      }
+    };
   }
 
   componentDidUpdate(prevProps) {
@@ -42,7 +58,7 @@ class Overview extends React.Component {
         }
       }
       this.setState({
-        currentStyle: defaultStyle || this.props.styles[0]
+        currentStyle: defaultStyle || this.props.styles[0] || this.dummyStyle
       });
     }
 
@@ -54,19 +70,17 @@ class Overview extends React.Component {
     if (
       this.state.currentStyle &&
       this.state.currentStyle.skus &&
-      !this.stockLoaded
+      typeof this.state.currentStyle.outOfStock === "undefined"
     ) {
-      let sizes = Object.entries(this.state.currentStyle.skus);
-      if (sizes.length <= 1 && !sizes[0][1]) {
+      let sizes = Object.values(this.state.currentStyle.skus);
+      let stock = 0;
+      sizes.forEach(size => (stock += size));
+      if (stock === 0) {
+        let tempStyle = this.state.currentStyle;
+        tempStyle.outOfStock = true;
         this.setState({
-          outOfStock: true
+          currentStyle: tempStyle
         });
-        this.stockLoaded = true;
-      } else {
-        this.setState({
-          outOfStock: false
-        });
-        this.stockLoaded = true;
       }
     }
   }
@@ -189,12 +203,21 @@ class Overview extends React.Component {
           </Row>
         </div>
       );
-    } else {
+    } else if (
+      this.state.currentStyle &&
+      this.state.currentStyle.original_price > 0
+    ) {
       return (
         <Row className="layout">
           <Col className="layout">
             ${this.state.currentStyle && this.state.currentStyle.original_price}
           </Col>
+        </Row>
+      );
+    } else {
+      return (
+        <Row className="layout">
+          <Col className="layout">No pricing available</Col>
         </Row>
       );
     }
@@ -211,7 +234,7 @@ class Overview extends React.Component {
               : require("../../noImg.svg")
           }
         >
-          <PinterestIcon size="1.5em" />
+          <PinterestIcon size="2em" />
         </PinterestShareButton>
       );
     } else {
@@ -231,9 +254,9 @@ class Overview extends React.Component {
   }
 
   conditionalSizeSelector() {
-    if (this.stockLoaded) {
+    if (this.state.currentStyle) {
       let sizes = Object.entries(this.state.currentStyle.skus);
-      if (this.state.outOfStock) {
+      if (this.state.currentStyle.outOfStock) {
         return <Button variant="outline-primary">OUT OF STOCK</Button>;
       } else {
         return (
@@ -441,7 +464,12 @@ class Overview extends React.Component {
             >
               {this.conditionalImageGallery()}
             </Col>
-            <Col sm={4} className="layout" id="details">
+            <Col
+              sm={4}
+              className="layout"
+              id="details"
+              style={this.state.fullscreen ? { opacity: 0 } : null}
+            >
               <Row className="layout">
                 <Col className="layout">{this.conditionalReviews()}</Col>
               </Row>
@@ -450,7 +478,7 @@ class Overview extends React.Component {
               </Row>
               <Row className="layout">
                 <Col className="layout">
-                  <h1>{this.props.product.name}</h1>
+                  <h1>{this.props.product.name || "No product available"}</h1>
                 </Col>
               </Row>
               <br />
@@ -459,7 +487,8 @@ class Overview extends React.Component {
               <Row className="layout">
                 <Col className="layout">
                   <b>STYLE ></b>{" "}
-                  {this.state.currentStyle && this.state.currentStyle.name}
+                  {(this.state.currentStyle && this.state.currentStyle.name) ||
+                    "No styles available"}
                 </Col>
               </Row>
               <br />
@@ -483,22 +512,23 @@ class Overview extends React.Component {
               <br />
               <Row className="layout">
                 <Col className="layout" sm={9}>
-                  {!this.state.outOfStock && (
-                    <Button
-                      variant="outline-primary"
-                      onClick={() => this.bagger()}
-                    >
-                      ADD TO BAG
-                    </Button>
-                  )}
+                  {this.state.currentStyle &&
+                    !this.state.currentStyle.outOfStock && (
+                      <Button
+                        variant="outline-primary"
+                        onClick={() => this.bagger()}
+                      >
+                        ADD TO BAG
+                      </Button>
+                    )}
                 </Col>
                 <Col className="layout" id="social-media-buttons">
                   <FacebookShareButton url={window.location.href}>
-                    <FacebookIcon size="1.5em" />
+                    <FacebookIcon size="2em" />
                   </FacebookShareButton>
                   {this.conditionalPinterest()}
                   <TwitterShareButton url={window.location.href}>
-                    <TwitterIcon size="1.5em" />
+                    <TwitterIcon size="2em" />
                   </TwitterShareButton>
                 </Col>
               </Row>

@@ -25,18 +25,22 @@ export default class Ratings extends Component {
 
     this.state = {
       productId: this.props.productId,
+      reviews: this.props.reviews,
+      backupRatings: [],
       meta: [],
       ratingStars: [],
       ratingVals: [],
       ratingsValsSum: 0,
       ratingsAvg: 0,
-      characteristics: 0,
+      characteristics: [],
+      characteristicsBool: false,
       size: 0,
       width: 0,
       comfort: 0,
       quality: 0,
       Length: 0,
-      fit: 0
+      fit: 0,
+      backupSum: 0
     };
   }
 
@@ -47,25 +51,32 @@ export default class Ratings extends Component {
       // eslint-disable-next-line implicit-arrow-linebreak
       this.setState({
         meta: results,
-        characteristics: !!results.characteristics.Size,
-        size: results.characteristics.Size // productId 6,11,12,52,72 has problem of null
-          ? parseFloat(results.characteristics.Size.value.slice(0, 3))
-          : 0,
-        width: results.characteristics.Width
-          ? parseFloat(results.characteristics.Width.value.slice(0, 3))
-          : 0,
-        comfort: results.characteristics.Comfort
-          ? parseFloat(results.characteristics.Comfort.value.slice(0, 3))
-          : 0,
-        quality: results.characteristics.Quality
-          ? parseFloat(results.characteristics.Quality.value.slice(0, 3))
-          : 0,
-        Length: results.characteristics.Length
-          ? parseFloat(results.characteristics.Length.value.slice(0, 3))
-          : 0,
-        fit: results.characteristics.Fit
-          ? parseFloat(results.characteristics.Fit.value.slice(0, 3))
-          : 0,
+        characteristicsBool: !!results.characteristics.Size,
+        characteristics: Object.values(results.characteristics),
+        size:
+          results.characteristics.Size == null // productId 6,11,12,52,72 has problem of null
+            ? 0
+            : parseFloat(results.characteristics.Size.value.slice(0, 3)),
+        width:
+          results.characteristics.Width == null
+            ? 0
+            : parseFloat(results.characteristics.Width.value.slice(0, 3)),
+        comfort:
+          results.characteristics.Comfort == null
+            ? 0
+            : parseFloat(results.characteristics.Comfort.value.slice(0, 3)),
+        quality:
+          results.characteristics.Quality == null
+            ? 0
+            : parseFloat(results.characteristics.Quality.value.slice(0, 3)),
+        Length:
+          results.characteristics.Length == null
+            ? 0
+            : parseFloat(results.characteristics.Length.value.slice(0, 3)),
+        fit:
+          results.characteristics.Fit == null
+            ? 0
+            : parseFloat(results.characteristics.Fit.value.slice(0, 3)),
         recommendedSum: Object.values(results.recommended).reduce(
           (a, b) => a + b
         ),
@@ -100,12 +111,27 @@ export default class Ratings extends Component {
     );
   }
 
+  backupSum() {
+    const { backupRatings } = this.props;
+
+    return backupRatings.reduce((a, b) => a + b);
+  }
+
   render() {
     const { handleStarSort } = this.props;
+    // if (this.state.ratingsAvg === 0) {
+    //   return null;
+    // }
+    if (this.state.recommendedYes === undefined) {
+      this.state.recommendedYes = null;
+    }
     return (
       <dl>
         <Row className="layout noBorder ratingAvg">
-          {this.state.ratingsAvg.toFixed(1)}
+          {this.state.ratingsAvg !== 0
+            ? this.state.ratingsAvg.toFixed(1)
+            : this.props.backupAvg.toFixed(1)}
+
           <span className="stary">
             <StarRatings
               rating={this.state.ratingsAvg}
@@ -116,10 +142,12 @@ export default class Ratings extends Component {
         </Row>
         <br />
         <Row className="layout">
-          {(
-            (this.state.recommendedYes / this.state.recommendedSum) *
-            100
-          ).toFixed(0)}
+          {this.state.recommendedYes || this.state.recommendedSum
+            ? (
+                (this.state.recommendedYes / this.state.recommendedSum) *
+                100
+              ).toFixed(0)
+            : 0}
           % of reviews recommend
         </Row>
         <Row className="layout lessSpace">

@@ -27,7 +27,10 @@ class Reviews extends React.Component {
       option: "",
       sortedBy: "relevant",
       starSort: null,
-      ShowModal: false
+      ShowModal: false,
+      backupRatings: 0,
+      backupRatingsLength: 0,
+      backupAvg: 0
     };
   }
 
@@ -43,7 +46,18 @@ class Reviews extends React.Component {
     const { productID } = this.props;
     helper.getListReviews(productID, this.state.sortedBy, result => {
       this.setState({
-        reviews: result.results
+        reviews: result.results,
+        backupRatings:
+          result.results.map(item => item.rating) !== undefined
+            ? result.results.map(item => item.rating).reduce((a, b) => a + b)
+            : null,
+        backupRatingsLength: result.results.map(item => item.rating).length,
+        backupAvg: parseFloat(
+          (
+            result.results.map(item => item.rating).reduce((a, b) => a + b) /
+            result.results.map(item => item.rating).length
+          ).toFixed(1, 10)
+        )
       });
     });
   };
@@ -89,6 +103,9 @@ class Reviews extends React.Component {
                 productId={this.state.productId}
                 reviews={this.state.reviews}
                 handleStarSort={this.handleStarSort}
+                backupRatings={this.state.backupRatings}
+                backupRatingsLength={this.state.backupRatingsLength}
+                backupAvg={this.state.backupAvg}
               />
             </Col>
             <Col sm={1} className="layout noBorder"></Col>
@@ -116,7 +133,7 @@ class Reviews extends React.Component {
               <br />
               <Row
                 style={{
-                  height: "80vh",
+                  height: "60vh",
                   width: "100%",
                   padding: "2%",
                   overflowWrap: "anywhere",
