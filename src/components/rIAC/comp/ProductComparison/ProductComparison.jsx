@@ -1,10 +1,10 @@
 // this component is for use in RIAC.jsx
 import React from 'react';
-import Container from 'react-bootstrap/Container';
+// import Container from 'react-bootstrap/Container'; // NEVER USED
 import Modal from 'react-bootstrap/Modal';
 import Table from 'react-bootstrap/Table';
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col' // NOT YET USED
+// import Row from 'react-bootstrap/Row' // NEVER USED
+// import Col from 'react-bootstrap/Col' // NOT YET USED
 
 import "./ProductComparison.css";
 
@@ -27,10 +27,10 @@ class ProductComparison extends React.Component {
   }
   
   componentDidMount() {
-    let currentProductId = this.props.currentProductId
-    let relatedProductId = this.props.relatedProductId
-    console.log("+PC: cDM: cPId: ", currentProductId)
-    console.log("+PC: cDM: cRPId: ", relatedProductId)
+    // let currentProductId = this.props.currentProductId;  // NEVER USED
+    // let relatedProductId = this.props.relatedProductId;  // NEVER USED
+    // console.log("+PC: cDM: cPId: ", currentProductId)
+    // console.log("+PC: cDM: cRPId: ", relatedProductId)
     this.loadProductData();
   }
 
@@ -186,7 +186,7 @@ class ProductComparison extends React.Component {
                   <Row className="layout comparison-body"> { */}
                 {
                     allFeaturesArr.map((feature, index) => {
-                      console.log(feature)
+                      // console.log("PComp: render: allF: ", feature)
                       return (
                         <tr className="cols layout comparison-body rows" key={index}>
                           <td>{allFeaturesArr[index].currentValue}</td>
