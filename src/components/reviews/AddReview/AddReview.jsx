@@ -31,6 +31,7 @@ export default class AddReview extends Component {
       Width: "",
       summary: "",
       body: "",
+      bodyCount: 50,
       nickname: "",
       email: "",
       ShowModal: true,
@@ -59,7 +60,6 @@ export default class AddReview extends Component {
       this.setState({
         meta: results,
         Characteristics: Object.keys(results.characteristics),
-        // fit: results.characteristics.Fit,
         size: results.characteristics.Size ? results.characteristics.Size : 0
       })
     );
@@ -85,8 +85,8 @@ export default class AddReview extends Component {
     if (!this.state.overallRating) {
       error = true;
       this.setState({
-        overallError: "Invalid Overall Rating",
-        errorMsg: "You must select one of the ratings:"
+        overallError: "You must select one of the ratings:",
+        errorMsg: "Invalid Overall Rating"
       });
     } else {
       this.setState({ overallError: "" });
@@ -94,17 +94,17 @@ export default class AddReview extends Component {
     if (!this.state.recommend) {
       error = true;
       this.setState({
-        recommendError: "Invalid Recommend Rating",
-        errorMsg: "You must select one of the ratings:"
+        recommendError: "You must select one of the ratings:",
+        errorMsg: "Invalid Recommend Rating"
       });
     } else {
       this.setState({ recommendError: "" });
     }
-    if (!this.state.Characteristics) {
+    if (!!this.state.Characteristics) {
       error = true;
       this.setState({
-        characteristicsError: "Invalid Characteristics Rating",
-        errorMsg: "You must select one of the ratings:"
+        characteristicsError: "You must select one of the ratings:",
+        errorMsg: "Invalid Characteristics Rating"
       });
     } else {
       this.setState({ characteristicsError: "" });
@@ -112,8 +112,8 @@ export default class AddReview extends Component {
     if (!this.state.body) {
       error = true;
       this.setState({
-        bodyError: "Invalid Body",
-        errorMsg: "You must fill in the following (50 Character Min):"
+        bodyError: "You must fill in the following:",
+        errorMsg: "Invalid Body"
       });
     } else {
       this.setState({ bodyError: "" });
@@ -121,8 +121,8 @@ export default class AddReview extends Component {
     if (!this.state.nickname) {
       error = true;
       this.setState({
-        nicknameError: "Invalid Nickname",
-        errorMsg: "You must fill in the following:"
+        nicknameError: "You must fill in the following:",
+        errorMsg: "Invalid Nickname"
       });
     } else {
       this.setState({ nicknameError: "" });
@@ -130,8 +130,8 @@ export default class AddReview extends Component {
     if (!this.state.email || !this.state.email.includes("@")) {
       error = true;
       this.setState({
-        emailError: "Invalid Email",
-        errorMsg: "You must provide a valid email:"
+        emailError: "You must provide a valid email:",
+        errorMsg: "Invalid Email"
       });
     } else {
       this.setState({ email: "" });
@@ -160,8 +160,13 @@ export default class AddReview extends Component {
     }
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    const { bodyCount } = this.state;
+    if (prevState.bodyCount !== this.state.bodyCount) {
+      this.setState({ bodyCount: bodyCount });
+    }
+  }
   handleRating = e => {
-    // console.log(e.target.value);
     this.setState({ overallRating: e.target.name });
   };
 
@@ -171,83 +176,26 @@ export default class AddReview extends Component {
   };
 
   handleInput = e => {
-    // console.log(e.target.value);
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  handleBody = e => {
+    if (this.state.bodyCount > 0) {
+      this.setState({
+        bodyCount: this.state.bodyCount - 1,
+        [e.target.name]: e.target.value
+      });
+    } else {
+      if (this.state.bodyCount === 0) {
+        this.setState({ bodyCount: "Minimum reached" });
+      }
+    }
+  };
+
   handleRecommend = e => {
-    // console.log(e.target.name);
     this.setState({ recommend: e.target.name }); // Boolean.parseBoolean
   };
 
-  //handleErrors = () => {
-  // let error = false;
-
-  // if (!this.state.overallRating) {
-  //   // maybe change to name
-  //   error = true;
-  //   this.setState({
-  //     overallError: "Invalid Overall Rating",
-  //     errorMsg: "You must select one of the ratings:"
-  //   });
-  // } else {
-  //   this.setState({ overallError: "" });
-  // }
-  // if (!this.state.recommend) {
-  //   // maybe change to name
-  //   error = true;
-  //   this.setState({
-  //     recommendError: "Invalid Recommend Rating",
-  //     errorMsg: "You must select one of the ratings:"
-  //   });
-  // } else {
-  //   this.setState({ recommendError: "" });
-  // }
-  // if (!this.state.Characteristics) {
-  //   // maybe change to name
-  //   error = true;
-  //   this.setState({
-  //     characteristicsError: "Invalid Characteristics Rating",
-  //     errorMsg: "You must select one of the ratings:"
-  //   });
-  // } else {
-  //   this.setState({ characteristicsError: "" });
-  // }
-  // if (!this.state.body) {
-  //   // maybe change to name
-  //   error = true;
-  //   this.setState({
-  //     bodyError: "Invalid Body",
-  //     errorMsg: "You must fill in the following (50 Character Min):"
-  //   });
-  // } else {
-  //   this.setState({ bodyError: "" });
-  // }
-  // if (!this.state.nickname) {
-  //   // maybe change to name
-  //   error = true;
-  //   this.setState({
-  //     nicknameError: "Invalid Nickname",
-  //     errorMsg: "You must fill in the following:"
-  //   });
-  // } else {
-  //   this.setState({ nicknameError: "" });
-  // }
-  // if (!this.state.email || !this.state.email.includes("@")) {
-  //   // maybe change to name
-  //   error = true;
-  //   this.setState({
-  //     emailError: "Invalid Email",
-  //     errorMsg: "You must provide a valid email:"
-  //   });
-  // } else {
-  //   this.setState({ email: "" });
-  // }
-
-  // if (!error) {
-  //   this.setState({ successMsg: true });
-  // }
-  //};
   render() {
     const { Characteristics } = this.state;
     const { email } = this.state;
@@ -347,14 +295,14 @@ export default class AddReview extends Component {
                     </div>
                   ))}
                   <b>*Characteristics:</b>
-                  <p style={{ color: "red" }}>
-                    <i>{this.state.characteristicsError}</i>
-                  </p>
                 </Form.Label>
                 {Characteristics.map(item => (
                   <div key={`inline-${item}`} required className="mb-3">
                     <Form.Label>
                       <b>{item}</b>
+                      <p style={{ color: "red" }}>
+                        <i>{this.state.characteristicsError}</i>
+                      </p>
                     </Form.Label>
                     <br />
                     {item === "Fit" ? (
@@ -625,9 +573,6 @@ export default class AddReview extends Component {
                 ))}
                 <Form.Label>
                   <b>Review Summary:</b>
-                  {/* <p style={{ color: "red" }}>
-                    <i>{this.state.summaryError}</i>
-                  </p> */}
                 </Form.Label>
                 <Form.Control
                   type="text"
@@ -648,10 +593,10 @@ export default class AddReview extends Component {
                   name="body"
                   minLength="50"
                   maxLength="1000"
-                  onChange={this.handleInput}
+                  onChange={this.handleBody}
                   placeholder="Why did you like the product or not?"
                 />
-                <p>Minimum required characters left: </p>
+                <p>Minimum required characters left: {this.state.bodyCount}</p>
                 <Form.Label>
                   <b>Photos:</b>
                 </Form.Label>
@@ -696,7 +641,6 @@ export default class AddReview extends Component {
             <ModalFooter>
               <Button
                 // disabled={!isEnabled}
-                // onClick={this.handleErrors}
                 onClick={this.handleSubmit}
               >
                 Submit
