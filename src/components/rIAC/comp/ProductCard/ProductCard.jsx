@@ -1,14 +1,14 @@
 // this component is for use in RIAC.jsx
 import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
-import CardDeck from 'react-bootstrap/CardDeck';
+// import Container from 'react-bootstrap/Container'; // NEVER USED
+// import Card from 'react-bootstrap/Card'; // NEVER USED
+// import CardDeck from 'react-bootstrap/CardDeck'; // NEVER USED
 
 import Row from 'react-bootstrap/Row'
 // import Col from 'react-bootstrap/Col' // NOT YET USED
 import StarRatings from "react-star-ratings";
 import noImage from "./NoImageOnFile.jpg";
-import noStyles from "./NoStylesOnFile.jpg";
+// import noStyles from "./NoStylesOnFile.jpg"; // NEVER USED
 import "./ProductCard.css";
 import ProductComparison from '../ProductComparison/ProductComparison';
 
@@ -36,7 +36,7 @@ class ProductCard extends React.Component {
   }
   
   componentDidMount() {
-    let relatedProductId = this.props.relatedProductId
+    // let relatedProductId = this.props.relatedProductId  // NEVER USED
     // console.log("+PC: cDM: if cRPId: ", relatedProductId)
     this.loadRelatedProductData();
   }
