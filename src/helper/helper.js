@@ -9,7 +9,7 @@ const getAllProducts = callback => {
   fetch("http://3.134.102.30/products/list") // CHANGE: default is 5. example: /?count=50 to get 50...
     .then(response => response.json())
     .then(data => callback(data))
-    .catch(err => true)
+    .catch(err => true);
   // returns array of objects with id, name, description, ...
 };
 
@@ -20,7 +20,7 @@ const getOneProduct = (productId, callback) => {
   fetch(`http://3.134.102.30/products/${productId}`)
     .then(response => response.json())
     .then(data => callback(data))
-    .catch(err => true)
+    .catch(err => true);
   // returns object with id, name, description, ...
 };
 
@@ -28,7 +28,7 @@ const getOneProductStyle = (productId, callback) => {
   fetch(`http://3.134.102.30/products/${productId}/styles`)
     .then(response => response.json())
     .then(data => callback(data))
-    .catch(err => true)
+    .catch(err => true);
   // returns object with style_id, name, prices, photos,...
 };
 
@@ -36,7 +36,7 @@ const getRelatedProductsIds = (productId, callback) => {
   fetch(`http://3.134.102.30/products/${productId}/related`)
     .then(response => response.json())
     .then(data => callback(data)) // CHANGE: to do what you want with it
-    .catch(err => true)
+    .catch(err => true);
   // This returns an array of related product id's
 };
 
@@ -48,7 +48,7 @@ const getListQuestions = (productId, callback) => {
   fetch(`http://3.134.102.30/qa/${productId}`) // CHANGE: default is 5. example: /?count=50 to get 50...
     .then(response => response.json())
     .then(data => callback(data)) // CHANGE: to do what you want with it
-    .catch(err => true)
+    .catch(err => true);
   // returns object of productId, results: {questionId, question_body...}
 };
 
@@ -56,7 +56,7 @@ const getAnswersList = (questionId, callback) => {
   fetch(`http://3.134.102.30/qa/${questionId}/answers`) // CHANGE: default is 5. example: /?count=50 to get 50...
     .then(response => response.json())
     .then(data => callback(data)) // CHANGE: to do what you want with it
-    .catch(err => true)
+    .catch(err => true);
   // returns an object with a results array that has more info
 };
 
@@ -82,7 +82,7 @@ const postAQuestion = (productId, body, name, email, callback) => {
   })
     .then(response => response.json())
     .then(data => callback(data))
-    .catch(err => true)
+    .catch(err => true);
 };
 
 // Add an Answer
@@ -109,7 +109,7 @@ const postAnAnswer = (questionId, body, name, email, photos, callback) => {
   })
     .then(response => response.json())
     .then(data => callback(data))
-    .catch(err => true)
+    .catch(err => true);
 };
 
 // Updates a question to show it was found helpful
@@ -121,7 +121,7 @@ const putHelpfulQuestion = (questionId, callback) => {
     }
   })
     .then(data => callback(data))
-    .catch(err => true)
+    .catch(err => true);
 };
 
 const putReportQuestion = (questionId, callback) => {
@@ -132,7 +132,7 @@ const putReportQuestion = (questionId, callback) => {
     }
   })
     .then(data => callback(data))
-    .catch(err => true)
+    .catch(err => true);
 };
 
 const putHelpfulAnswer = (answerId, callback) => {
@@ -143,7 +143,7 @@ const putHelpfulAnswer = (answerId, callback) => {
     }
   })
     .then(data => callback(data))
-    .catch(err => true)
+    .catch(err => true);
 };
 
 const putReportAnswer = (answerId, callback) => {
@@ -154,7 +154,7 @@ const putReportAnswer = (answerId, callback) => {
     }
   })
     .then(data => callback(data))
-    .catch(err => true)
+    .catch(err => true);
 };
 
 // ///////// REVIEWS ////////////////////////////////
@@ -222,7 +222,7 @@ const postReview = (productId, review, callback) => {
   })
     .then(response => response.json())
     .then(data => callback(data))
-    .catch(err => true)
+    .catch(err => true);
   // this returns an object with results which has RATINGS, recommend, and summary...
 };
 
@@ -235,7 +235,7 @@ const putHelpfulReview = (reviewId, callback) => {
     }
   })
     .then(data => callback(data))
-    .catch(err => true)
+    .catch(err => true);
 };
 
 const calculateReviewRating = ratings => {
