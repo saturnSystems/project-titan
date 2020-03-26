@@ -54,6 +54,7 @@
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.0",
+    "mark.js": "^8.11.1",
     "prettier": "^1.19.1"
   }
 }
