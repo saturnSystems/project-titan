@@ -9,6 +9,7 @@ import ModalBody from "react-bootstrap/ModalBody";
 import ModalFooter from "react-bootstrap/ModalFooter";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import StarRatingComponent from "react-star-rating-component";
 import "./AddReview.css";
 
 const helper = require("../../../helper/helper.js");
@@ -43,7 +44,9 @@ export default class AddReview extends Component {
       nicknameError: "",
       emailError: "",
       errorMsg: "",
-      successMsg: false
+      successMsg: false,
+      rating: 0,
+      ratingMeaning: ["", "Poor", "Fair", "Average", "Good", "Great"]
     };
   }
 
@@ -51,6 +54,10 @@ export default class AddReview extends Component {
     this.setState({
       ShowModal: false
     });
+  };
+
+  onStarClick = (nextValue, prevValue, name) => {
+    this.setState({ rating: nextValue });
   };
 
   componentDidMount() {
@@ -69,7 +76,7 @@ export default class AddReview extends Component {
   handleSubmit = () => {
     const { productId } = this.state;
     const { summary } = this.state;
-    const { overallRating } = this.state;
+    // const { overallRating } = this.state;
     const { recommend } = this.state;
     const { nickname } = this.state;
     const { body } = this.state;
@@ -80,10 +87,11 @@ export default class AddReview extends Component {
     const { Width } = this.state;
     const { Comfort } = this.state;
     const { Quality } = this.state;
+    const { rating } = this.state;
 
     let error = false;
 
-    if (!this.state.overallRating) {
+    if (this.state.rating === 0) {
       error = true;
       this.setState({
         overallError: "You must select one of the ratings:",
@@ -139,7 +147,7 @@ export default class AddReview extends Component {
     }
 
     let review = {
-      rating: parseInt(overallRating),
+      rating: rating,
       summary: summary,
       body: body,
       recommend: recommend === "true" ? true : false, // recommend.toLowerCase() ===
@@ -211,6 +219,8 @@ export default class AddReview extends Component {
     const { body } = this.state;
     const { summary } = this.state;
     const { nickname } = this.state;
+    const { rating } = this.state;
+    const { ratingMeaning } = this.state;
 
     // const isEnabled =
     //   email.length > 5 &&
@@ -234,7 +244,16 @@ export default class AddReview extends Component {
                   <p style={{ color: "red" }}>
                     <i>{this.state.overallError}</i>
                   </p>
-                  {["checkbox"].map(type => (
+                  <div>
+                    <h3>{ratingMeaning[rating]}</h3>
+                    <StarRatingComponent
+                      name="overall"
+                      starCount={5}
+                      value={rating}
+                      onStarClick={this.onStarClick}
+                    />
+                  </div>
+                  {/* {["checkbox"].map(type => (
                     <div key={`inline-${type}`} required className="mb-3">
                       <Form.Check
                         inline
@@ -277,7 +296,7 @@ export default class AddReview extends Component {
                         id={`inline-${type}-5`}
                       />
                     </div>
-                  ))}
+                  ))} */}
 
                   <b>*Do You Recommend This Product?:</b>
                   <p style={{ color: "red" }}>
