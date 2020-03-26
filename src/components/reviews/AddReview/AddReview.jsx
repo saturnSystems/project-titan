@@ -33,6 +33,7 @@ export default class AddReview extends Component {
       body: "",
       bodyCount: 50,
       nickname: "",
+      photos: [],
       email: "",
       ShowModal: true,
       overallError: "",
@@ -194,6 +195,14 @@ export default class AddReview extends Component {
 
   handleRecommend = e => {
     this.setState({ recommend: e.target.name }); // Boolean.parseBoolean
+  };
+
+  Photos = e => {
+    if (this.state.photos.length < 5) {
+      let morePhotos = this.state.photos;
+      morePhotos.push(e.target.value);
+      this.setState({ photos: morePhotos });
+    }
   };
 
   render() {
@@ -601,6 +610,21 @@ export default class AddReview extends Component {
                   <b>Photos:</b>
                 </Form.Label>
                 <Form.Control placeholder="Provide a URL" />
+                <div>
+                  <input type="file" onChange={this.Photos} />
+                </div>
+                <div>
+                  {this.state.photos.map((photo, i) => (
+                    <imageComponent
+                      photo={photo.url}
+                      id={photo.id}
+                      handleShowImage={this.handleShowImage}
+                      // eslint-disable-next-line react/no-array-index-key
+                      key={i}
+                      // photo={picture} key={picture}
+                    />
+                  ))}
+                </div>
                 <Form.Label>
                   <b>*Nickname:</b>
                   <p style={{ color: "red" }}>
