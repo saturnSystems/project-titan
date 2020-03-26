@@ -104,6 +104,9 @@ class ProductComparison extends React.Component {
     
     for (let i = 0; i < currentFeaturesArr.length; i++) {
       // allFeaturesArr.push(currentFeaturesArr[i]);
+      if (currentFeaturesArr[i].value === "null") currentFeaturesArr[i].value = null;
+      // if (currentFeaturesArr[i].value === "null") currentFeaturesArr[i].value = &#x2713;
+      // if (currentFeaturesArr[i].value === true) currentFeaturesArr[i].value = "&#x2713";
       allFeaturesArr.push( 
         {
           feature: currentFeaturesArr[i].feature,
@@ -112,18 +115,26 @@ class ProductComparison extends React.Component {
       )
       for (let j = 0; j < relatedFeaturesTempArr.length; j++) {
         if (allFeaturesArr[i].feature === relatedFeaturesTempArr[j].feature) {
+          if (relatedFeaturesTempArr[i].value === "null") relatedFeaturesTempArr[i].value = null;
+          // if (relatedFeaturesTempArr[i].value === "null") relatedFeaturesTempArr[i].value = &#x2713;
+          // if (relatedFeaturesTempArr[i].value === true) relatedFeaturesTempArr[i].value = "&#x2713";
           allFeaturesArr[i].relatedValue = relatedFeaturesTempArr[j].value;
           relatedFeaturesTempArr.splice(j, 1);
           j--;
         } else {
+          // allFeaturesArr[i].relatedValue = null;
           allFeaturesArr[i].relatedValue = null;
         }
       }
     }
     for (let j = currentFeaturesArrLen - 1; j < relatedFeaturesTempArr.length; j++) {
+      if (relatedFeaturesTempArr[j].value === "null") relatedFeaturesTempArr[j].value = null;
+      // if (relatedFeaturesTempArr[j].value === "null") relatedFeaturesTempArr[j].value = &#x2713;
+      // if (relatedFeaturesTempArr[j].value === true) relatedFeaturesTempArr[j].value = "&#x2713";
       allFeaturesArr.push( 
         {
           feature: relatedFeaturesTempArr[j].feature,
+          // currentValue: null,
           currentValue: null,
           relatedValue: relatedFeaturesTempArr[j].value
         }
@@ -140,6 +151,21 @@ class ProductComparison extends React.Component {
     const handleClose = () => setShow(false);
     // const handleShow = () => setShow(true);
       
+
+    // allFeaturesArr.map((feature, index) => { 
+    //   <Row className="layout comparison-body" key={feature}> {
+    //         return (
+    //           <Table
+    //         allFeaturesArr = {this.props.currentProduct}
+    //         setProductId={this.props.setProductId}
+    //         relatedProductId={relatedProductId}
+    //       />
+    //     }
+    //     </Row>
+    //   )
+    // })
+
+
     return (
       // <Container-fluid class="layout product-card-layout align-left">
         <Modal className="comparison-body" show={show} onHide={handleClose} >
@@ -155,17 +181,27 @@ class ProductComparison extends React.Component {
                   <th>{relatedProductName}</th>
                 </tr>
               </thead>
-              <tbody className="comparison-body">
-                <tr className="cols">
-                  <td>{allFeaturesArr[0].currentValue}</td>
-                  <td>{allFeaturesArr[0].feature}</td>
-                  <td>{allFeaturesArr[0].relatedValue}</td>
-                </tr>
-                <tr>
+              <tbody className="comparison-body"> 
+                {/* <tr className="cols">
+                  <Row className="layout comparison-body"> { */}
+                {
+                    allFeaturesArr.map((feature, index) => {
+                      console.log(feature)
+                      return (
+                        <tr className="cols layout comparison-body rows" key={index}>
+                          <td>{allFeaturesArr[index].currentValue}</td>
+                          <td>{allFeaturesArr[index].feature}</td>
+                          <td>{allFeaturesArr[index].relatedValue}</td>
+                        </tr>
+                      )
+                    })
+                  }
+                  {/* </Row> */}                
+                {/* <tr>
                   <td>Table cell</td>
                   <td>Table cell</td>
                   <td>Table cell</td>
-                </tr>
+                </tr> */}
               </tbody>
             </Table>
           </Modal.Body>
