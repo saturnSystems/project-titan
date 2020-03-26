@@ -44,16 +44,11 @@ class List extends React.Component {
       questions = questions.filter(question => question.question_body
 		.toUpperCase().includes(this.state.SearchText));
 
-		// questions.map(question => 
-		// 	 question.question_body = question.question_body.toUpperCase().replace(this.state.SearchText, `<mark>${this.state.SearchText}</mark>`)
-		// 	)
+		questions.map(question => 
+			 question.question_body = question.question_body.toUpperCase().replace(this.state.SearchText, `${<mark>``${this.state.SearchText}``</mark>}`)
+			)
 
 		}
-		
-
-
-	
-	
 
 		
 		return (
