@@ -155,8 +155,8 @@ class ProductCard extends React.Component {
             <div className="card mb-3 style-image">            
               <img className="card-img-top" src={relatedStyleImage}  alt="Display this style"/>
               {/* <img className="card-img-top" src={"https://images.unsplash.com/photo-1473396413399-6717ef7c4093?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"}  alt=""/> */}
-              <div className="card-img-overlay" onClick={this.compareProducts}>
-                <small><p className="btn btn-primary btn-star">&#x2605;</p></small>
+              <div className="card-img-overlay">
+                <small><p className="btn btn-primary btn-star" onClick={this.compareProducts}>&#x2605;</p></small>
                 {/* {this.state.compareProductsNow ? "Some text" : "No text"} */}
                 {this.state.compareProductsNow && (
                     <ProductComparison 
