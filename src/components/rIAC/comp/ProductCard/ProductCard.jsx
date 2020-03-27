@@ -19,6 +19,8 @@ import ProductComparison from '../ProductComparison/ProductComparison';
 //   currentProduct  ={this.props.currentProduct} USED ONLY FOR DEBUGGING
 //   cardProductId  ={relatedZProductId}
 //   cardType  ={cardType}
+//   cardImageName   ={yourOutfitImageToShow}
+
 
 const yourOutfitBaseProductObj = {
   id: 0,
@@ -139,44 +141,44 @@ class ProductCard extends React.Component {
     // console.log("PC: rP: ", cardProduct);
     // console.log("PC: rSs: ", cardStyles);
 
-    let relatedCategory = cardProduct.category || null;
-    // console.log("PC: rCat: ", relatedCategory);
+    let cardCategory = cardProduct.category || null;
+    // console.log("PC: rCat: ", cardCategory);
 
-    let relatedCaption = cardProduct.name ? cardProduct.name : null;
-    // let relatedCaption = (cardProduct.name === undefined || cardProduct.slogan === undefined) ? null : cardProduct.name + ' - ' + cardProduct.slogan;
-    // console.log("PC: rCap: ", relatedCaption);
+    let cardCaption = cardProduct.name ? cardProduct.name : null;
+    // let cardCaption = (cardProduct.name === undefined || cardProduct.slogan === undefined) ? null : cardProduct.name + ' - ' + cardProduct.slogan;
+    // console.log("PC: rCap: ", cardCaption);
 
-    let relatedDefPrice = cardProduct.default_price || null; // SUPERCEDED BY style data
-    // console.log("PC: rDP: ", relatedDefPrice);
+    let cardDefaultPrice = cardProduct.default_price || null; // SUPERCEDED BY style data
+    // console.log("PC: rDP: ", cardDefaultPrice);
 
     // QQQQ is this appropriate: noDefault => 0;
 
-    // let relatedStyle = cardStyles.find(style => style["default?"] === 1) || cardStyles[0];
-    let relatedStyle = cardStyles.find(style => style["default?"] === 1) || cardStyles[0];
-        // console.log("PC: rS: ", relatedStyle);
+    // let cardStyle = cardStyles.find(style => style["default?"] === 1) || cardStyles[0];
+    let cardStyle = cardStyles.find(style => style["default?"] === 1) || cardStyles[0];
+        // console.log("PC: rS: ", cardStyle);
 
     // let relatedStylesIndex = 2; // HARD CODED - FALLBAK
-    let relatedStyleOriginalPrice = relatedStyle.original_price || null;
-    // console.log("PC: rStyleOPrice: ", relatedStyleOriginalPrice);
+    let cardStyleOriginalPrice = cardStyle.original_price || null;
+    // console.log("PC: rStyleOPrice: ", cardStyleOriginalPrice);
 
-    let relatedStyleSalePrice = relatedStyle.sale_price || relatedDefPrice;
-    // console.log("PC: rStyleSPrice: ", relatedStyleSalePrice);
+    let caedStyleSalePrice = cardStyle.sale_price || cardDefaultPrice;
+    // console.log("PC: rStyleSPrice: ", caedStyleSalePrice);
 
-    let relatedStyleImage = relatedStyle.photos[0].url || noImage;
-    // console.log("PC: rSI: ", relatedStyleImage);
+    let cardStyleImage = cardStyle.photos[0].url || noImage;
+    // console.log("PC: rSI: ", cardStyleImage);
 
     if (this.props.cardImageName === "alreadyInOutfit") {
-      relatedStyleImage = alreadyInOutfitImage;
+      cardStyleImage = alreadyInOutfitImage;
     } else if (this.props.cardImageName === "addToOutfit") {
-      relatedStyleImage = addToOutfitImage;
+      cardStyleImage = addToOutfitImage;
     }
 
 
     /* pseudo-code
     if this needs to show already outfit image
-      relatedStyleImage = alreadyInOutfitImage;
+      cardStyleImage = alreadyInOutfitImage;
     if this needs to show add an outfit
-     relatedStyleImage = addOutfitImage;
+     cardStyleImage = addOutfitImage;
 
      // in yourOutfit.jsx
      this.state.alreadyInOutfit := true
@@ -195,7 +197,7 @@ class ProductCard extends React.Component {
 
 
      if (this.props.alreadyInOutfitXXX) {
-      relatedStyleImage = alreadyInOutfitImage;
+      cardStyleImage = alreadyInOutfitImage;
     } else if () {
 
     }
@@ -212,7 +214,7 @@ class ProductCard extends React.Component {
         <div id="product-card-div" onClick={this.setProductId}>
           <div>
             <div className="card mb-3 style-image">            
-              <img className="card-img-top" src={relatedStyleImage}  alt="Display this style"/>
+              <img className="card-img-top" src={cardStyleImage}  alt="Display this style"/>
               {/* <img className="card-img-top" src={"https://images.unsplash.com/photo-1473396413399-6717ef7c4093?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"}  alt=""/> */}
               <div className="card-img-overlay">
                 <small><p className="btn btn-primary btn-star" onClick={this.compareProducts}>&#x2605;</p></small>
@@ -231,9 +233,9 @@ class ProductCard extends React.Component {
         </div>
         <div className="card">
           <div className="card-body">          
-          <p className="card-text category">{relatedCategory}</p>
-          <h5 className="card-title pc-caption">{relatedCaption}</h5>
-          <small><p className="card-text text-muted price">${relatedStyleSalePrice} &nbsp; &nbsp; <del>${relatedStyleOriginalPrice}</del></p></small>
+          <p className="card-text category">{cardCategory}</p>
+          <h5 className="card-title pc-caption">{cardCaption}</h5>
+          <small><p className="card-text text-muted price">${caedStyleSalePrice} &nbsp; &nbsp; <del>${cardStyleOriginalPrice}</del></p></small>
             <Row className="rating-stars">              
               <StarRatings
                 rating={cardReviewRating}
