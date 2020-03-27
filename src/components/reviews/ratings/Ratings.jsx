@@ -126,7 +126,12 @@ export default class Ratings extends Component {
       this.state.recommendedYes = null;
     }
     return (
-      <dl>
+      <div
+        style={{
+          minHeight: "100vh",
+          position: "relative"
+        }}
+      >
         <Row className="layout noBorder ratingAvg">
           {this.state.ratingsAvg !== 0
             ? this.state.ratingsAvg.toFixed(1)
@@ -151,7 +156,7 @@ export default class Ratings extends Component {
           % of reviews recommend
         </Row>
         <Row className="layout lessSpace">
-          <Col sm={2}>
+          <Col xs={2}>
             <Row onClick={() => handleStarSort(5)} className="underline">
               5 Star
             </Row>
@@ -168,10 +173,11 @@ export default class Ratings extends Component {
               1 Star
             </Row>
           </Col>
-          <Col sm={8} className="noPaddy">
+          <Col xs={8} className="noPaddy" style={{ width: "100%" }}>
             <ProgressBar
               className="ratingBars"
               variant="success"
+              // style={{ width: "100%" }}
               max={this.state.ratingsValsSum}
               now={
                 this.state.ratingStars.includes("5")
@@ -224,7 +230,7 @@ export default class Ratings extends Component {
               }
             />
           </Col>
-          <Col sm={1}>
+          <Col xs={1}>
             <Row>
               {this.state.ratingStars.includes("5")
                 ? this.state.ratingVals[this.state.ratingVals.length - 1]
@@ -254,58 +260,63 @@ export default class Ratings extends Component {
         </Row>
         <br />
         {this.state.size !== 0 || this.state.characteristics === true ? (
-          <Row className="layout">
-            <Col className="noPaddy">
-              <Row className="noPaddy">
-                <strong>Size:</strong>
-              </Row>
-              <RangeSlider
-                className="rangy"
-                tooltip="auto"
-                tooltipPlacement="top"
-                step={0.1}
-                onChange={() => true}
-                min={1}
-                max={5}
-                value={this.state.size}
-              />
-              <Row className="noPaddy smallerText">
-                <Col sm={4}>Too small</Col>
-                <Col sm={4}>Perfect</Col>
-                <Col sm={4}>Too Large</Col>
-              </Row>
-            </Col>
-          </Row>
+          <Col xs={12}>
+            <Row className="layout">
+              <Col className="noPaddy">
+                <Row className="noPaddy">
+                  <strong>Size:</strong>
+                </Row>
+                <RangeSlider
+                  className="rangy"
+                  tooltip="auto"
+                  tooltipPlacement="top"
+                  step={0.1}
+                  onChange={() => true}
+                  min={1}
+                  max={5}
+                  value={this.state.size}
+                />
+                <Row className="noPaddy smallerText">
+                  <Col xs={4}>Too small</Col>
+                  <Col xs={4}>Perfect</Col>
+                  <Col xs={4}>Too Large</Col>
+                </Row>
+              </Col>
+            </Row>
+          </Col>
         ) : null}
         <br />
         {this.state.width !== 0 ? (
-          <Row className="layout">
-            <Col className="noPaddy">
-              <Row className="noPaddy">
-                <strong>Width:</strong>
-              </Row>
-              <RangeSlider
-                className="rangy"
-                tooltip="auto"
-                tooltipPlacement="top"
-                step={0.1}
-                onChange={() => true}
-                min={1}
-                max={5}
-                value={this.state.width}
-              />
-              <Row className="noPaddy smallerText">
-                <Col sm={4}>Too small</Col>
-                <Col sm={4}>Perfect</Col>
-                <Col sm={4}>Too Large</Col>
-              </Row>
-            </Col>
-          </Row>
+           <Col xs={12}>
+            <Row className="layout">
+              <Col className="noPaddy">
+                <Row className="noPaddy">
+                  <strong>Width:</strong>
+                </Row>
+                <RangeSlider
+                  className="rangy"
+                  tooltip="auto"
+                  tooltipPlacement="top"
+                  step={0.1}
+                  onChange={() => true}
+                  min={1}
+                  max={5}
+                  value={this.state.width}
+                />
+                <Row className="noPaddy smallerText">
+                  <Col xs={4}>Too small</Col>
+                  <Col xs={4}>Perfect</Col>
+                  <Col xs={4}>Too Large</Col>
+                </Row>
+              </Col>
+            </Row>
+          </Col>
         ) : null}
         <br />
         {this.state.comfort !== 0 ? (
+          <Col xs={12}>
           <Row className="layout">
-            <Col className="noPaddy">
+            <Col sm={12} className="noPaddy">
               <Row className="noPaddy">
                 <strong>Comfort:</strong>
               </Row>
@@ -320,17 +331,19 @@ export default class Ratings extends Component {
                 value={this.state.comfort}
               />
               <Row className="noPaddy smallerText">
-                <Col sm={4} style={{ float: "left" }}>
+                <Col xs={4} style={{ float: "left" }}>
                   Poor
                 </Col>
-                <Col sm={4} />
-                <Col sm={4}>Perfect</Col>
+                <Col xs={4} />
+                <Col xs={4}>Perfect</Col>
               </Row>
             </Col>
           </Row>
+        </Col>
         ) : null}
         <br />
         {this.state.quality !== 0 ? (
+           <Col xs={12}>
           <Row className="layout">
             <Col className="noPaddy">
               <Row className="noPaddy">
@@ -347,15 +360,17 @@ export default class Ratings extends Component {
                 value={this.state.quality}
               />
               <Row className="noPaddy smallerText">
-                <Col sm={4}>Poor</Col>
-                <Col sm={4} />
-                <Col sm={4}>Great</Col>
+                <Col xs={4}>Poor</Col>
+                <Col xs={4} />
+                <Col xs={4}>Great</Col>
               </Row>
             </Col>
           </Row>
+          </Col>
         ) : null}
         <br />
         {this.state.Length !== 0 ? (
+           <Col xs={12}>
           <Row className="layout">
             <Col className="noPaddy">
               <Row className="noPaddy">
@@ -372,15 +387,17 @@ export default class Ratings extends Component {
                 value={this.state.Length}
               />
               <Row className="noPaddy smallerText">
-                <Col sm={4}>Too small</Col>
-                <Col sm={4}>Perfect</Col>
-                <Col sm={4}>Too Large</Col>
+                <Col xs={4}>Too small</Col>
+                <Col xs={4}>Perfect</Col>
+                <Col xs={4}>Too Large</Col>
               </Row>
             </Col>
           </Row>
+          </Col>
         ) : null}
         <br />
         {this.state.fit !== 0 ? (
+           <Col xs={12}>
           <Row className="layout">
             <Col className="noPaddy">
               <Row className="noPaddy">
@@ -397,15 +414,16 @@ export default class Ratings extends Component {
                 value={this.state.fit}
               />
               <Row className="noPaddy smallerText">
-                <Col sm={4}>Too small</Col>
-                <Col sm={4}>Perfect</Col>
-                <Col sm={4}>Too Large</Col>
+                <Col xs={4}>Too small</Col>
+                <Col xs={4}>Perfect</Col>
+                <Col xs={4}>Too Large</Col>
               </Row>
             </Col>
           </Row>
+          </Col>
         ) : null}
         <br />
-      </dl>
+      </div>
     );
   }
 }

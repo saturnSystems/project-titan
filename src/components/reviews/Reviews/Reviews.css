@@ -7,8 +7,8 @@
   margin-top: 5px;
 }
 
-.addReviewBtn {
-  margin-left: 5px;
+.middle {
+  margin-top: 2rem;
 }
 
 .blueBtn {
@@ -22,4 +22,16 @@
 
 .spreadOut {
   width: 100%;
+}
+
+.btn {
+  width: 100%;
+  margin-bottom: 1em;
+  margin: 5px;
+}
+
+@media (max-width: 575px) {
+  .theMedia {
+    height: 25vw;
+  }
 }

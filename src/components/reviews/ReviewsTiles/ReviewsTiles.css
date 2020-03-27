@@ -1,5 +1,5 @@
 .relative {
-  position: relative;
+  position: absolute;
 }
 .floaty {
   float: right;
