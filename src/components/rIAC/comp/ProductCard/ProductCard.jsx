@@ -8,8 +8,8 @@ import Row from 'react-bootstrap/Row'
 // import Col from 'react-bootstrap/Col' // NOT YET USED
 import StarRatings from "react-star-ratings";
 import noImage from "./NoImageOnFile.jpg";
-import addToOutfitImage from "./NoImageOnFile.jpg";
-import alreadyInOutfitImage from "./NoStylesOnFile.jpg"; // NEVER USED
+import addToOutfitImage from "./NoStylesOnFile.jpg";
+import alreadyInOutfitImage from "./NoImageOnFile.jpg"; // NEVER USED
 import "./ProductCard.css";
 import ProductComparison from '../ProductComparison/ProductComparison';
 

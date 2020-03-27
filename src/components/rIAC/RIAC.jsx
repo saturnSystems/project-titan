@@ -35,7 +35,7 @@ class RIAC extends React.Component{
     super(props)
     this.state={
       cardType: "relatedProduct",
-      yourOutfitIds: [yourOutfitBaseProductObj, 1, 2 ,3]
+      yourOutfitIds: [1, 2 ,3]
       // relatedProductId: null // So far, not needed
     }
   }
@@ -116,6 +116,7 @@ class RIAC extends React.Component{
                   setProductId={this.props.setProductId} // STRICTLY SPEAKING, NOT NEEDED
                   cardProductId={3}
                   cardType={this.state.cardType} 
+                  cardImageName="addToOutfit"
                   >
                 </ProductCard>              
             </Col>
