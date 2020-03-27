@@ -57,7 +57,16 @@ class RIAC extends React.Component{
   }
 
   render() {
+    /*
+    if currentProductId is in yourOutfitIds
+      then image to show = alreadyInOutfit
+      otherwise 
+    */
     // console.log("RIAC-DATE-TIME: render: ", new Date());
+
+    let yourOutfitImageToShow = "addToOutfit";
+
+
 
     if (!this.isReadytoRender()) return null;
 
@@ -116,7 +125,7 @@ class RIAC extends React.Component{
                   setProductId={this.props.setProductId} // STRICTLY SPEAKING, NOT NEEDED
                   cardProductId={3}
                   cardType={this.state.cardType} 
-                  cardImageName="addToOutfit"
+                  cardImageName={yourOutfitImageToShow}
                   >
                 </ProductCard>              
             </Col>
