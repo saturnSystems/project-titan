@@ -98,7 +98,7 @@ class Reviews extends React.Component {
         <Col sm={{ span: 10, offset: 1 }} className="layout container noBorder">
           <Row className="layout noBorder">Ratings and Reviews</Row>
           <Row className="layout noBorder">
-            <Col sm={2} className="layout noBorder" style={{ width: "100%" }}>
+            <Col sm={2} className="layout noBorder">
               <Ratings
                 productId={this.state.productId}
                 reviews={this.state.reviews}
@@ -193,7 +193,7 @@ class Reviews extends React.Component {
                     className="btn"
                     onClick={e => this.moreReviews()}
                     variant="outline-primary"
-                    style={{ padding: "1em" }}
+                    style={{ padding: "1em", margin: "1em" }}
                   >
                     SHOW MORE REVIEWS
                   </Button>
@@ -202,7 +202,7 @@ class Reviews extends React.Component {
                   className="btn"
                   onClick={() => this.ShowModal()}
                   variant="outline-primary"
-                  style={{ padding: "1em" }}
+                  style={{ padding: "1em", margin: "1em" }}
                 >
                   ADD A REVIEW
                 </Button>
