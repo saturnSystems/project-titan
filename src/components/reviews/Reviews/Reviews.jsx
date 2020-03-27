@@ -99,7 +99,7 @@ class Reviews extends React.Component {
     let { reviews } = this.state;
     const { itemsToShow } = this.state;
 
-    reviews = reviews.slice(0, this.state.reviews.length); // .sort(compare)
+    reviews = reviews.slice(0, this.state.reviews.length);
     if (this.state.searchTxt.length >= 3) {
       reviews = reviews.filter(review =>
         review.body.toLowerCase().includes(this.state.searchTxt)
