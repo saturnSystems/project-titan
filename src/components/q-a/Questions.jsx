@@ -3,6 +3,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Answers from "./Answers";
 import AddAnswer from ".././q-a/AddAnswer.jsx";
+import Highlighter from "react-highlight-words";
 const helper = require("./../../helper/helper.js");
 
 class Questions extends React.Component {
@@ -95,7 +96,16 @@ class Questions extends React.Component {
               <b>Q:&nbsp;</b>
               <Col className="layout" sm={9}>
                 <Row className="layout">
-                  <div className={"Question"}><b>{this.props.OneQuestion.question_body}</b></div>
+                  <div className={"Question"}>
+                    <b>
+                      <Highlighter
+                        highlightClassName=""
+                        searchWords={[...this.props.SearchText]}
+                        autoEscape={true}
+                        textToHighlight={this.props.OneQuestion.question_body}
+                      />
+                    </b>
+                  </div>
                 </Row>
               </Col>
               <Col className="layout">

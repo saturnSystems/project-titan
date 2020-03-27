@@ -1,4 +1,6 @@
 import React from "react";
+import ReactDOM from "react-dom"; // highlighting
+import Highlighter from "react-highlight-words"; // highlighting
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import FormControl from "react-bootstrap/FormControl";
@@ -32,11 +34,14 @@ class List extends React.Component {
   };
 
   render() {
-    var instance = new Mark(document.querySelector("div.Question"));
-    instance.mark(this.state.SearchText, { accuracy: {
-      value: "exactly",
-      limiters: [".", ",", "!"]
-    } });
+    //   var instance = new Mark(document.querySelector("div.Question"));
+    //   instance.mark(this.state.SearchText, { accuracy: {
+    //     value: "exactly",
+    //     limiters: [".", ",", "!"]
+    //   },
+    // done: function(counter){
+    //   instance.unmark()
+    // }});
 
     let questions = this.props.questions;
 
@@ -78,6 +83,7 @@ class List extends React.Component {
             currentProduct={this.props.currentProduct}
             OneQuestion={question}
             key={question.question_id}
+            SearchText={this.state.SearchText}
           />
         ))}
         {this.state.renderQuestions < this.props.questions.length &&
