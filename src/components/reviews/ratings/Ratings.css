@@ -45,3 +45,14 @@
 .lessSpace {
   margin-bottom: -1rem;
 }
+
+.btn-primary {
+  width: 100%;
+  margin-bottom: 1em;
+}
+/* 
+@media (max-width: 575px) {
+  .theMedia {
+    height: 25vw;
+  }
+} */

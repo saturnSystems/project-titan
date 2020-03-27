@@ -94,11 +94,11 @@ class Reviews extends React.Component {
     const { reviews } = this.state;
     const { itemsToShow } = this.state;
     return (
-      <Container-fluid className="noBorder layout container">
+      <Container-fluid className="noBorder layout container theMedia">
         <Col sm={{ span: 10, offset: 1 }} className="layout container noBorder">
           <Row className="layout noBorder">Ratings and Reviews</Row>
           <Row className="layout noBorder">
-            <Col sm={2} className="layout noBorder">
+            <Col sm={2} className="layout noBorder" style={{ width: "100%" }}>
               <Ratings
                 productId={this.state.productId}
                 reviews={this.state.reviews}
@@ -187,6 +187,7 @@ class Reviews extends React.Component {
                 {!this.state.reviewsBtn &&
                 this.state.itemsToShow < this.state.reviews.length ? (
                   <Button
+                    className="btn"
                     onClick={e => this.moreReviews()}
                     variant="outline-primary"
                     style={{ padding: "1em" }}
@@ -195,7 +196,7 @@ class Reviews extends React.Component {
                   </Button>
                 ) : null}{" "}
                 <Button
-                  className="addReviewBtn"
+                  className="btn"
                   onClick={() => this.ShowModal()}
                   variant="outline-primary"
                   style={{ padding: "1em" }}

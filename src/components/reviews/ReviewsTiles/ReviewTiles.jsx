@@ -43,11 +43,11 @@ class ReviewTiles extends React.Component {
     const { helpfulness } = this.state;
     const { clicked } = this.state;
     const { date } = this.props;
-    // if (review.body.length < 50) {
-    //   return null;
-    // }
+    if (review.body.length < 50) {
+      return null;
+    }
     return (
-      <dl className="spreadOut">
+      <dl className=" layout spreadOut">
         <React.Fragment key={review.review_id}>
           <Row className="layout noBorder">
             <Col className="layout noBorder">
