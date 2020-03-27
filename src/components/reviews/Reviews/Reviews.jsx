@@ -114,7 +114,11 @@ class Reviews extends React.Component {
                 <span className="ptag noBorder">
                   {reviews.length} Reviews, sort on
                 </span>
-                <DropdownButton title={this.state.sortedBy}>
+                <DropdownButton
+                  title={this.state.sortedBy}
+                  variant="outline-primary"
+                  style={{ padding: "1em" }}
+                >
                   {this.state.options.map(option => (
                     <DropdownItem
                       key={option}
@@ -182,13 +186,19 @@ class Reviews extends React.Component {
               <Row className="layout noBorder">
                 {!this.state.reviewsBtn &&
                 this.state.itemsToShow < this.state.reviews.length ? (
-                  <Button onClick={e => this.moreReviews()}>
-                    Show more reviews
+                  <Button
+                    onClick={e => this.moreReviews()}
+                    variant="outline-primary"
+                    style={{ padding: "1em" }}
+                  >
+                    SHOW MORE REVIEWS
                   </Button>
                 ) : null}{" "}
                 <Button
                   className="addReviewBtn"
                   onClick={() => this.ShowModal()}
+                  variant="outline-primary"
+                  style={{ padding: "1em" }}
                 >
                   ADD A REVIEW
                 </Button>
