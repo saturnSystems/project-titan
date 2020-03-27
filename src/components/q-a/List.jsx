@@ -45,21 +45,17 @@ class List extends React.Component {
       questions = questions.filter(question =>
         question.question_body.toUpperCase().includes(this.state.SearchText)
       );
-
-    //   questions.map(
-    //     question =>
-    //       (question.question_body = question.question_body
-    //         .toUpperCase()
-    //         .replace(
-    //           this.state.SearchText,
-    //           `${(<mark>`${this.state.SearchText}`</mark>)}`
-    //         ))
-    //   );
     }
+
+    var instance = new Mark(document.querySelector(this.props.product_id));
+
+    instance.mark(this.state.SearchText);
+
 
     return (
       <div key={this.props.product_id}>
-	  <script src="vendor/mark.js/dist/mark.min.js" charset="UTF-8"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/7.0.0/mark.min.js"></script>
+        <script>{}</script>
         {this.state.ShowModal === true ? (
           <AddQuestion
             currentProduct={this.props.currentProduct}
