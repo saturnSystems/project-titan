@@ -73,13 +73,31 @@ class YourOutfit extends React.Component {
     }
   }
 
-  addOutfitProduct = (currentProductId) => {
+  addOutfitProductId = (currentProductId) => {
+    /* 
+    if (!yourOutfitIds.includes(currentProductId) ) {
+      //const expandedOutfitIds = [...this.state.yourOutfitIds, currentProductId]; 
+      // // = this.state.yourOutfitIds.slice().push(currentProductId);
+      // expandedOutfitIds.push(currentProductId);
+      this.setState({
+        // yourOutfitIds: expandedOutfitIds
+        yourOutfitIds: [...this.state.yourOutfitIds, currentProductId]
+      });
+    }
+      add emphasize comment in cardProduct.name: "already in your outfit" // do that elsewhere
+    */
+
+    const newOutfitIds = 
     this.setState({
       addedOutfitProductId: currentProductId
     });
   }
 
-  removeOutfitProduct = (toBeRemovedOutfitId) => { 
+  removeOutfitProductId = (toBeRemovedOutfitId) => { 
+    // // newList = [...oldList] // alternate method
+    // newList = [];
+    // for every item in old list, if not the same then push onto new list
+    // setState yourOutfitIds: newList
     this.setState({
       removedOutfitProductId: toBeRemovedOutfitId
     });
