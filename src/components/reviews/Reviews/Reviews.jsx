@@ -83,7 +83,7 @@ class Reviews extends React.Component {
   }
 
   moreReviews = () => {
-    this.setState({ itemsToShow: this.state.itemsToShow + 2 });
+    this.setState({ itemsToShow: this.state.backupRatingsLength });
   };
 
   setOption = option => {
