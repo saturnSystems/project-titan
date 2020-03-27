@@ -5,6 +5,7 @@ import FormControl from "react-bootstrap/FormControl";
 import Questions from "../q-a/Questions";
 import AddQuestion from "../q-a/AddQuestion.jsx";
 import "../q-a/QA.css";
+import Mark from "mark.js";
 
 class List extends React.Component {
   constructor(props) {
@@ -31,6 +32,12 @@ class List extends React.Component {
   };
 
   render() {
+    var instance = new Mark(document.querySelector("div.Question"));
+    instance.mark(this.state.SearchText, { accuracy: {
+      value: "exactly",
+      limiters: [".", ",", "!"]
+    } });
+
     let questions = this.props.questions;
 
     function compare(a, b) {
@@ -47,15 +54,9 @@ class List extends React.Component {
       );
     }
 
-    var instance = new Mark(document.querySelector(this.props.product_id));
-
-    instance.mark(this.state.SearchText);
-
-
     return (
       <div key={this.props.product_id}>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/7.0.0/mark.min.js"></script>
-        <script>{}</script>
+        <script src="vendor/mark.js/dist/mark.min.js"></script>
         {this.state.ShowModal === true ? (
           <AddQuestion
             currentProduct={this.props.currentProduct}

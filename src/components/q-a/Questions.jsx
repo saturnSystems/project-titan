@@ -95,7 +95,7 @@ class Questions extends React.Component {
               <b>Q:&nbsp;</b>
               <Col className="layout" sm={9}>
                 <Row className="layout">
-                  <b>{this.props.OneQuestion.question_body}</b>
+                  <div className={"Question"}><b>{this.props.OneQuestion.question_body}</b></div>
                 </Row>
               </Col>
               <Col className="layout">
