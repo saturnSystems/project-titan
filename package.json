@@ -9,18 +9,11 @@
     "bootstrap": "^4.4.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
-<<<<<<< HEAD
-    "react-bootstrap": "^1.0.0-beta.17",
-    "react-bootstrap-range-slider": "^0.3.1",
-    "react-dom": "^16.13.1",
-    "react-highlight-words": "^0.16.0",
-    "react-image-gallery": "^1.0.6",
-=======
     "react-bootstrap": "^1.0.0",
     "react-bootstrap-range-slider": "^0.3.1",
     "react-dom": "^16.13.1",
+    "react-highlight-words": "^0.16.0",
     "react-image-gallery": "^1.0.7",
->>>>>>> cfa82a7c824df9c31401b37d97b9ba9116e0a9f9
     "react-image-magnify": "^2.7.4",
     "react-overflow-scrolling": "^1.0.1",
     "react-scripts": "3.4.0",
@@ -62,12 +55,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.19.0",
-<<<<<<< HEAD
-    "eslint-plugin-react-hooks": "^2.5.0",
-    "mark.js": "^8.11.1",
-=======
     "eslint-plugin-react-hooks": "^2.5.1",
->>>>>>> cfa82a7c824df9c31401b37d97b9ba9116e0a9f9
     "prettier": "^1.19.1"
   }
 }

@@ -7,7 +7,6 @@ import FormControl from "react-bootstrap/FormControl";
 import Questions from "../q-a/Questions";
 import AddQuestion from "../q-a/AddQuestion.jsx";
 import "../q-a/QA.css";
-import Mark from "mark.js";
 
 class List extends React.Component {
   constructor(props) {
