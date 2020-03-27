@@ -29,7 +29,7 @@ export default class AddReview extends Component {
       widthId: 0,
       overallRating: 0,
       recommend: null,
-      // Characteristics: [],
+      Characteristics: [],
       Fit: "",
       Size: "",
       Length: "",
@@ -91,7 +91,7 @@ export default class AddReview extends Component {
         widthId: results.characteristics.Width
           ? results.characteristics.Width.id
           : null,
-        // Characteristics: Object.keys(results.characteristics),
+        Characteristics: Object.keys(results.characteristics),
         size: results.characteristics.Size ? results.characteristics.Size : 0
       })
     );
