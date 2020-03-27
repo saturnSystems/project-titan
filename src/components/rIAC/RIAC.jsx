@@ -110,16 +110,20 @@ class RIAC extends React.Component{
 
           <strong><Row className="layout">Your Outfit</Row></strong>
           <Row className="layout"> 
-              {/* <ProductCard
-                currentProduct = {this.props.currentProduct}
-                setProductId={this.props.setProductId} // STRICTLY SPEAKING, NOT NEEDED
-                cardProductId={3}
-                cardType={this.state.cardType}      >
-              </ProductCard> */}
+            <Col className="layout col-3" key={"0-0"}>
+                <ProductCard
+                  currentProduct = {this.props.currentProduct}
+                  setProductId={this.props.setProductId} // STRICTLY SPEAKING, NOT NEEDED
+                  cardProductId={3}
+                  cardType={this.state.cardType} 
+                  >
+                </ProductCard>              
+            </Col>
           
             {
               // {setCardTypeToYourOutfit}
               yourOutfitIds.map((yourOutfitId, index) => { 
+                index++;
                 let indexOutfitIdStr = index.toString() + '-' + yourOutfitId.toString();
                 return (
                   <Col className="layout col-3" key={indexOutfitIdStr}>
