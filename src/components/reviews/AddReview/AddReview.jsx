@@ -119,8 +119,6 @@ export default class AddReview extends Component {
     const { sizeId } = this.state;
     const { widthId } = this.state;
 
-    let characteristicsObj = {}; // make it so it only has the given items
-
     let error = false;
 
     let review = {
@@ -159,6 +157,9 @@ export default class AddReview extends Component {
     } else {
       this.setState({ recommendError: "" });
     }
+
+    // ///////// SOMETHING IN HERE CAUSES REVIEWS NOT TO POST ///////////
+
     // if (!!this.state.Characteristics) {
     //   error = true;
     //   this.setState({
@@ -168,60 +169,60 @@ export default class AddReview extends Component {
     // } else {
     //   this.setState({ characteristicsError: "" });
     // }
-    if (!this.state.Fit) {
-      error = true;
-      this.setState({
-        characteristicsError: "You must select one of the ratings:",
-        errorMsg: "Invalid Characteristics Rating"
-      });
-    } else {
-      this.setState({ characteristicsError: "" });
-    }
-    if (!this.state.Size) {
-      error = true;
-      this.setState({
-        characteristicsError: "You must select one of the ratings:",
-        errorMsg: "Invalid Characteristics Rating"
-      });
-    } else {
-      this.setState({ characteristicsError: "" });
-    }
-    if (!this.state.Length) {
-      error = true;
-      this.setState({
-        characteristicsError: "You must select one of the ratings:",
-        errorMsg: "Invalid Characteristics Rating"
-      });
-    } else {
-      this.setState({ characteristicsError: "" });
-    }
-    if (!this.state.Comfort) {
-      error = true;
-      this.setState({
-        characteristicsError: "You must select one of the ratings:",
-        errorMsg: "Invalid Characteristics Rating"
-      });
-    } else {
-      this.setState({ characteristicsError: "" });
-    }
-    if (!this.state.Quality) {
-      error = true;
-      this.setState({
-        characteristicsError: "You must select one of the ratings:",
-        errorMsg: "Invalid Characteristics Rating"
-      });
-    } else {
-      this.setState({ characteristicsError: "" });
-    }
-    if (!this.state.Width) {
-      error = true;
-      this.setState({
-        characteristicsError: "You must select one of the ratings:",
-        errorMsg: "Invalid Characteristics Rating"
-      });
-    } else {
-      this.setState({ characteristicsError: "" });
-    }
+    // if (!this.state.Fit) {
+    //   error = true;
+    //   this.setState({
+    //     characteristicsError: "You must select one of the ratings:",
+    //     errorMsg: "Invalid Characteristics Rating"
+    //   });
+    // } else {
+    //   this.setState({ characteristicsError: "" });
+    // }
+    // if (!this.state.Size) {
+    //   error = true;
+    //   this.setState({
+    //     characteristicsError: "You must select one of the ratings:",
+    //     errorMsg: "Invalid Characteristics Rating"
+    //   });
+    // } else {
+    //   this.setState({ characteristicsError: "" });
+    // }
+    // if (!this.state.Length) {
+    //   error = true;
+    //   this.setState({
+    //     characteristicsError: "You must select one of the ratings:",
+    //     errorMsg: "Invalid Characteristics Rating"
+    //   });
+    // } else {
+    //   this.setState({ characteristicsError: "" });
+    // }
+    // if (!this.state.Comfort) {
+    //   error = true;
+    //   this.setState({
+    //     characteristicsError: "You must select one of the ratings:",
+    //     errorMsg: "Invalid Characteristics Rating"
+    //   });
+    // } else {
+    //   this.setState({ characteristicsError: "" });
+    // }
+    // if (!this.state.Quality) {
+    //   error = true;
+    //   this.setState({
+    //     characteristicsError: "You must select one of the ratings:",
+    //     errorMsg: "Invalid Characteristics Rating"
+    //   });
+    // } else {
+    //   this.setState({ characteristicsError: "" });
+    // }
+    // if (!this.state.Width) {
+    //   error = true;
+    //   this.setState({
+    //     characteristicsError: "You must select one of the ratings:",
+    //     errorMsg: "Invalid Characteristics Rating"
+    //   });
+    // } else {
+    //   this.setState({ characteristicsError: "" });
+    // }
     if (!this.state.body) {
       error = true;
       this.setState({
@@ -251,7 +252,7 @@ export default class AddReview extends Component {
     }
 
     if (!error) {
-      helper.postReview(productId, review, () => console.log("Sent!", review));
+      helper.postReview(productId, review, () => true);
       this.setState({ successMsg: true });
     }
   };
