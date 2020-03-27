@@ -1,14 +1,14 @@
 // this component is for use in RIAC.jsx
 import React from 'react';
-import Container from 'react-bootstrap/Container';
-import Card from 'react-bootstrap/Card';
-import CardDeck from 'react-bootstrap/CardDeck';
+// import Container from 'react-bootstrap/Container'; // NEVER USED
+// import Card from 'react-bootstrap/Card'; // NEVER USED
+// import CardDeck from 'react-bootstrap/CardDeck'; // NEVER USED
 
 import Row from 'react-bootstrap/Row'
 // import Col from 'react-bootstrap/Col' // NOT YET USED
 import StarRatings from "react-star-ratings";
 import noImage from "./NoImageOnFile.jpg";
-import noStyles from "./NoStylesOnFile.jpg";
+// import noStyles from "./NoStylesOnFile.jpg"; // NEVER USED
 import "./ProductCard.css";
 import ProductComparison from '../ProductComparison/ProductComparison';
 
@@ -36,7 +36,7 @@ class ProductCard extends React.Component {
   }
   
   componentDidMount() {
-    let relatedProductId = this.props.relatedProductId
+    // let relatedProductId = this.props.relatedProductId  // NEVER USED
     // console.log("+PC: cDM: if cRPId: ", relatedProductId)
     this.loadRelatedProductData();
   }
@@ -155,8 +155,8 @@ class ProductCard extends React.Component {
             <div className="card mb-3 style-image">            
               <img className="card-img-top" src={relatedStyleImage}  alt="Display this style"/>
               {/* <img className="card-img-top" src={"https://images.unsplash.com/photo-1473396413399-6717ef7c4093?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"}  alt=""/> */}
-              <div className="card-img-overlay" onClick={this.compareProducts}>
-                <small><p className="btn btn-primary btn-star">&#x2605;</p></small>
+              <div className="card-img-overlay">
+                <small><p className="btn btn-primary btn-star" onClick={this.compareProducts}>&#x2605;</p></small>
                 {/* {this.state.compareProductsNow ? "Some text" : "No text"} */}
                 {this.state.compareProductsNow && (
                     <ProductComparison 

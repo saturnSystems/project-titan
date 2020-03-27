@@ -55,6 +55,7 @@ del {
 }
 
 .style-image {
-  height: 12.5em;
+  height: 13em;
+  object-fit: contain;
 }
 
