@@ -49,108 +49,113 @@ class ReviewTiles extends React.Component {
     return (
       <dl className=" layout spreadOut">
         <React.Fragment key={review.review_id}>
-          <Row className="layout noBorder">
-            <Col className="layout noBorder">
-              <Row className="layout noBorder">
-                <Col className="layout noBorder" sm={2}>
-                  <Row className="layout stars noBorder">
-                    <StarRatings
-                      rating={review.rating}
-                      starDimension="1em"
-                      starSpacing="0"
-                    />{" "}
-                  </Row>
-                </Col>
-                <Col className="layout noBorder" sm={{ offset: 3 }}>
-                  <Row className="layout floaty noBorder">
-                    {review.reviewer_name}, {date}
-                  </Row>
-                </Col>
-              </Row>
-              <Row className="layout noBorder">
-                <Col className="layout noBorder">
-                  <Row className="layout noBorder">
-                    <strong>{review.summary.slice(0, 60)}</strong>
-                  </Row>
-                  {review.summary.length > 60 ? (
-                    <Row className="layout noBorder summaryRow">
-                      {`... ${review.summary.slice(60)}`}
+          <Col>
+            <Row className="layout noBorder">
+              <Col className="layout noBorder">
+                <Row className="layout noBorder">
+                  <Col className="layout noBorder">
+                    <Row className="layout stars noBorder">
+                      <StarRatings
+                        rating={review.rating}
+                        starDimension="1em"
+                        starSpacing="0"
+                      />{" "}
                     </Row>
-                  ) : null}
-                  {review.body.length >= 250 &&
-                  review.body.length <= 1000 &&
-                  this.state.showMore === false ? (
+                    {/* </Col>
+                  <Col className="layout noBorder" sm={{ offset: 3 }}> */}
+                    <Row
+                      className="layout floaty noBorder"
+                      style={{ fontSize: "small" }}
+                    >
+                      {review.reviewer_name}, {date}
+                    </Row>
+                  </Col>
+                </Row>
+                <Row className="layout noBorder">
+                  <Col className="layout noBorder">
                     <Row className="layout noBorder">
-                      {review.body.slice(0, 200) + "..."}
-                      <Button
-                        name="showMore"
-                        className="showBtn"
-                        onClick={this.showMore} //////////////////////HERE!!!!!!!!!!!!!!!!!
-                      >
-                        Show more
-                      </Button>
+                      <strong>{review.summary.slice(0, 60)}</strong>
                     </Row>
-                  ) : (
-                    <Row className="layout noBorder">{review.body}</Row>
-                  )}
-                  {/* {review.body.length <= 1000 ? (
+                    {review.summary.length > 60 ? (
+                      <Row className="layout noBorder summaryRow">
+                        {`... ${review.summary.slice(60)}`}
+                      </Row>
+                    ) : null}
+                    {review.body.length >= 250 &&
+                    review.body.length <= 1000 &&
+                    this.state.showMore === false ? (
+                      <Row className="layout noBorder">
+                        {review.body.slice(0, 200) + "..."}
+                        <Button
+                          name="showMore"
+                          className="showBtn"
+                          onClick={this.showMore} //////////////////////HERE!!!!!!!!!!!!!!!!!
+                        >
+                          Show more
+                        </Button>
+                      </Row>
+                    ) : (
+                      <Row className="layout noBorder">{review.body}</Row>
+                    )}
+                    {/* {review.body.length <= 1000 ? (
                     <Row className="layout">{review.body}</Row>
                   ) : null} */}
-                  <Row className="layout noBorder">
-                    {review.photos.length >= 1
-                      ? review.photos.map((photo, i) => (
-                          <ImageComponent
-                            photo={photo.url}
-                            id={photo.id}
-                            handleShowImage={this.handleShowImage}
-                            // eslint-disable-next-line react/no-array-index-key
-                            key={i}
-                          />
-                        ))
-                      : null}
-                  </Row>
-                  <Row className="layout noBorder">
-                    {review.recommend === 1 ? (
-                      <p>&#10004; I recommend this product</p>
+                    <Row className="layout noBorder">
+                      {review.photos.length >= 1
+                        ? review.photos.map((photo, i) => (
+                            <ImageComponent
+                              photo={photo.url}
+                              id={photo.id}
+                              handleShowImage={this.handleShowImage}
+                              // eslint-disable-next-line react/no-array-index-key
+                              key={i}
+                            />
+                          ))
+                        : null}
+                    </Row>
+                    <Row className="layout noBorder">
+                      {review.recommend === 1 ? (
+                        <p>&#10004; I recommend this product</p>
+                      ) : null}
+                    </Row>
+                  </Col>
+                </Row>
+                <Row className="layout noBorder">
+                  <Col className="layout response noBorder">
+                    {typeof review.response === "string" &&
+                    review.response !== "null" ? (
+                      <dl>
+                        <Row className="layout response noBorder">
+                          <strong>Response From Seller:</strong>
+                        </Row>
+                        <Row className="layout response noBorder">
+                          {review.response}
+                        </Row>
+                      </dl>
                     ) : null}
-                  </Row>
-                </Col>
-              </Row>
-              <Row className="layout noBorder">
-                <Col className="layout response noBorder">
-                  {typeof review.response === "string" &&
-                  review.response !== "null" ? (
-                    <dl>
-                      <Row className="layout response noBorder">
-                        <strong>Response From Seller:</strong>
-                      </Row>
-                      <Row className="layout response noBorder">
-                        {review.response}
-                      </Row>
-                    </dl>
-                  ) : null}
-                </Col>
-              </Row>
-              <Row className="layout imgBorder">
-                Helpful?{" "}
-                {clicked === false ? (
-                  // eslint-disable-next-line jsx-a11y/click-events-have-key-events
-                  // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
-                  <p
-                    name="helpfulness"
-                    className="buffer pointer"
-                    onClick={() => this.handleHelpfulness()}
-                    type="disabled"
-                  >
-                    Yes
-                  </p>
-                ) : (
-                  <p className="buffer">Yes</p>
-                )}
-                ({helpfulness}) | Report
-              </Row>
-            </Col>
-          </Row>
+                  </Col>
+                </Row>
+                <Row className="layout imgBorder">
+                  Helpful?{" "}
+                  {clicked === false ? (
+                    // eslint-disable-next-line jsx-a11y/click-events-have-key-events
+                    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+                    <p
+                      name="helpfulness"
+                      className="buffer pointer"
+                      onClick={() => this.handleHelpfulness()}
+                      type="disabled"
+                    >
+                      Yes
+                    </p>
+                  ) : (
+                    <p className="buffer">Yes</p>
+                  )}
+                  ({helpfulness}) | Report
+                </Row>
+              </Col>
+            </Row>
+          </Col>
         </React.Fragment>
       </dl>
     );

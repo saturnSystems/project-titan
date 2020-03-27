@@ -108,10 +108,13 @@ class Reviews extends React.Component {
                 backupAvg={this.state.backupAvg}
               />
             </Col>
-            <Col sm={1} className="layout noBorder"></Col>
+            {/* <Col className="layout noBorder"></Col> */}
             <Col className="layout noBorder">
               <Row className="layout noBorder">
-                <span className="ptag noBorder">
+                <span
+                  className="ptag noBorder middle"
+                  style={{ paddingLeft: "25px" }}
+                >
                   {reviews.length} Reviews, sort on
                 </span>
                 <DropdownButton
