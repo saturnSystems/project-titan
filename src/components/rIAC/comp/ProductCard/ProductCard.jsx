@@ -8,7 +8,7 @@ import Row from 'react-bootstrap/Row'
 // import Col from 'react-bootstrap/Col' // NOT YET USED
 import StarRatings from "react-star-ratings";
 import noImage from "./NoImageOnFile.jpg";
-// import noStyles from "./NoStylesOnFile.jpg"; // NEVER USED
+import noStyles from "./NoStylesOnFile.jpg"; // NEVER USED
 import "./ProductCard.css";
 import ProductComparison from '../ProductComparison/ProductComparison';
 
@@ -16,8 +16,16 @@ import ProductComparison from '../ProductComparison/ProductComparison';
 // props as defined in calling parent
 //   setProductId  ={this.props.setProductId}
 //   currentProduct  ={this.props.currentProduct} USED ONLY FOR DEBUGGING
-//   relatedProductId  ={relatedProductId}
+//   cardProductId  ={relatedZProductId}
+//   cardType  ={cardType}
 
+const yourOutfitBaseProduct = {
+  id: 0,
+  name: "Click to add current product",
+  slogan: null,
+  description: null,
+  category: null
+}
 
 const helper = require("../../../../helper/helper.js");
 
@@ -25,10 +33,11 @@ class ProductCard extends React.Component {
   constructor(props) {
     super(props)
     this.state={
-      relatedProduct: null, // change over time, requiring re-render
-      relatedStyles: null, // change over time, requiring re-render
-      relatedReviewRating: null, // change over time, requiring re-render
+      cardProduct: null, // change over time, requiring re-render
+      cardStyles: null, // change over time, requiring re-render
+      cardReviewRating: null, // change over time, requiring re-render
       compareProductsNow: false
+      // cardType: null
     }
 
     // NO NEED TO BIND WHEN I HAVE <this>
@@ -36,41 +45,49 @@ class ProductCard extends React.Component {
   }
   
   componentDidMount() {
-    // let relatedProductId = this.props.relatedProductId  // NEVER USED
-    // console.log("+PC: cDM: if cRPId: ", relatedProductId)
-    this.loadRelatedProductData();
+    // let cardProductId = this.props.cardProductId  // NEVER USED
+    // console.log("+PC: cDM: if cRPId: ", cardProductId)
+    this.loadProductData();
   }
 
   // Strictly speaking, not needed. KEEPT FOR DEBUGGING OR IF NEEDED
   componentDidUpdate = (prevProps, prevState) => {
-    // console.log("PC: cDU: rPI: ", this.props.relatedProductId);
-    if (prevProps.relatedProductId !== this.props.relatedProductId) {
-      this.loadRelatedProductData();
+    // console.log("PC: cDU: rPI: ", this.props.cardProductId);
+    if (prevProps.cardProductId !== this.props.cardProductId) {
+      this.loadProductData();
     }
   }
   
-  loadRelatedProductData = () => {
-    helper.getOneProduct(this.props.relatedProductId, result => {
+  loadProductData = () => {
+    helper.getOneProduct(this.props.cardProductId, result => {
       // console.log("PC: lRPD: gOP: result: " , result)
       this.setState({
-        relatedProduct: result
+        cardProduct: result
       });
     });
-    helper.getOneProductStyle(this.props.relatedProductId, result => {
+    helper.getOneProductStyle(this.props.cardProductId, result => {
       this.setState({
-        relatedStyles: result.results
+        cardStyles: result.results
       });
     });
 
-    helper.getReviewMetadata(this.props.relatedProductId, result => {
+    helper.getReviewMetadata(this.props.cardProductId, result => {
       this.setState({
-        relatedReviewRating: helper.calculateReviewRating(result.ratings)
+        cardReviewRating: helper.calculateReviewRating(result.ratings)
       });
     });
   }
   
   setProductId = () => { 
-    this.props.setProductId(this.props.relatedProductId);
+    this.props.setProductId(this.props.cardProductId);
+  }
+
+
+  compareProducts = (event) => {
+    event.stopPropagation();
+    this.setState({
+      compareProductsNow: true
+    });
   }
 
   closeComparison = (event) => { 
@@ -80,21 +97,21 @@ class ProductCard extends React.Component {
     });
   }
 
-  // compareProducts = (event, currentProductId, relatedProductId) => { // React won't use Arg1, Arg2
-  compareProducts = (event) => {
-    event.stopPropagation();
-    this.setState({
-      compareProductsNow: true
-    });
+  starClick = (cardType) => {
+    if (cardType) {
+      this.compareProducts()
+    } else {
+      this.removeOutfit()
+    }
   }
 
-    // Pre-method check if ready to render or null
-    // function method
+  // Pre-method check if ready to render or null
   isReadytoRender = () => {
     return (
-      this.state.relatedProduct !== null &&
-      this.state.relatedStyles !== null &&
-      this.state.relatedReviewRating !== null
+      this.state.cardProduct !== null &&
+      this.state.cardStyles !== null &&
+      this.state.cardReviewRating !== null &&
+      this.cardType !== null
     );
   }
 
@@ -104,36 +121,37 @@ class ProductCard extends React.Component {
     // Pre-method check if ready to render or null
 
     // Explicit method
-    // if (this.state.relatedProduct === null) return null;
-    // if (this.state.relatedStyles === null) return null;
-    // if (this.state.relatedReviewRating === null) return null;
+    // if (this.state.cardProduct === null) return null;
+    // if (this.state.cardStyles === null) return null;
+    // if (this.state.cardReviewRating === null) return null;
 
     // function method
     if (!this.isReadytoRender()) return null;
 
-    const { relatedProduct, relatedStyles, relatedReviewRating } = this.state;
+    const { setProductId, currentProduct, cardProductId, cardType } = this.props;
+    const { cardProduct, cardStyles, cardReviewRating } = this.state;
 
     // console.logs for DEBUGGING
 
     // console.log("PC: cP: ", currentProduct); // used only for debugging
-    // console.log("PC: rPId: ", this.props.relatedProductId);
-    // console.log("PC: rP: ", relatedProduct);
-    // console.log("PC: rSs: ", relatedStyles);
+    // console.log("PC: rPId: ", this.props.cardProductId);
+    // console.log("PC: rP: ", cardProduct);
+    // console.log("PC: rSs: ", cardStyles);
 
-    let relatedCategory = relatedProduct.category || null;
+    let relatedCategory = cardProduct.category || null;
     // console.log("PC: rCat: ", relatedCategory);
 
-    let relatedCaption = relatedProduct.name ? relatedProduct.name : null;
-    // let relatedCaption = (relatedProduct.name === undefined || relatedProduct.slogan === undefined) ? null : relatedProduct.name + ' - ' + relatedProduct.slogan;
+    let relatedCaption = cardProduct.name ? cardProduct.name : null;
+    // let relatedCaption = (cardProduct.name === undefined || cardProduct.slogan === undefined) ? null : cardProduct.name + ' - ' + cardProduct.slogan;
     // console.log("PC: rCap: ", relatedCaption);
 
-    let relatedDefPrice = relatedProduct.default_price || null; // SUPERCEDED BY style data
+    let relatedDefPrice = cardProduct.default_price || null; // SUPERCEDED BY style data
     // console.log("PC: rDP: ", relatedDefPrice);
 
     // QQQQ is this appropriate: noDefault => 0;
 
-    // let relatedStyle = relatedStyles.find(style => style["default?"] === 1) || relatedStyles[0];
-    let relatedStyle = relatedStyles.find(style => style["default?"] === 1) || relatedStyles[0];
+    // let relatedStyle = cardStyles.find(style => style["default?"] === 1) || cardStyles[0];
+    let relatedStyle = cardStyles.find(style => style["default?"] === 1) || cardStyles[0];
         // console.log("PC: rS: ", relatedStyle);
 
     // let relatedStylesIndex = 2; // HARD CODED - FALLBAK
@@ -146,7 +164,11 @@ class ProductCard extends React.Component {
     let relatedStyleImage = relatedStyle.photos[0].url || noImage;
     // console.log("PC: rSI: ", relatedStyleImage);
 
-    // console.log("PC: render: rRR: ", relatedReviewRating);
+    // console.log("PC: render: rRR: ", cardReviewRating);
+
+    // YOUR OUTFIT
+
+    // this.yourOutfitIds.push(yourOutfitBaseProduct);
 
     return (
       <Container-fluid class="layout product-card-layout align-left">
@@ -161,7 +183,7 @@ class ProductCard extends React.Component {
                 {this.state.compareProductsNow && (
                     <ProductComparison 
                       currentProductId={this.props.currentProduct.id}
-                      relatedProductId={this.props.relatedProductId} 
+                      cardProductId={this.props.cardProductId} 
                       closeComparison={this.closeComparison}                  
                     />  
                   )
@@ -177,7 +199,7 @@ class ProductCard extends React.Component {
           <small><p className="card-text text-muted price">${relatedStyleSalePrice} &nbsp; &nbsp; <del>${relatedStyleOriginalPrice}</del></p></small>
             <Row className="rating-stars">              
               <StarRatings
-                rating={relatedReviewRating}
+                rating={cardReviewRating}
                 starDimension="1em"
                 starSpacing={"0"}
               />

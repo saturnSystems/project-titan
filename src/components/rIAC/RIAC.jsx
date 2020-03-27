@@ -22,13 +22,31 @@ import "./RIAC.css";
 //   currentProduct   ={this.state.currentProduct}
 //   relatedProductsIds   ={this.state.relatedProductsIds}
 
+const yourOutfitBaseProductObj = {
+  id: 0,
+  name: "Click to add current product",
+  slogan: null,
+  description: null,
+  category: null
+}
+
 class RIAC extends React.Component{
   constructor(props){
     super(props)
     this.state={
+      cardType: "relatedProduct",
+      yourOutfitIds: [yourOutfitBaseProductObj, 1, 2 ,3]
       // relatedProductId: null // So far, not needed
     }
   }
+
+  setCardTypeToYourOutfit = () => {
+      this.props.cardType("yourOutfit");
+  }
+  
+  setCardTypeToRelatedProduct = () => {
+    this.props.cardType("relatedProduct");
+}
 
   isReadytoRender = () => {
     return (
@@ -43,11 +61,18 @@ class RIAC extends React.Component{
 
     if (!this.isReadytoRender()) return null;
 
+    const { cardType, yourOutfitIds } = this.state;
+    // const { setProductId, currentProduct, relatedProductsIds } = this.state;
+
     let relatedProductsIds = this.props.relatedProductsIds;
     // if (relatedProductsIds.length === 0) { 
     //   console.log("RIAC: no rPIds: ", relatedProductsIds); return null
     // };
     // console.log("RIAC: rPIds: ", relatedProductsIds)
+
+    // YOUR OUTFIT
+
+    let yourOutfitBaseProduct = yourOutfitBaseProductObj;
 
      return (
       <Container-fluid class="layout container RIAC">
@@ -64,7 +89,8 @@ class RIAC extends React.Component{
                     <ProductCard
                       currentProduct = {this.props.currentProduct}
                       setProductId={this.props.setProductId}
-                      relatedProductId={relatedProductId}
+                      cardProductId={relatedProductId}
+                      cardType={cardType}
                     />
                   </Col>
                 )
@@ -73,45 +99,62 @@ class RIAC extends React.Component{
           </Row>
           <br></br>
 
-          <Row className="layout">Your Outfit</Row>
-          <Row className="layout">
-            <Col className="layout">
-              <Row className="layout">IMAGE</Row>
-              <Row className="layout">CATEGORY</Row>
-              <Row className="layout">
-                Expanded Product Name with Extra Text
-              </Row>
-              <Row className="layout">$123</Row>
-              <Row className="layout">*****</Row>
-            </Col>
-            <Col className="layout">
-              <Row className="layout">IMAGE</Row>
-              <Row className="layout">CATEGORY</Row>
-              <Row className="layout">
-                Expanded Product Name with Extra Text
-              </Row>
-              <Row className="layout">$123</Row>
-              <Row className="layout">*****</Row>
-            </Col>
-            <Col className="layout">
-              <Row className="layout">IMAGE</Row>
-              <Row className="layout">CATEGORY</Row>
-              <Row className="layout">
-                Expanded Product Name with Extra Text
-              </Row>
-              <Row className="layout">$123</Row>
-              <Row className="layout">*****</Row>
-            </Col>
-            <Col className="layout">
-              <Row className="layout">IMAGE</Row>
-              <Row className="layout">CATEGORY</Row>
-              <Row className="layout">
-                Expanded Product Name with Extra Text
-              </Row>
-              <Row className="layout">$123</Row>
-              <Row className="layout">*****</Row>
-            </Col>
+          <strong><Row className="layout">Your Outfit</Row></strong>
+          <Row className="layout"> {
+              // {setCardTypeToYourOutfit}
+              yourOutfitIds.map((yourOutfitId, index) => { 
+                let indexOutfitIdStr = index.toString() + '-' + yourOutfitId.toString();
+                return (
+                  <Col className="layout col-3" key={indexOutfitIdStr}>
+                    <ProductCard
+                      currentProduct = {this.props.currentProduct}
+                      setProductId={this.props.setProductId} // STRICTLY SPEAKING, NOT NEEDED
+                      cardProductId={yourOutfitId}
+                      cardType={this.state.cardType}
+                    />
+                  </Col>
+                )
+              })
+            }
           </Row>
+          {/* <Row className="layout">
+            <Col className="layout">
+              <Row className="layout">IMAGE</Row>
+              <Row className="layout">CATEGORY</Row>
+              <Row className="layout">
+                Expanded Product Name with Extra Text
+              </Row>
+              <Row className="layout">$123</Row>
+              <Row className="layout">*****</Row>
+            </Col>
+            <Col className="layout">
+              <Row className="layout">IMAGE</Row>
+              <Row className="layout">CATEGORY</Row>
+              <Row className="layout">
+                Expanded Product Name with Extra Text
+              </Row>
+              <Row className="layout">$123</Row>
+              <Row className="layout">*****</Row>
+            </Col>
+            <Col className="layout">
+              <Row className="layout">IMAGE</Row>
+              <Row className="layout">CATEGORY</Row>
+              <Row className="layout">
+                Expanded Product Name with Extra Text
+              </Row>
+              <Row className="layout">$123</Row>
+              <Row className="layout">*****</Row>
+            </Col>
+            <Col className="layout">
+              <Row className="layout">IMAGE</Row>
+              <Row className="layout">CATEGORY</Row>
+              <Row className="layout">
+                Expanded Product Name with Extra Text
+              </Row>
+              <Row className="layout">$123</Row>
+              <Row className="layout">*****</Row>
+            </Col>
+          </Row> */}
         </Col>
       </Container-fluid>
     )
