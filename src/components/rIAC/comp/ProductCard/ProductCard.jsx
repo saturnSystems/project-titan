@@ -13,13 +13,13 @@ import alreadyInOutfitImage from "./NoImageOnFile.jpg"; // NEVER USED
 import "./ProductCard.css";
 import ProductComparison from '../ProductComparison/ProductComparison';
 
-
 // props as defined in calling parent
 //   setProductId  ={this.props.setProductId}
 //   currentProduct  ={this.props.currentProduct} USED ONLY FOR DEBUGGING
 //   cardProductId  ={relatedZProductId}
 //   cardType  ={cardType}
 //   cardImageName   ={yourOutfitImageToShow}
+//   addOutfitProductId  ={this.addOutfitProductId} // only for YO
 
 
 const yourOutfitBaseProductObj = {
@@ -107,6 +107,14 @@ class ProductCard extends React.Component {
       this.removeOutfit()
     }
   }
+
+  // addOutfitProductId = (currentProductId) => {
+  //   if (!this.state.yourOutfitIds.includes(currentProductId) ) {
+  //     this.setState({
+  //       yourOutfitIds: [...this.state.yourOutfitIds, currentProductId]
+  //     });   
+  //   }
+  // }
 
   // Pre-method check if ready to render or null
   isReadytoRender = () => {

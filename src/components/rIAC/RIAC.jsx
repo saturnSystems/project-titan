@@ -35,7 +35,7 @@ class RIAC extends React.Component{
     super(props)
     this.state={
       cardType: "relatedProduct",
-      yourOutfitIds: [1, 2 ,3]
+      yourOutfitIds: []
       // relatedProductId: null // So far, not needed
     }
   }
@@ -47,6 +47,16 @@ class RIAC extends React.Component{
   setCardTypeToRelatedProduct = () => {
     this.props.cardType("relatedProduct");
 }
+
+
+  addOutfitProductId = () => {
+    console.log("RIAC: aOPI: t.p: ", this.props)
+    if (!this.state.yourOutfitIds.includes(this.props.currentProduct.id) ) {
+      this.setState({
+        yourOutfitIds: [...this.state.yourOutfitIds, this.props.currentProduct.id]
+      });   
+    }
+  }
 
   isReadytoRender = () => {
     return (
@@ -91,6 +101,7 @@ class RIAC extends React.Component{
     */
 
     const yourOutfitBaseProduct = yourOutfitBaseProductObj;
+    console.log("RIAC: render: t.s.yOIds: ", this.state.yourOutfitIds);
 
      return (
       <Container-fluid class="layout container RIAC">
@@ -120,14 +131,18 @@ class RIAC extends React.Component{
           <strong><Row className="layout">Your Outfit</Row></strong>
           <Row className="layout"> 
             <Col className="layout col-3" key={"0-0"}>
-                <ProductCard
+              <div className="test" onClick={this.addOutfitProductId}>
+                + <br /> Add current product to your outfits
+              </div>
+                {/* <ProductCard
                   currentProduct = {this.props.currentProduct}
                   setProductId={this.props.setProductId} // STRICTLY SPEAKING, NOT NEEDED
                   cardProductId={3}
                   cardType={this.state.cardType} 
                   cardImageName={yourOutfitImageToShow}
+                  addOutfitProductId={this.addOutfitProductId}
                   >
-                </ProductCard>              
+                </ProductCard>               */}
             </Col>
           
             {
