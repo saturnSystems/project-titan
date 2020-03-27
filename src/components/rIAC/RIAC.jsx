@@ -64,7 +64,7 @@ class RIAC extends React.Component{
     */
     // console.log("RIAC-DATE-TIME: render: ", new Date());
 
-    let yourOutfitImageToShow = "addToOutfit";
+    let yourOutfitImageToShow = "addToOutfitImage";
 
 
 
