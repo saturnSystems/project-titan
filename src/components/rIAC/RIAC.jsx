@@ -71,8 +71,17 @@ class RIAC extends React.Component{
     // console.log("RIAC: rPIds: ", relatedProductsIds)
 
     // YOUR OUTFIT
+    /*
+        const yourOutfitBaseProductObj = {
+          id: 0,
+          name: "Click to add current product",
+          slogan: null,
+          description: null,
+          category: null
+        }
+    */
 
-    let yourOutfitBaseProduct = yourOutfitBaseProductObj;
+    const yourOutfitBaseProduct = yourOutfitBaseProductObj;
 
      return (
       <Container-fluid class="layout container RIAC">
@@ -100,7 +109,15 @@ class RIAC extends React.Component{
           <br></br>
 
           <strong><Row className="layout">Your Outfit</Row></strong>
-          <Row className="layout"> {
+          <Row className="layout"> 
+              {/* <ProductCard
+                currentProduct = {this.props.currentProduct}
+                setProductId={this.props.setProductId} // STRICTLY SPEAKING, NOT NEEDED
+                cardProductId={3}
+                cardType={this.state.cardType}      >
+              </ProductCard> */}
+          
+            {
               // {setCardTypeToYourOutfit}
               yourOutfitIds.map((yourOutfitId, index) => { 
                 let indexOutfitIdStr = index.toString() + '-' + yourOutfitId.toString();

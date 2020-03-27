@@ -8,7 +8,8 @@ import Row from 'react-bootstrap/Row'
 // import Col from 'react-bootstrap/Col' // NOT YET USED
 import StarRatings from "react-star-ratings";
 import noImage from "./NoImageOnFile.jpg";
-import noStyles from "./NoStylesOnFile.jpg"; // NEVER USED
+import addToOutfitImage from "./NoImageOnFile.jpg";
+import alreadyInOutfitImage from "./NoStylesOnFile.jpg"; // NEVER USED
 import "./ProductCard.css";
 import ProductComparison from '../ProductComparison/ProductComparison';
 
@@ -19,7 +20,7 @@ import ProductComparison from '../ProductComparison/ProductComparison';
 //   cardProductId  ={relatedZProductId}
 //   cardType  ={cardType}
 
-const yourOutfitBaseProduct = {
+const yourOutfitBaseProductObj = {
   id: 0,
   name: "Click to add current product",
   slogan: null,
@@ -164,6 +165,42 @@ class ProductCard extends React.Component {
     let relatedStyleImage = relatedStyle.photos[0].url || noImage;
     // console.log("PC: rSI: ", relatedStyleImage);
 
+    if (this.props.cardImageName === "alreadyInOutfit") {
+      relatedStyleImage = alreadyInOutfitImage;
+    } else if (this.props.cardImageName === "addToOutfit") {
+      relatedStyleImage = addToOutfitImage;
+    }
+
+
+    /* pseudo-code
+    if this needs to show already outfit image
+      relatedStyleImage = alreadyInOutfitImage;
+    if this needs to show add an outfit
+     relatedStyleImage = addOutfitImage;
+
+     // in yourOutfit.jsx
+     this.state.alreadyInOutfit := true
+     this.state.addAnOutfit := false
+
+     // toggle from above
+     this.state.alreadyInOutfit := false
+     this.state.addAnOutfit := true
+
+     // alternative data structure
+     this.state.buttonType := "alreadyInOutfit"
+     toggle that
+     this.state.buttonType := "addAnOutfit"
+
+
+
+
+     if (this.props.alreadyInOutfitXXX) {
+      relatedStyleImage = alreadyInOutfitImage;
+    } else if () {
+
+    }
+    */
+
     // console.log("PC: render: rRR: ", cardReviewRating);
 
     // YOUR OUTFIT
@@ -206,11 +243,7 @@ class ProductCard extends React.Component {
             </Row>
           </div>
         </div>
-
-
-
       </Container-fluid>
-
     )
   }
 }
