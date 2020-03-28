@@ -86,7 +86,7 @@ class AddAnswer extends React.Component {
         null,
         () => true
       );
-      this.setState({ ShowModal: false });
+      this.props.button()
     }
   };
 

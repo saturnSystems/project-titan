@@ -18,7 +18,6 @@ class Answers extends React.Component {
     this.setState({
       helpfulness: this.props.OneAnswer.helpfulness
     });
-    helper.putHelpfulAnswer(this.props.OneAnswer.id, () => true);
   }
 
   VoteHelpful = () => {
@@ -27,6 +26,7 @@ class Answers extends React.Component {
         hasVoted: true,
         helpfulness: this.state.helpfulness + 1
       });
+      helper.putHelpfulAnswer(this.props.OneAnswer.id, () => true);
     }
   };
 
