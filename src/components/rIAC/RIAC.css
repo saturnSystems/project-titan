@@ -29,7 +29,14 @@
 }
 
 .add-current-product {
-  font-size: 1.5em; 
+  font-size: 1em; 
   text-align: center;
   border: 2px solid red;
+}
+
+.RIAC .add-card-body {
+  padding-left: 15%;
+  padding-right: 15%;
+  font-size: 0.8em;
+  text-align: left;
 }

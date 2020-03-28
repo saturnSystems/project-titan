@@ -134,7 +134,13 @@ class RIAC extends React.Component{
           <Row className="layout"> 
             <Col className="layout col-3" key={"0-0"}>
               <div className="add-current-product" onClick={this.addOutfitProductId}>
-                <b>+</b><br /> Add current product to your outfits <br />(Limit: one of each product)
+                <b>+<br />Add current product to your outfits</b>
+                <Row className="add-card-body">
+                  <br/>o Limit: one of each product.
+                  <br />o Click star to delete.
+                  <br />o Your outfit will be retained in local storage - 
+                    it will persist even if you leave and return later (with some limits).
+                </Row>
               </div>
             </Col>
           
