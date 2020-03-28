@@ -37,7 +37,7 @@ class AddAnswer extends React.Component {
   };
 
   Photos = e => {
-    if (this.state.Photos.length < 5) {
+    if (e.target.value.includes('http')) {
       let morePhotos = this.state.Photos;
       morePhotos.push(e.target.value);
       this.setState({ Photos: morePhotos });
@@ -146,11 +146,15 @@ class AddAnswer extends React.Component {
               <b>Upload Pictures (5 max.)</b>
             </Form.Label>
             <div>
-              <input type="file" onChange={this.Photos} />
+              <p>1.</p><input type="url" placeholder="https://example.com" onChange={this.Photos} /><br />
+              <p>2.</p><input type="url" placeholder="https://example.com" onChange={this.Photos} /><br />
+              <p>3.</p><input type="url" placeholder="https://example.com" onChange={this.Photos} /><br />
+              <p>4.</p><input type="url" placeholder="https://example.com" onChange={this.Photos} /><br />
+              <p>5.</p><input type="url" placeholder="https://example.com" onChange={this.Photos} /><br />
             </div>
             <div>
-              {this.state.Photos.map(picture => (
-                <AnswerImages photo={picture} key={picture} />
+              {this.state.Photos.map((picture, index) => (
+                <div><p>{index + 1}</p><AnswerImages photo={picture} key={picture} /><br /></div>
               ))}
             </div>
           </Form>

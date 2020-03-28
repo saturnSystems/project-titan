@@ -4,7 +4,6 @@ import Col from "react-bootstrap/Col";
 import Answers from "./Answers";
 import AddAnswer from ".././q-a/AddAnswer.jsx";
 import Highlighter from "react-highlight-words"; // highlighting
-import { findAll } from "highlight-words-core"; // highlighting
 const helper = require("./../../helper/helper.js");
 
 class Questions extends React.Component {

@@ -64,7 +64,7 @@ class List extends React.Component {
             type="text"
             placeholder="Have a question? Search for answers…"
             onChange={this.SearchBox}
-            id="Search"
+            id={this.state.SearchText}
           />
         </Row>
         {questions.map(question => (
