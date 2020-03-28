@@ -7,7 +7,7 @@ import "./Reviews.css";
 import Button from "react-bootstrap/Button";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import DropdownItem from "react-bootstrap/DropdownItem";
-
+import FormControl from "react-bootstrap/FormControl";
 import ReviewTiles from "../ReviewsTiles/ReviewTiles";
 import Ratings from "../ratings/Ratings.jsx";
 import AddReview from "../AddReview/AddReview.jsx";
@@ -30,7 +30,8 @@ class Reviews extends React.Component {
       ShowModal: false,
       backupRatings: 0,
       backupRatingsLength: 0,
-      backupAvg: 0
+      backupAvg: 0,
+      searchTxt: ""
     };
   }
 
@@ -40,6 +41,10 @@ class Reviews extends React.Component {
 
   handleStarSort = star => {
     this.setState({ starSort: star });
+  };
+
+  handleSearch = e => {
+    this.setState({ searchTxt: e.target.value.toLowerCase() });
   };
 
   componentDidMount = () => {
@@ -83,7 +88,7 @@ class Reviews extends React.Component {
   }
 
   moreReviews = () => {
-    this.setState({ itemsToShow: this.state.itemsToShow + 2 });
+    this.setState({ itemsToShow: this.state.backupRatingsLength });
   };
 
   setOption = option => {
@@ -91,14 +96,22 @@ class Reviews extends React.Component {
   };
 
   render() {
-    const { reviews } = this.state;
+    let { reviews } = this.state;
     const { itemsToShow } = this.state;
+    const { searchTxt } = this.state;
+
+    reviews = reviews.slice(0, this.state.reviews.length);
+    if (this.state.searchTxt.length >= 3) {
+      reviews = reviews.filter(review =>
+        review.body.toLowerCase().includes(this.state.searchTxt)
+      );
+    }
     return (
-      <Container-fluid className="noBorder layout container">
+      <Container-fluid className="noBorder layout container theMedia">
         <Col sm={{ span: 10, offset: 1 }} className="layout container noBorder">
           <Row className="layout noBorder">Ratings and Reviews</Row>
           <Row className="layout noBorder">
-            <Col sm={2} className="layout noBorder">
+            <Col sm={3} className="layout noBorder">
               <Ratings
                 productId={this.state.productId}
                 reviews={this.state.reviews}
@@ -108,13 +121,20 @@ class Reviews extends React.Component {
                 backupAvg={this.state.backupAvg}
               />
             </Col>
-            <Col sm={1} className="layout noBorder"></Col>
-            <Col className="layout noBorder">
+            {/* <Col className="layout noBorder"></Col> */}
+            <Col sm={9} className="layout noBorder">
               <Row className="layout noBorder">
-                <span className="ptag noBorder">
-                  {reviews.length} Reviews, sort on
+                <span
+                  className="ptag noBorder middle"
+                  style={{ paddingLeft: "25px" }}
+                >
+                  {reviews.length} Reviews, sort on:
                 </span>
-                <DropdownButton title={this.state.sortedBy}>
+                <DropdownButton
+                  title={this.state.sortedBy}
+                  variant="outline-primary"
+                  style={{ padding: "1em" }}
+                >
                   {this.state.options.map(option => (
                     <DropdownItem
                       key={option}
@@ -130,7 +150,16 @@ class Reviews extends React.Component {
                   ))}
                 </DropdownButton>
               </Row>
-              <br />
+              <Row className="layout">
+                <FormControl
+                  size="md"
+                  type="text"
+                  placeholder="Search for more relevant reviews..."
+                  id="Search"
+                  onChange={this.handleSearch}
+                  style={{ width: "93%", paddingLeft: "25px" }}
+                />
+              </Row>
               <Row
                 style={{
                   height: "60vh",
@@ -152,6 +181,7 @@ class Reviews extends React.Component {
                       );
                       return (
                         <ReviewTiles
+                          search={searchTxt}
                           review={review}
                           date={`${date}`}
                           key={review.review_id}
@@ -170,6 +200,7 @@ class Reviews extends React.Component {
                       );
                       return (
                         <ReviewTiles
+                          search={searchTxt}
                           review={review}
                           date={`${date}`}
                           key={review.review_id}
@@ -182,13 +213,20 @@ class Reviews extends React.Component {
               <Row className="layout noBorder">
                 {!this.state.reviewsBtn &&
                 this.state.itemsToShow < this.state.reviews.length ? (
-                  <Button onClick={e => this.moreReviews()}>
-                    Show more reviews
+                  <Button
+                    className="thebtns"
+                    onClick={e => this.moreReviews()}
+                    variant="outline-primary"
+                    style={{ padding: "0.5em", margin: "1em" }}
+                  >
+                    SHOW MORE REVIEWS
                   </Button>
                 ) : null}{" "}
                 <Button
-                  className="addReviewBtn"
+                  className="thebtns"
                   onClick={() => this.ShowModal()}
+                  variant="outline-primary"
+                  style={{ padding: "0.5em", margin: "1em" }}
                 >
                   ADD A REVIEW
                 </Button>

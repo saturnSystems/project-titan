@@ -34,6 +34,7 @@
 
 .overview .btn-outline-primary {
   width: 100%;
+  margin-bottom: 1em;
 }
 
 .overview .image-gallery-fullscreen-button {
@@ -165,10 +166,6 @@
 .overview #details {
   height: 92.11vh;
   display: table;
-}
-
-.overview #social-media-buttons {
-  margin: auto;
 }
 
 .overview .dropdown-toggle {

@@ -9,6 +9,7 @@ import ModalBody from "react-bootstrap/ModalBody";
 import ModalFooter from "react-bootstrap/ModalFooter";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import StarRatingComponent from "react-star-rating-component";
 import "./AddReview.css";
 
 const helper = require("../../../helper/helper.js");
@@ -20,6 +21,12 @@ export default class AddReview extends Component {
     this.state = {
       productId: this.props.productID,
       meta: [],
+      fitId: 0,
+      sizeId: 0,
+      lengthId: 0,
+      comfortId: 0,
+      qualityId: 0,
+      widthId: 0,
       overallRating: 0,
       recommend: null,
       Characteristics: [],
@@ -33,6 +40,7 @@ export default class AddReview extends Component {
       body: "",
       bodyCount: 50,
       nickname: "",
+      photos: [],
       email: "",
       ShowModal: true,
       overallError: "",
@@ -42,7 +50,9 @@ export default class AddReview extends Component {
       nicknameError: "",
       emailError: "",
       errorMsg: "",
-      successMsg: false
+      successMsg: false,
+      rating: 0,
+      ratingMeaning: ["", "Poor", "Fair", "Average", "Good", "Great"]
     };
   }
 
@@ -52,6 +62,10 @@ export default class AddReview extends Component {
     });
   };
 
+  onStarClick = (nextValue, prevValue, name) => {
+    this.setState({ rating: nextValue });
+  };
+
   componentDidMount() {
     const { productId } = this.state;
 
@@ -59,6 +73,24 @@ export default class AddReview extends Component {
       // eslint-disable-next-line implicit-arrow-linebreak
       this.setState({
         meta: results,
+        fitId: results.characteristics.Fit
+          ? results.characteristics.Fit.id
+          : null,
+        lengthId: results.characteristics.Length
+          ? results.characteristics.Length.id
+          : null,
+        comfortId: results.characteristics.Comfort
+          ? results.characteristics.Comfort.id
+          : null,
+        qualityId: results.characteristics.Quality
+          ? results.characteristics.Quality.id
+          : null,
+        sizeId: results.characteristics.Size
+          ? results.characteristics.Size.id
+          : null,
+        widthId: results.characteristics.Width
+          ? results.characteristics.Width.id
+          : null,
         Characteristics: Object.keys(results.characteristics),
         size: results.characteristics.Size ? results.characteristics.Size : 0
       })
@@ -68,7 +100,7 @@ export default class AddReview extends Component {
   handleSubmit = () => {
     const { productId } = this.state;
     const { summary } = this.state;
-    const { overallRating } = this.state;
+    //const { Characteristics } = this.state;
     const { recommend } = this.state;
     const { nickname } = this.state;
     const { body } = this.state;
@@ -79,10 +111,35 @@ export default class AddReview extends Component {
     const { Width } = this.state;
     const { Comfort } = this.state;
     const { Quality } = this.state;
+    const { rating } = this.state;
+    const { fitId } = this.state;
+    const { lengthId } = this.state;
+    const { comfortId } = this.state;
+    const { qualityId } = this.state;
+    const { sizeId } = this.state;
+    const { widthId } = this.state;
 
     let error = false;
 
-    if (!this.state.overallRating) {
+    let review = {
+      rating: rating,
+      summary: summary,
+      body: body,
+      recommend: recommend === "true" ? true : false, // recommend.toLowerCase() ===
+      name: nickname,
+      email: email,
+      photos: [],
+      characteristics: {
+        [`${fitId}`]: parseInt(Fit),
+        [`${lengthId}`]: parseInt(Length),
+        [`${comfortId}`]: parseInt(Comfort),
+        [`${qualityId}`]: parseInt(Quality),
+        [`${sizeId}`]: parseInt(Size),
+        [`${widthId}`]: parseInt(Width)
+      }
+    };
+
+    if (this.state.rating === 0) {
       error = true;
       this.setState({
         overallError: "You must select one of the ratings:",
@@ -100,15 +157,72 @@ export default class AddReview extends Component {
     } else {
       this.setState({ recommendError: "" });
     }
-    if (!!this.state.Characteristics) {
-      error = true;
-      this.setState({
-        characteristicsError: "You must select one of the ratings:",
-        errorMsg: "Invalid Characteristics Rating"
-      });
-    } else {
-      this.setState({ characteristicsError: "" });
-    }
+
+    // ///////// SOMETHING IN HERE CAUSES REVIEWS NOT TO POST ///////////
+
+    // if (!!this.state.Characteristics) {
+    //   error = true;
+    //   this.setState({
+    //     characteristicsError: "You must select one of the ratings:",
+    //     errorMsg: "Invalid Characteristics Rating"
+    //   });
+    // } else {
+    //   this.setState({ characteristicsError: "" });
+    // }
+    // if (!this.state.Fit) {
+    //   error = true;
+    //   this.setState({
+    //     characteristicsError: "You must select one of the ratings:",
+    //     errorMsg: "Invalid Characteristics Rating"
+    //   });
+    // } else {
+    //   this.setState({ characteristicsError: "" });
+    // }
+    // if (!this.state.Size) {
+    //   error = true;
+    //   this.setState({
+    //     characteristicsError: "You must select one of the ratings:",
+    //     errorMsg: "Invalid Characteristics Rating"
+    //   });
+    // } else {
+    //   this.setState({ characteristicsError: "" });
+    // }
+    // if (!this.state.Length) {
+    //   error = true;
+    //   this.setState({
+    //     characteristicsError: "You must select one of the ratings:",
+    //     errorMsg: "Invalid Characteristics Rating"
+    //   });
+    // } else {
+    //   this.setState({ characteristicsError: "" });
+    // }
+    // if (!this.state.Comfort) {
+    //   error = true;
+    //   this.setState({
+    //     characteristicsError: "You must select one of the ratings:",
+    //     errorMsg: "Invalid Characteristics Rating"
+    //   });
+    // } else {
+    //   this.setState({ characteristicsError: "" });
+    // }
+    // if (!this.state.Quality) {
+    //   error = true;
+    //   this.setState({
+    //     characteristicsError: "You must select one of the ratings:",
+    //     errorMsg: "Invalid Characteristics Rating"
+    //   });
+    // } else {
+    //   this.setState({ characteristicsError: "" });
+    // }
+    // if (!this.state.Width) {
+    //   error = true;
+    //   this.setState({
+    //     characteristicsError: "You must select one of the ratings:",
+    //     errorMsg: "Invalid Characteristics Rating"
+    //   });
+    // } else {
+    //   this.setState({ characteristicsError: "" });
+    // }
     if (!this.state.body) {
       error = true;
       this.setState({
@@ -127,35 +241,18 @@ export default class AddReview extends Component {
     } else {
       this.setState({ nicknameError: "" });
     }
-    if (!this.state.email || !this.state.email.includes("@")) {
+    if (!this.state.email) {
       error = true;
       this.setState({
         emailError: "You must provide a valid email:",
         errorMsg: "Invalid Email"
       });
     } else {
-      this.setState({ email: "" });
+      this.setState({ emailError: "" });
     }
 
-    let review = {
-      rating: parseInt(overallRating),
-      summary: summary,
-      body: body,
-      recommend: recommend === "true" ? true : false, // recommend.toLowerCase() ===
-      name: nickname,
-      email: email,
-      photos: [],
-      characteristics: {
-        Fit: parseInt(Fit),
-        Size: parseInt(Size),
-        Length: parseInt(Length),
-        Width: parseInt(Width),
-        Comfort: parseInt(Comfort),
-        Quality: parseInt(Quality)
-      }
-    };
     if (!error) {
-      helper.postReview(productId, review, () => console.log("Sent!", review));
+      helper.postReview(productId, review, () => true);
       this.setState({ successMsg: true });
     }
   };
@@ -193,15 +290,25 @@ export default class AddReview extends Component {
   };
 
   handleRecommend = e => {
-    this.setState({ recommend: e.target.name }); // Boolean.parseBoolean
+    this.setState({ recommend: e.target.name });
+  };
+
+  Photos = e => {
+    if (this.state.photos.length < 5) {
+      let morePhotos = this.state.photos;
+      morePhotos.push(e.target.value);
+      this.setState({ photos: morePhotos });
+    }
   };
 
   render() {
     const { Characteristics } = this.state;
-    const { email } = this.state;
-    const { body } = this.state;
-    const { summary } = this.state;
-    const { nickname } = this.state;
+    // const { email } = this.state;
+    // const { body } = this.state;
+    // const { summary } = this.state;
+    // const { nickname } = this.state;
+    const { rating } = this.state;
+    const { ratingMeaning } = this.state;
 
     // const isEnabled =
     //   email.length > 5 &&
@@ -225,51 +332,15 @@ export default class AddReview extends Component {
                   <p style={{ color: "red" }}>
                     <i>{this.state.overallError}</i>
                   </p>
-                  {["checkbox"].map(type => (
-                    <div key={`inline-${type}`} required className="mb-3">
-                      <Form.Check
-                        inline
-                        name="1"
-                        onClick={this.handleRating}
-                        label="1 Star - Poor"
-                        type={type}
-                        id={`inline-${type}-1`}
-                      />
-                      <Form.Check
-                        inline
-                        name="2"
-                        onClick={this.handleRating}
-                        label="2 Star - Fair"
-                        type={type}
-                        id={`inline-${type}-2`}
-                      />
-                      <Form.Check
-                        inline
-                        name="3"
-                        onClick={this.handleRating}
-                        label="3 Star - Average"
-                        type={type}
-                        id={`inline-${type}-3`}
-                      />
-                      <Form.Check
-                        inline
-                        name="4"
-                        onClick={this.handleRating}
-                        label="4 Star - Good"
-                        type={type}
-                        id={`inline-${type}-4`}
-                      />
-                      <Form.Check
-                        inline
-                        name="5"
-                        onClick={this.handleRating}
-                        label="5 Star - Great"
-                        type={type}
-                        id={`inline-${type}-5`}
-                      />
-                    </div>
-                  ))}
-
+                  <div>
+                    <h3>{ratingMeaning[rating]}</h3>
+                    <StarRatingComponent
+                      name="overall"
+                      starCount={5}
+                      value={rating}
+                      onStarClick={this.onStarClick}
+                    />
+                  </div>
                   <b>*Do You Recommend This Product?:</b>
                   <p style={{ color: "red" }}>
                     <i>{this.state.recommendError}</i>
@@ -588,11 +659,10 @@ export default class AddReview extends Component {
                   </p>
                 </Form.Label>
                 <Form.Control
-                  required
                   type="text"
                   name="body"
-                  minLength="50"
-                  maxLength="1000"
+                  // minLength="50"
+                  // maxLength="1000"
                   onChange={this.handleBody}
                   placeholder="Why did you like the product or not?"
                 />
@@ -601,6 +671,20 @@ export default class AddReview extends Component {
                   <b>Photos:</b>
                 </Form.Label>
                 <Form.Control placeholder="Provide a URL" />
+                <div>
+                  <input type="file" onChange={this.Photos} />
+                </div>
+                <div>
+                  {this.state.photos.map((photo, i) => (
+                    <imageComponent
+                      photo={photo.url}
+                      id={photo.id}
+                      handleShowImage={this.handleShowImage}
+                      // eslint-disable-next-line react/no-array-index-key
+                      key={i}
+                    />
+                  ))}
+                </div>
                 <Form.Label>
                   <b>*Nickname:</b>
                   <p style={{ color: "red" }}>
@@ -630,7 +714,7 @@ export default class AddReview extends Component {
                 <Form.Control
                   required
                   name="email"
-                  type="email"
+                  type="text"
                   maxLength="60"
                   onChange={this.handleInput}
                   placeholder="Example: jackson11@email.com"
