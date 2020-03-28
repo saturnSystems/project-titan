@@ -115,7 +115,7 @@ class ProductComparison extends React.Component {
       )
       for (let j = 0; j < relatedFeaturesTempArr.length; j++) {
         if (allFeaturesArr[i].feature === relatedFeaturesTempArr[j].feature) {
-          if (relatedFeaturesTempArr[i].value === "null") relatedFeaturesTempArr[i].value = null;
+          if (relatedFeaturesTempArr[j].value === "null") relatedFeaturesTempArr[j].value = null;
           // if (relatedFeaturesTempArr[i].value === "null") relatedFeaturesTempArr[i].value = &#x2713;
           // if (relatedFeaturesTempArr[i].value === true) relatedFeaturesTempArr[i].value = "&#x2713";
           allFeaturesArr[i].relatedValue = relatedFeaturesTempArr[j].value;
