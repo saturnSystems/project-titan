@@ -98,6 +98,7 @@ class Reviews extends React.Component {
   render() {
     let { reviews } = this.state;
     const { itemsToShow } = this.state;
+    const { searchTxt } = this.state;
 
     reviews = reviews.slice(0, this.state.reviews.length);
     if (this.state.searchTxt.length >= 3) {
@@ -180,6 +181,7 @@ class Reviews extends React.Component {
                       );
                       return (
                         <ReviewTiles
+                          search={searchTxt}
                           review={review}
                           date={`${date}`}
                           key={review.review_id}
@@ -198,6 +200,7 @@ class Reviews extends React.Component {
                       );
                       return (
                         <ReviewTiles
+                          search={searchTxt}
                           review={review}
                           date={`${date}`}
                           key={review.review_id}
