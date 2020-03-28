@@ -17,18 +17,10 @@ import ProductComparison from '../ProductComparison/ProductComparison';
 //   setProductId  ={this.props.setProductId}
 //   currentProduct  ={this.props.currentProduct} USED ONLY FOR DEBUGGING
 //   cardProductId  ={relatedZProductId}
-//   cardType  ={cardType}
+//   cardType  = "relatedProduct"  OR "yourOutfits"
 //   cardImageName   ={yourOutfitImageToShow}
 //   addOutfitProductId  ={this.addOutfitProductId} // only for YO
-
-
-const yourOutfitBaseProductObj = {
-  id: 0,
-  name: "Click to add current product",
-  slogan: null,
-  description: null,
-  category: null
-}
+//   removeOutfitProductId  ={this.removeOutfitProductId}
 
 const helper = require("../../../../helper/helper.js");
 
@@ -40,7 +32,7 @@ class ProductCard extends React.Component {
       cardStyles: null, // change over time, requiring re-render
       cardReviewRating: null, // change over time, requiring re-render
       compareProductsNow: false
-      // cardType: null
+      // cardType: "relatedProduct"  // outfitProduct
     }
 
     // NO NEED TO BIND WHEN I HAVE <this>
@@ -85,7 +77,6 @@ class ProductCard extends React.Component {
     this.props.setProductId(this.props.cardProductId);
   }
 
-
   compareProducts = (event) => {
     event.stopPropagation();
     this.setState({
@@ -108,13 +99,9 @@ class ProductCard extends React.Component {
     }
   }
 
-  // addOutfitProductId = (currentProductId) => {
-  //   if (!this.state.yourOutfitIds.includes(currentProductId) ) {
-  //     this.setState({
-  //       yourOutfitIds: [...this.state.yourOutfitIds, currentProductId]
-  //     });   
-  //   }
-  // }
+  removeOutfitProductId = (event) => {
+    this.props.removeOutfitProductId(this.props.cardProductId)
+  }
 
   // Pre-method check if ready to render or null
   isReadytoRender = () => {
@@ -139,11 +126,10 @@ class ProductCard extends React.Component {
     // function method
     if (!this.isReadytoRender()) return null;
 
-    const { setProductId, currentProduct, cardProductId, cardType } = this.props;
+    // const { setProductId, currentProduct, cardProductId, cardType } = this.props; // NOT USED
     const { cardProduct, cardStyles, cardReviewRating } = this.state;
 
     // console.logs for DEBUGGING
-
     // console.log("PC: cP: ", currentProduct); // used only for debugging
     // console.log("PC: rPId: ", this.props.cardProductId);
     // console.log("PC: rP: ", cardProduct);
@@ -153,14 +139,12 @@ class ProductCard extends React.Component {
     // console.log("PC: rCat: ", cardCategory);
 
     let cardCaption = cardProduct.name ? cardProduct.name : null;
-    // let cardCaption = (cardProduct.name === undefined || cardProduct.slogan === undefined) ? null : cardProduct.name + ' - ' + cardProduct.slogan;
     // console.log("PC: rCap: ", cardCaption);
 
     let cardDefaultPrice = cardProduct.default_price || null; // SUPERCEDED BY style data
     // console.log("PC: rDP: ", cardDefaultPrice);
 
-    // QQQQ is this appropriate: noDefault => 0;
-
+    // QUICK PATCH: !default => set to 0
     // let cardStyle = cardStyles.find(style => style["default?"] === 1) || cardStyles[0];
     let cardStyle = cardStyles.find(style => style["default?"] === 1) || cardStyles[0];
         // console.log("PC: rS: ", cardStyle);
@@ -181,52 +165,20 @@ class ProductCard extends React.Component {
       cardStyleImage = addToOutfitImage;
     }
 
-
-    /* pseudo-code
-    if this needs to show already outfit image
-      cardStyleImage = alreadyInOutfitImage;
-    if this needs to show add an outfit
-     cardStyleImage = addOutfitImage;
-
-     // in yourOutfit.jsx
-     this.state.alreadyInOutfit := true
-     this.state.addAnOutfit := false
-
-     // toggle from above
-     this.state.alreadyInOutfit := false
-     this.state.addAnOutfit := true
-
-     // alternative data structure
-     this.state.buttonType := "alreadyInOutfit"
-     toggle that
-     this.state.buttonType := "addAnOutfit"
-
-
-
-
-     if (this.props.alreadyInOutfitXXX) {
-      cardStyleImage = alreadyInOutfitImage;
-    } else if () {
-
-    }
-    */
-
     // console.log("PC: render: rRR: ", cardReviewRating);
 
     // YOUR OUTFIT
-
     // this.yourOutfitIds.push(yourOutfitBaseProduct);
 
     return (
       <Container-fluid class="layout product-card-layout align-left">
-        <div id="product-card-div" onClick={this.setProductId}>
+        <div id="product-card-div" onClick={this.props.cardType === "relatedProduct" ? this.setProductId : () => {}}>
           <div>
             <div className="card mb-3 style-image">            
               <img className="card-img-top" src={cardStyleImage}  alt="Display this style"/>
               {/* <img className="card-img-top" src={"https://images.unsplash.com/photo-1473396413399-6717ef7c4093?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"}  alt=""/> */}
               <div className="card-img-overlay">
-                <small><p className="btn btn-primary btn-star" onClick={this.compareProducts}>&#x2605;</p></small>
-                {/* {this.state.compareProductsNow ? "Some text" : "No text"} */}
+                <small><p className="btn btn-primary btn-star" onClick={this.props.cardType === "relatedProduct" ? this.compareProducts : this.removeOutfitProductId}>&#x2605;</p></small>
                 {this.state.compareProductsNow && (
                     <ProductComparison 
                       currentProductId={this.props.currentProduct.id}
