@@ -132,7 +132,7 @@ class RIAC extends React.Component{
           <br></br>
 
           <Row className="layout"><strong>Your Outfit</strong> 
-          &nbsp; &nbsp; Click below &quot;+&quot; to add current product to your outfit</Row>
+          &nbsp; &nbsp; Click in box below to add current product to your outfit.</Row>
           <Row className="layout"> 
             <Col className="layout col-3" key={"0-0"}>
               <div className="add-current-product" onClick={this.addOutfitProductId}>
