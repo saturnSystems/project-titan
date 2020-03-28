@@ -146,18 +146,29 @@ class ProductCard extends React.Component {
 
     // QUICK PATCH: !default => set to 0
     // let cardStyle = cardStyles.find(style => style["default?"] === 1) || cardStyles[0];
-    let cardStyle = cardStyles.find(style => style["default?"] === 1) || cardStyles[0];
-        // console.log("PC: rS: ", cardStyle);
+    let cardStyle = null;
+    // console.log("PC: render: cS: ", cardStyle)
+    let cardStyleOriginalPrice = null;
+    // console.log("PC: render: cSoP: ", cardStyleOriginalPrice)
+    let cardStyleSalePrice = cardDefaultPrice;
+    // console.log("PC: render: cSSP: ", cardStyleSalePrice)
+    let cardStyleImage = noImage;
+    // console.log("PC: render: cSI: ", cardStyleImage)
+  
+    if (cardStyles.length > 0) {
+      cardStyle = cardStyles.find(style => style["default?"] === 1) || cardStyles[0];
+      // console.log("PC: rS: ", cardStyle);
 
-    // let relatedStylesIndex = 2; // HARD CODED - FALLBAK
-    let cardStyleOriginalPrice = cardStyle.original_price || null;
-    // console.log("PC: rStyleOPrice: ", cardStyleOriginalPrice);
+      // let relatedStylesIndex = 2; // HARD CODED - FALLBAK
+      cardStyleOriginalPrice = cardStyle.original_price || null;
+      // console.log("PC: rStyleOPrice: ", cardStyleOriginalPrice);
 
-    let caedStyleSalePrice = cardStyle.sale_price || cardDefaultPrice;
-    // console.log("PC: rStyleSPrice: ", caedStyleSalePrice);
+      cardStyleSalePrice = cardStyle.sale_price || cardDefaultPrice;
+      // console.log("PC: rStyleSPrice: ", cardStyleSalePrice);
 
-    let cardStyleImage = cardStyle.photos[0].url || noImage;
-    // console.log("PC: rSI: ", cardStyleImage);
+      cardStyleImage = cardStyle.photos[0].url || noImage;
+      // console.log("PC: rSI: ", cardStyleImage);
+    }
 
     if (this.props.cardImageName === "alreadyInOutfit") {
       cardStyleImage = alreadyInOutfitImage;
@@ -173,7 +184,7 @@ class ProductCard extends React.Component {
     return (
       <Container-fluid class="layout product-card-layout align-left">
         <div id="product-card-div" onClick={this.props.cardType === "relatedProduct" ? this.setProductId : () => {}}>
-          <div>
+          <div className="image-container">
             <div className="card mb-3 style-image">            
               <img className="card-img-top" src={cardStyleImage}  alt="Display this style"/>
               {/* <img className="card-img-top" src={"https://images.unsplash.com/photo-1473396413399-6717ef7c4093?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"}  alt=""/> */}
@@ -195,7 +206,7 @@ class ProductCard extends React.Component {
           <div className="card-body">          
           <p className="card-text category">{cardCategory}</p>
           <h5 className="card-title pc-caption">{cardCaption}</h5>
-          <small><p className="card-text text-muted price">${caedStyleSalePrice} &nbsp; &nbsp; <del>${cardStyleOriginalPrice}</del></p></small>
+          <small><p className="card-text text-muted price">${cardStyleSalePrice} &nbsp; &nbsp; <del>${cardStyleOriginalPrice}</del></p></small>
             <Row className="rating-stars">              
               <StarRatings
                 rating={cardReviewRating}
