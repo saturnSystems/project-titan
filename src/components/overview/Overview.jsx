@@ -113,7 +113,7 @@ class Overview extends React.Component {
 
   conditionalStyles() {
     let storage = [];
-    let styles = this.props.styles;
+    let styles = [...this.props.styles];
     while (styles.length % 4) {
       styles.push({});
     }
@@ -129,7 +129,7 @@ class Overview extends React.Component {
                 {each.photos && (
                   <Form.Check.Input
                     ref={
-                      !this.props.styles[1].style_id
+                      !this.props.styles[1]
                         ? this.defaultRadio
                         : each["default?"]
                         ? this.defaultRadio
