@@ -31,15 +31,7 @@ class List extends React.Component {
   };
 
   render() {
-    //   var instance = new Mark(document.querySelector("div.Question"));
-    //   instance.mark(this.state.SearchText, { accuracy: {
-    //     value: "exactly",
-    //     limiters: [".", ",", "!"]
-    //   },
-    // done: function(counter){
-    //   instance.unmark()
-    // }});
-
+    
     let questions = this.props.questions;
 
     function compare(a, b) {
