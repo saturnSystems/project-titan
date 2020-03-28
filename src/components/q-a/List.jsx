@@ -1,6 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom"; // highlighting
-import Highlighter from "react-highlight-words"; // highlighting
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 import FormControl from "react-bootstrap/FormControl";
