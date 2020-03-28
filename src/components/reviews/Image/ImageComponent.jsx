@@ -36,6 +36,24 @@ export default class ImageComponent extends Component {
         {isOpen ? (
           <div>
             <Image
+              // src={
+              //   photo
+              //     ? photo.includes("unsplash")
+              //       ? `${photo.substring(
+              //           0,
+              //           photo.indexOf("&w=")
+              //         )}&w=${Math.round(
+              //           window.innerWidth <= 768
+              //             ? window.innerWidth / 4
+              //             : window.innerWidth / 15
+              //         )}&h=${Math.round(
+              //           window.innerWidth <= 768
+              //             ? window.innerWidth / 4
+              //             : window.innerWidth / 15
+              //         )}&q=80`
+              //       : photo
+              //     : photo //require("../../../noImg.svg")
+              // }
               src={photo}
               thumbnail
               style={{ width: "9rem", height: "8rem" }}
