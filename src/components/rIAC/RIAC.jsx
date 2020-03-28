@@ -110,7 +110,8 @@ class RIAC extends React.Component{
       <Container-fluid class="layout container RIAC">
 
         <Col sm={{ span: 10, offset: 1 }} className="layout container">
-          <strong><Row className="layout">Related Products</Row></strong>
+          <Row className="layout"><strong>Related Products</strong>
+          &nbsp; &nbsp; Click on image to see details. Click on star to see feature comparison.</Row>
           <Row className="layout"> {
               relatedProductsIds.map((relatedProductId, index) => { 
                 let indexProdIdStr = index.toString() + '-' + relatedProductId.toString();
@@ -130,15 +131,16 @@ class RIAC extends React.Component{
           </Row>
           <br></br>
 
-          <strong><Row className="layout">Your Outfit</Row></strong>
+          <Row className="layout"><strong>Your Outfit</strong> 
+          &nbsp; &nbsp; Click below &quot;+&quot; to add current product to your outfit</Row>
           <Row className="layout"> 
             <Col className="layout col-3" key={"0-0"}>
               <div className="add-current-product" onClick={this.addOutfitProductId}>
-                <b>+<br />Add current product to your outfits</b>
+                <b>+ (add to outfit)<br />NOTES:</b><br/>
                 <Row className="add-card-body">
-                  <br/>o Limit: one of each product.
-                  <br />o Click star to delete.
-                  <br />o Your outfit will be retained in local storage - 
+                  o Limit: one of each product.<br />
+                  o Click star to delete.<br />
+                  o Your outfit will be retained in local storage - 
                     it will persist even if you leave and return later (with some limits).
                 </Row>
               </div>
