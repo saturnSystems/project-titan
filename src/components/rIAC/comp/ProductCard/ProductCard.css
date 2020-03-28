@@ -44,7 +44,8 @@ del {
   color: black;
 }
 
-.btn-star {
+.btn-star-riac {
+  width: 30%;
   background-color: white;
   border: 1px solid black;
   box-shadow: none;
