@@ -153,6 +153,15 @@ class ProductComparison extends React.Component {
     const handleClose = () => setShow(false);
     // const handleShow = () => setShow(true);
 
+// ////
+// SEARCH FOR relatedProduct.features.value: true 1-31: NONE FOUND
+// console.log("PComp: cP: ", currentProduct);
+// console.log("PComp: rP: ", relatedProduct);
+// let relatedFeaturesRubber = relatedFeaturesTempArr.filter(element => element.value === "Rubber");
+// let relatedFeaturesTrue = relatedFeaturesTempArr.filter(element => element.value === (true || "true"));
+// console.log("PComp: rFR: ", relatedFeaturesRubber);
+// console.log("PComp: rFT: ", relatedFeaturesTrue);
+
     return (
       // <Container-fluid class="layout product-card-layout align-left">
         <Modal className="comparison-body" show={show} onHide={handleClose} >
