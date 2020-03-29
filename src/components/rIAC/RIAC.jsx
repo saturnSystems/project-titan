@@ -103,7 +103,7 @@ class RIAC extends React.Component{
     let relatedProductsIds = this.props.relatedProductsIds;
     // console.log("RIAC: rPIds: ", relatedProductsIds)
     let relatedDisplayProductsIds = relatedProductsIds.slice();
-    console.log("R: rDPIds: ", relatedDisplayProductsIds)
+    // console.log("R: rDPIds: ", relatedDisplayProductsIds)
     if (relatedDisplayProductsIds !== undefined) {
       relatedDisplayProductsIds.length = 4;
       }      
