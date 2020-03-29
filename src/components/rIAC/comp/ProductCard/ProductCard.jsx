@@ -183,10 +183,10 @@ class ProductCard extends React.Component {
 
     return (
       <Container-fluid class="layout product-card-layout align-left">
-        <div id="product-card-div" onClick={this.props.cardType === "relatedProduct" ? this.setProductId : () => {}}>
+        <div className="product-card-div" onClick={this.props.cardType === "relatedProduct" ? this.setProductId : () => {}}>
           <div className="image-container">
-            <div className="card mb-3 style-image">            
-              <img className="card-img-top" src={cardStyleImage}  alt="Display this style"/>
+            <div className="card mb-3">            
+              <img className="card-img-top style-image" src={cardStyleImage}  alt="Display this style"/>
               {/* <img className="card-img-top" src={"https://images.unsplash.com/photo-1473396413399-6717ef7c4093?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80"}  alt=""/> */}
               <div className="card-img-overlay">
                 <small><p className="btn btn-star-riac" onClick={this.props.cardType === "relatedProduct" ? this.compareProducts : this.removeOutfitProductId}>&#x2605;</p></small>
