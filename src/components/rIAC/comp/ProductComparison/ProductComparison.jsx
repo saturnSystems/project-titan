@@ -153,7 +153,7 @@ class ProductComparison extends React.Component {
     const handleClose = () => setShow(false);
     // const handleShow = () => setShow(true);
 
-// ////
+// ///////
 // SEARCH FOR relatedProduct.features.value: true 1-31: NONE FOUND
 // console.log("PComp: cP: ", currentProduct);
 // console.log("PComp: rP: ", relatedProduct);
