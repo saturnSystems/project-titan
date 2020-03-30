@@ -2,7 +2,6 @@ import React from "react";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import AnswerImages from "../q-a/AnswerImages.jsx";
-
 const helper = require("../../helper/helper.js");
 
 class Answers extends React.Component {

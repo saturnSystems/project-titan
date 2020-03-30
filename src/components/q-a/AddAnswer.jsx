@@ -20,7 +20,9 @@ class AddAnswer extends React.Component {
       ErrorMessage: "",
       AnswerError: "",
       NicknameError: "",
-      EmailError: ""
+      EmailError: "",
+      SavePhotos: false,
+      NumberOfPictures: 0
     };
   }
 
@@ -36,12 +38,22 @@ class AddAnswer extends React.Component {
     this.setState({ Email: e.target.value });
   };
 
-  Photos = e => {
-    if (e.target.value.includes('http')) {
-      let morePhotos = this.state.Photos;
-      morePhotos.push(e.target.value);
-      this.setState({ Photos: morePhotos });
+  Photos = (e, id) => {
+    this.setState({ [id]: e.target.value, NumberOfPictures: id });
+  };
+
+  SavePhotos = () => {
+    let photosArr = [];
+    for (let i = 0; i < this.state.NumberOfPhotos; i++) {
+      let index = i;
+      photosArr.push(this.state[index]);
     }
+
+    this.setState({
+      SavePhotos: true,
+      Photos: photosArr
+    });
+    console.log(this.state.Photos);
   };
 
   CheckForErrors = () => {
@@ -86,7 +98,7 @@ class AddAnswer extends React.Component {
         null,
         () => true
       );
-      this.props.button()
+      this.props.button();
     }
   };
 
@@ -146,16 +158,65 @@ class AddAnswer extends React.Component {
               <b>Upload Pictures (5 max.)</b>
             </Form.Label>
             <div>
-              <p>1.</p><input type="url" placeholder="https://example.com" onChange={this.Photos} /><br />
-              <p>2.</p><input type="url" placeholder="https://example.com" onChange={this.Photos} /><br />
-              <p>3.</p><input type="url" placeholder="https://example.com" onChange={this.Photos} /><br />
-              <p>4.</p><input type="url" placeholder="https://example.com" onChange={this.Photos} /><br />
-              <p>5.</p><input type="url" placeholder="https://example.com" onChange={this.Photos} /><br />
+              <p>1.</p>
+              <input
+                type="url"
+                placeholder="https://example.com"
+                onChange={e => {
+                  this.Photos(e, 1);
+                }}
+              />
+              <br />
+              <p>2.</p>
+              <input
+                type="url"
+                placeholder="https://example.com"
+                onChange={e => {
+                  this.Photos(e, 2);
+                }}
+              />
+              <br />
+              <p>3.</p>
+              <input
+                type="url"
+                placeholder="https://example.com"
+                onChange={e => {
+                  this.Photos(e, 3);
+                }}
+              />
+              <br />
+              <p>4.</p>
+              <input
+                type="url"
+                placeholder="https://example.com"
+                onChange={e => {
+                  this.Photos(e, 4);
+                }}
+              />
+              <br />
+              <p>5.</p>
+              <input
+                type="url"
+                placeholder="https://example.com"
+                onChange={e => {
+                  this.Photos(e, 5);
+                }}
+              />
+              <br />
             </div>
+            <Button onClick={this.SavePhotos} variant="outline-primary">
+              Save
+            </Button>
             <div>
-              {this.state.Photos.map((picture, index) => (
-                <div><p>{index + 1}</p><AnswerImages photo={picture} key={picture} /><br /></div>
-              ))}
+              {this.state.SavePhotos
+                ? this.state.Photos.map((picture, index) => (
+                    <div>
+                      <p>{index + 1}</p>
+                      <AnswerImages photo={picture} key={picture} />
+                      <br />
+                    </div>
+                  ))
+                : null}
             </div>
           </Form>
         </ModalBody>
