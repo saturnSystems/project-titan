@@ -54,10 +54,28 @@ class RIAC extends React.Component{
     return localStorage.setItem("yourOutfitIds", JSON.stringify(this.state.yourOutfitIds))
   }
 
+  // const init = () => {
+  //   let preloadedState;
+  //   try {
+  //     preloadedState =  JSON.parse(window.localStorage.getItem(storageKey));
+  //     // validate preloadedState if necessary
+  //   } catch (e) {
+  //     // ignore
+  //   }
+  //   return preloadedState || initialState;
+  // };
 
   reinstateOutfitIds = () => {
-    return JSON.parse(localStorage.getItem("yourOutfitIds"));
-  }
+    let yourPreloadedOutfitIds = [];
+    let storageKey = "yourOutfitIds";
+    try {
+      yourPreloadedOutfitIds = JSON.parse(localStorage.getItem(storageKey));
+    //validate yourPreloadedOutfitIds
+    } catch (e) {
+      // ignore
+    }
+    return yourPreloadedOutfitIds || [];
+    };
 
   setCardTypeToYourOutfit = () => {
       this.props.cardType("yourOutfit");
